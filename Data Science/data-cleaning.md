@@ -36,6 +36,14 @@ data_cleaned_outliers = data[~((data[iqr_columns] < lower_filtering_bound) |(dat
 
 ## Drop Columns
 
+``` python
+# Get names of columns with missing values
+nan_columns_count = (data.isnull().sum())
+nan_column_names = nan_columns_count[nan_columns_count > 0].index.tolist()
+
+# Drop columns in training and validation data
+reduced_data = data.drop(nan_column_names, axis=1)
+```
 
 ## Imputation
 Next, we use SimpleImputer to replace missing values with the mean value along each column.
