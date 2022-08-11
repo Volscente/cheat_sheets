@@ -44,3 +44,10 @@ performance.loc['logistic_regression'] = [accuracy_lr, precision_lr, recall_lr, 
 # Remove spaces from column names
 data.columns = data.columns.str.strip()
 ```
+
+## NaN Values
+``` python
+# Number of missing values in each column of data
+missing_val_count_by_column = (data.isnull().sum())
+print(missing_val_count_by_column[missing_val_count_by_column > 0])
+```
