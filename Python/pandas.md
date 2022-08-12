@@ -31,6 +31,12 @@ data_filled['Income'] = data_cleaned_outliers.groupby([year_birth_intervals,
                                                        data_cleaned_outliers['Marital_Status']])['Income'].apply(lambda x: x.fillna(x.mean()))
 ```
 
+## Top 10 Size Groups
+``` python
+data_grouped = data.groupby(['<column_name>']).size().to_frame().sort_values([0], ascending = False).head(10).reset_index()
+```
+
+
 # DataFrame
 
 ## Add Row from List
