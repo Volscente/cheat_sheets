@@ -75,3 +75,57 @@ figure = ex.bar(performance,
 
 figure.show()
 ```
+
+# Line Charts
+
+## Multiple Plots
+
+``` python
+# Define subplots
+figure = make_subplots(rows=2, 
+                       cols=2, 
+                       subplot_titles=('Creation Date over Years', 
+                                       'Creation Date over Months', 
+                                       'Creation Date over Days', 
+                                       'Creation Date over Weekdays'))
+
+
+figure.add_trace(go.Scatter(x=vp_users.groupby(['created_at_year']).size().sort_index().index.to_list(),
+                            y=vp_users.groupby(['created_at_year']).size().sort_index().to_list(), 
+                            mode='lines', 
+                            name='Yearly'),
+                 row=1, 
+                 col=1)
+
+figure.add_trace(go.Scatter(x=vp_users.groupby(['created_at_month']).size().sort_index().index.to_list(),
+                            y=vp_users.groupby(['created_at_month']).size().sort_index().to_list(), 
+                            mode='lines', 
+                            name='Monthly'), 
+                 row=1, 
+                 col=2)
+
+figure.add_trace(go.Scatter(x=vp_users.groupby(['created_at_day']).size().sort_index().index.to_list(),
+                            y=vp_users.groupby(['created_at_day']).size().sort_index().to_list(), 
+                            mode='lines',  
+                            name='Daily'), 
+                 row=2, 
+                 col=1)
+
+figure.add_trace(go.Scatter(x=vp_users.groupby(['created_at_dayofweek']).size().sort_index().index.to_list(),
+                            y=vp_users.groupby(['created_at_dayofweek']).size().sort_index().to_list(), 
+                            mode='lines', 
+                            name='Days of Week'), 
+                 row=2, 
+                 col=2)
+
+figure.update_layout(yaxis_title='Share', 
+                     font=dict(family="PT Sans", 
+                               size=14), 
+                     title_font=dict(family="PT Sans",
+                                     size=30), 
+                     title_x=0.7, 
+                     height=1000, 
+                     template='plotly_dark')
+
+figure.show()
+```
