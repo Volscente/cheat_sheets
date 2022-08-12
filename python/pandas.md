@@ -57,3 +57,8 @@ data.columns = data.columns.str.strip()
 missing_val_count_by_column = (data.isnull().sum())
 print(missing_val_count_by_column[missing_val_count_by_column > 0])
 ```
+
+## Count Duplicates
+``` python
+data[data['<column_name>'].duplicated()]
+```
