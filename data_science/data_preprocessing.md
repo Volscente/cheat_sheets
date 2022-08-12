@@ -114,6 +114,5 @@ OH_X_valid = pd.concat([num_X_valid, OH_cols_valid], axis=1)
 ## Get Categorical Variables
 ``` python
 # Get list of categorical variables
-s = (X_train.dtypes == 'object')
-object_cols = list(s[s].index)
+object_cols = [col for col in X_train.columns if X_train[col].dtype == "object"]
 ```
