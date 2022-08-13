@@ -68,6 +68,7 @@ imputed_X_valid.columns = X_valid.columns
 ```
 
 # Categorical Variables
+The number of categories of each variable is called **Cardinality**.
 
 ## Ordinal Encoding
 This approach assumes an ordering of the categories.
