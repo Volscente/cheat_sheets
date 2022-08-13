@@ -112,9 +112,35 @@ OH_X_train = pd.concat([num_X_train, OH_cols_train], axis=1)
 OH_X_valid = pd.concat([num_X_valid, OH_cols_valid], axis=1)
 ```
 
+## Comparison
+Use the Ordinal Encoding when the cardinality of the variable is high, otherwise use the One-Hot Encoding.
 
-## Get Categorical Variables
+
+## Utils
+
+### Get Categorical Variables
 ``` python
 # Get list of categorical variables
 object_cols = [col for col in X_train.columns if X_train[col].dtype == "object"]
 ```
+
+### Check Columns for Ordinal Encoding
+Check if the categorical variables can be encoded (i.e., if the categories are the same between training and test set)
+``` python
+# Columns that can be safely ordinal encoded
+good_label_cols = [col for col in object_cols if 
+                   set(X_valid[col]).issubset(set(X_train[col]))]
+        
+# Problematic columns that will be dropped from the dataset
+bad_label_cols = list(set(object_cols)-set(good_label_cols))
+```
+
+### Check Columns for One-Hot Encoding
+``` python
+# Columns that will be one-hot encoded
+low_cardinality_cols = [col for col in object_cols if X_train[col].nunique() < 10]
+
+# Columns that will be dropped from the dataset
+high_cardinality_cols = list(set(object_cols)-set(low_cardinality_cols))
+```
+
