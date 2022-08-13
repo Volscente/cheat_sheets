@@ -88,6 +88,7 @@ label_X_valid[object_cols] = ordinal_encoder.transform(X_valid[object_cols])
 ```
 
 ## One-Hot Encoding
+Categories are not ordered. This approach can increase a lot the dataset's size.
 ![img_2.png](../images/data_science/img_2.png)
 
 ``` python
