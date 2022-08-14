@@ -129,3 +129,13 @@ figure.update_layout(yaxis_title='Share',
 
 figure.show()
 ```
+
+# Save & Read Plots
+
+``` python
+# Save figure
+figure.write_json("./plots/<plot_name>.json")
+
+# Read & plot figure
+read_json('./plots/<plot_name>.json').show()
+```
