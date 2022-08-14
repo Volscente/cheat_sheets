@@ -130,7 +130,7 @@ figure.update_layout(yaxis_title='Share',
 figure.show()
 ```
 
-# Save & Read Plots
+# Save & Read Plots
 
 ``` python
 # Save figure
