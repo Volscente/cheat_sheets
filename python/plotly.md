@@ -134,7 +134,7 @@ figure.show()
 
 ``` python
 # Save figure
-figure.write_json("./plots/<plot_name>.json")
+figure.write_json('./plots/<plot_name>.json')
 
 # Read & plot figure
 read_json('./plots/<plot_name>.json').show()
