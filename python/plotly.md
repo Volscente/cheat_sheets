@@ -38,12 +38,52 @@ figure.show()
 
 # Box Plot
 
+## Single Box Plot
 ``` python
-figure = ex.box(data_frame=data, 
-                y='<pandas_column_name>', 
+# Plot boxplot of 'loading'
+figure = px.box(train_data, 
+                x='loading', 
+                title='Loading Distribution',
+                color_discrete_sequence=['darkgreen'],
                 template='plotly_dark')
 
-figure.show()
+figure.update_layout(font=dict(family="PT Sans", 
+                               size=14), 
+                     title_font=dict(family="PT Sans",
+                                     size=30), 
+                     title_x=0.5)
+
+# Save figure
+figure.write_json("./plots/loading_distribution.json")
+
+# Read & plot figure
+read_json('./plots/loading_distribution.json').show()
+```
+
+## Multiple Boxplot
+``` python
+# Plot the 'loading' distribution with respect to the 'product_code'
+figure = px.box(train_data, 
+                x='product_code', 
+                y='loading',
+                points='all',
+                color='product_code',
+                title='Loading Distribution per Product Code',
+                color_discrete_sequence=px.colors.qualitative.Set3,
+                height=500,
+                template='plotly_dark')
+
+figure.update_layout(font=dict(family="PT Sans", 
+                               size=14), 
+                     title_font=dict(family="PT Sans",
+                                     size=30), 
+                     title_x=0.5)
+
+# Save figure
+figure.write_json("./plots/loading_product_code_distribution.json")
+
+# Read & plot figure
+read_json('./plots/loading_product_code_distribution.json').show()
 ```
 
 <br>
