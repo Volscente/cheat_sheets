@@ -62,3 +62,30 @@ print(missing_val_count_by_column[missing_val_count_by_column > 0])
 ``` python
 data[data['<column_name>'].duplicated()]
 ```
+
+# List Column
+
+## Transform into a Series
+``` python
+
+# Transform a Pandas DataFrame list column to a series
+def transform_list_column_to_series(series):
+ return pd.Series([x for _list in series for x in _list])
+ 
+# Apply the function
+transform_list_column_to_series(data[“favorite_fruits”]).value_counts()
+
+## OUTPUT ##
+apple         5
+blueberry     4
+watermelon    4
+strawberry    4
+raspberry     3
+pear          3
+banana        2
+pineapple     2
+mango         2
+peach         2
+orange        2
+maracuja      1
+```
