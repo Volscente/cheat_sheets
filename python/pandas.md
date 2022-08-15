@@ -89,3 +89,8 @@ peach         2
 orange        2
 maracuja      1
 ```
+
+## Transform List Column into a DataFrame
+``` python
+fruits["favorite_fruits"].apply(pd.Series)
+```
