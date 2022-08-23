@@ -28,3 +28,5 @@ Your code will run faster, and you may have enough data that there's little need
 # Compute the Cross-Validation score
 cross_validation_score = cross_val_score(my_pipeline, X, y, cv=5, scoring='mae').mean()
 ```
+It is good to plot the cross-validation value across different hyperparameter' values 
+(e.g., across different number of estimators of a Random Forest)
