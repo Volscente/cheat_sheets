@@ -24,3 +24,7 @@ Your code will run faster, and you may have enough data that there's little need
 # Code
 
 ## Cross-Validation Score
+``` python
+# Compute the Cross-Validation score
+cross_validation_score = cross_val_score(my_pipeline, X, y, cv=5, scoring='mae').mean()
+```
