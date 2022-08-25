@@ -27,3 +27,9 @@ the loss function to determine the parameters in this new model.)
 ### n_estimators
 It specifies how many times to go through the modeling cycle described above. 
 It is equal to the number of models that we include in the ensemble.
+
+- Too low a value causes underfitting, which leads to inaccurate predictions on both training data and test data.
+- Too high a value causes overfitting, which causes accurate predictions on training data, 
+but inaccurate predictions on test data (which is what we care about).
+
+Typical values range from 100-1000, though this depends a lot on the **learning_rate**.
