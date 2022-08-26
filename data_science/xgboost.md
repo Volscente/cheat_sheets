@@ -74,3 +74,7 @@ my_model.fit(X_train, y_train,
              eval_set=[(X_valid, y_valid)], 
              verbose=False)
 ```
+
+### n_jobs
+On larger datasets where runtime is a consideration, you can use parallelism to build your models faster. 
+It's common to set the parameter n_jobs equal to the number of cores on your machine. On smaller datasets, this won't help.
