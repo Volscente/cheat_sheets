@@ -33,3 +33,25 @@ It is equal to the number of models that we include in the ensemble.
 but inaccurate predictions on test data (which is what we care about).
 
 Typical values range from 100-1000, though this depends a lot on the **learning_rate**.
+
+### early_stopping_rounds
+Early stopping causes the model to stop iterating when the validation score stops improving, even if we aren't at 
+the hard stop for `n_estimators`. It's smart to set a high value for n_estimators and then use `early_stopping_rounds` 
+to find the optimal time to stop iterating.
+
+Setting `early_stopping_rounds=5` is a reasonable choice. 
+In this case, we stop after 5 straight rounds of deteriorating validation scores.
+
+When using `early_stopping_rounds`, you also need to set aside some data for calculating the validation scores - 
+this is done by setting the `eval_set` parameter.
+
+``` python
+my_model = XGBRegressor(n_estimators=500)
+my_model.fit(X_train, y_train, 
+             early_stopping_rounds=5, 
+             eval_set=[(X_valid, y_valid)],
+             verbose=False)
+```
+
+If you later want to fit a model with all of your data, 
+set `n_estimators` to whatever value you found to be optimal when run with early stopping.
