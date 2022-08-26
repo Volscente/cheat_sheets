@@ -55,3 +55,5 @@ my_model.fit(X_train, y_train,
 
 If you later want to fit a model with all of your data, 
 set `n_estimators` to whatever value you found to be optimal when run with early stopping.
+
+### learning_rate
