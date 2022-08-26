@@ -5,6 +5,7 @@ tags: ""
 
 # Histograms
 
+## Base
 ``` python
 # Plot the Histogram of 'vp_region' Distribution with respect to the Year
 figure = ex.histogram(vp_users, 
@@ -30,6 +31,45 @@ figure.update_layout(yaxis_title='Share',
 figure.update_xaxes(tickangle=45)
 
 figure.show()
+```
+
+## Top N Elements
+``` python
+top_n_countries = 10
+
+# Compute the top 'top_n_countries' groups by size
+top_countries_list = vp_users.groupby(['country']).size().to_frame().sort_values([0], ascending=False).head(top_n_countries).reset_index()['country'].to_list()
+top_countries_count_list = vp_users.groupby(['country']).size().to_frame().sort_values([0], ascending=False).head(top_n_countries).reset_index()[0].to_list()
+
+# Select row from the original DataFrame for having the 'Year' information
+top_countries = vp_users[vp_users['country'].isin(top_countries_list)]
+
+# Plot the Histogram of 'country' Distribution per year
+figure = px.histogram(top_countries, 
+                      x='country', 
+                      color='created_at_year',
+                      title='Top Country User Distribution per Year', 
+                      labels={'country':'Country', 
+                              'created_at_year': 'Year'},
+                      height=500,
+                      barmode='group',
+                      category_orders={'created_at_year': [1970, 2019, 2020, 2021, 2022]},
+                      color_discrete_sequence=px.colors.qualitative.Set3,
+                      histnorm='',
+                      template='plotly_dark')
+
+figure.update_layout(yaxis_title='Share', 
+                     font=dict(family="PT Sans", 
+                               size=14), 
+                     title_font=dict(family="PT Sans",
+                                     size=30), 
+                     title_x=0.7)
+
+# Save figure
+figure.write_json('./plots_vp_users/top_counstry_year_distribution.json')
+
+# Read & plot figure
+read_json('./plots_vp_users/top_counstry_year_distribution.json').show()
 ```
 
 
