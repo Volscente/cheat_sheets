@@ -5,10 +5,14 @@
 data['<new_column>'] = pd.to_datetime(data['<column>'], format='%d-%m-%Y')
 ```
 
-## Concatenate Year and Month
+## Extract day, month, year, day of the week and year_month information
 ``` python
 # Compute the 'Year_month' column with the first day
-data['year_month'] = pd.to_datetime(data['<datatime_column>']).dt.to_period('M')
+train_data['date_day'] = train_data['date_datetime'].dt.day
+train_data['date_month'] = train_data['date_datetime'].dt.month
+train_data['date_year'] = train_data['date_datetime'].dt.year
+train_data['date_dayofweek'] = train_data['date_datetime'].dt.dayofweek
+train_data['date_year_month'] = pd.to_datetime(train_data['date_datetime']).dt.to_period('M')
 ```
 
 # Group By
