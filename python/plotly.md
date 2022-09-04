@@ -7,20 +7,20 @@ tags: ""
 
 ## Base
 ``` python
-# Plot the Histogram of 'vp_region' Distribution with respect to the Year
-figure = ex.histogram(vp_users, 
-                      x='vp_region', 
-                      color='created_at_year',
-                      title='Vendor Portal Region Distribution', 
-                      labels={'vp_region':'Region',
-                              'created_at_year': 'Year'},
+# Plot the Histogram of 'country' Distribution with respect to the Year
+figure = ex.histogram(train_data, 
+                      x='country', 
+                      color='date_year',
+                      title='Country pe Year Distribution', 
+                      labels={'country':'Country',
+                              'date_year': 'Year'},
                       barmode='group',
                       height=500,
                       histnorm='',
-                      category_orders={'created_at_year': [1970, 2019, 2020, 2021, 2022]},
+                      category_orders={'date_year': [2017, 2018, 2019, 2020]},
                       template='plotly_dark')
 
-figure.update_layout(yaxis_title='Share', 
+figure.update_layout(yaxis_title='Sales', 
                      font=dict(family="PT Sans", 
                                size=14), 
                      title_font=dict(family="PT Sans",
