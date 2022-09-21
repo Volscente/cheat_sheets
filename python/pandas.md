@@ -74,6 +74,11 @@ for index, row in data.sample(10).iterrows():
     print('\n')
 ```
 
+## Condition on String Contain
+``` python
+mss_changes.loc[mss_changes['single_rejection_reason'].str.contains('menu_management_pandora'), 'main_rejection_reason'] = 1
+```
+
 # List Column
 
 ## Transform into a Series
