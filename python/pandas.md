@@ -67,6 +67,13 @@ print(missing_val_count_by_column[missing_val_count_by_column > 0])
 data[data['<column_name>'].duplicated()]
 ```
 
+## Fetch Rows
+``` python
+for index, row in data.sample(10).iterrows():
+    print(row['column_name'])
+    print('\n')
+```
+
 # List Column
 
 ## Transform into a Series
