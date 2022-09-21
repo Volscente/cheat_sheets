@@ -98,3 +98,19 @@ maracuja      1
 ``` python
 fruits["favorite_fruits"].apply(pd.Series)
 ```
+
+# Pandas GBQ
+
+## Read Data through Query
+``` python
+# Import Standard Libraries
+import pandas_gbq
+
+# Read vp_users SQL Query
+with open(query_path) as file:
+    query = file.read()
+    
+# Read Data
+data = pandas_gbq.read_gbq(query,
+                           project_id=project_id)
+```
