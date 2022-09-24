@@ -126,3 +126,10 @@ with open(query_path) as file:
 data = pandas_gbq.read_gbq(query,
                            project_id=project_id)
 ```
+
+# Where Function
+
+## Fill Column based on Condition
+``` python
+data['endofmonth'] = np.where((data['day'] >= 27) & (data['day'] <= 31), 1, 0)
+```
