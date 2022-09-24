@@ -127,7 +127,7 @@ data = pandas_gbq.read_gbq(query,
                            project_id=project_id)
 ```
 
-# Where Function
+# Where Function
 
 ## Fill Column based on Condition
 ``` python
