@@ -76,7 +76,11 @@ for index, row in data.sample(10).iterrows():
 
 ## Condition on String Contain
 ``` python
+# String Contains
 mss_changes.loc[mss_changes['single_rejection_reason'].str.contains('menu_management_pandora'), 'main_rejection_reason'] = 1
+
+# String NOT Contains
+mss_changes.drop(mss_changes[~mss_changes['single_rejection_reason'].str.contains('menu_management_pandora')], inplace=True)
 ```
 
 # List Column
