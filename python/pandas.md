@@ -83,7 +83,7 @@ mss_changes.loc[mss_changes['single_rejection_reason'].str.contains('menu_manage
 mss_changes.drop(mss_changes[~mss_changes['single_rejection_reason'].str.contains('menu_management_pandora')], inplace=True)
 ```
 
-## Drop Rows based on a Condition
+## Drop Rows based on a Condition
 ``` python
 # Drop all the rows in which the column does not contain the word
 data.drop(data[~data['<column_namw>'].str.contains('<word>')], inplace=True)
