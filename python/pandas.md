@@ -89,6 +89,18 @@ mss_changes.drop(mss_changes[~mss_changes['single_rejection_reason'].str.contain
 data.drop(data[~data['<column_namw>'].str.contains('<word>')], inplace=True)
 ```
 
+## Map Column Values
+``` python
+# Define mapping dictionary
+dictionary = {
+  'A': 'a', 
+  'B': 'b'
+}
+
+# Map values in the column '<column_name>' based on '<dictionary>'
+data['<column_name>'] = data['<column_name>'].map(dictionary)
+```
+
 # List Column
 
 ## Transform into a Series
