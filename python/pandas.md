@@ -101,6 +101,21 @@ dictionary = {
 data['<column_name>'] = data['<column_name>'].map(dictionary)
 ```
 
+## Map Column Values by Substring
+``` python
+# Define mapping dictionary
+dictionary = {
+  'dog': 'Animal Topic', 
+  'cat': 'Animal Topic'
+}
+
+# Map values in the column '<column_name>' based on '<dictionary>'
+for key in dictionary.keys():
+
+    # Use the 'key' of the dictionary as a substring to identify the corresponding category to map
+    data.loc[data['<column_name>'].str.contains(key), '<mapping_column_name>'] = dictionary[key]
+```
+
 # List Column
 
 ## Transform into a Series
