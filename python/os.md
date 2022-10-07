@@ -1,10 +1,14 @@
-# List Environment Variables
+# Environment Variables
+
+## List Environment Variables
 
 ``` python
 print(os.environ)
 ```
 
-# Change Working Directory
+# Directories
+
+## Change Current Working Directory
 
 ``` python
 # Set root path
