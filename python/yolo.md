@@ -41,3 +41,25 @@ def draw_bounding_bow(image: np.ndarray,
                 color, 
                 2)
 ```
+
+## Get Output Layers
+``` python
+def get_output_layers(neural_network: cv2.dnn.Net) -> List:
+    """
+    Retrieve the list of output layers names
+    
+    Parameters:
+        neural_network: cv.dnn.Net neural network instance
+        
+    Returns:
+        output_layers: List of output layers names
+    """
+    
+    # Reitreve layer's names
+    layer_names = neural_network.getLayerNames()
+    
+    # Get output layers names since by the non-output connected ones
+    output_layers = [layer_names[i - 1] for i in neural_network.getUnconnectedOutLayers()]
+    
+    return output_layers
+```
