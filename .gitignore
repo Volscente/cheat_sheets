@@ -131,3 +131,5 @@ dmypy.json
 # IntelliJ
 .idea
 computer_vision/yolo/files/yolov3.weights
+computer_vision/yolo/notebooks/yolov3.weights
+computer_vision/yolo/notebooks/yolov3.cfg
