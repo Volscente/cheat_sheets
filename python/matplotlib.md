@@ -16,3 +16,12 @@ plt.title('<title>')
 plt.axis('off')
 plt.show()
 ```
+
+## Show Blob Image
+``` python
+# Show Blob
+plt.imshow(blob_image[0, 0, :, :])
+plt.title('Blob')
+plt.axis('off')
+plt.show()
+```
