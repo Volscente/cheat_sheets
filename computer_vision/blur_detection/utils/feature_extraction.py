@@ -49,7 +49,7 @@ class FeatureExtractor:
                 matrix_indices[int(current_scale - ((current_scale - 1) / 2) - i - 1): int(current_scale - i - 1), i] = 2
 
         matrix_indices[0, 0] = 3
-        
+
         self.__frequency_bands.append(matrix_indices)
 
     def resize_image(self, img, rows, cols):
@@ -95,10 +95,6 @@ class FeatureExtractor:
         return val > self.valid_img_block_thresh
 
     def entropy_filter(self, img):
-
-        print('entropy_filter')
-        print(img.shape)
-        print(square(self.entropy_filter_kernel_size).shape)
 
         return entropy(img, square(self.entropy_filter_kernel_size))
 
