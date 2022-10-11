@@ -170,3 +170,10 @@ data = pandas_gbq.read_gbq(query,
 ``` python
 data['endofmonth'] = np.where((data['day'] >= 27) & (data['day'] <= 31), 1, 0)
 ```
+
+# Convert to Other Dtypes
+
+## Convert Two Columns into a Dictionary
+``` python
+dict(zip(df.column_1, df.column_2))
+```
