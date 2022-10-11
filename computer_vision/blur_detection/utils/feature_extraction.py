@@ -17,12 +17,11 @@ class FeatureExtractor:
         self.local_entropy_thresh = 0.6
         self.valid_img_block_thresh = 0.7
         self.roi = []
-        self.__freqBands = []
+        self.__frequency_bands = []
         self.__dct_matrices = self.__dctmtx(self.block_size_feature_extractor)
-        self.compute_frequency_bands()
+        self.__compute_frequency_bands()
 
-    @staticmethod
-    def __dctmtx(block_size):
+    def __dctmtx(self, block_size):
 
         [mesh_cols, mesh_rows] = np.meshgrid(np.linspace(0, block_size - 1, block_size),
                                              np.linspace(0, block_size - 1, block_size))
@@ -34,7 +33,7 @@ class FeatureExtractor:
 
         return dct_matrix
 
-    def compute_frequency_bands(self):
+    def __compute_frequency_bands(self):
 
         current_scale = self.block_size_feature_extractor
 
@@ -48,8 +47,10 @@ class FeatureExtractor:
                 matrix_indices[0:current_scale - i - 1, i] = 2
             else:
                 matrix_indices[int(current_scale - ((current_scale - 1) / 2) - i - 1): int(current_scale - i - 1), i] = 2
+
         matrix_indices[0, 0] = 3
-        self.__freqBands.append(matrix_indices)
+        
+        self.__frequency_bands.append(matrix_indices)
 
     def resize_image(self, img, rows, cols):
 
@@ -67,7 +68,7 @@ class FeatureExtractor:
 
         dct_matrix = self.__dct_matrices
         dct_coeff = np.abs(np.matmul(np.matmul(dct_matrix, block), np.transpose(dct_matrix)))
-        temp = np.where(self.__freqBands[0] == 0)
+        temp = np.where(self.__frequency_bands[0] == 0)
         high_freq_components = dct_coeff[temp]
         high_freq_components = sorted(high_freq_components)
 
@@ -94,9 +95,14 @@ class FeatureExtractor:
         return val > self.valid_img_block_thresh
 
     def entropy_filter(self, img):
-        return entropy(img, square(self.block_size_feature_extractor))
+
+        print('entropy_filter')
+        print(img.shape)
+        print(square(self.entropy_filter_kernel_size).shape)
+
+        return entropy(img, square(self.entropy_filter_kernel_size))
 
     def clear_object(self):
         self.resized_image = []
         self.roi = []
-        self.__freqBands = []
+        self.__frequency_bands = []
