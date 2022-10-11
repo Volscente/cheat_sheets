@@ -65,11 +65,11 @@ class FeatureExtractor:
     def get_single_resolution_features(self, block):
 
         dct_matrix = self.__dct_matrices
-
         dct_coeff = np.abs(np.matmul(np.matmul(dct_matrix, block), np.transpose(dct_matrix)))
         temp = np.where(self.__freqBands[0] == 0)
         high_freq_components = dct_coeff[temp]
         high_freq_components = sorted(high_freq_components)
+
         return high_freq_components
 
     def extract_feature(self):

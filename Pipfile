@@ -11,6 +11,8 @@ seaborn = "*"
 matplotlib = "*"
 opencv-python = "*"
 scikit-image = "*"
+torch = "*"
+torchvision = "*"
 
 [dev-packages]
 
