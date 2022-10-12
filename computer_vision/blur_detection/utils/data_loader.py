@@ -26,5 +26,5 @@ class TestDataset(TrainDataset):
 
     def __getitem__(self, ind):
         x = self.data[ind][:] / 255.0
-        return
+        return x
     
