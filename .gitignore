@@ -133,3 +133,7 @@ dmypy.json
 computer_vision/yolo/files/yolov3.weights
 computer_vision/yolo/notebooks/yolov3.weights
 computer_vision/yolo/notebooks/yolov3.cfg
+.DS_Store
+computer_vision/.DS_Store
+computer_vision/blur_detection/.DS_Store
+computer_vision/blur_detection/data/.DS_Store
