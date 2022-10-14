@@ -4,25 +4,48 @@ import numpy as np
 
 
 class TrainDataset(Dataset):
+    """
+    Extend the class torch.utils.data.Dataset to easily manage data for the training process
+
+    Attributes
+        data: numpy.ndarray of Extracted Image Features
+        dimension: Integer length of each Extracted Image Feature
+                   (it depends on the block_size_feature_extractor in feature_extraction.py)
+
+    Methods
+    """
 
     def __init__(self, data):
+        """
+        Instantiate the required variables for extending the class torch.utils.data.Dataset
+
+        :param data: numpy.ndarray of Extracted Image Features
+        """
         self.data = data
-        self.dim = np.shape(self.data)[1] - 1
+        self.dimension = np.shape(self.data)[1] - 1
 
     def __len__(self):
+        """
+        Compute the number of extracted features
+        :return: Integer number of extracted features
+        """
         return np.shape(self.data)[0]
 
-    def __getitem__(self, ind):
-        x = self.data[ind][0:self.dim] / 255.0
-        y = self.data[ind][-1]
+    def __getitem__(self, index):
+        """
+
+        :param index:
+        :return:
+        """
+        x = self.data[index][0:self.dimension] / 255.0
+        y = self.data[index][-1]
         return x, y
 
 
 class TestDataset(TrainDataset):
 
     def __init__(self, data):
-        self.data = data
-        self.dim = np.shape(self.data)[1] - 1
+        super().__init__(data)
 
     def __getitem__(self, ind):
         x = self.data[ind][:] / 255.0
