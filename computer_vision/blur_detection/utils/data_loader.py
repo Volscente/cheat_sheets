@@ -25,7 +25,7 @@ class TrainDataset(Dataset):
         # Extracted features
         self.data = data
 
-        # 
+        #
         self.dimension = np.shape(self.data)[1] - 1
 
     def __len__(self):
@@ -47,6 +47,17 @@ class TrainDataset(Dataset):
 
 
 class TestDataset(TrainDataset):
+    """
+    Based on the class TrainDataset that extends the class torch.utils.data.Dataset to
+    easily manage data for the training process
+
+    Attributes
+        data: numpy.ndarray of Extracted Image Features
+        dimension: Integer length of each Extracted Image Feature
+                   (it depends on the block_size_feature_extractor in feature_extraction.py)
+
+    Methods
+    """
 
     def __init__(self, data):
         super().__init__(data)
