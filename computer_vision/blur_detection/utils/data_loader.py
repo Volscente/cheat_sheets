@@ -21,7 +21,11 @@ class TrainDataset(Dataset):
 
         :param data: numpy.ndarray of Extracted Image Features
         """
+
+        # Extracted features
         self.data = data
+
+        # 
         self.dimension = np.shape(self.data)[1] - 1
 
     def __len__(self):
