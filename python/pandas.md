@@ -1,4 +1,4 @@
-# Options
+# Options
 
 ## Set Pandas Options
 ``` python
