@@ -14,7 +14,7 @@ class FeatureExtractor:
         block_size_feature_extractor: Integer block size for feature extraction kernel
         down_sampling_factor: Integer scaling factor for image resizing
         resized_image: numpy.ndarray of resized image
-        entropy_filter_kernel_size
+        entropy_filter_kernel_size: Integer kernel size for computing local entropy
 
     Methods
 
