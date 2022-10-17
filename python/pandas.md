@@ -1,3 +1,11 @@
+# Options
+
+## Set Pandas Options
+``` python
+# Set Pandas Options
+pd.set_option('display.max_columns', 500)
+```
+
 # Datetime
 
 ## Convert Column to Datetime
