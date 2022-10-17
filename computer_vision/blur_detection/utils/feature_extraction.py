@@ -7,6 +7,18 @@ from skimage.morphology import square
 
 
 class FeatureExtractor:
+    """
+    Perform the feature extraction over a given input image
+
+    Attributes
+        block_size_feature_extractor: Integer block size for feature extraction kernel
+        down_sampling_factor: Integer scaling factor for image resizing
+        resized_image: numpy.ndarray of resized image
+        entropy_filter_kernel_size
+
+    Methods
+
+    """
 
     def __init__(self):
 
@@ -94,9 +106,15 @@ class FeatureExtractor:
         val = np.sum(block) / np.prod(np.shape(block))
         return val > self.valid_img_block_thresh
 
-    def entropy_filter(self, img):
+    def entropy_filter(self, image):
+        """
+        Local entropy is related to the complexity contained in the given neighborhood (entropy_filter_kernel_size).
+        The entropy filter can detect subtle variations in the local gray level distribution.
+        :param image: numpy.ndarray input image
+        :return: numpy.ndarray of image entropy
+        """
 
-        return entropy(img, square(self.entropy_filter_kernel_size))
+        return entropy(image, square(self.entropy_filter_kernel_size))
 
     def clear_object(self):
         self.resized_image = []
