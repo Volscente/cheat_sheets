@@ -74,6 +74,10 @@ class FeatureExtractor:
 
         local_entropy = self.entropy_filter(self.resized_image)
 
+        print('compute_roi')
+        print(self.resized_image.shape)
+        print(local_entropy.shape)
+
         self.roi = 1.0 * (local_entropy > self.local_entropy_thresh * np.max(local_entropy))
 
     def get_single_resolution_features(self, block):
@@ -110,6 +114,7 @@ class FeatureExtractor:
         """
         Local entropy is related to the complexity contained in the given neighborhood (entropy_filter_kernel_size).
         The entropy filter can detect subtle variations in the local gray level distribution.
+        Compute the local entropy for each pixel of the image
         :param image: numpy.ndarray input image
         :return: numpy.ndarray of image entropy
         """
