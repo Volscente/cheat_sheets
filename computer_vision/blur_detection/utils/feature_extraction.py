@@ -114,7 +114,10 @@ class FeatureExtractor:
         :return: numpy.ndarray of image entropy
         """
 
-        return entropy(image, square(self.entropy_filter_kernel_size))
+        # Create a 1-value Entropy Kernel of dimension 'entropy_filter_kernel_size x entropy_filter_kernel_size'
+        entropy_kernel = square(self.entropy_filter_kernel_size)
+
+        return entropy(image, entropy_kernel)
 
     def clear_object(self):
         self.resized_image = []
