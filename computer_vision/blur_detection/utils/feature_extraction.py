@@ -77,15 +77,11 @@ class FeatureExtractor:
         :return: numpy.ndarray of image's ROI
         """
 
+        # Compute the image local entroy
         local_entropy = self.entropy_filter(self.resized_image)
 
-        print('compute_roi')
-
+        # Compute ROI of image
         self.roi = 1.0 * (local_entropy > self.local_entropy_threshold * np.max(local_entropy))
-
-        print()
-        print(self.roi)
-        print(self.roi.shape)
 
     def get_single_resolution_features(self, block):
 
