@@ -31,16 +31,25 @@ class FeatureExtractor:
         self.valid_img_block_thresh = 0.7
         self.roi = []
         self.__frequency_bands = []
-        self.__dct_matrices = self.__dctmtx(self.block_size_feature_extractor)
+        self.__dct_matrices = self.__compute_dct_matrix()
         self.__compute_frequency_bands()
 
-    def __dctmtx(self, block_size):
+    def __compute_dct_matrix(self):
 
-        [mesh_cols, mesh_rows] = np.meshgrid(np.linspace(0, block_size - 1, block_size),
-                                             np.linspace(0, block_size - 1, block_size))
+        [mesh_cols, mesh_rows] = np.meshgrid(np.linspace(0,
+                                                         self.block_size_feature_extractor - 1,
+                                                         self.block_size_feature_extractor),
+                                             np.linspace(0, 
+                                                         self.block_size_feature_extractor - 1,
+                                                         self.block_size_feature_extractor))
 
-        dct_matrix = np.sqrt(2 / block_size) * np.cos(np.pi * np.multiply((2 * mesh_cols + 1),
-                                                                          mesh_rows) / (2 * block_size))
+        print('__compute_dct_matrix')
+        print(mesh_cols.shape)
+        print(mesh_rows)
+        print([mesh_cols, mesh_rows])
+
+        dct_matrix = np.sqrt(2 / self.block_size_feature_extractor) * np.cos(np.pi * np.multiply((2 * mesh_cols + 1),
+                                                                          mesh_rows) / (2 * self.block_size_feature_extractor))
 
         dct_matrix[0, :] = dct_matrix[0, :] / np.sqrt(2)
 
