@@ -26,7 +26,7 @@ class FeatureExtractor:
         self.down_sampling_factor = 2
         self.resized_image = []
         self.entropy_filter_kernel_size = 16
-        self.local_entropy_thresh = 0.6
+        self.local_entropy_threshold = 0.6
         self.valid_img_block_thresh = 0.7
         self.roi = []
         self.__frequency_bands = []
@@ -71,14 +71,21 @@ class FeatureExtractor:
                                          int(rows / self.down_sampling_factor)))
 
     def compute_roi(self):
+        """
+        Compute the ROI (Region of Interest) of the image based on the maximum local entropy and predefined threshold.
+        ROI are identified by '1' pixels
+        :return: numpy.ndarray of image's ROI
+        """
 
         local_entropy = self.entropy_filter(self.resized_image)
 
         print('compute_roi')
-        print(self.resized_image.shape)
-        print(local_entropy.shape)
 
-        self.roi = 1.0 * (local_entropy > self.local_entropy_thresh * np.max(local_entropy))
+        self.roi = 1.0 * (local_entropy > self.local_entropy_threshold * np.max(local_entropy))
+
+        print()
+        print(self.roi)
+        print(self.roi.shape)
 
     def get_single_resolution_features(self, block):
 
