@@ -15,6 +15,7 @@ class FeatureExtractor:
         down_sampling_factor: Integer scaling factor for image resizing
         resized_image: numpy.ndarray of resized image
         entropy_filter_kernel_size: Integer kernel size for computing local entropy
+        local_entropy_threshold: Float local entropy threshold for computing the image ROI
 
     Methods
 
