@@ -36,6 +36,9 @@ class FeatureExtractor:
 
     def __compute_dct_matrix(self):
 
+        # Create a numpy.meshgrid
+        # mesh_cols is a block_size_feature_extractor x block_size_feature_extractor matrix with every row from 0 to block_size_feature_extractor
+        # mesh_rows is a block_size_feature_extractor x block_size_feature_extractor matrix with every col from 0 to block_size_feature_extractor
         [mesh_cols, mesh_rows] = np.meshgrid(np.linspace(0,
                                                          self.block_size_feature_extractor - 1,
                                                          self.block_size_feature_extractor),
@@ -43,14 +46,11 @@ class FeatureExtractor:
                                                          self.block_size_feature_extractor - 1,
                                                          self.block_size_feature_extractor))
 
-        print('__compute_dct_matrix')
-        print(mesh_cols.shape)
-        print(mesh_rows)
-        print([mesh_cols, mesh_rows])
-
+        # Compute the DCT Matrix
         dct_matrix = np.sqrt(2 / self.block_size_feature_extractor) * np.cos(np.pi * np.multiply((2 * mesh_cols + 1),
                                                                           mesh_rows) / (2 * self.block_size_feature_extractor))
 
+        # Normalize the DCT Matrix
         dct_matrix[0, :] = dct_matrix[0, :] / np.sqrt(2)
 
         return dct_matrix
