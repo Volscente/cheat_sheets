@@ -31,7 +31,10 @@ class FeatureExtractor:
         self.valid_img_block_thresh = 0.7
         self.roi = []
         self.__frequency_bands = []
-        self.__dct_matrices = self.__compute_dct_matrix()
+        self.__dct_matrix = []
+
+        # Compute DCT and Frequency Bands
+        self.__compute_dct_matrix()
         self.__compute_frequency_bands()
 
     def __compute_dct_matrix(self):
@@ -53,12 +56,15 @@ class FeatureExtractor:
         # Normalize the DCT Matrix
         dct_matrix[0, :] = dct_matrix[0, :] / np.sqrt(2)
 
-        return dct_matrix
+        # Save the DCT Matrix
+        self.__dct_matrix = dct_matrix
 
     def __compute_frequency_bands(self):
 
+        # Get block size of the feature extractor
         current_scale = self.block_size_feature_extractor
 
+        # Initialise empty matrix
         matrix_indices = np.zeros((current_scale, current_scale))
 
         for i in range(current_scale):
@@ -95,7 +101,7 @@ class FeatureExtractor:
 
     def get_single_resolution_features(self, block):
 
-        dct_matrix = self.__dct_matrices
+        dct_matrix = self.__dct_matrix
         dct_coeff = np.abs(np.matmul(np.matmul(dct_matrix, block), np.transpose(dct_matrix)))
         temp = np.where(self.__frequency_bands[0] == 0)
         high_freq_components = dct_coeff[temp]
