@@ -60,6 +60,11 @@ class FeatureExtractor:
         self.__dct_matrix = dct_matrix
 
     def __compute_frequency_bands(self):
+        """
+        Compute a square matrix with the dimension of the 'block_size_feature_extractor'. It would be filled with 1, 2 and 3
+        creating diagonal bands as shown in the image of the readme.md file
+        :return: numpy.ndarray matrix of indices
+        """
 
         # Get block size of the feature extractor
         current_scale = self.block_size_feature_extractor
@@ -67,15 +72,20 @@ class FeatureExtractor:
         # Initialise empty matrix
         matrix_indices = np.zeros((current_scale, current_scale))
 
+        # Fill the top-left corner of the 'matrix_indices' with 1 (up to half the 'current_scale' value)
         for i in range(current_scale):
+
             matrix_indices[0: max(0, int(((current_scale - 1) / 2) - i + 1)), i] = 1
 
+        # Fill the remaining diagonal band that covers half of the matrix with 2
         for i in range(current_scale):
+
             if (current_scale - ((current_scale - 1) / 2) - i) <= 0:
                 matrix_indices[0:current_scale - i - 1, i] = 2
             else:
                 matrix_indices[int(current_scale - ((current_scale - 1) / 2) - i - 1): int(current_scale - i - 1), i] = 2
 
+        # Set the top-left value with 3
         matrix_indices[0, 0] = 3
 
         self.__frequency_bands.append(matrix_indices)
