@@ -152,8 +152,3 @@ class FeatureExtractor:
         entropy_kernel = square(self.entropy_filter_kernel_size)
 
         return entropy(image, entropy_kernel)
-
-    def clear_object(self):
-        self.resized_image = []
-        self.roi = []
-        self.__frequency_bands = []
