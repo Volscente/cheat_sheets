@@ -90,9 +90,17 @@ class FeatureExtractor:
 
         self.__frequency_bands.append(matrix_indices)
 
-    def resize_image(self, img, rows, cols):
+    def resize_image(self, image, rows, cols):
+        """
+        Resize the input image give the rows, columns and the down_sampling_factor
+        :param image: numpy.ndarray of the input image
+        :param rows: Integer number of rows
+        :param cols: Integer number of columns
+        :return: numpy.ndarray of resized image in attribute 'resized_image'
+        """
 
-        self.resized_image = cv2.resize(img,
+        # Resize the image
+        self.resized_image = cv2.resize(image,
                                         (int(cols / self.down_sampling_factor),
                                          int(rows / self.down_sampling_factor)))
 
