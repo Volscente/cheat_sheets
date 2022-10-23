@@ -10,14 +10,14 @@ class FeatureExtractor:
     """
     Perform the feature extraction over a given input image
 
-    Attributes
+    Attributes:
         block_size_feature_extractor: Integer block size for feature extraction kernel
         down_sampling_factor: Integer scaling factor for image resizing
         resized_image: numpy.ndarray of resized image
         entropy_filter_kernel_size: Integer kernel size for computing local entropy
         local_entropy_threshold: Float local entropy threshold for computing the image ROI
 
-    Methods
+    Methods:
 
     """
 
@@ -63,7 +63,9 @@ class FeatureExtractor:
         """
         Compute a square matrix with the dimension of the 'block_size_feature_extractor'. It would be filled with 1, 2 and 3
         creating diagonal bands as shown in the image of the readme.md file
-        :return: numpy.ndarray matrix of indices
+
+        Returns:
+            numpy.ndarray matrix of indices
         """
 
         # Get block size of the feature extractor
@@ -93,10 +95,14 @@ class FeatureExtractor:
     def resize_image(self, image, rows, cols):
         """
         Resize the input image give the rows, columns and the down_sampling_factor
-        :param image: numpy.ndarray of the input image
-        :param rows: Integer number of rows
-        :param cols: Integer number of columns
-        :return: numpy.ndarray of resized image in attribute 'resized_image'
+
+        Args:
+            image: numpy.ndarray of the input image
+            rows: Integer number of rows
+            cols: Integer number of columns
+
+        Returns:
+            numpy.ndarray of resized image in attribute 'resized_image'
         """
 
         # Resize the image
@@ -108,7 +114,9 @@ class FeatureExtractor:
         """
         Compute the ROI (Region of Interest) of the image based on the maximum local entropy and predefined threshold.
         ROI are identified by '1' pixels
-        :return: numpy.ndarray of image's ROI
+
+        Returns:
+            numpy.ndarray of image's ROI
         """
 
         # Compute the image local entroy
@@ -152,8 +160,12 @@ class FeatureExtractor:
         Local entropy is related to the complexity contained in the given neighborhood (entropy_filter_kernel_size).
         The entropy filter can detect subtle variations in the local gray level distribution.
         Compute the local entropy for each pixel of the image
-        :param image: numpy.ndarray input image
-        :return: numpy.ndarray of image entropy
+
+        Args:
+            image: numpy.ndarray input image
+
+        Returns:
+            numpy.ndarray of image entropy
         """
 
         # Create a 1-value Entropy Kernel of dimension 'entropy_filter_kernel_size x entropy_filter_kernel_size'
