@@ -25,3 +25,11 @@ plt.title('Blob')
 plt.axis('off')
 plt.show()
 ```
+
+# Matrix
+
+## Plot Matrix with Colorbar
+``` python
+plt.matshow(matrix)
+plt.colorbar()
+```
