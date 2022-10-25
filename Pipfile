@@ -13,6 +13,8 @@ opencv-python = "*"
 scikit-image = "*"
 torch = "*"
 torchvision = "*"
+fastapi = "*"
+uvicorn = "*"
 
 [dev-packages]
 
