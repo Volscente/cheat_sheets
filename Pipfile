@@ -15,6 +15,7 @@ torch = "*"
 torchvision = "*"
 fastapi = "*"
 uvicorn = "*"
+python-multipart = "*"
 
 [dev-packages]
 
