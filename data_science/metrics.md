@@ -18,7 +18,7 @@ predictions_xgb = pipe_xgb.predict(X_test).reshape(-1, 1) # Reshape is necessar
 # Classification
 
 ## Confusion Matrix
-```
+``` python
 from sklearn.metrics import confusion_matrix
 
 # Compute confusion matrix
