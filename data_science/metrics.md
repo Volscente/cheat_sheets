@@ -15,7 +15,7 @@ def smape(y_true, y_pred):
 predictions_xgb = pipe_xgb.predict(X_test).reshape(-1, 1) # Reshape is necessary for the SMAPE function
 ```
 
-# Classification
+# Classification
 
 ## Confusion Matrix
 ```
