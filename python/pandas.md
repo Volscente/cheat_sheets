@@ -51,6 +51,11 @@ data_grouped = data.groupby(['<column_name>']).size().to_frame().sort_values([0]
 
 # DataFrame
 
+## Select Row & Columm by Index
+``` python
+data[<index_value>, '<column_name>']
+```
+
 ## Add Row from List
 ``` python
 # Update 'performance' DataFrame

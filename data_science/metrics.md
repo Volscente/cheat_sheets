@@ -14,3 +14,29 @@ def smape(y_true, y_pred):
 # Get number of sold predictions
 predictions_xgb = pipe_xgb.predict(X_test).reshape(-1, 1) # Reshape is necessary for the SMAPE function
 ```
+
+# Classification
+
+## Confusion Matrix
+``` python
+from sklearn.metrics import confusion_matrix
+
+# Compute confusion matrix
+test_data_confusion_matrix = confusion_matrix(test_data['label'], test_data['prediction'])
+
+# Plot confusion matrix
+ax = sns.heatmap(test_data_confusion_matrix, 
+                 annot=True,
+                 cmap=sns.light_palette("seagreen", as_cmap=True))
+
+ax.set_ylabel('True Label', 
+              fontweight='bold')
+
+ax.set_xlabel('Predicted Label', 
+              fontweight='bold')
+
+ax.set_title('Confusion Matrix', 
+             fontsize=14)
+
+plt.show()
+```

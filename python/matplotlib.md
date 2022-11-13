@@ -30,6 +30,7 @@ plt.show()
 
 ## Plot Matrix with Colorbar
 ``` python
-plt.matshow(matrix)
+plt.matshow(matrix, 
+            cmap='gray')
 plt.colorbar()
 ```
