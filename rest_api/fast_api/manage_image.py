@@ -23,4 +23,4 @@ def upload_image(image_file: UploadFile = File(...)):
                                  swapRB=True,
                                  crop=False)
 
-    return {'image_file_type': blob.shape}
+    return {'Blob Shaèe': blob.shape}
