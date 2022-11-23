@@ -11,7 +11,8 @@ async def root():
     return {"message": "Hello World"}
 
 
+# Define parameter 'item_id' in the path, and it will be also passed as argument in the function
 @service.get('/items/{item_id}')
-async def get_item(item_id: str):
+async def get_item(item_id: int):
 
     return {'item': item_id}
