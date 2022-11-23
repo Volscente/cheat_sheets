@@ -50,3 +50,24 @@ FastAPI is able to generate an API schema through the OpenAPI standard in a JSON
 ```
 
 The `openapi.json` schema generated is what power the two interactive documentation.
+
+## Schema Validation
+If the parameter's type is specified within the function's argument, FastAPI performs automatically the type
+validation upon receiving the request.
+``` python
+@service.get('/items/{item_id}')
+async def get_item(item_id: int):
+
+    return {'item': item_id}
+```
+
+Querying with a URL like `http://127.0.0.1:8000/items/ciao` would through a ValidationError:
+``` json
+{"detail":
+    [
+        {"loc": ["path", "item_id"],
+          "msg": "value is not a valid integer",
+          "type":"type_error.integer"}
+    ]
+}
+```
