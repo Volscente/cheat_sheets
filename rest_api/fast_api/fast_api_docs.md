@@ -51,7 +51,9 @@ FastAPI is able to generate an API schema through the OpenAPI standard in a JSON
 
 The `openapi.json` schema generated is what power the two interactive documentation.
 
-## Schema Validation
+## Path Parameters
+
+### Schema Validation
 If the parameter's type is specified within the function's argument, FastAPI performs automatically the type
 validation upon receiving the request.
 ``` python
@@ -71,3 +73,24 @@ Querying with a URL like `http://127.0.0.1:8000/items/ciao` would through a Vali
     ]
 }
 ```
+
+### Path Orders
+It is important to respect a certain order of the paths declared.
+
+``` python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/users/me")
+async def read_user_me():
+    return {"user_id": "the current user"}
+
+
+@app.get("/users/{user_id}")
+async def read_user(user_id: str):
+    return {"user_id": user_id}
+```
+
+If `/users/{user_id}` would have been declared before `/users/me`, the value "me" could also match a user_id.
