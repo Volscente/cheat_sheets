@@ -16,6 +16,8 @@ torchvision = "*"
 fastapi = "*"
 uvicorn = "*"
 python-multipart = "*"
+install = "*"
+pydantic = "*"
 
 [dev-packages]
 
