@@ -5,7 +5,7 @@ from enum import Enum
 
 class Animal(str, Enum):
     """
-    Define a class holding possible values for the 'animal' path parameter
+    Define a class holding possible values for the 'animal' path parameter. No other values would be accepted
     """
 
     cat = 'Cat'
@@ -17,8 +17,14 @@ class Animal(str, Enum):
 app = FastAPI()
 
 
-@app.get('animals/{animal}')
+@app.get('/animals/{animal}')
 async def get_animal(animal: Animal):
 
-    pass
+    match animal:
+        case Animal.cat:
+            return {'animal': animal, 'message': 'You are looking for a cat'}
+        case Animal.dog:
+            return {'animal': animal, 'message': 'You are looking for a dog'}
+        case Animal.bird:
+            return {'animal': animal, 'message': 'You are looking for a bird'}
 
