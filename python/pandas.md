@@ -4,6 +4,7 @@
 ``` python
 # Set Pandas Options
 pd.set_option('display.max_columns', 500)
+pd.set_option('display.max_colwidth', None)
 ```
 
 # Datetime
