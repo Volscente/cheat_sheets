@@ -129,3 +129,19 @@ async def get_animal(animal: Animal):
             return {'animal': animal, 'message': 'You are looking for a bird'}
 ```
 ![Enum Path Parameters](./docs_images/fast_api_docs_image_1.png)
+
+## Query Parameters
+
+### Definition
+The main difference between Path and Query parameters is that the first one is used to identify a specific resource, 
+while the second one to sort/filter them.
+
+### Create
+They are the function's arguments that do not belong to the path:
+``` python
+@app.get('/items/{item_id}')
+async def get_item(item_id: int, # Path Parameter
+                   description: str | None = 'No Description') # Query parameter with a default value
+```
+![Query Parameters](./docs_images/fast_api_docs_image_2.png)
+Usually the query parameters have a default value, because they are optional.
