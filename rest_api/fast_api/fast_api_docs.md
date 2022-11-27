@@ -144,4 +144,3 @@ async def get_item(item_id: int, # Path Parameter
                    description: str | None = 'No Description') # Query parameter with a default value
 ```
 ![Query Parameters](./docs_images/fast_api_docs_image_2.png)
-Usually the query parameters have a default value, because they are optional.

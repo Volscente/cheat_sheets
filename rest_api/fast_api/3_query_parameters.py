@@ -18,10 +18,38 @@ async def get_item(item_id: int,
     Returns:
     """
 
+    item = {'item_id': item_id}
+
     if description:
 
-        return {'item_id': item_id, 'description': description}
+        item.update({'description': description})
 
-    else:
+    return item
 
-        return {'item_id': item_id}
+
+@app.get("/users/{user_id}/items/{item_id}")
+async def read_user_item(user_id: int,
+                         item_id: str,
+                         q: str | None = None,
+                         short: bool = False):
+    """
+    Use multiple path and query parameters
+
+    Args:
+        user_id: Integer user id
+        item_id: String item id
+        q: String query
+        short: Boolean short flag
+
+    Returns:
+    """
+
+    item = {"item_id": item_id, "owner_id": user_id}
+
+    if q:
+        item.update({"q": q})
+    if not short:
+        item.update(
+            {"description": "This is an amazing item that has a long description"}
+        )
+    return item
