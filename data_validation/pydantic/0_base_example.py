@@ -2,10 +2,16 @@
 from pydantic import BaseModel
 
 
+# Every class extends the BaseModel
 class User(BaseModel):
 
+    # The 'id' is required, because it has no default value
     id: int
-    name = 'John Doe'
+
+    # The 'name' is optional, because it has a default value ('John Doe')
+    # NOTE: the type is inferred from the default value, so the type annotation is optional
+    name: str = 'John Doe'
+
     friend_ids: list[int] = []
 
 
@@ -55,3 +61,11 @@ print('User Friend IDs')
 print(type(user_2.friend_ids))
 print(user_2.friend_ids)
 print('')
+
+# User 3 - It will raise a ValidationError because the 'id' can not be forced to Integer
+user_3_dict = {
+    'id': '3.1',
+    'friend_ids': []
+}
+
+user_3 = User(**user_3_dict)
