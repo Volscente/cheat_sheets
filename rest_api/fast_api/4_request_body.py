@@ -17,9 +17,24 @@ class Item(BaseModel):
 app = FastAPI()
 
 
-# Define the POST methods
+# Define POST method with Request Body
 @app.post('/items')
-async def post_item(item: Item):
+async def insert_item(item: Item):
 
-    pass
+    return 'Inserted item: {}'.format(item.id)
 
+
+# Define POST method with Request Body, Path Parameter and Optional Query Parameter
+@app.post('/items/{item_id}')
+async def create_item(item_id: int,
+                      item: Item,
+                      note: str | None = None):
+
+    # Define the Response Body
+    response_body = {'item_id': item_id,
+                     'create_item_id': item.id}
+
+    if note:
+        response_body.update({'note': note})
+
+    return response_body
