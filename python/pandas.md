@@ -57,6 +57,12 @@ data_grouped = data.groupby(['<column_name>']).size().to_frame().sort_values([0]
 data[<index_value>, '<column_name>']
 ```
 
+## Filter by Largest value
+``` python
+# Retrieve top "n" rows filtered by the largest value in the columns 'column_1' and 'column_2'
+data.nlargest(n, ['column_1', 'column_2'])
+```
+
 ## Add Row from List
 ``` python
 # Update 'performance' DataFrame
