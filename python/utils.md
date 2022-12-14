@@ -2,6 +2,12 @@
 title: "Utils"
 tags: "Cheat Sheet"
 ---
+# Datetime
+
+## Current Datetime
+``` python
+current_datetime = datetime.today().strftime("%Y_%m_%d_%H_%M")
+```
 
 # List
 
