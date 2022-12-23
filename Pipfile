@@ -18,6 +18,7 @@ uvicorn = "*"
 python-multipart = "*"
 pydantic = "*"
 scikit-learn = "*"
+pytest = "*"
 
 [dev-packages]
 
