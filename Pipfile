@@ -19,6 +19,7 @@ python-multipart = "*"
 pydantic = "*"
 scikit-learn = "*"
 pytest = "*"
+httpx = "*"
 
 [dev-packages]
 
