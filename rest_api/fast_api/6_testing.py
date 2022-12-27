@@ -3,8 +3,8 @@ import os
 import pytest
 import json
 
-from fastapi.testclient import FastApi, TestClient, UploadFile, File
-
+from fastapi import FastAPI, UploadFile, File
+from fastapi.testclient import TestClient
 
 # Instance FastApi object
 app = FastApi()
@@ -43,9 +43,7 @@ async def upload_image(image_file: UploadFile = File(...,
 
 
 @pytest.mark.parametrize('test_file, expected_output', [
-    ('./data/test_images/image_1.jpeg', 'dog'),
-    ('./data/test_images/image_2.png', 'cow'),
-    ('./data/test_images/image_3.png', 'apple'),
+    ('./../../computer_vision/yolo/data/images/dog_image_1.jpeg', (1, 1, 1, 1)),
 ])
 def test_detect_object(test_file: str,
                        expected_output: str):
@@ -64,9 +62,9 @@ def test_detect_object(test_file: str,
     files = {"image": open(test_file, "rb")}
 
     # Retrieve the response
-    response = test_client.post("/detect_object/", files=files)
+    response = test_client.post("/upload_image/", files=files)
 
     # Parse the response as JSON
     json_response = json.loads(response.content.decode('utf-8'))
 
-    assert expected_output == json_response['detected_object']
+    print(json_response['blob_shape'])
