@@ -7,7 +7,7 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.testclient import TestClient
 
 # Instance FastApi object
-app = FastApi()
+app = FastAPI()
 
 # Instance TestClient object
 test_client = TestClient(app)
@@ -43,7 +43,7 @@ async def upload_image(image_file: UploadFile = File(...,
 
 
 @pytest.mark.parametrize('test_file, expected_output', [
-    ('./../../computer_vision/yolo/data/images/dog_image_1.jpeg', (1, 1, 1, 1)),
+    ('./../../computer_vision/yolo/images/dog_image_1.jpeg', (1, 1, 1, 1)),
 ])
 def test_detect_object(test_file: str,
                        expected_output: str):
@@ -67,4 +67,6 @@ def test_detect_object(test_file: str,
     # Parse the response as JSON
     json_response = json.loads(response.content.decode('utf-8'))
 
-    print(json_response['blob_shape'])
+    print(json_response)
+
+    #print(json_response['blob_shape'])
