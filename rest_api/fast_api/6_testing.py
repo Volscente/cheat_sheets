@@ -2,6 +2,10 @@
 import os
 import pytest
 import json
+import numpy as np
+import cv2
+
+from typing import List
 
 from fastapi import FastAPI, UploadFile, File
 from fastapi.testclient import TestClient
@@ -43,23 +47,23 @@ async def upload_image(image_file: UploadFile = File(...,
 
 
 @pytest.mark.parametrize('test_file, expected_output', [
-    ('./../../computer_vision/yolo/images/dog_image_1.jpeg', (1, 1, 1, 1)),
+    ('./../../computer_vision/yolo/images/dog_image_1.jpeg', [1, 3, 416, 416]),
 ])
 def test_detect_object(test_file: str,
-                       expected_output: str):
+                       expected_output: List[int]):
 
     """
     Test the function packages.rest_api.rest_api.detect_object
 
     Args:
         test_file: String test file path
-        expected_output: String expected detected class
+        expected_output: Tuple[int] expected detected class
 
     Returns:
     """
 
     # Define the File to upload
-    files = {"image": open(test_file, "rb")}
+    files = {"image_file": open(test_file, "rb")}
 
     # Retrieve the response
     response = test_client.post("/upload_image/", files=files)
@@ -67,6 +71,4 @@ def test_detect_object(test_file: str,
     # Parse the response as JSON
     json_response = json.loads(response.content.decode('utf-8'))
 
-    print(json_response)
-
-    #print(json_response['blob_shape'])
+    assert json_response['blob_shape'] == expected_output
