@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "bd1517ba3cb6613b181fc9d2815016d4451d1c3eed008ce0a4f5288a6cca30ff"
+            "sha256": "dca20729470ff3bb219db1f64faf8e0f339078da9e021b75b5a646cf2f36b470"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1601,7 +1601,7 @@
                 "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc",
                 "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"
             ],
-            "markers": "python_version < '3.11'",
+            "markers": "python_version >= '3.7'",
             "version": "==2.0.1"
         },
         "torch": {
@@ -1638,6 +1638,13 @@
             "index": "pypi",
             "version": "==0.7.0"
         },
+        "torch-model-archiver-nightly": {
+            "hashes": [
+                "sha256:95a2364ffc99d5f31703f6bece24951137e2669d19c12cf2f8a18ef8637065bc"
+            ],
+            "index": "pypi",
+            "version": "==2023.1.2"
+        },
         "torch-workflow-archiver": {
             "hashes": [
                 "sha256:1f8c1aa5cac413525000ec46ca76830d81f22083e71514d4b82a06161dbe675b"
@@ -1645,12 +1652,26 @@
             "index": "pypi",
             "version": "==0.2.6"
         },
+        "torch-workflow-archiver-nightly": {
+            "hashes": [
+                "sha256:bd5c9d8649e0dee81e282428f09d990a668f47b0f27018a7232a637cdd30b7ab"
+            ],
+            "index": "pypi",
+            "version": "==2023.1.2"
+        },
         "torchserve": {
             "hashes": [
                 "sha256:ff6e7d4dc5c4730ef84b2e0c1a9fe29ba784a4eee77233767510ba2b31346114"
             ],
             "index": "pypi",
             "version": "==0.7.0"
+        },
+        "torchserve-nightly": {
+            "hashes": [
+                "sha256:363670a0714cc64169c06c0efc7dc74004631cb6a2fa1ede18917e8da05ed79c"
+            ],
+            "index": "pypi",
+            "version": "==2023.1.2"
         },
         "torchvision": {
             "hashes": [
