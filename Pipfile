@@ -20,6 +20,7 @@ pydantic = "*"
 scikit-learn = "*"
 pytest = "*"
 httpx = "*"
+torchserve = "*"
 
 [dev-packages]
 
