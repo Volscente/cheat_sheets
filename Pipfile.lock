@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a3274a591044abde0b503f4f7edbc27f480e91db66c93c0b06c68ef9904ac232"
+            "sha256": "f793c34b256ba775e439bebfd5a813f9bf26e2cc07d275546aebc07270768689"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -352,6 +352,13 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==0.4"
+        },
+        "enum-compat": {
+            "hashes": [
+                "sha256:3677daabed56a6f724451d585662253d8fb4e5569845aafa8bb0da36b1a8751e",
+                "sha256:88091b617c7fc3bbbceae50db5958023c48dc40b50520005aa3bf27f8f7ea157"
+            ],
+            "version": "==0.0.3"
         },
         "exceptiongroup": {
             "hashes": [
@@ -1623,6 +1630,13 @@
             ],
             "index": "pypi",
             "version": "==1.13.1"
+        },
+        "torch-model-archiver": {
+            "hashes": [
+                "sha256:b7b18161331764eeacc24b4b8d1352f22af026f8981745847cab242c962dff43"
+            ],
+            "index": "pypi",
+            "version": "==0.7.0"
         },
         "torchserve": {
             "hashes": [

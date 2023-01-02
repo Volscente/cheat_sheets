@@ -21,6 +21,7 @@ scikit-learn = "*"
 pytest = "*"
 httpx = "*"
 torchserve = "*"
+torch-model-archiver = "*"
 
 [dev-packages]
 
