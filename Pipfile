@@ -22,6 +22,7 @@ pytest = "*"
 httpx = "*"
 torchserve = "*"
 torch-model-archiver = "*"
+torch-workflow-archiver = "*"
 
 [dev-packages]
 
