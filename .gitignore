@@ -138,3 +138,6 @@ computer_vision/.DS_Store
 computer_vision/blur_detection/.DS_Store
 computer_vision/blur_detection/data/.DS_Store
 computer_vision/yolo/.DS_Store
+
+# Data files
+data/MNIST/*
