@@ -6,3 +6,8 @@ It allows you to declare the libraries your project depends on and it will manag
 Poetry offers a lockfile to ensure repeatable installs, and can build your project for distribution.
 
 ## Installation
+Run the following command from the terminal:
+
+``` bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
