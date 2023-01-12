@@ -18,3 +18,14 @@ Modify the `.zshrc` file with the following command:
 ``` bash
 export PATH="$HOME/.local/bin:$PATH"
 ```
+
+### Autocompletion
+
+For **Oh My Zsh** run the following command:
+
+``` bash
+mkdir $ZSH_CUSTOM/plugins/poetry
+poetry completions zsh > $ZSH_CUSTOM/plugins/poetry/_poetry
+```
+
+Then add the `poetry` entry in the `plugins` array in the `~/.zshrc` file.
