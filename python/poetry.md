@@ -11,3 +11,10 @@ Run the following command from the terminal:
 ``` bash
 curl -sSL https://install.python-poetry.org | python3 -
 ```
+
+For **MacOS with ZSH** add the `.local/bin` to the `PATH` environment variable.
+Modify the `.zshrc` file with the following command:
+
+``` bash
+export PATH="$HOME/.local/bin:$PATH"
+```
