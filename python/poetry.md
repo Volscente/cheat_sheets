@@ -30,6 +30,29 @@ poetry completions zsh > $ZSH_CUSTOM/plugins/poetry/_poetry
 
 Then add the `poetry` entry in the `plugins` array in the `~/.zshrc` file.
 
+## pyproject.toml File
+``` toml
+[tool.poetry]
+name = "rp-poetry"
+version = "0.1.0"
+description = ""
+authors = ["Philipp <philipp@realpython.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+```
+
+Each section identified by square brackets is called "Table". If a table is too-specific, it must be prefixed with **tool**.
+You now see that the only tool is poetry, but you might also have `[tool.pytest.ini_options]` for pytest.
+
+
 
 # Commands
 
@@ -37,7 +60,9 @@ Then add the `poetry` entry in the `plugins` array in the `~/.zshrc` file.
 
 ### Setup new project
 ``` bash
-poetry new <repository_name>
+# It creates a new project in the folder <repository_name> with a package
+# called <package_name> in the 'src' folder
+poetry new <repository_name> --name <package_name> --src
 ```
 
 ### Initialise existing project
