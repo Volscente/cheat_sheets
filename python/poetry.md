@@ -52,7 +52,14 @@ build-backend = "poetry.core.masonry.api"
 Each section identified by square brackets is called "Table". If a table is too-specific, it must be prefixed with **tool**.
 You now see that the only tool is poetry, but you might also have `[tool.pytest.ini_options]` for pytest.
 
+## Virtual Environment
+Poetry is able to manage virtual environments and it is not created by default when creating a new poetry project.
+**NOTE:** PyCharm will ask you if you want to create one.
 
+Otherwise, inside the project directory, use the following command:
+``` bash
+poetry env use python3
+```
 
 # Commands
 
