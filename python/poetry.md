@@ -96,9 +96,21 @@ poetry env list
 ``` bash
 # Install the dependencies listed in pyproject.toml [tool.poetry.dependencies]
 poetry install
+
+# Use the option '--without test,docs,dev' if you want to esclude the specified group from install
+poetry install --without test,docs,dev
 ```
 
 ### Add & Install Dependency
 ``` bash
+# NOTE: Use '--group dev' to install in the 'dev' dependencies list
 poetry add <library_name>
+
+poetry add <library> --group dev
+
+poetry add <libarry> --group <group_name>
+```
+### List Installed Libraries
+``` bash
+poetry show
 ```
