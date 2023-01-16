@@ -61,6 +61,8 @@ Otherwise, inside the project directory, use the following command:
 poetry env use python3
 ```
 
+The virtual environment will be created in the directory `~/Library/Caches/pypoetry` for MacOS
+
 # Commands
 
 ## Project Setup
@@ -76,4 +78,27 @@ poetry new <repository_name> --name <package_name> --src
 ``` bash
 cd pre-existing-project
 poetry init
+```
+
+## Virtual Environment
+
+### Create
+``` bash
+poetry env use python3
+```
+
+### List Virtual Environments
+``` bash
+poetry env list
+```
+
+### Install Libraries
+``` bash
+# Install the dependencies listed in pyproject.toml [tool.poetry.dependencies]
+poetry install
+```
+
+### Add & Install Dependency
+``` bash
+poetry add <library_name>
 ```
