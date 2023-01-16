@@ -29,3 +29,19 @@ poetry completions zsh > $ZSH_CUSTOM/plugins/poetry/_poetry
 ```
 
 Then add the `poetry` entry in the `plugins` array in the `~/.zshrc` file.
+
+
+# Commands
+
+## Project Setup
+
+### Setup new project
+``` bash
+poetry new <repository_name>
+```
+
+### Initialise existing project
+``` bash
+cd pre-existing-project
+poetry init
+```
