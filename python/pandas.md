@@ -197,3 +197,9 @@ data['endofmonth'] = np.where((data['day'] >= 27) & (data['day'] <= 31), 1, 0)
 ``` python
 dict(zip(df.column_1, df.column_2))
 ```
+
+# Common Errors
+
+## SettingWithCopyWarning
+The error is due to the fact that Pandas is not able to distinguish whenever you're using the original DataFrame or a view.
+It can be easily solved by passing a copy of the original DataFrame and not directly the original.
