@@ -27,7 +27,8 @@ test_data_confusion_matrix = confusion_matrix(test_data['label'], test_data['pre
 # Plot confusion matrix
 ax = sns.heatmap(test_data_confusion_matrix, 
                  annot=True,
-                 cmap=sns.light_palette("seagreen", as_cmap=True))
+                 cmap=sns.light_palette("seagreen", as_cmap=True),
+                 fmt='g')
 
 ax.set_ylabel('True Label', 
               fontweight='bold')
