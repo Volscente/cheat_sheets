@@ -136,6 +136,22 @@ for key in dictionary.keys():
     data.loc[data['<column_name>'].str.contains(key), '<mapping_column_name>'] = dictionary[key]
 ```
 
+## Numpy Select - Fill a Column based on Multiple Conditions
+``` python
+import numpy as np
+
+# Define the conditions for the `HouseAgeClass` categories
+house_age_class_conditions = {
+    'young': california_housing_train['HouseAge'] <= 17,
+    'middle': (california_housing_train['HouseAge'] > 17) &  (california_housing_train['HouseAge'] < 52),
+    'old': california_housing_train['HouseAge'] == 52
+}
+
+# Define a categorical variable called `HouseAgeClass`
+california_housing_train['HouseAgeClass'] = np.select(house_age_class_conditions.values(), 
+                                                      house_age_class_conditions.keys())
+```
+
 # List Column
 
 ## Transform into a Series
