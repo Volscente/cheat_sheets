@@ -8,7 +8,7 @@ from google.cloud import secretmanager
 
 # Secret Manager Service Client
 ## Instantiate
-```
+``` python
 # Create the Secret Manager client
 secret_manager_client = secretmanager.SecretManagerServiceClient()
 ```
@@ -16,7 +16,7 @@ secret_manager_client = secretmanager.SecretManagerServiceClient()
 and the Active Account (`gcloud auth list`)
 
 ## Read Secret
-```
+``` python
 # Secret's Information
 project_id = '<project_id>'
 secret_name = '<secret_name>'
