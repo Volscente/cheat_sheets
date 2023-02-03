@@ -1,7 +1,3 @@
----
-title: "Utils"
-tags: "Cheat Sheet"
----
 # Datetime
 
 ## Current Datetime
@@ -67,4 +63,14 @@ self.logger.info('run - FIX KM INTERPOLATION - OK')
 ## Count Occurrences
 ``` python
 ['A' if c[i] == 'B' else 'B' for i in range(N)]
+```
+
+# Objects
+## Retrieve Object Attributes
+``` python
+# Instance the object
+object = Class()
+
+# Retrieve the list of Attributes
+object.__dir__()
 ```
