@@ -17,11 +17,15 @@ and the Active Account (`gcloud auth list`)
 
 ## Read Secret
 ``` python
+# Import Standard Libraries
+import json
+from google.oauth2 import service_account
+
 # Secret's Information
 project_id = '<project_id>'
 secret_name = '<secret_name>'
 secret_version = <secret_version>
 
-# Retrieve the secret
-secret = secret_manager_client.access_secret_version(name='projects/{}/secrets/{}/versions/{}'.format(project_id, secret_name, secret_version)).payload.data.decode("utf-8")
+# Retrieve the secret as a dictionary
+secret = json.loads(secret_manager_client.access_secret_version(name='projects/{}/secrets/{}/versions/{}'.format(project_id, secret_name, secret_version)).payload.data.decode("utf-8"))
 ```
