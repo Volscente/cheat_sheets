@@ -74,3 +74,10 @@ object = Class()
 # Retrieve the list of Attributes
 object.__dir__()
 ```
+
+# JSON
+## Pretty Print
+``` python
+import json
+print(json.dumps(json.loads(json_format_variable), indent=4))
+```
