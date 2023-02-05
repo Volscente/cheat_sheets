@@ -1,4 +1,4 @@
-# Z-Score
+# Z-Score
 ## Compute the Z-Score of several feature across the 'quality' categorical variable classes
 ``` python
 # Import Standard Libraries
