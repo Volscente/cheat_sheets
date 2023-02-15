@@ -17,7 +17,12 @@ uvicorn <filename>:<fast_api_object> --reload
 
 # Example
 uvicorn first_api:service --reload
+
+# Specifying path
+uvicorn src.rest_api.service:service --reload
 ```
+
+**NOTE:** To specify a long path like `src.rest_api.service`, ensure that a `__init__.py` file is within the `src` folder as well as `rest_api` folder.
 
 # FastAPI
 
