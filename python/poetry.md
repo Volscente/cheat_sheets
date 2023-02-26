@@ -108,7 +108,7 @@ poetry add <library_name>
 
 poetry add <library> --group dev
 
-poetry add <libarry> --group <group_name>
+poetry add <libary> --group <group_name>
 ```
 ### List Installed Libraries
 ``` bash
