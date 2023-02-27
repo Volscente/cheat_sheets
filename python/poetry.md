@@ -124,6 +124,19 @@ poetry version
 poetry version <version>
 ```
 
+| rule        | Before | After   |
+|-------------|--------|---------|
+| major       | 1.3.0  | 2.0.0   |
+| minor       | 2.1.4  | 2.2.0   |
+| patch	      | 4.1.1	 | 4.1.2   |
+| premajor	  | 1.0.2	 | 2.0.0a0 |
+| preminor	  | 1.0.2	 | 1.1.0a0 |
+| prepatch	  | 1.0.2	 | 1.0.3a0 |
+| prerelease	| 1.0.2	 | 1.0.3a0 |
+| prerelease	|1.0.3a0 | 1.0.3a1 |
+| prerelease	|1.0.3b0 | 1.0.3b1|
+
+
 ## Build
 ``` bash
 poetry build
