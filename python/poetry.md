@@ -114,3 +114,19 @@ poetry add <libary> --group <group_name>
 ``` bash
 poetry show
 ```
+
+## Version
+``` bash
+# Show the current version
+poetry version
+
+# Set the new value of the version
+poetry version <version>
+```
+
+## Build
+``` bash
+poetry build
+```
+
+**NOTE:** The .whl file will contain all the dependencies listed in the `pyproject.toml` file, in the `[tool.poetry.dependencies]` by default
