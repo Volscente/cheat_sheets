@@ -2,8 +2,7 @@
 from pathlib import Path
 import os
 
-path = Path.cwd()
+folder = 'data'
 
-print(path)
-print(path.resolve())
-print(os.path.abspath('./../data/diabetes.csv'))
+p = Path(__file__).parent.parent / folder
+print(p)
