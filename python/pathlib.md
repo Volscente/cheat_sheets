@@ -1,4 +1,4 @@
-# Path Object
+# Path Object
 
 ## Create from Current Filepath
 ``` python
