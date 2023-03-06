@@ -65,3 +65,8 @@ docker image build -t [repository/]<image_name>[:tag] .
 
 docker image build -t volscente/new_nginx:1.0.0 .
 ```
+
+## Build Image of Custom Dockerfile
+```` bash
+# Run inside the 'docker' folder where the .Dockerfile is
+docker image build -f detect_single_object.Dockerfile -t volscente/detect_single_object:0.0.2 .
