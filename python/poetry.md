@@ -143,3 +143,13 @@ poetry build
 ```
 
 **NOTE:** The .whl file will contain all the dependencies listed in the `pyproject.toml` file, in the `[tool.poetry.dependencies]` by default
+
+## Test
+If the path `src/test` has been correctly set, the following command will run every pytest inside the folder:
+``` bash
+# If the venv is correctly set
+pytest
+
+# If the venv is not recognised
+poetry run pytest
+```
