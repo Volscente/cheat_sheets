@@ -76,3 +76,9 @@ docker image build -f detect_single_object.Dockerfile -t volscente/detect_single
 ``` bash
 docker image build --progress=plain -f detect_single_object.Dockerfile -t volscente/detect_single_object:0.0.2 .
 ```
+
+## Build Image from Parent Directory
+This would allow to copy `poetry.lock` and `pyproject.toml`:
+``` bash
+docker image build --progress=plain -f ./docker/detect_single_object.Dockerfile -t <repository>/<image_name>:<tag> .
+```
