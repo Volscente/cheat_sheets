@@ -24,4 +24,13 @@ If using MLflow project, it can be the name of the project and the entry point o
 - **Parameters** - Key-value input parameters that you want to track
 - **Artifacts** - They are output files like images, models (pickle) or parquet files
 - **Start and End Time**
-- **Metrics** - 
+- **Metrics** - Key-value metrics containing numeric values. It allows to visualise the full history of each metric.
+
+## Tracking UI
+It allows to visualise, compare and search runs. Additionally, it lets you download metadata or artifacts for runs, 
+which you can input for analysis in other tools. MLflow logs information about runs in an mlruns directory; 
+in order to view the data, you can run the MLflow UI one directory above the mlruns folder.
+
+Notable features of the tracking UI include listing and comparison of runs by experiments, 
+and downloading the results of your runs. Additionally, you can search runs by metric value or parameters, 
+as well as visualize metrics of each run.
