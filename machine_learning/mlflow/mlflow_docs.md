@@ -53,4 +53,16 @@ code starts running.
 - **Docker Container** - The MLflow project can use a Docker image that copies the content of the project into a directory
 called `/mlflow/projects/code`. All the code is then executed within the resulting container.
 
+# MLflow Models
+## Definition
+MLflow models let you package machine learning models in a format supported by many downstream tools
 
+## Metadata
+It is possible to add metadata to the model, like:
+- **Model Signature** - It defines input and output data schema of the model.
+- **Model Input Example**
+
+## Models Registry
+### Definition
+MLflow Model Registry provides an API and UI for centrally managing your models and their lifecycle. 
+The registry provides model lineage, model versioning, annotations, and stage transitions.
