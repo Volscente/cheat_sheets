@@ -34,3 +34,23 @@ in order to view the data, you can run the MLflow UI one directory above the mlr
 Notable features of the tracking UI include listing and comparison of runs by experiments, 
 and downloading the results of your runs. Additionally, you can search runs by metric value or parameters, 
 as well as visualize metrics of each run.
+
+# MLflow Project
+## Definition
+It packages code used in data science projects, ensuring it can easily be reused and experiments can be reproduced.
+It comes with API and a CLI designed to running projects and chaining them together into an ML workflow.
+
+## Properties
+- **Name**
+- **Environment** - It defines the software environment used to execute the entry points of the project (including library dependencies)
+- **Entry Points** - They specify the commands you wanto to run inside the project. At least one entry point has to be defined.
+
+## Environments
+- **System** - It is possible to run projects directly into the existing system environment. All the dependencies have to
+be installed before executing the project.
+- **Conda** - It is possible to specify a Conda environment for the project, and it would be activated before the project
+code starts running.
+- **Docker Container** - The MLflow project can use a Docker image that copies the content of the project into a directory
+called `/mlflow/projects/code`. All the code is then executed within the resulting container.
+
+
