@@ -66,3 +66,9 @@ It is possible to add metadata to the model, like:
 ### Definition
 MLflow Model Registry provides an API and UI for centrally managing your models and their lifecycle. 
 The registry provides model lineage, model versioning, annotations, and stage transitions.
+
+### Stored Features
+- **Registered Model** - A registered model is one that has a unique name and metadata, contains model versions and transitional stages, and has a model lineage.
+- **Model Version**
+- **Model Stage** - They are such as staging, production or archived.
+- **Annotations and Descriptions** - It is possible to annotate the model using markdown.
