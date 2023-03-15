@@ -1,6 +1,6 @@
 # Introduction
 ## Definition
-MLflow is an open source platform for managing machine learning workflows.
+MLflow is an open source platform for managing machine learning models life cycle and workflows.
 
 ## Terminology
 ### Run
@@ -55,7 +55,7 @@ called `/mlflow/projects/code`. All the code is then executed within the resulti
 
 # MLflow Models
 ## Definition
-MLflow models let you package machine learning models in a format supported by many downstream tools
+MLflow models let you package machine learning models in a format supported by many downstream tools, so to provision it quickly.
 
 ## Metadata
 It is possible to add metadata to the model, like:
