@@ -36,11 +36,12 @@ The MLflow Runs information can be recorded into one of these options:
 - Local file s
 - SQL or SQLlite database
 - Into a remote tracking server
+
 MLflow uses two components for storing such information:
 - **Back-end Store/FileStore** - It contains entities such as Run details, Run ID, Run Parameters, Run Metrics, etc.
 - **Artifact Store** - Artifacts are elements like images, pickle models file, in-memory objects, etc.
 Let's see different options for storing the **FileStore** and the **Artifacts**:
-- 
+
 ![tracking_storage_1.png](./../../images/mlflow/tracking_storage_1.png)
 ![tracking_storage_2.png](./../../images/mlflow/tracking_storage_2.png)
 
