@@ -76,6 +76,10 @@ called `/mlflow/projects/code`. All the code is then executed within the resulti
 ## Definition
 MLflow models let you package machine learning models in a format supported by many downstream tools, so to provision it quickly.
 
+## Terminology
+- **Flavors** - They are the frameworks used to develop a model and that can be immediately interpreted by deployment tools
+to understand the model. For example, sklearn, xgboost, etc.
+
 ## Metadata
 It is possible to add metadata to the model, like:
 - **Model Signature** - It defines input and output data schema of the model.
