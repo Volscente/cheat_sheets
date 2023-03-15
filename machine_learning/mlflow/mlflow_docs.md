@@ -1,6 +1,11 @@
 # Introduction
 ## Definition
-MLflow is an open source platform for managing machine learning models life cycle and workflows.
+MLflow is an open source platform for managing machine learning models life cycle and workflows. It has been developed by
+Databricks and first released in 2018. It is designed to be tool-agnostic and platform-agnostic.
+
+## Objective
+It makes easy to track model's development and ensure re-usability and reproducibility of the code. 
+In addition, it makes it easy to provision models into production and facilitate the re-training process.
 
 ## Terminology
 ### Run
@@ -25,6 +30,19 @@ If using MLflow project, it can be the name of the project and the entry point o
 - **Artifacts** - They are output files like images, models (pickle) or parquet files
 - **Start and End Time**
 - **Metrics** - Key-value metrics containing numeric values. It allows to visualise the full history of each metric.
+
+## Storage Solution
+The MLflow Runs information can be recorded into one of these options:
+- Local file s
+- SQL or SQLlite database
+- Into a remote tracking server
+MLflow uses two components for storing such information:
+- **Back-end Store/FileStore** - It contains entities such as Run details, Run ID, Run Parameters, Run Metrics, etc.
+- **Artifact Store** - Artifacts are elements like images, pickle models file, in-memory objects, etc.
+Let's see different options for storing the **FileStore** and the **Artifacts**:
+- 
+![tracking_storage_1.png](./../../images/mlflow/tracking_storage_1.png)
+![tracking_storage_2.png](./../../images/mlflow/tracking_storage_2.png)
 
 ## Tracking UI
 It allows to visualise, compare and search runs. Additionally, it lets you download metadata or artifacts for runs, 
