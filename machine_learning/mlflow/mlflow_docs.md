@@ -64,6 +64,20 @@ It comes with API and a CLI designed to running projects and chaining them toget
 - **Environment** - It defines the software environment used to execute the entry points of the project (including library dependencies)
 - **Entry Points** - They specify the commands you wanto to run inside the project. At least one entry point has to be defined.
 
+All these properties can be enclosed in a YAML file for the whole MLflow Project.
+An example could be:
+``` yaml
+name: tutorial
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      alpha: {type: float, default: 0.01}
+    command: "python model.py {alpha}"
+```
+
 ## Environments
 - **System** - It is possible to run projects directly into the existing system environment. All the dependencies have to
 be installed before executing the project.
@@ -84,6 +98,9 @@ to understand the model. For example, sklearn, xgboost, etc.
 It is possible to add metadata to the model, like:
 - **Model Signature** - It defines input and output data schema of the model.
 - **Model Input Example**
+
+It is possible to define a YAML file with all the MLflow model information (Favlor, signature, input example) in order to easily
+deploy it to Docker, Azure ML or Flask.
 
 ## Models Registry
 ### Definition
