@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/s.porreca/Projects/cheat_sheets/machine_learning/mlflow/mlruns/176222180829175951/3918cf37c28945b38967dec892726529/artifacts
+end_time: 1679261940071
+entry_point_name: ''
+experiment_id: '176222180829175951'
+lifecycle_stage: active
+run_id: 3918cf37c28945b38967dec892726529
+run_name: Run Name 24
+run_uuid: 3918cf37c28945b38967dec892726529
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679261940051
+status: 3
+tags: []
+user_id: s.porreca
