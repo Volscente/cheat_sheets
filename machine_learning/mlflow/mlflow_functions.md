@@ -33,6 +33,11 @@ mlflow.end_run()
 ``` python
 # Log Parameter
 mlflow.log_param('<parameter_name>', <value>)
+
+# Log Multiple Parameters
+# Log model's hyperparameters
+mlflow.log_params({'<parameter_1>': <value_1>,
+                   '<parameter_2>': <value_2>})
 ```
 
 ### Log Metrics
