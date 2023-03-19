@@ -2,6 +2,19 @@
 ## MLflow UI
 To access the MLflow Trakcing UI, navigate into the directory that contains the folder `mlruns` and type `mlflow ui` 
 
+## Experiment
+### Create Experiment
+``` python
+# Define experiment name
+mlflow_experiment_name = '<experiment_name>'
+
+# Create experiment or retrieve already existing experiment
+try:
+    mlflow_experiment_id = mlflow.create_experiment(name=mlflow_experiment_name)
+except Exception as e:
+    mlflow_experiment_id = mlflow.get_experiment_by_name(mlflow_experiment_name).experiment_id
+```
+
 ## Run
 ### Start
 ``` python
