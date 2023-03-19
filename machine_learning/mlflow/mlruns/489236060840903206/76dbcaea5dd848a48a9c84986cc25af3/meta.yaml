@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/s.porreca/Projects/cheat_sheets/machine_learning/mlflow/mlruns/489236060840903206/76dbcaea5dd848a48a9c84986cc25af3/artifacts
+end_time: 1679249077531
+entry_point_name: ''
+experiment_id: '489236060840903206'
+lifecycle_stage: active
+run_id: 76dbcaea5dd848a48a9c84986cc25af3
+run_name: trusting-turtle-451
+run_uuid: 76dbcaea5dd848a48a9c84986cc25af3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679249077511
+status: 3
+tags: []
+user_id: s.porreca

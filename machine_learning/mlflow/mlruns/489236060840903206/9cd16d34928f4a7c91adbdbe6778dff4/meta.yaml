@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/s.porreca/Projects/cheat_sheets/machine_learning/mlflow/mlruns/489236060840903206/9cd16d34928f4a7c91adbdbe6778dff4/artifacts
+end_time: 1679249221859
+entry_point_name: ''
+experiment_id: '489236060840903206'
+lifecycle_stage: active
+run_id: 9cd16d34928f4a7c91adbdbe6778dff4
+run_name: painted-mare-70
+run_uuid: 9cd16d34928f4a7c91adbdbe6778dff4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679249221841
+status: 4
+tags: []
+user_id: s.porreca
