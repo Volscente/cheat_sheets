@@ -1,9 +1,18 @@
 # Tracking Functions
+## MLflow UI
+To access the MLflow Trakcing UI, navigate into the directory that contains the folder `mlruns` and type `mlflow ui` 
+
 ## Run
 ### Start
 ``` python
-# Start the run
-mlflow.start_run()
+# Start the run with an optional name
+mlflow.start_run(run_name='<run_name>')
+```
+
+### End
+``` python
+# End the current MLflow Run
+mlflow.end_run()
 ```
 
 ## Logging
@@ -17,6 +26,12 @@ mlflow.log_param('<parameter_name>', <value>)
 ``` python
 # Log Metric
 mlflow.log_metric('<metric_name>', <value>)
+```
+
+### Set Tag
+``` python
+# Set a Run Tag
+mlflow.set_tag('<rag_name>', <value>)
 ```
 
 ### Save Models
