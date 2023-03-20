@@ -1,8 +1,9 @@
 artifact_uri: file:///Users/s.porreca/Projects/cheat_sheets/machine_learning/mlflow/mlruns/508157731007748740/78d003654cd24a738e2275bdbda7c274/artifacts
+deleted_time: 1679322993534
 end_time: 1679264152494
 entry_point_name: ''
 experiment_id: '508157731007748740'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 78d003654cd24a738e2275bdbda7c274
 run_name: ElasticNet
 run_uuid: 78d003654cd24a738e2275bdbda7c274
