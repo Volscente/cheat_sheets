@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/s.porreca/Projects/cheat_sheets/machine_learning/mlflow/mlruns/508157731007748740/09a7f319ba3943d88823cf37407d5aa2/artifacts
+end_time: 1679324119101
+entry_point_name: ''
+experiment_id: '508157731007748740'
+lifecycle_stage: active
+run_id: 09a7f319ba3943d88823cf37407d5aa2
+run_name: ElasticNet
+run_uuid: 09a7f319ba3943d88823cf37407d5aa2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679324118744
+status: 4
+tags: []
+user_id: s.porreca
