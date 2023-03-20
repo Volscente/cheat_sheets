@@ -45,6 +45,8 @@ Let's see different options for storing the **FileStore** and the **Artifacts**:
 ![tracking_storage_1.png](./../../images/mlflow/tracking_storage_1.png)
 ![tracking_storage_2.png](./../../images/mlflow/tracking_storage_2.png)
 
+The most common solution for storing Artifacts is a Datalake such as AWS S3 or Google Cloud Storage.
+
 ## Tracking UI
 It allows to visualise, compare and search runs. Additionally, it lets you download metadata or artifacts for runs, 
 which you can input for analysis in other tools. MLflow logs information about runs in an mlruns directory; 
