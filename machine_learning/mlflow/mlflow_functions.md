@@ -81,3 +81,4 @@ plt.savefig('./{}/features_box_plots.png'.format(eda_plots_folder))
 # Log the eda_plots_folder and tracking it
 mlflow.log_artifacts(eda_plots_folder)
 ```
+**NOTE:** It is possible to do the same thing, but with .CSV files of the train & test data.
