@@ -92,6 +92,11 @@ poetry env use python3
 poetry env list
 ```
 
+### Show Info
+``` bash
+poetry env info
+```
+
 ### Install Libraries
 ``` bash
 # Install the dependencies listed in pyproject.toml [tool.poetry.dependencies]
@@ -110,6 +115,7 @@ poetry add <library> --group dev
 
 poetry add <libary> --group <group_name>
 ```
+
 ### List Installed Libraries
 ``` bash
 poetry show
