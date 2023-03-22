@@ -114,3 +114,12 @@ The registry provides model lineage, model versioning, annotations, and stage tr
 - **Model Version**
 - **Model Stage** - They are such as staging, production or archived.
 - **Annotations and Descriptions** - It is possible to annotate the model using markdown.
+
+# MLflow Pipelines
+## Definition
+The development and productionization of machine learning applications are made easier and more standardized by using MLflow Pipelines, 
+an opinionated framework for structuring MLOps workflows. 
+MLflow Pipelines also make it possible for machine learning engineers and DevOps teams to embed these models into apps 
+and release them to production in a seamless manner.
+Pipelines are structured as git repositories with YAML-based configuration files and Python code. 
+This offers developers a declarative approach to the construction of ML applications, which decreases the amount of boilerplate code.
