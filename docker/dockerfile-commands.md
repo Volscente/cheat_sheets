@@ -1,7 +1,11 @@
----
-title: "Dockerfile Commands"
-tags: "Cheat Sheet"
----
+# Theory
+## How Docker Build Works
+Each single step in the Dockerfile is run in a specific container. For example:
+``` bash
+Running in 6d1e7bc3e824
+```
+At the end of each step, that container is commited to a new image. 
+Each container is created from the image produced by the previous step.
 
 # Commands
 ``` dockerfile
