@@ -7,6 +7,16 @@ Running in 6d1e7bc3e824
 At the end of each step, that container is commited to a new image. 
 Each container is created from the image produced by the previous step.
 
+## Debug Failed Step
+If a Dockerfile step failed, we need to start a shell in the step's container and investigate what happened there.
+Since the Dockerfile step failed, it did not produce any image. So we should commit the container to a temporary image
+and then start a shell in that image's container.
+
+``` bash
+# Commit the failed step container to a temporary image
+docker commit
+```
+
 # Commands
 ``` dockerfile
 # The base image
