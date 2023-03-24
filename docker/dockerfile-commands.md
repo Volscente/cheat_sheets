@@ -82,3 +82,12 @@ This would allow to copy `poetry.lock` and `pyproject.toml`:
 ``` bash
 docker image build --progress=plain -f ./docker/detect_single_object.Dockerfile -t <repository>/<image_name>:<tag> .
 ```
+
+## Build Image with Argument
+``` bash
+# Command
+docker image build --build-arg <argument_name>="<argument_value>" -t <repository>/<image_name>:<tag> .
+
+# Example
+docker image build --build-arg ENVIRONMENT="production" -t volscente/detect_single_object:0.0.1
+```
