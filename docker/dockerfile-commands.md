@@ -91,3 +91,9 @@ docker image build --build-arg <argument_name>="<argument_value>" -t <repository
 # Example
 docker image build --build-arg ENVIRONMENT="production" -t volscente/detect_single_object:0.0.1
 ```
+
+## Build without Caching
+``` bash
+# Command
+docker image build --no-cache -t <repository>/<image_name>:<tag> .
+```
