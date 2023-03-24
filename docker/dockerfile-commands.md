@@ -14,7 +14,10 @@ and then start a shell in that image's container.
 
 ``` bash
 # Commit the failed step container to a temporary image
-docker commit
+docker container commit <failed_step_container_id> <name_temporary_image>
+
+# Open a shell in the container of the failed step image
+docker container run -it --rm <name_temporary_image> bash
 ```
 
 # Commands
