@@ -1,4 +1,42 @@
-# Regression
+# Plot Training & Test Loss
+```python
+# Construct model_metric DataFrame
+model_metrics = pd.DataFrame({'Training Loss': train_loss, 
+                              'Testing Loss': test_loss, 
+                              'Training Accuracy': train_accuracy, 
+                              'Testing Accuracy': test_accuracy}, 
+                             index=np.arange(1, epochs + 1))
+                             
+# Plot Training & Test Loss
+figure, ax = plt.subplots(figsize=(9, 9))
+
+sns.lineplot(
+    data=model_metrics, 
+    x=model_metrics.index.tolist(), 
+    y='Training Loss', 
+    label='Training Loss')
+
+sns.lineplot(
+    data=model_metrics, 
+    x=model_metrics.index.tolist(), 
+    y='Testing Loss', 
+    label='Testing Loss')
+
+ax.set_ylabel('Loss', 
+              fontweight='bold')
+
+ax.set_xlabel('Epochs', 
+              fontweight='bold')
+
+ax.set_title('Training & Test Loss', 
+             fontsize=14)
+
+plt.xticks(model_metrics.index.tolist())
+
+plt.show()                            
+```
+
+# Regression
 
 ## SMAPE
 ```python
