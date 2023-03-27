@@ -142,3 +142,4 @@ computer_vision/yolo/.DS_Store
 # Data files
 data/MNIST/*
 machine_learning/pytorch/CNN_MNIST_model.pt
+machine_learning/pytorch/CCN_MNIST_model_torchscript.pt
