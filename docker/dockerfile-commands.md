@@ -77,6 +77,7 @@ docker image build -f detect_single_object.Dockerfile -t volscente/detect_single
 ```
 
 ## Show Build RUN Output
+use the `--progress=plain` parameter:
 ``` bash
 docker image build --progress=plain -f detect_single_object.Dockerfile -t volscente/detect_single_object:0.0.2 .
 ```
@@ -89,7 +90,7 @@ docker image build --progress=plain -f ./docker/detect_single_object.Dockerfile 
 
 ## Build Image with Argument
 ``` bash
-# Command
+# Command
 docker image build --build-arg <argument_name>="<argument_value>" -t <repository>/<image_name>:<tag> .
 
 # Example
