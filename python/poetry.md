@@ -113,7 +113,11 @@ poetry add <library_name>
 
 poetry add <library> --group dev
 
+# Add library to a specific group
 poetry add <libary> --group <group_name>
+
+# Add GitHub Repository
+poetry add git+<github_repo_url>
 ```
 
 ### List Installed Libraries
