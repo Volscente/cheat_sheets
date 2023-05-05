@@ -118,6 +118,9 @@ poetry add <libary> --group <group_name>
 
 # Add GitHub Repository
 poetry add git+<github_repo_url>
+
+# Add .whl file
+poetry add <relative_path_to_whl>
 ```
 
 ### List Installed Libraries
