@@ -24,3 +24,25 @@ plt.xticks(fontsize=8,
 
 plt.show()
 ```
+
+# Model Metric Comparison
+``` python
+# Sort dataframe by the metric
+performance.sort_values('RMSE', inplace=True)
+
+# Create figure
+figure = plt.figure(tight_layout=True, figsize=(9, 6))
+
+# Plot models' metrics
+ax = sns.barplot(data=performance, 
+                 x=performance.index.tolist(), 
+                 y='RMSE')
+
+# Set title
+ax.set_title('Models Comparison', 
+             fontsize=24)
+
+plt.xticks(rotation=45)
+
+plt.show()
+```
