@@ -56,24 +56,40 @@ plt.tight_layout()
 plt.show()
 ```
 
-# Model Metric Comparison
+# Residuals
 ``` python
-# Sort dataframe by the metric
-performance.sort_values('RMSE', inplace=True)
+# Define figure and axes
+figure, ax = plt.subplots(1, 2, figsize=(12, 6))
+ax = ax.flatten()
 
-# Create figure
-figure = plt.figure(tight_layout=True, figsize=(9, 6))
+# Fetch all the trained models
+for index, model_name in enumerate(models.keys()):
+    
+    # Compute the predictions for the test set
+    predictions = models[model_name].predict(X_test)
+    
+    # Reshape predictions
+    predictions = predictions.reshape(-1, 1)
+    
+    # Compute the residuals
+    residuals = y_test - predictions
+    
+    # Create the Pandas DataFrame
+    residuals_df = pd.DataFrame({'Residuals': residuals.to_numpy().reshape(-1,), 
+                                 'Predictions': predictions.reshape(-1,)})
+    
+    # Plot the residuals
+    sns.residplot(x='Predictions', 
+                  y='Residuals',
+                  data=residuals_df, 
+                  ax=ax[index],
+                  lowess=True)
 
-# Plot models' metrics
-ax = sns.barplot(data=performance, 
-                 x=performance.index.tolist(), 
-                 y='RMSE')
+     # Set the title
+    ax[index].set_title(model_name, fontsize=14)
 
-# Set title
-ax.set_title('Models Comparison', 
-             fontsize=24)
+figure.suptitle('Feature Importance',
+                fontweight='bold',
+                fontsize=24)
 
-plt.xticks(rotation=45)
-
-plt.show()
-```
+plt.tight_layout()
