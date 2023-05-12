@@ -152,3 +152,39 @@ figure.suptitle('Feature Importance',
                 fontsize=24)
 
 plt.tight_layout()
+```
+
+# Q-Q Plot
+``` python
+# Define figure and axes
+figure, ax = plt.subplots(1, 2, figsize=(12, 6))
+ax = ax.flatten()
+
+# Fetch all the trained models
+for index, model_name in enumerate(models.keys()):
+    
+    # Compute the predictions for the test set
+    predictions = models[model_name].predict(X_test)
+    
+    # Reshape predictions
+    predictions = predictions.reshape(-1, 1)
+    
+    # Compute the residuals
+    residuals = y_test - predictions
+    
+    # Generate a QQ plot
+    stats.probplot(residuals.to_numpy().reshape(-1,), 
+                   plot=ax[index])
+    
+    ax[index].set_xlabel('Theoretical Quantiles')
+
+    # Set the title
+    ax[index].set_title(model_name, fontsize=14)
+    
+    
+figure.suptitle('Q-Q Plots',
+                fontweight='bold',
+                fontsize=24)
+
+plt.tight_layout()
+```
