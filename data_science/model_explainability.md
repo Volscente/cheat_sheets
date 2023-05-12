@@ -78,6 +78,43 @@ plt.tight_layout()
 plt.show()
 ```
 
+# Learning Curves
+``` python
+# Define figure and axes
+figure, ax = plt.subplots(1, 2, figsize=(12, 6))
+ax = ax.flatten()
+
+# Fetch all the trained models
+for index, model_name in enumerate(models.keys()):
+
+    # Plot the Learning Curve
+    LearningCurveDisplay.from_estimator(models[model_name], 
+                                        **learning_curves_display_paramters,
+                                        ax=ax[index])
+    
+    # Retrieve legend information
+    handles = ax[index].get_legend_handles_labels()[0]
+    labels = ax[index].get_legend_handles_labels()[1]
+    ax[index].legend().remove()
+    
+     # Set the title
+    ax[index].set_title(model_name, fontsize=14)
+    
+# Set the legend
+figure.legend(handles, 
+              labels, 
+              loc='upper center', 
+              bbox_to_anchor=(0.5, 1.03), 
+              fontsize=8,
+              ncol=2)
+
+figure.suptitle('Learning Curves',
+                fontweight='bold',
+                fontsize=24)
+    
+plt.tight_layout()
+```
+
 # Residuals
 ``` python
 # Define figure and axes
