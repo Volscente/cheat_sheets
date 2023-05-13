@@ -8,16 +8,18 @@ figure = plt.figure(tight_layout=True, figsize=(9, 6))
 
 # Plot models' metrics
 ax = sns.barplot(data=performance, 
-                 x=performance.index.tolist(), 
-                 y='RMSE')
+                 x='RMSE', 
+                 y=performance.index.tolist())
 
 # Set title
 ax.set_title('Models Comparison', 
              fontsize=24)
 
+# Set tick rotation
 plt.xticks(rotation=45)
 
-plt.show()
+# Plot with tight layout
+plt.tight_layout()
 ```
 
 # Feature Importance 
