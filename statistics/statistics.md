@@ -21,3 +21,27 @@ data.groupby('category_column')['numeric_column'].agg([np.mean, np.median])
 ``` python
 data.['numeric_column'].agg([np.mean, np.median])
 ```
+## Spread Information
+### Variance
+``` python
+# ddof = 1 is for sample variance
+# Without ddof, the population variance is computed
+np.var(data['column'], ddof=1)
+```
+### Standard Deviation
+``` python
+# ddof = 1 is for sample std
+# Without ddof, the population std is computed
+np.std(data['column'], ddof=1)
+```
+## Percentage
+### Quantiles
+``` python
+# Return the 0.5 quantile
+np.quantile(data['column'], 0.5)
+```
+### Quartiles
+``` python
+# Return the quartiles
+np.quantile(data['column'], [0, 0.25, 0.5, 0.75, 1])
+```
