@@ -34,6 +34,10 @@ np.var(data['column'], ddof=1)
 # Without ddof, the population std is computed
 np.std(data['column'], ddof=1)
 ```
+### Compute Variance and Standard Deviation
+``` python
+data.groupby('category_column')['column'].agg([np.var, np.std])
+```
 ### Quantiles
 ``` python
 # Return the 0.5 quantile
@@ -41,8 +45,12 @@ np.quantile(data['column'], 0.5)
 ```
 ### Quartiles
 ``` python
-# Return the quartiles
+# Return the quartiles (Two options)
 np.quantile(data['column'], [0, 0.25, 0.5, 0.75, 1])
+np.quantile(data['column'], np.linspace(0, 1.0, 5)))
+
+# Compute the sixth quantile to divide the data in 5 quintiles
+np.quantile(data['column'], np.linspace(0, 1.0, 6)))
 ```
 ### Interquanrtile Range (IQR)
 ``` python
