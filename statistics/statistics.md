@@ -34,7 +34,6 @@ np.var(data['column'], ddof=1)
 # Without ddof, the population std is computed
 np.std(data['column'], ddof=1)
 ```
-## Percentage
 ### Quantiles
 ``` python
 # Return the 0.5 quantile
@@ -44,4 +43,9 @@ np.quantile(data['column'], 0.5)
 ``` python
 # Return the quartiles
 np.quantile(data['column'], [0, 0.25, 0.5, 0.75, 1])
+```
+### Interquanrtile Range (IQR)
+``` python
+from scipy.stats import iqr
+iqr(data['column'])
 ```
