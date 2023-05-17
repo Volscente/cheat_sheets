@@ -1,5 +1,13 @@
-# Options
+# Create DataFrame
+## Read from CSV
+``` python
+# Define local data file paths
+data_file_path = Path(os.path.abspath('')).parents[0] / 'data' / 'data.csv'
 
+# Read data
+data = pd.read_csv(data_file_path, parse_dates=['date'], index_col=0)
+```
+# Options
 ## Set Pandas Options
 ``` python
 # Set Pandas Options
