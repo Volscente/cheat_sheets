@@ -7,4 +7,4 @@ representation. Thus it can be easily ported to different programming languages 
 ## TensorFlow Execution Engine
 It executes the DAG based on the hardware underneath (CPU, GPU or TPU)
 ## API Architecture
-![img_tf_docs_1.png](../images/machine_learning/img_tf_docs_1.png)
+![img_tf_docs_1.png](./../../images/machine_learning/img_tf_docs_1.png)
