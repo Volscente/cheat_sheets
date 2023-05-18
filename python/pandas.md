@@ -1,5 +1,5 @@
 # Create DataFrame
-## Read from CSV
+## Read Data from CSV
 ``` python
 # Define local data file paths
 data_file_path = Path(os.path.abspath('')).parents[0] / 'data' / 'data.csv'
