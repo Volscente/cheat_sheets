@@ -57,3 +57,15 @@ np.quantile(data['column'], np.linspace(0, 1.0, 6)))
 from scipy.stats import iqr
 iqr(data['column'])
 ```
+# Probability
+## Sample
+``` python
+# P(x) = Number of possible outcomes for x / Number of total possible outcomes
+sales.sample() # Sample one row
+sales.sample(2) # Sample two rows - Sample without Replacemet (No name can appear twice)
+sales.sample(5, replace=True) #Sample 5 rows - Sample with Replacement (Names can appear more than twice)
+```
+## Set the Seed
+``` python
+np.random.seed(10)
+```
