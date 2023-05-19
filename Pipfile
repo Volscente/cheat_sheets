@@ -28,6 +28,7 @@ torch-model-archiver-nightly = "*"
 torch-workflow-archiver-nightly = "*"
 mlflow = "*"
 colorama = "*"
+plotly = "*"
 
 [dev-packages]
 
