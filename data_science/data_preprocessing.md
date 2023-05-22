@@ -1,3 +1,23 @@
+# Scikit-Learn Column Transformer
+## Pipeline
+``` python
+dummy_data_2 = pd.DataFrame({'col1': ['A', 'B', 'B', 'B', None], 
+                             'col2': [1, 2, 3, None, 5]})
+
+data_preprocessor_dummy = ColumnTransformer(
+    transformers=[
+        ('categorical', 
+         Pipeline([
+            ('imputer', SimpleImputer(missing_values=None, strategy='most_frequent', copy=False)),
+            ('one_hot_encoder', OneHotEncoder())
+         ]), ['col1']),
+        ('numerical', SimpleImputer(), ['col2'])
+    ])
+
+result = pd.DataFrame(data_preprocessor_dummy.fit_transform(dummy_data_2), columns=data_preprocessor_dummy.get_feature_names_out())
+
+result.head()
+```
 # Cleaning Outliers
 
 ## Interquartile Range (IQR)
