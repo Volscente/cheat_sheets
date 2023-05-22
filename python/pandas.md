@@ -77,10 +77,19 @@ data.nlargest(n, ['column_1', 'column_2'])
 performance.loc['logistic_regression'] = [accuracy_lr, precision_lr, recall_lr, f1_lr]
 ```
 
-## Strip Column Names
+## Column Rename
+### Strip Column Names
 ``` python
 # Remove spaces from column names
 data.columns = data.columns.str.strip()
+```
+### Remove Pattern
+``` python
+# Define pattern to pass to the regex (everything inside [])
+pattern = r'\[.*?\]'
+
+# Rename columns
+data_cleaned = data.rename(columns=lambda x: re.sub(pattern, '', x))
 ```
 
 ## NaN Values
