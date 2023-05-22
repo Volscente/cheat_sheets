@@ -22,3 +22,6 @@ The value of the Variable can be change through:
 # TensorFlow Data
 ## Definition
 The module `tf.data` is a module to build efficient Data Pipeline of data preprocessing steps.
+## Dataset Class
+It represents a sequence of elements. It could represent, for example, a set of data points with the corresponding
+labels.
