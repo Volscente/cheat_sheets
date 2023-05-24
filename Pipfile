@@ -29,6 +29,7 @@ torch-workflow-archiver-nightly = "*"
 mlflow = "*"
 colorama = "*"
 plotly = "*"
+metaflow = "*"
 
 [dev-packages]
 
