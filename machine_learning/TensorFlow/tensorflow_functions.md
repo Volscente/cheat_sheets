@@ -60,3 +60,13 @@ tf.keras.layers.Normalization(
   variance=None
 )
 ```
+## Discretization
+The tf.keras Discretization layer will place each element of its input data into one of several contiguous ranges,
+and output an integer index that indicates which range each element is placed in.
+``` python
+tf.keras.layers.Discretization(
+  bin_boundaries=None,
+  num_bins=None,
+  epsilon=0.01
+)
+```
