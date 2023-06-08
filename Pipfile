@@ -30,6 +30,7 @@ mlflow = "*"
 colorama = "*"
 plotly = "*"
 metaflow = "*"
+tensorflow = "*"
 
 [dev-packages]
 
