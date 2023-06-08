@@ -70,3 +70,12 @@ tf.keras.layers.Discretization(
   epsilon=0.01
 )
 ```
+### Categorical Features Preprocessing
+#### tf.keras.layers.CategoryEncoding
+Turns integer categorical features into one-hot, multi-hot or count dense representations
+#### tf.keras.layers.Hashing
+Performs cateogorical feature hashing, also known as the "hashing trick".
+#### tf.keras.layers.StringLookup
+Turns string categorical values into an encoded representation that can be read by an Embedding layer or Dense layer
+#### tf.keras.layers.IntegerLookup
+Turns integer categorical values into an encoded representation that can be read by an Embedding layer or Dense layer.
