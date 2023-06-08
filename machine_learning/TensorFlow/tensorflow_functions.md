@@ -35,3 +35,19 @@ batch_size = 3
 epochs = 2
 dataset = dataset.repeat(epochs).batch(batch_size, drop_remainder=True)
 ```
+# Layers Preprocessing API
+## TextVectorization
+It transforms a batch of strings into an encoded representation that can be read by an Embedding or Dense layer.
+``` python
+tf.keras.layers.TextVectorization(
+  max_tokens=None, # Maximum number of tokens to use
+  standardize='lower_and_strip_punctation', # Standardization to apply: lowercase and remove punctation
+  splti='whitespace', # How to strip tokens
+  ngrams=None,
+  output_mode='int',
+  output_sequence-length=None,
+  pad_to_max_tokens=False,
+  vocabulary=None
+)
+```
+If applied to a Dataset object, it can create a Vocabulary.
