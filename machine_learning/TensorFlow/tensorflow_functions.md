@@ -35,7 +35,7 @@ batch_size = 3
 epochs = 2
 dataset = dataset.repeat(epochs).batch(batch_size, drop_remainder=True)
 ```
-# Layers Preprocessing API
+# Layers Preprocessing API
 ## TextVectorization
 It transforms a batch of strings into an encoded representation that can be read by an Embedding or Dense layer.
 ``` python
@@ -51,3 +51,12 @@ tf.keras.layers.TextVectorization(
 )
 ```
 If applied to a Dataset object, it can create a Vocabulary.
+## Normalization
+Normalize the given columns (axis=1) into a Normal Distribution.
+``` python
+tf.keras.layers.Normalization(
+  axis=1,
+  mean=None,
+  variance=None
+)
+```
