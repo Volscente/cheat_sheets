@@ -27,3 +27,8 @@ path = Path(__file__)
 
 path_string = path.as_posix()
 ```
+
+## Create Path from Absolute Path
+``` python
+data_file_path = Path(os.path.abspath('')).parents[1] / '<folder>' / '<file>.<extension>'
+```
