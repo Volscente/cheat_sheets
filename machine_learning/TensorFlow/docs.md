@@ -25,3 +25,10 @@ The module `tf.data` is a module to build efficient Data Pipeline of data prepro
 ## Dataset Class
 It represents a sequence of elements. It could represent, for example, a set of data points with the corresponding
 labels.
+# TensorFlow Model
+## Sequential API
+It allows to create a model that is composed by several sequential layers, with a single input/output.
+## Functional API
+It allows to create an arbitrary model, not only a Sequential Model.
+## Subclassing API
+Implements everything from scratch.
