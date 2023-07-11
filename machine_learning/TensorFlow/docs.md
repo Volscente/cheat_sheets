@@ -29,6 +29,9 @@ labels.
 ## Sequential API
 It allows to create a model that is composed by several sequential layers, with a single input/output.
 ## Functional API
-It allows to create an arbitrary model, not only a Sequential Model.
+It allows to create an arbitrary model, not only a Sequential Model. It is however limited in customization.
+That's why we want the Subclassing API.
 ## Subclassing API
 Implements everything from scratch.
+Like in the example below:
+![Subclassing Example](./../../images/machine_learning/img_tf_docs_2.png)
