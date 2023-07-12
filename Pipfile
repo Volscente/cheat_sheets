@@ -31,6 +31,8 @@ colorama = "*"
 plotly = "*"
 metaflow = "*"
 tensorflow = "*"
+pydot = "*"
+graphviz = "*"
 
 [dev-packages]
 
