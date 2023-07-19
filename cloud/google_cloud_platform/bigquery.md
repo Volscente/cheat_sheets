@@ -100,3 +100,29 @@ FROM
   <dataset_name>.<table_data_name>
 ```
 **NOTE:** You can change the element to extract from `DAYOFWEEK` to also `HOUR`.
+### Concat
+```sql
+CREATE OR REPLACE MODEL
+  <dataset_name>.<model_name> 
+  
+OPTIONS (model_type='linear_reg',
+         input_label_cols=['<target_column>']) AS
+         
+SELECT
+
+  <features>,
+  
+  CONCAT(
+    CAST(
+        EXTRACT(
+          DAYOFWEEK
+          FROM pickup_datetime) AS STRING), 
+    CAST(
+        EXTRACT(
+          HOUR
+          FROM pickup_datetime) AS STRING)
+  ) AS hourofday,
+
+FROM
+  <dataset_name>.<table_data_name>
+```
