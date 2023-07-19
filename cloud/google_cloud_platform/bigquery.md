@@ -48,3 +48,20 @@ bq --location=US mk --dataset \
    --description '<dataset_description>' \
    <project_id>:<dataset_name>
 ```
+# BigQuery Machine Learning
+## Create Model
+``` sql
+CREATE OR REPLACE MODEL
+  <dataset_name>.<modeL-name> 
+  
+OPTIONS (model_type='linear_reg',
+         input_label_cols=['<target_column>']) AS
+         
+SELECT
+  <feature_1,
+  feature_2,
+  ...>
+  
+FROM
+  <dataset_name>.<table_name>
+```
