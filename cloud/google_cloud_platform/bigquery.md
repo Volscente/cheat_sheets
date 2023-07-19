@@ -52,7 +52,7 @@ bq --location=US mk --dataset \
 ## Create Model
 ``` sql
 CREATE OR REPLACE MODEL
-  <dataset_name>.<modeL-name> 
+  <dataset_name>.<model_name> 
   
 OPTIONS (model_type='linear_reg',
          input_label_cols=['<target_column>']) AS
@@ -63,5 +63,40 @@ SELECT
   ...>
   
 FROM
-  <dataset_name>.<table_name>
+  <dataset_name>.<table_data_name>
 ```
+## Evaluate Model
+``` sql
+SELECT
+  *,
+  SQRT(loss) AS rmse
+FROM
+  ML.TRAINING_INFO(MODEL <dataset_name>.<model_name>)
+```
+```sql
+SELECT
+  *
+FROM
+  ML.EVALUATE(MODEL <dataset_name>.<model_name>)
+```
+## Feature Engineering
+### Datetime Extract
+```sql
+CREATE OR REPLACE MODEL
+  <dataset_name>.<model_name> 
+  
+OPTIONS (model_type='linear_reg',
+         input_label_cols=['<target_column>']) AS
+         
+SELECT
+
+  <features>,
+  
+  EXTRACT(
+    DAYOFWEEK
+      FROM <date_feature>) AS dayofweek,
+
+FROM
+  <dataset_name>.<table_data_name>
+```
+**NOTE:** You can change the element to extract from `DAYOFWEEK` to also `HOUR`.
