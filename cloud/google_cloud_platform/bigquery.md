@@ -1,13 +1,18 @@
 # Introduction
 The library offers several methods to manage and communicate with a BigQuery instance.
+To install:
+``` bash
+pip install --user google-cloud-bigquery
+```
 
+# Python SDK
 ## Import
 ``` python
 from google.cloud import bigquery
 ```
 
-# Client
-## Instantiate Client from Service Account Info
+## Client
+### Instantiate Client from Service Account Info
 Requirements:
 - Setup a Service Account for reading from BigQuery
 - Create a Secret in the Secret Manager storing the Service Account keys
@@ -30,4 +35,16 @@ service_account_credentials = service_account.Credentials.from_service_account_i
 # Initialise the client
 big_query_client = bigquery.Client(credentials=service_account_credentials, 
                                    project=service_account_credentials.project_id)
+```
+
+# CLI
+## List Datasets
+``` bash
+bq ls -d
+```
+## Create Dataset
+``` bash
+bq --location=US mk --dataset \
+   --description '<dataset_description>' \
+   <project_id>:<dataset_name>
 ```
