@@ -18,4 +18,9 @@ In here the transformations happen inside the database, since the computational 
 anymore to do the transformations elsewhere. 
 # Data Warehouse (DWH)
 ## Purpose
-It acts as the source of truth for Data Analytics and Data Reporting teams.
+It acts as the source of truth for Data Analytics and Data Reporting teams. They are not designed for unstructured data.
+Here is the destination of an ETL/ELT process.
+## Technologies
+- AWS Redshift
+- Google BigQuery
+- Snowflake
