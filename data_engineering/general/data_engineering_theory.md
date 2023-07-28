@@ -9,6 +9,7 @@
 3. **Data Integration** - Load data into a sink destination
 4. **BI and Analytics**
 5. **Machine Learning**
+![Modern Data Stack](./../../images/data_engineering/general_4.png)
 ## ETL vs ELT
 The first three steps of the Data Area Hierarchy can be associated to the **ETL Process** (Extract, Transform and Load).
 This approach was initially designed so that the transformation step takes place outside the database. That was due to
@@ -17,6 +18,7 @@ However, right now the data storage resources are really powerful, and it is now
 In here the transformations happen inside the database, since the computational power is so high that there is not the need
 anymore to do the transformations elsewhere. 
 ![ETL Process](./../../images/data_engineering/general_1.png)
+![ELT Process](./../../images/data_engineering/general_3.png)
 ## Row-Oriented vs Column-Oriented Databases
 The Row-Oriented Databases store each row independently. It is still pretty used in traditiona DBMS like PostgreSQL or MySQL.
 However, for BI and Reporting purposes, Column-Oriented Databases work much better, since they store the values at a column level.
