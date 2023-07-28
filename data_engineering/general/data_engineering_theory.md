@@ -17,10 +17,22 @@ However, right now the data storage resources are really powerful, and it is now
 In here the transformations happen inside the database, since the computational power is so high that there is not the need
 anymore to do the transformations elsewhere. 
 # Data Warehouse (DWH)
-## Purpose
+## Definition
 It acts as the source of truth for Data Analytics and Data Reporting teams. They are not designed for unstructured data.
 Here is the destination of an ETL/ELT process.
 ## Technologies
 - AWS Redshift
 - Google BigQuery
 - Snowflake
+# Data Lake
+## Definition
+It is the place where to store unstructured or semi-structured data. Also raw data are here. It's like a repository where to
+put different kind of data.
+It is a very scalable data storage.
+## Technologies
+- AWS S3
+# Data Lakehouse
+## Definition
+It combines characteristics from Data Warehouse and Data Lake: there is a layer of structured and organised data that sits 
+on top of a low-cost Data Lake. There is a Metadata and Governance Layer which makes the data in the underneath data lake 
+ready for BI, Reports and Machine Learning applications.
