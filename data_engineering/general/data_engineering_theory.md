@@ -17,6 +17,12 @@ However, right now the data storage resources are really powerful, and it is now
 In here the transformations happen inside the database, since the computational power is so high that there is not the need
 anymore to do the transformations elsewhere. 
 ![ETL Process](./../../images/data_engineering/general_1.png)
+## Row-Oriented vs Column-Oriented Databases
+The Row-Oriented Databases store each row independently. It is still pretty used in traditiona DBMS like PostgreSQL or MySQL.
+However, for BI and Reporting purposes, Column-Oriented Databases work much better, since they store the values at a column level.
+Suppose you want to aggregate the sales from the 'Sales' column, with a Row-Oriented Database you need to load the whole table.
+While with a Column-Oriented Database you just need to load the 'Sales' column.
+![Database Types](./../../images/data_engineering/general_2.png)
 # Data Warehouse (DWH)
 ## Definition
 It acts as the source of truth for Data Analytics and Data Reporting teams. They are not designed for unstructured data.
