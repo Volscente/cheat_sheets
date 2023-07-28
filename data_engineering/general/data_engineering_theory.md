@@ -16,6 +16,7 @@ resource constraints.
 However, right now the data storage resources are really powerful, and it is now preferable the **ELT Process**.
 In here the transformations happen inside the database, since the computational power is so high that there is not the need
 anymore to do the transformations elsewhere. 
+![ETL Process](./../../images/data_engineering/general_1.png)
 # Data Warehouse (DWH)
 ## Definition
 It acts as the source of truth for Data Analytics and Data Reporting teams. They are not designed for unstructured data.
