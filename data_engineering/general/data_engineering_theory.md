@@ -45,3 +45,19 @@ It is a very scalable data storage.
 It combines characteristics from Data Warehouse and Data Lake: there is a layer of structured and organised data that sits 
 on top of a low-cost Data Lake. There is a Metadata and Governance Layer which makes the data in the underneath data lake 
 ready for BI, Reports and Machine Learning applications.
+# Slowly Changing Dimensions (SCD)
+## Definition
+It deals with how data changes over time within a data warehouse or database. 
+In real-world scenarios, data in business applications often undergoes changes, such as updates, inserts, or deletions. 
+Slowly Changing Dimensions provide a standardized approach to handle such changes efficiently and systematically 
+while preserving historical data.
+## Types
+They are strategies on how to implement SCD.
+### Type 0 - Retain Original
+The change is not transmitted into the DWH. It is used when the dimension (a.k.a. the attribute) is not used anymore 
+(like the fax number).
+![SCD Type 0](./../../images/data_engineering/general_5.png)
+### Type 1 - Overwrite
+The change is written both in the original data and transmitted to the DWH. Lost the original value.
+### Type 2 - Add New Row
+### Type 3 - Add New Attribute
