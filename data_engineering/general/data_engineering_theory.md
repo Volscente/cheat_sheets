@@ -60,4 +60,9 @@ The change is not transmitted into the DWH. It is used when the dimension (a.k.a
 ### Type 1 - Overwrite
 The change is written both in the original data and transmitted to the DWH. Lost the original value.
 ### Type 2 - Add New Row
+In order to keep the history with respect to type 1, add another row.
+![SCD Type 2](./../../images/data_engineering/general_6.png)
+The history is kept, but number of rows might grow exponentially. Processing speed is affected.
 ### Type 3 - Add New Attribute
+It does keep just partial history: original and current value. It saves the processing speed.
+![SCD Type 3](./../../images/data_engineering/general_7.png)
