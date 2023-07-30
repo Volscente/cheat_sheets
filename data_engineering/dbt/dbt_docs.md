@@ -21,3 +21,9 @@ dbt init <project_name>
 **NOTE:** You will need your user-organization information, you can find them in the bottom left corner of DBT (`DIQBEUO-PD08962`)
 ![DBT Information](./../../images/data_engineering/dbt_2.png)
 **NOTE 2:** The username and password are the ones setup on the DWH, not of Snowflake!
+The command will create a `profile.yml` file inside the `~/.dbt` folder.
+## Debug
+```bash
+# From inside the DBT Project, execute the command to check the connection
+dbt debug
+```
