@@ -22,6 +22,8 @@ dbt init <project_name>
 ![DBT Information](./../../images/data_engineering/dbt_2.png)
 **NOTE 2:** The username and password are the ones setup on the DWH, not of Snowflake!
 The command will create a `profile.yml` file inside the `~/.dbt` folder.
+**NOTE 3:** In the file `<project_name>.yml` delete the example lines in the `models/<project_name>`
+**NOTE 4:** Delete the example files under the `models` folder.
 ## Debug
 ```bash
 # From inside the DBT Project, execute the command to check the connection
