@@ -1,3 +1,11 @@
+# General
+## Use
+```sql
+-- Use a dwh 'COMPUTE_WH' - database 'airbnb' - schema 'RAW'
+USE WAREHOUSE COMPUTE_WH;
+USE DATABASE airbnb;
+USE SCHEMA RAW;
+```
 # User
 ## Create User
 ```sql
@@ -62,4 +70,35 @@ CREATE DATABASE IF NOT EXISTS AIRBNB;
 ```sql
 -- Create new Schema 'RAW' in Database 'AIRBNB'
 CREATE SCHEMA IF NOT EXISTS AIRBNB.RAW;
+```
+# Table
+## Create Table
+```sql
+-- Create new Table 'raw_listings'
+CREATE OR REPLACE TABLE raw_listings
+                    (id integer,
+                     listing_url string,
+                     name string,
+                     room_type string,
+                     minimum_nights integer,
+                     host_id integer,
+                     price string,
+                     created_at datetime,
+                     updated_at datetime);
+```
+## Copy Data
+```sql
+-- Copy data from a .CSV file into the table 'raw_listings'
+COPY INTO raw_listings (id,
+                        listing_url,
+                        name,
+                        room_type,
+                        minimum_nights,
+                        host_id,
+                        price,
+                        created_at,
+                        updated_at)
+                   from 's3://dbtlearn/listings.csv'
+                    FILE_FORMAT = (type = 'CSV' skip_header = 1
+                    FIELD_OPTIONALLY_ENCLOSED_BY = '"');
 ```
