@@ -12,6 +12,16 @@ debugging the whole process.
 ## Components
 ### Models
 They are the basic building blocks of DBT. They are materialized as tables or views and are located in the `models` folder as SQL files. They can also refer each other and use templates and macros.
+#### Common Table Expression (CTE)
+They are temporary named result and have a form like:
+```sql
+WITH <name_cte> (
+    [column_names]
+) AS 
+(
+    <cte_query>
+)
+```
 # CLI
 ## Prompt
 ```bash
