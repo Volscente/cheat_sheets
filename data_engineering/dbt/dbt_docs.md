@@ -9,6 +9,9 @@ You should have a `.dbt` in your home directory.
 Following the ELT principle, the data transformation happens inside the DWH through several steps that allows easily 
 debugging the whole process.
 ![DBT Overview](./../../images/data_engineering/dbt_1.png)
+## Components
+### Models
+They are the basic building blocks of DBT. They are materialized as tables or views and are located in the `models` folder as SQL files. They can also refer each other and use templates and macros.
 # CLI
 ## Prompt
 ```bash
