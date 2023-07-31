@@ -66,3 +66,9 @@ The history is kept, but number of rows might grow exponentially. Processing spe
 ### Type 3 - Add New Attribute
 It does keep just partial history: original and current value. It saves the processing speed.
 ![SCD Type 3](./../../images/data_engineering/general_7.png)
+## Data Flow Overview
+1. Raw Data
+2. SCD Data
+3. Dim Data
+4. Final Tables
+5. Dashboards
