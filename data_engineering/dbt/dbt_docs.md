@@ -22,6 +22,9 @@ WITH <name_cte> (
     <cte_query>
 )
 ```
+Models created under the `models` folder can be structured in subfolders, refelecting the layer which they belong to (e.g., `src` for the Staging Layer, etc.).
+Once a model is created, use the following command (`dbt run`) to create the corresponding view in the schema selected:
+![DBT Overview](./../../images/data_engineering/dbt_3.png)
 # CLI
 ## Prompt
 ```bash
