@@ -27,8 +27,8 @@ Once a model is created, use the following command (`dbt run`) to create the cor
 ![DBT Overview](./../../images/data_engineering/dbt_3.png)
 ### Materialisation
 It defines how models are stored and managed within the DWH. There are four different types of Materialisation:
-- **View** - It 
-- **Table**
+- **View** - It is the default one and the model is represented as a View. It's good when you don't read the data too often.
+- **Table** - The model is saved as a table and, everytime the DBT flow run, the table is re-created. It's good when you read the data often.
 - **Incremental**
 - **Ephemeral**
 # CLI
