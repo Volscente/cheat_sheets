@@ -25,6 +25,8 @@ However, for BI and Reporting purposes, Column-Oriented Databases work much bett
 Suppose you want to aggregate the sales from the 'Sales' column, with a Row-Oriented Database you need to load the whole table.
 While with a Column-Oriented Database you just need to load the 'Sales' column.
 ![Database Types](./../../images/data_engineering/general_2.png)
+## Fact Tables vs Normal Tables
+Both normal tables and Fact Tables are used to store data, their purposes, structures, and the type of data they store differ significantly. Normal tables focus on capturing operational details, while Fact Tables focus on storing quantitative metrics for analysis and decision-making.
 # Data Warehouse (DWH)
 ## Definition
 It acts as the source of truth for Data Analytics and Data Reporting teams. They are not designed for unstructured data.
