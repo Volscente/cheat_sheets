@@ -26,10 +26,10 @@ Models created under the `models` folder can be structured in subfolders, refele
 Once a model is created, use the following command (`dbt run`) to create the corresponding view in the schema selected:
 ![DBT Overview](./../../images/data_engineering/dbt_3.png)
 ### Materialisation
-It defines how models are stored and managed within the DWH. There are four different types of Materialisation:
+It defines how models are stored and managed within the DWH. It is related to the *Core Layer* in the Data Flow. There are four different types of Materialisation:
 - **View** - It is the default one and the model is represented as a View. It's good when you don't read the data too often, because the view is executed everytime.
 - **Table** - The model is saved as a table and, everytime the DBT flow run, the table is re-created. It's good when you read the data often.
-- **Incremental** - It is based on *Fact Tables* and it is used when you do not want to update the historical records.
+- **Incremental** - It is based on *Fact Tables* and it is used when you do not want to update the historical records. It appends data to a table.
 - **Ephemeral** - It does not create anything in the DWH.
 # CLI
 ## Prompt
