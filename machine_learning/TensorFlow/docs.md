@@ -35,3 +35,6 @@ That's why we want the Subclassing API.
 Implements everything from scratch.
 Like in the example below:
 ![Subclassing Example](./../../images/machine_learning/img_tf_docs_2.png)
+# TensorFlow Transform
+## Definition
+This API is dedicated to processing data for train, prediction and evaluation processes. It is strictly related to Apache Beam, which performs the so called *Analyze* phase, while TensorFlow Transform does the *Transformation* phase.
