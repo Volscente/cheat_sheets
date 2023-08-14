@@ -34,6 +34,7 @@ tensorflow = "*"
 pydot = "*"
 graphviz = "*"
 dbt-snowflake = "==1.5.0"
+tensorflow-transform = "*"
 
 [dev-packages]
 
