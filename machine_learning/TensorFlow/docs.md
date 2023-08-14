@@ -38,3 +38,7 @@ Like in the example below:
 # TensorFlow Transform
 ## Definition
 This API is dedicated to processing data for train, prediction and evaluation processes. It is strictly related to Apache Beam, which performs the so called *Analyze* phase, while TensorFlow Transform does the *Transformation* phase.
+** PTransforms
+These are two methods for *Analyze and Transform* a dataset:
+- **AnalyzeAndTransformDataset** - It is executed in Beam to create a training dataset (like *fit_transform* in Scikit-Learn)
+- **TransformDataset** - It is executed in Beam to create the evaluation dataset (like *transform* in Scikit-Learn)
