@@ -26,11 +26,14 @@ Models created under the `models` folder can be structured in subfolders, refele
 Once a model is created, use the following command (`dbt run`) to create the corresponding view in the schema selected:
 ![DBT Overview](./../../images/data_engineering/dbt_3.png)
 ### Materialisation
+#### Definition
 It defines how models are stored and managed within the DWH. It is related to the *Core Layer* in the Data Flow. There are four different types of Materialisation:
 - **View** - It is the default one and the model is represented as a View. It's good when you don't read the data too often, because the view is executed everytime.
 - **Table** - The model is saved as a table and, everytime the DBT flow run, the table is re-created. It's good when you read the data often.
 - **Incremental** - It is based on *Fact Tables* and it is used when you do not want to update the historical records. It appends data to a table.
 - **Ephemeral** - It does not create anything in the DWH.
+
+#### Configuration
 In order to specify the default materialisation type among the above ones, go to the `dbt_project.yml` file and add the following lines:
 ```yml
 models:
@@ -40,7 +43,27 @@ models:
         +materialized: table # Models inside 'models/dim' folder are materialized as 'table'
 ```
 **NOTE:** Don't forget to execute `dbt run` after such changes.
+
+#### Table Materialisation
 In order to create a  materialisation, create the corresponding model under the `models/dim` folder. Afterwards, run the command `dbt run`.
+
+#### Incremental Materialisation
+If you want to have an incremental materialisation, create the model under the `models/fct` folder and add the following configuration at the top:
+```sql
+{{
+    config(
+        materialized = 'incremental',
+        on_schema_change='fail' -- What happen if the schema chages
+    )
+}}
+```
+It is also required to specify how DBT has to increment the table through a Jinga if statement like:
+```sql
+{% if is_incremental() %} -- If this is an incremental load (i.e. not creating table)
+    AND review_date > (select max(review_date) from {{ this }}) -- Append this condition for incremental records
+{% endif %}
+```
+
 # CLI
 ## Prompt
 ```bash
