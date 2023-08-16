@@ -64,7 +64,10 @@ It is also required to specify how DBT has to increment the table through a Jing
 {% endif %}
 ```
 
-Once a new record is inserted into the *Raw Layer*, it is possible to increment the materialised model by executing `dbt run`.
+Once a new record is inserted into the *Raw Layer*, it is possible to increment the materialised model by executing `dbt run`. To re-create the incremental materialization table from zero, use: `dbt run --full-refresh`.
+
+#### Ephemeral Materialisation
+
 
 # CLI
 ## Prompt

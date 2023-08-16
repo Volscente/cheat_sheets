@@ -72,5 +72,5 @@ It does keep just partial history: original and current value. It saves the proc
 1. Raw Layer (raw_)
 2. Staging Layer (src_)
 3. Core Layer (dim_)
-4. Final Tables
+4. Final Tables (fct_ or dim_)
 5. Dashboards
