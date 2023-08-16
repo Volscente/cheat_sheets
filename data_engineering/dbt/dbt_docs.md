@@ -31,7 +31,7 @@ It defines how models are stored and managed within the DWH. It is related to th
 - **View** - It is the default one and the model is represented as a View. It's good when you don't read the data too often, because the view is executed everytime.
 - **Table** - The model is saved as a table and, everytime the DBT flow run, the table is re-created. It's good when you read the data often.
 - **Incremental** - It is based on *Fact Tables* and it is used when you do not want to update the historical records. It appends data to a table.
-- **Ephemeral** - It does not create anything in the DWH.
+- **Ephemeral** - It does not create anything in the DWH. It is used to exclude some views or tables from the final ones.
 
 #### Configuration
 In order to specify the default materialisation type among the above ones, go to the `dbt_project.yml` file and add the following lines:
@@ -67,7 +67,17 @@ It is also required to specify how DBT has to increment the table through a Jing
 Once a new record is inserted into the *Raw Layer*, it is possible to increment the materialised model by executing `dbt run`. To re-create the incremental materialization table from zero, use: `dbt run --full-refresh`.
 
 #### Ephemeral Materialisation
-
+Set the models you want to be ephemeral (a.k.a. excluded from the final tables) in the `dbt_project.yml`. For example every models inside the `src` folder:
+```yaml
+models:
+  dbtlearn:
+    +materialized: view
+    dim:
+      +materialized: table
+    src:
+      +materialized: ephemeral
+```
+In this way, when running `dbt run`, the models inside `src` folder won't be created.
 
 # CLI
 ## Prompt
