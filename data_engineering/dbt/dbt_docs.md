@@ -44,6 +44,22 @@ models:
 ```
 **NOTE:** Don't forget to execute `dbt run` after such changes.
 
+#### View Materialisation
+It can be set in the `dbt_project.yml` as the default one through:
+```yml
+models:
+  dbtlearn:
+    +materialized: view
+```
+or it can be set in the model definition by adding at the top:
+```sql
+{{
+    config(
+        materialized = 'view'
+    )
+}}
+```
+
 #### Table Materialisation
 In order to create a  materialisation, create the corresponding model under the `models/dim` folder. Afterwards, run the command `dbt run`.
 
@@ -77,8 +93,7 @@ models:
     src:
       +materialized: ephemeral
 ```
-In this way, when running `dbt run`, the models inside `src` folder won't be created.
-
+In this way, when running `dbt run`, the models inside `src` folder won't be created. They become CTEs.
 # CLI
 ## Prompt
 ```bash
