@@ -64,6 +64,8 @@ It is also required to specify how DBT has to increment the table through a Jing
 {% endif %}
 ```
 
+Once a new record is inserted into the *Raw Layer*, it is possible to increment the materialised model by executing `dbt run`.
+
 # CLI
 ## Prompt
 ```bash
