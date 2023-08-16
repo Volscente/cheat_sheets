@@ -31,6 +31,16 @@ It defines how models are stored and managed within the DWH. It is related to th
 - **Table** - The model is saved as a table and, everytime the DBT flow run, the table is re-created. It's good when you read the data often.
 - **Incremental** - It is based on *Fact Tables* and it is used when you do not want to update the historical records. It appends data to a table.
 - **Ephemeral** - It does not create anything in the DWH.
+In order to specify the default materialisation type among the above ones, go to the `dbt_project.yml` file and add the following lines:
+```yml
+models:
+  dbtlearn:
+    +materialized: view # Default materialisation type is 'view'
+    dim:
+        +materialized: table # Models inside 'models/dim' folder are materialized as 'table'
+```
+**NOTE:** Don't forget to execute `dbt run` after such changes.
+In order to create a  materialisation, create the corresponding model under the `models/dim` folder. Afterwards, run the command `dbt run`.
 # CLI
 ## Prompt
 ```bash
