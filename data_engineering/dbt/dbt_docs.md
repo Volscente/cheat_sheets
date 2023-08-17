@@ -166,6 +166,12 @@ Through the command `dbt source freshness` you can check if the data are fresh o
 They are data that are not inside the DWH. The *Seed* is the source of such data (e.g. Your local laptop as .CSV files). The folder is defined in the `dbt_project.yml` file as `seed-paths` and usually this path points to the `seeds` folder.
 
 Once the data are located in the `seeds` folder, run the command `dbt seed` to load the data into the DWH. The data are loaded into the `dbtlearn` schema and the table name is the same as the file name. They will be loaded as `table` materialisation. The belongs to the 'Mart' layer.
+
+### Snapshots
+They are used to store the state of a table at a given point in time. They are useful to track changes in the data. They are materialised as tables and are located in the `snapshots` folder as SQL files. They implement a Type 2 SCD and thus each snapshot is prefixed by `scd_`.
+
+Once a snapshot is created, you can activate it through the command `dbt snapshot`.
+
 # CLI
 ## Prompt
 ```bash
