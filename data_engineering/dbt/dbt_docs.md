@@ -98,7 +98,44 @@ In this way, when running `dbt run`, the models inside `src` folder won't be cre
 #### Sources
 They are data already inside the DWH and usually are constructed upon the Raw Layer. They give more information about the freshness of the data.
 
-They are defined in a `sources.yml` file, located in the `models` folder.
+They are defined in a `sources.yml` file, located in the `models` folder. It maps each raw table to a source table. For example:
+```yaml
+version: 2
+
+sources:
+  - name: airbnb
+    schema: raw
+    tables:
+      - name: listings # this is the mapped name in the source table
+        identifier: raw_listings # this is the name of the table in the raw
+
+      - name: hosts
+        identifier: raw_hosts
+
+      - name: reviews
+        identifier: raw_reviews
+```
+
+Afterwards it is possible to reference raw tables in the models as:
+```sql
+WITH raw_hosts AS (
+    SELECT 
+        *
+    FROM
+        {{ source('airbnb', 'hosts') }}
+)
+```
+instead of:
+```sql
+WITH raw_hosts AS (
+    SELECT 
+        *
+    FROM
+        AIRBNB.RAW.RAW_HOSTS
+)
+```
+This would allow to the raw data to change, even the location, and the above model won't be affected.
+
 #### Seeds
 They are data that are not inside the DWH. The *Seed* is the source of such data (e.g. Your local laptop as .CSV files). The folder is defined in the `dbt_project.yml` file as `seed-paths` and usually this path points to the `seeds` folder.
 
