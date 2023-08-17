@@ -188,6 +188,47 @@ Once a snapshot is created, you can activate it through the command `dbt snapsho
 ```
 The above snapshot called `scd_raw_listings` register the all the data coming from source listings (`SELECT * FROM {{ source('airbnb', 'listings') }}`). Each modified row has the attribute `updated_at` changed to reflect the last version of the row. New columns are added to keep track of such history.
 
+### Test
+There *Singular* and *Generic* tests. The first ones are simple SQL queries expected to return an empty result set. While the second ones are built-in tests that can be used to check the data quality. They are defined for each column:
+- unique (check if the column has only unique values)
+- not-null (check if the column has no null values)
+- accepted_values (check if the column has only the specified values)
+- relationships (check if the column has a valid relationship with another table)
+
+#### Generic Tests
+It requires a new file called `schema.yml` in the `models` folder where to define such generic tests. For example:
+```yaml
+version: 2
+
+models:
+  - name: dim_listings_cleansed
+    columns:
+
+      - name: listing_id
+        tests:
+          - unique
+          - not_null
+
+      - name: host_id
+        tests:
+          - not_null
+          - relationships: # host_id should have a key in dim_hosts_cleansed 
+              to: ref('dim_hosts_cleansed')
+              field: host_id
+
+      - name: room_type
+        tests:
+        - accepted_values:
+            values: 
+              - 'Entire home/apt'
+              - 'Private room'
+              - 'Shared room'
+              - 'Hotel room'
+```
+Once these tests are defined, you can run them through the command `dbt test`.
+
+If a test fails, the corresponding SQL query would be generated to capture the rows that failed the test.
+
 # CLI
 ## Prompt
 ```bash
