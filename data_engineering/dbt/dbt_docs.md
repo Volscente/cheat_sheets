@@ -96,9 +96,13 @@ models:
 In this way, when running `dbt run`, the models inside `src` folder won't be created. They become CTEs.
 ### Sources and Seeds
 #### Sources
-They are data already inside the DWH.
+They are data already inside the DWH and usually are constructed upon the Raw Layer. They give more information about the freshness of the data.
+
+They are defined in a `sources.yml` file, located in the `models` folder.
 #### Seeds
-They are data that are not inside the DWH. The *Seed* is the source of such data (e.g. Your local laptop).
+They are data that are not inside the DWH. The *Seed* is the source of such data (e.g. Your local laptop as .CSV files). The folder is defined in the `dbt_project.yml` file as `seed-paths` and usually this path points to the `seeds` folder.
+
+Once the data are located in the `seeds` folder, run the command `dbt seed` to load the data into the DWH. The data are loaded into the `dbtlearn` schema and the table name is the same as the file name. They will be loaded as `table` materialisation. The belongs to the 'Mart' layer.
 # CLI
 ## Prompt
 ```bash
