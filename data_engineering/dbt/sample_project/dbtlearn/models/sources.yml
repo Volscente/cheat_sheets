@@ -12,3 +12,7 @@ sources:
 
       - name: reviews
         identifier: raw_reviews
+        loaded_at_field: date # Interested column
+        freshness: # Check the freshness of the data
+          warn_after: {count: 1, period: hour} # If the data is older than 1 hour, warn
+          error_after: {count: 24, period: hour} # If the data is older than 24 hours, error

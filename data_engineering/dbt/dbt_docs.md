@@ -136,6 +136,32 @@ WITH raw_hosts AS (
 ```
 This would allow to the raw data to change, even the location, and the above model won't be affected.
 
+Check the correctness of everything through `dbt compile`.
+
+To check the freshness of the data you can specify:
+```yml
+version: 2
+
+sources:
+  - name: airbnb
+    schema: raw
+    tables:
+      - name: listings # this is the mapped name in the source table
+        identifier: raw_listings # this is the name of the table in the raw
+
+      - name: hosts
+        identifier: raw_hosts
+
+      - name: reviews
+        identifier: raw_reviews
+        loaded_at_field: date # Interested column
+        freshness: # Check the freshness of the data
+          warn_after: {count: 1, period: hour} # If the data is older than 1 hour, warn
+          error_after: {count: 24, period: hour} # If the data is older than 24 hours, error
+```
+
+Through the command `dbt source freshness` you can check if the data are fresh or not. If there are no data older than one hour, you will get a warning. If there are not data older than 24 hours, you will get an error.
+
 #### Seeds
 They are data that are not inside the DWH. The *Seed* is the source of such data (e.g. Your local laptop as .CSV files). The folder is defined in the `dbt_project.yml` file as `seed-paths` and usually this path points to the `seeds` folder.
 
@@ -159,4 +185,9 @@ The command will create a `profile.yml` file inside the `~/.dbt` folder.
 ```bash
 # From inside the DBT Project, execute the command to check the connection
 dbt debug
+```
+## Compile
+```bash
+# From inside the DBT Project, execute the command to check if every model is correct
+dbt compile
 ```
