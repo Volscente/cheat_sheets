@@ -225,9 +225,22 @@ models:
               - 'Shared room'
               - 'Hotel room'
 ```
-Once these tests are defined, you can run them through the command `dbt test`.
+Once these tests are defined, you can run all of them through the command `dbt test`. Or you can run specific ones through `dbt test --select dim_listings_cleansed` that referred only to a certain model.
 
 If a test fails, the corresponding SQL query would be generated to capture the rows that failed the test.
+
+#### Singular Tests
+They are just SQL queries that should return a empty result set. They are defined in the `tests` folder as SQL files. For example:
+```sql
+-- The minimum number of nights should be at least 1
+SELECT
+    *
+FROM
+    {{ ref('dim_listings_cleansed') }}
+WHERE
+    minimum_nights < 1
+LIMIT 10
+```
 
 # CLI
 ## Prompt
