@@ -94,6 +94,11 @@ models:
       +materialized: ephemeral
 ```
 In this way, when running `dbt run`, the models inside `src` folder won't be created. They become CTEs.
+### Sources and Seeds
+#### Sources
+They are data already inside the DWH.
+#### Seeds
+They are data that are not inside the DWH. The *Seed* is the source of such data (e.g. Your local laptop).
 # CLI
 ## Prompt
 ```bash
