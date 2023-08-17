@@ -172,6 +172,22 @@ They are used to store the state of a table at a given point in time. They are u
 
 Once a snapshot is created, you can activate it through the command `dbt snapshot`.
 
+```sql
+{% snapshot scd_raw_listings %}
+
+{{
+    config(
+        target_schema='dev',
+        unique_key='id',
+        strategy='timestamp',
+        updated_at='updated_at',
+        invalidate_hard_deletes=True
+    )
+}}SELECT * FROM {{ source('airbnb', 'listings') }}
+{% endsnapshot %}
+```
+The above snapshot called `scd_raw_listings` register the all the data coming from source listings (`SELECT * FROM {{ source('airbnb', 'listings') }}`). Each modified row has the attribute `updated_at` changed to reflect the last version of the row. New columns are added to keep track of such history.
+
 # CLI
 ## Prompt
 ```bash
