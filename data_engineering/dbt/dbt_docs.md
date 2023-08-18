@@ -242,6 +242,28 @@ WHERE
 LIMIT 10
 ```
 
+### Macros
+They can used, for example, to create a test.
+The macros should be defined in the `macros` folder as SQL files. For example:
+```sql
+-- It will check if there are nulls in the columns of the given model
+{% macro no_nulls_in_columns(model) %}
+    SELECT 
+        * 
+    FROM
+         {{ model }} 
+    WHERE
+        {% for col in adapter.get_columns_in_relation(model) -%}
+            {{ col.column }} IS NULL OR
+        {% endfor %}
+        FALSE -- This is to remove the last OR
+{% endmacro %}s
+```
+And then you can call them in a test from the `tests` folder as:
+```sql
+{{ no_nulls_in_columns(ref('dim_listings_cleansed')) }}
+```
+
 # CLI
 ## Prompt
 ```bash
