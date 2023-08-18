@@ -285,6 +285,16 @@ If you want then to add the custom generic test to the list of tests, modify the
           - positive_values
 ```
 
+### Third-Party Packages
+They can be installed from the [DBT Package Hub](https://hub.getdbt.com/) by selecting the package and coping the followin example lines of code into the `packages.yml` (in the DBT Project folder) file:
+```yaml
+packages:
+  - package: dbt-labs/dbt_utils
+    version: 1.1.1
+```
+
+Afterwards, run the command `dbt deps` to install the package.
+
 # CLI
 ## Prompt
 ```bash
