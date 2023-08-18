@@ -264,6 +264,27 @@ And then you can call them in a test from the `tests` folder as:
 {{ no_nulls_in_columns(ref('dim_listings_cleansed')) }}
 ```
 
+#### Custom Generic Tests
+They are macros with a very specific signature at the top named `test`:
+```sql
+-- The test takes two arguments: model and column_name
+{% test positive_value(model, column_name) %}
+SELECT
+    *
+FROM
+    {{ model }}
+WHERE
+    {{ column_name}} < 1
+{% endtest %}
+```
+
+If you want then to add the custom generic test to the list of tests, modify the `schema.yml` file as:
+```yaml
+- name: minimum_nights
+        tests:
+          - positive_values
+```
+
 # CLI
 ## Prompt
 ```bash
