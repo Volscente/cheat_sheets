@@ -295,6 +295,26 @@ packages:
 
 Afterwards, run the command `dbt deps` to install the package.
 
+### Documentation
+It can be defined in the `schema.yml` file as or as standalone markdown files. The landpage of the documentation is in the `overview.md` file.
+
+#### Simple Documentation
+To add a simple documentation in the `schema.yml` file, add the following line in the description and for each column add a description:
+```yaml
+models:
+  - name: dim_listings_cleansed
+    description: Cleansed table which contains AirBnB listings.
+    columns:
+
+      - name: listing_id
+        description: Primary key for the listings.
+        tests:
+          - unique
+          - not_null
+```
+
+Once the simple documentation is defined, run the command `dbt docs generate` to generate the documentation as JSON file in the `target/catalog.json` file. Then, run `dbt docs serve` to serve the documentation in the browser.
+
 # CLI
 ## Prompt
 ```bash
