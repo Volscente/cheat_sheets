@@ -342,6 +342,11 @@ And then add it to the `schema.yml` file as description field in a column:
 #### DAG
 It is generated in the bottom-left corner of the documentation page. It shows the dependencies between the models.
 
+### Analyses
+They are located in the `analysis` folder and are SQL files. They are used to run ad-hoc queries on the DWH. They are not part of the DBT flow.
+
+They are compiled through the command `dbt compile` and then run in your DWH. The compiled query would be in the `target/compiled/dbtlearn/analyses` folder.
+
 # CLI
 ## Prompt
 ```bash
