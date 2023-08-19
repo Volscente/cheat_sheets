@@ -339,6 +339,9 @@ And then add it to the `schema.yml` file as description field in a column:
           - positive_values
 ```
 
+#### DAG
+It is generated in the bottom-left corner of the documentation page. It shows the dependencies between the models.
+
 # CLI
 ## Prompt
 ```bash

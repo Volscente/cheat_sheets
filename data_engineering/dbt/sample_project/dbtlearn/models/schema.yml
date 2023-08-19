@@ -33,3 +33,26 @@ models:
         description: '{{ doc("dim_listing_cleansed__minimum_nights") }}'
         tests:
           - positive_values
+
+  - name: dim_hosts_cleansed
+    description: Cleansed table which contains AirBnB hosts.
+    columns:
+
+      - name: host_id
+        description: Primary key for the hosts.
+        tests:
+          - unique
+          - not_null
+
+      - name: host_name
+        description: Name of the hosts.
+        tests:
+          - not_null
+
+      - name: is_superhost
+        description: Defines whether the host is a superhost.
+        tests:
+          - accepted_values:
+              values:
+                - 't'
+                - 'f'
