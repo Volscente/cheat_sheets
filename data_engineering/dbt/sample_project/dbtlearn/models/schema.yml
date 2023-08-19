@@ -34,6 +34,12 @@ models:
         tests:
           - positive_values
 
+  - name: dim_listings_w_hosts
+    description: Cleansed table which contains AirBnB listings with hosts.
+    tests:
+      - dbt_expectations.expect_table_row_count_to_equal_other_table:
+          compare_model: source('airbnb', 'listings')
+
   - name: dim_hosts_cleansed
     description: Cleansed table which contains AirBnB hosts.
     columns:

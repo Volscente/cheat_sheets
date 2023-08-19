@@ -197,6 +197,17 @@ There *Singular* and *Generic* tests. The first ones are simple SQL queries expe
 
 **NOTE:** A good third-party package for testing is [Great Expectations](https://github.com/great-expectations/great_expectations) and even its [version from DBT](https://github.com/calogica/dbt-expectations)
 
+You can add the tests in the `schema.yml` file as:
+```yaml
+  - name: dim_listings_w_hosts
+    description: Cleansed table which contains AirBnB listings with hosts.
+    tests:
+      - dbt_expectations.expect_table_row_count_to_equal_other_table:
+          compare_model: source('airbnb', 'listings')
+```
+
+And then test the single model through the command `dbt test --select dim_listings_w_hosts`.
+
 #### Generic Tests
 It requires a new file called `schema.yml` in the `models` folder where to define such generic tests. For example:
 ```yaml
