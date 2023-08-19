@@ -195,6 +195,8 @@ There *Singular* and *Generic* tests. The first ones are simple SQL queries expe
 - accepted_values (check if the column has only the specified values)
 - relationships (check if the column has a valid relationship with another table)
 
+**NOTE:** A good third-party package for testing is [Great Expectations](https://github.com/great-expectations/great_expectations) and even its [version from DBT](https://github.com/calogica/dbt-expectations)
+
 #### Generic Tests
 It requires a new file called `schema.yml` in the `models` folder where to define such generic tests. For example:
 ```yaml
@@ -390,7 +392,7 @@ models:
       +materialized: ephemeral
 ```
 
-This post-hook would grant the `REPORTER` role the permission to read the model `dbtlearn` after it is created.
+This post-hook would grant the `REPORTER` role the permission to read the model `dbtlearn` after it is created. It would be executed after the model is created (`dbt run`).
 
 # CLI
 ## Prompt
