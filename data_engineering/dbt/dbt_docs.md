@@ -356,6 +356,42 @@ There are four types of hooks:
 - `pre-hook` - Executed before the DBT flow starts for a specific model
 - `post-hook` - Executed after the DBT flow ends for a specific model
 
+**NOTE:** Execute the following query to create the user and the role for Hooks:
+```sql
+USE ROLE ACCOUNTADMIN;
+
+CREATE ROLE IF NOT EXISTS REPORTER;
+CREATE USER IF NOT EXISTS PRESET
+ PASSWORD ='presetPassword123'
+ LOGIN_NAME ='preset'
+ MUST_CHANGE_PASSWORD =FALSE
+ DEFAULT_WAREHOUSE ='COMPUTE_WH'
+ DEFAULT_ROLE ='REPORTER'
+ DEFAULT_NAMESPACE ='AIRBNB.DEV'
+ COMMENT ='Preset user for creating reports' ;
+ 
+GRANT ROLE REPORTER TO USER PRESET;
+GRANT ROLE REPORTER TO ROLE ACCOUNTADMIN;
+GRANT ALL ON WAREHOUSE COMPUTE_WH TO ROLE REPORTER;
+GRANT USAGE ON DATABASE AIRBNB TO ROLE REPORTER;
+GRANT USAGE ON SCHEMA AIRBNB.DEV TO ROLE REPORTER;
+```
+
+Hooks are defined in the `dbt_project.yml` file as:
+```yaml
+models:
+  dbtlearn:
+    +materialized: view
+    +post-hook:
+      - "GRANT SELECT ON {{ this }} TO ROLE REPORTER"
+    dim:
+      +materialized: table
+    src:
+      +materialized: ephemeral
+```
+
+This post-hook would grant the `REPORTER` role the permission to read the model `dbtlearn` after it is created.
+
 # CLI
 ## Prompt
 ```bash
