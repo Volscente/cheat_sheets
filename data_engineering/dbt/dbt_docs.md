@@ -315,6 +315,24 @@ models:
 
 Once the simple documentation is defined, run the command `dbt docs generate` to generate the documentation as JSON file in the `target/catalog.json` file. Then, run `dbt docs serve` to serve the documentation in the browser.
 
+#### Standalone Documentation
+Define a `docs.md` file in the `models` folder and add the following lines:
+```markdown
+{% docs dim_listing_cleansed__minimum_nights %}
+Minimum number of nights required to rent this property.
+Keep in mind that old listings might have `minimum_nights` set
+to 0 in the source tables. Our cleansing algorithm updates this to `1`.
+{% enddocs %}
+```
+
+And then add it to the `schema.yml` file as description field in a column:
+```yaml
+- name: minimum_nights
+        description: '{{ doc("dim_listing_cleansed__minimum_nights") }}'
+        tests:
+          - positive_values
+```
+
 # CLI
 ## Prompt
 ```bash
