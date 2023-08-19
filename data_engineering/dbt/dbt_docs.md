@@ -347,6 +347,15 @@ They are located in the `analysis` folder and are SQL files. They are used to ru
 
 They are compiled through the command `dbt compile` and then run in your DWH. The compiled query would be in the `target/compiled/dbtlearn/analyses` folder.
 
+### Hooks
+They are SQL queries executed at predifined times during the DBT flow. They are located in the `hooks` folder and are SQL files. They are not part of the DBT flow.
+
+There are four types of hooks:
+- `on-run-start` - Executed before the DBT flow starts
+- `on-run-end` - Executed after the DBT flow ends
+- `pre-hook` - Executed before the DBT flow starts for a specific model
+- `post-hook` - Executed after the DBT flow ends for a specific model
+
 # CLI
 ## Prompt
 ```bash
