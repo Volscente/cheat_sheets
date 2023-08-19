@@ -296,7 +296,13 @@ packages:
 Afterwards, run the command `dbt deps` to install the package.
 
 ### Documentation
-It can be defined in the `schema.yml` file as or as standalone markdown files. The landpage of the documentation is in the `overview.md` file.
+It can be defined in the `schema.yml` file as or as standalone markdown files.
+
+The landpage of the documentation is in the `overview.md` file in the `models` folder. Images can be put in the `assets` folder.
+**NOTE:** Remember to add such folder in the `dbt_project.yml` file as:
+```yaml
+asset-paths: ["assets"]
+```
 
 #### Simple Documentation
 To add a simple documentation in the `schema.yml` file, add the following line in the description and for each column add a description:
