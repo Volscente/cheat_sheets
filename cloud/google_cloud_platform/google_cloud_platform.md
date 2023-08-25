@@ -19,6 +19,8 @@ It has three connection types:
 - Cloud Storage - From Google Cloud Storage
 - BigQuery - From BigQuery tables
 
+Each flow is implemented as a sequence of recipies, which are data processing steps. It then convert them into a Dataflow pipeline.
+
 # Processes
 ## Data Preprocessing
 The available options are:
