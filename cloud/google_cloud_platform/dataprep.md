@@ -1,8 +1,8 @@
-# Create New Flow
+# Flow
 ## Requirements
 You might need granting access to Google Cloud Platform in order to use Dataprep.
 
-## Steps
+## Create
 Click on `New Flow` and then on `Untitled Flow` to rename it.
 
 ![Rename Flow](./../../images/cloud/gcp_1.png)
@@ -18,3 +18,17 @@ Each of these operations is called `Step`. The steps can be viewed on the right 
 
 ![Recipe Steps](./../../images/cloud/gcp_3.png)
 
+You can add steps by clicking on the `New Step` on the right side of the screen or add step manually from each column.
+
+## Run
+Once you're satisfied with the result, you can run the flow by clicking on `Run` on the top right corner of the screen.
+
+By hovering the mouse on the `Create-CSV` text, you can select the `Edit` option to rchange the publishing destination.
+
+![Publish](./../../images/cloud/gcp_4.png)
+
+By selecting `BigQuery`, you can choose the dataset and then click on `Create new Table`.
+
+![Create New Table](./../../images/cloud/gcp_5.png)
+
+Finally, you can run the job and see it's execution from the `Job History` tab.
