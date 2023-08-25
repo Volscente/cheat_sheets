@@ -8,6 +8,14 @@ representation. Thus it can be easily ported to different programming languages 
 It executes the DAG based on the hardware underneath (CPU, GPU or TPU)
 ## API Architecture
 ![img_tf_docs_1.png](./../../images/machine_learning/img_tf_docs_1.png)
+
+## Speed Up Training
+- Async Parameter Server - Some nodes act as parameter servers and other as workers. Each worker independently fetches the latest parameters from the PS and computes gradients based on a subset of training samples. It then sends the gradients back to the PS, which then updates its copy of the parameters with those gradients. Workers can get out of sync. Good when there are shallow devices on multiple hosts.
+- Allreduce Parameter Server - Each worker holds a copy of the parameters and each worker computes the gradients. They then communicate between themselves the updated parameters. Workers are always in sync. Good when there are multiple devices on the same host.
+
+## Model Parallelism
+It is used when the model is too big to fit in one device.
+
 # TensorFlow Tensors
 ## Constant vs Variables
 The function `tf.constant([3, 2])` produces a Tensor of contanst that can not be modified.
