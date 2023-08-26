@@ -14,7 +14,7 @@ It executes the DAG based on the hardware underneath (CPU, GPU or TPU)
 - Allreduce Parameter Server - Each worker holds a copy of the parameters and each worker computes the gradients. They then communicate between themselves the updated parameters. Workers are always in sync. Good when there are multiple devices on the same host.
 
 ## Model Parallelism
-It is used when the model is too big to fit in one device.
+It is used when the model is too big to fit in one device. The training is divided between multiple devices, each of them working on the same dataset. Different devices can work on different parts of the model. Like for example, one device can work on the first layer, another on the second layer, etc.
 
 # TensorFlow Tensors
 ## Constant vs Variables
