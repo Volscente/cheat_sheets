@@ -60,7 +60,7 @@ Set the default project
 gcloud config set project <project_id>
 ```
 
-# Vertex AI
+# Vertex AI
 ## Custom Jobs
 You can run the following command to create a Docker image locally, even without a Dockerfile, to test your Python code:
 ```bash
@@ -69,8 +69,30 @@ gcloud beta ai custom-jobs local-run \
     --work-dir=WORKING_DIRECTORY \
     --script=SCRIPT_PATH \
     --output-image-url=OUTPUT_IMAGE_NAME \
+    --  \
+    --arg1=value1 \
 ```
 - `BASE_IMAGE_URI`: The URI of the base image to use for the Docker image. It must be a URI to a Docker image in a registry.
 - `WORKING_DIRECTORY`: The directory to use as the working directory for the Docker image. The lowest level directory that contains all the files needed to run the training script.
 - `SCRIPT_PATH`: The path to the training script, relative to the working directory.
 - `OUTPUT_IMAGE_NAME`: The name of the output Docker image.
+- `--`: The double dash is used to separate the gcloud command from the arguments to pass to the Docker image.
+
+It is also possible to use a `Cloud Build` configuration file to build the Docker image:
+```yaml
+steps:
+  - name: 'gcr.io/kaniko-project/executor:latest'
+    args:
+    - --destination=$_REGISTRY/$PROJECT_ID/$_TRAINER_NAME:$TAG_NAME
+    - --dockerfile=$_DOCKERFILE
+    - --cache=true
+    - --cache-ttl=168h
+substitions:
+  _REGISTRY: eu.gcr.io
+  _TRAINER_NAME: my_job
+  _DOCKERFILE: Dockerfile
+  _TAG_NAME: latest
+timeout: 3600s
+```
+Then, run the following command to build the Docker image:
+```bash
