@@ -563,5 +563,26 @@ def main():
       global_step=NUM_EPOCHS)
 if __name__ == "__main__":
     main()
-````
--
+```
+- Define the following variables:
+```bash
+PROJECT_ID='qwiklabs-gcp-01-f3f530bf53ff'
+IMAGE_URI="gcr.io/$PROJECT_ID/horse-human:hypertune"
+```
+- Build the Docker image:
+```bash
+docker build ./ -t $IMAGE_URI
+```
+- Push the Docker image to Container Registry:
+```bash
+docker push $IMAGE_URI
+```
+- Go to the `Training`section in Vertex AI
+- Leave `Dataset` as `No managed dataset`
+- Select `Custom Training`
+- In `Training container` select `Custom container` and select the `Container image URI` you just created from the `Container Registry`
+- Configure the hyperparameters as the parameters you defined in the `get_args()` function:
+    - `learning_rate` (log scaling)
+    - `momentum`
+    - `num_neurons`
+- Continue to configure and then start training
