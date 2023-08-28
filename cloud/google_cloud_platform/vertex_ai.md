@@ -586,3 +586,151 @@ docker push $IMAGE_URI
     - `momentum`
     - `num_neurons`
 - Continue to configure and then start training
+
+## Hyperparameters Tuning with Vertex Vizier
+It is a multi-objective optimization algorithm. In the following code we want to minimise `y1=r*sin(theta)` and maximise `y2=r*cos(theta)`.
+
+```python
+# Parameter configuration
+param_r = {
+    "parameter_id": "r", 
+    "double_value_spec": {
+        "min_value": 0, 
+        "max_value": 1
+    }
+}
+
+param_theta = {
+    "parameter_id": "theta",
+    "double_value_spec": {
+        "min_value": 0, 
+        "max_value": 1.57
+    }
+}
+
+# Define the metrics y1 and y2
+metric_y1 = {
+    "metric_id": "y1", 
+    "goal": "MINIMIZE"
+}
+
+metric_y2 = {
+    "metric_id": "y2", 
+    "goal": "MAXIMIZE"
+}
+
+# Put all the parameters and metrics together in a Study Configuration
+study = {
+    "display_name": 'STUDY_DISPLAY_NAME',
+    "study_spec": {
+        "algorithm": "RANDOM_SEARCH",
+        "parameters": [
+            param_r,
+            param_theta,
+        ],
+        "metrics": [
+            metric_y1, 
+            metric_y2],
+    }
+}
+
+from google.cloud import aiplatform_v1beta1
+
+REGION = "us-central1"
+PROJECT_ID = "qwiklabs-gcp-00-866bdf7714fe"
+
+# Create the study using study configuration and send request through VizierServiceClient
+vizier_client = aiplatform_v1beta1.VizierServiceClient(
+    client_options=dict(api_endpoint="{REGION}-aiplatform.googleapis.com")
+)
+
+study = vizier_client.create_study(
+    parent="projects/{PROJECT_ID}/locations/{REGION}",
+    study=study)
+
+STUDY_ID = study.name
+
+# Define how to compute metrics
+import math
+
+# r * sin(theta)
+def Metric1Evaluation(r, theta):
+    """Evaluate the first metric on the trial."""
+    return r * math.sin(theta)
+
+# r * cos(theta)
+def Metric2Evaluation(r, theta):
+    """Evaluate the second metric on the trial."""
+    return r * math.cos(theta)
+
+def CreateMetrics(trial_id, r, theta):
+    print(("=========== Start Trial: [{}] =============").format(trial_id))
+
+    # Evaluate both objective metrics for this trial
+    y1 = Metric1Evaluation(r, theta)
+    y2 = Metric2Evaluation(r, theta)
+    print(
+        "[r = {}, theta = {}] => y1 = r*sin(theta) = {}, y2 = r*cos(theta) = {}".format(
+            r, theta, y1, y2
+        )
+    )
+    metric1 = {"metric_id": "y1", "value": y1}
+    metric2 = {"metric_id": "y2", "value": y2}
+
+    # Return the results for this trial
+    return [metric1, metric2]
+
+# Define trial parameters
+client_id = "client1"
+suggestion_count_per_request = 5
+max_trial_id_to_stop = 4
+
+# Run the Trials
+trial_id = 0
+while int(trial_id) < max_trial_id_to_stop:
+
+    # Get the trials
+    suggest_response = vizier_client.suggest_trials(
+        {
+            "parent": STUDY_ID,
+            "suggestion_count": suggestion_count_per_request,
+            "client_id": client_id,
+        }
+    )
+
+    # Evaluate the trials
+    for suggested_trial in suggest_response.result().trials:
+
+        trial_id = suggested_trial.name.split("/")[-1]
+        trial = vizier_client.get_trial({"name": suggested_trial.name})
+
+        if trial.state in ["COMPLETED", "INFEASIBLE"]:
+            continue
+
+        for param in trial.parameters:
+            if param.parameter_id == "r":
+                r = param.value
+            elif param.parameter_id == "theta":
+                theta = param.value
+        print("Trial : r is {}, theta is {}.".format(r, theta))
+
+        # Store your measurement and send the request
+        vizier_client.add_trial_measurement(
+            {
+                "trial_name": suggested_trial.name,
+                "measurement": {
+                    # TODO
+                    "metrics": CreateMetrics(suggested_trial.name, r, theta)
+                },
+            }
+        )
+
+        response = vizier_client.complete_trial(
+            {"name": suggested_trial.name, "trial_infeasible": False}
+        )
+
+# List all the pareto-optimal trails
+optimal_trials = vizier_client.list_optimal_trials({"parent": STUDY_ID})
+
+print("optimal_trials: {}".format(optimal_trials))
+```
