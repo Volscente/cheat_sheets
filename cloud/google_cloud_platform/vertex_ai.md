@@ -734,3 +734,8 @@ optimal_trials = vizier_client.list_optimal_trials({"parent": STUDY_ID})
 
 print("optimal_trials: {}".format(optimal_trials))
 ```
+
+# Pipeline
+This chain of modular components covers all the steps of Machine Learning process, from data collection to model deployment. A Machine Learning Orchestrator is responsible for the execution of the pipeline. The Orchestrator is a service that schedules and runs the pipeline.
+
+The Pipelines can be built either with TFX or Kubeflow SDK.
