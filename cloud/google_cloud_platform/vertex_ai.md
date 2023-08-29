@@ -749,3 +749,8 @@ gcloud services enable compute.googleapis.com         \
                        cloudbuild.googleapis.com \
                        cloudfunctions.googleapis.com
 ```
+
+Install the following packages:
+```bash
+pip install kfp google-cloud-aiplatform google-cloud-pipeline-components
+```
