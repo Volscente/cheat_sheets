@@ -740,6 +740,8 @@ This chain of modular components covers all the steps of Machine Learning proces
 
 The Pipelines can be built either with TFX or Kubeflow SDK.
 
+Usually the output model of a Vertex AI Pipeline is store in a Cloud Storage Bucket.
+
 ## Requirements
 Activate the Cloud Shell and run the following commands:
 ```bash
@@ -754,3 +756,10 @@ Install the following packages:
 ```bash
 pip install kfp google-cloud-aiplatform google-cloud-pipeline-components
 ```
+
+# Model Deployment
+## Steps
+- Define the machine type
+- Define the model's input
+- Automatic scaling
+- Specify model performance requirements
