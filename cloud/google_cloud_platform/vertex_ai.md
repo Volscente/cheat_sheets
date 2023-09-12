@@ -757,9 +757,49 @@ Install the following packages:
 pip install kfp google-cloud-aiplatform google-cloud-pipeline-components
 ```
 
-# Model Deployment
-## Steps
+# Model Deployment & Monitoring
+## Deployment steps
 - Define the machine type
 - Define the model's input
 - Automatic scaling
-- Specify model performance requirements
+- Specify model performance (metrics) requirements and define when to re-train the model
+
+## Monitoring Features
+- Skew detection (it looks for the degree of distortion between your model training and production data)
+- Data drift
+- Alert thresholds
+- Model input
+
+## Sample components
+```python
+@component(base_image="python:3.9", output_component_file="first-component.yaml")
+def product_name(text: str) -> str:
+    return text
+```
+- base_image: container base image
+- output_component_file: destination .yaml file of the compiled component
+
+**NOTE:** Once the compiled component is saved in a .yaml file, it can be loaded through:
+```python
+product_name_component = kfp.components.load_component_from_file('./first-component.yaml')
+```
+
+Another example:
+```python
+@component(packages_to_install=["emoji"])
+def emoji(
+    text: str,
+) -> NamedTuple(
+    "Outputs",
+    [
+        ("emoji_text", str),  # Return parameters
+        ("emoji", str),
+    ],
+):
+    import emoji
+    emoji_text = text
+    emoji_str = emoji.emojize(':' + emoji_text + ':', use_aliases=True)
+    print("output one: {}; output_two: {}".format(emoji_text, emoji_str))
+```
+- packages_to_install: it specifies the package dependencies
+
