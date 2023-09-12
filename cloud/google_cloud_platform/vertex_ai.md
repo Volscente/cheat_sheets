@@ -875,6 +875,14 @@ response = api_client.create_run_from_job_spec(
 )
 ```
 
+## Best Practices
+- **Assess Perfection** - Why did a pipeline produce an especially accurate model?
+- **Compare Pipelines** - Which pipeline produced the most accurate model and parameters used?
+- **System Governance** - Which version of the model is in production at a given time? (Use Pipeline Metadata).
+- **Pipeline SDK** - Pipeline can orchestrate the ML Workflow in a Serveless Manner through Kubeflow SDK and TensorFlow Extended
+
+**NOTE:** Components are chained with DSL (Domain-Specific Language) to create a Pipeline
+
 
 # Model Deployment & Monitoring
 ## Deployment steps
