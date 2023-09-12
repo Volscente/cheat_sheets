@@ -810,6 +810,7 @@ def intro_pipeline(text: str = "Vertex Pipelines", emoji_str: str = "sparkles"):
         emoji_task.outputs["emoji_text"],
     )
 ```
+- pipeline_root: Google Bucket where to save the compiled pipeline
 
 ## Compile Pipeline
 ```python
