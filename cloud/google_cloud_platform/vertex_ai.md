@@ -883,6 +883,21 @@ response = api_client.create_run_from_job_spec(
 
 **NOTE:** Components are chained with DSL (Domain-Specific Language) to create a Pipeline
 
+## Artifact Lineage
+It describes all the factors that resulted in an artifact. It allows to understand and compare pipelines.
+It includes:
+- Data used
+- Hyperparameters
+- Code used
+- Metadata recorded
+- Artifacts descend from this model
+
+Artifacts can be organised by:
+- Source control repo (code)
+- Experiments and ML metadata (metrics)
+- Artifact registry (images)
+
+
 
 # Model Deployment & Monitoring
 ## Deployment steps
