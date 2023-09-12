@@ -12,3 +12,10 @@ gcloud storage buckets create gs://qwiklabs-gcp-03-633e0dea4408
 ```bash
 gcloud storage cp basic_pipeline.json gs://qwiklabs-gcp-03-633e0dea4408/pipeline-input/basic_pipeline.json
 ```
+
+# UI
+## Create from .json
+- Go to the `Vertex AI > Pipelines > Create Run`
+- Select `Import from Cloud Storage`
+- Select the .json file
+
