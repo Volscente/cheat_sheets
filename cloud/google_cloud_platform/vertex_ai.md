@@ -13,6 +13,9 @@ mkdir -p /home/jupyter/titanic/trainer
 touch /home/jupyter/titanic/setup.py /home/jupyter/titanic/trainer/__init__.py /home/jupyter/titanic/trainer/task.py
 ```
 - Populate the `task.py` file with the following code:
+
+<br>
+
 <details>
   <summary>Click me</summary>
 
@@ -401,6 +404,8 @@ if __name__ == '__main__':
 
 </details>
 
+<br>
+
 - Copy the following code to `setup.py`:
 ```python
 from setuptools import find_packages
@@ -497,6 +502,8 @@ touch trainer/task.py
 ```
 - Copy the following code to `trainer/task.py`:
 
+<br>
+
 <details>
   <summary>Click me</summary>
 
@@ -576,6 +583,8 @@ if __name__ == "__main__":
 ```
 
 </details>
+
+<br>
 
 - Define the following variables:
 ```bash
@@ -753,6 +762,8 @@ print("optimal_trials: {}".format(optimal_trials))
 
 </details>
 
+<br>
+
 # Pipeline
 This chain of modular components covers all the steps of Machine Learning process, from data collection to model deployment. A Machine Learning Orchestrator is responsible for the execution of the pipeline. The Orchestrator is a service that schedules and runs the pipeline.
 
@@ -773,6 +784,20 @@ gcloud services enable compute.googleapis.com         \
 Install the following packages:
 ```bash
 pip install kfp google-cloud-aiplatform google-cloud-pipeline-components
+```
+
+## Imports
+```python
+# Load necessary libraries
+from typing import NamedTuple
+import kfp
+from kfp import dsl
+from kfp.v2 import compiler
+from kfp.v2.dsl import (Artifact, Dataset, Input, InputPath, Model, Output,
+                        OutputPath, ClassificationMetrics, Metrics, component)
+from kfp.v2.google.client import AIPlatformClient
+from google.cloud import aiplatform
+from google_cloud_pipeline_components import aiplatform as gcc_aip
 ```
 
 
@@ -858,8 +883,10 @@ response = api_client.create_run_from_job_spec(
 - Automatic scaling
 - Specify model performance (metrics) requirements and define when to re-train the model
 
-## Monitoring Features
-- Skew detection (it looks for the degree of distortion between your model training and production data)
-- Data drift
-- Alert thresholds
-- Model input
+## Monitoring Features (Best practices)
+- **Skew detection** - It looks for the degree of distortion between your model training and production data. Use this as much as possible.
+- **Data drift** - It looks for drift in production data
+- **Alert thresholds** - Set a threshold for model's metrics
+- **Model input** - Determine how to pass inputs to the model
+
+**NOTE:** Model monitoring does not work with unstructured data
