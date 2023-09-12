@@ -13,6 +13,9 @@ mkdir -p /home/jupyter/titanic/trainer
 touch /home/jupyter/titanic/setup.py /home/jupyter/titanic/trainer/__init__.py /home/jupyter/titanic/trainer/task.py
 ```
 - Populate the `task.py` file with the following code:
+<details>
+  <summary>Click me</summary>
+
 ```python
 from google.cloud import bigquery, bigquery_storage, storage
 from sklearn.pipeline import make_pipeline, Pipeline
@@ -395,6 +398,9 @@ if __name__ == '__main__':
     report_export_gcs(report, arguments['model_dir'])
     logging.info('Training job completed. Exiting...')
 ```
+
+</details>
+
 - Copy the following code to `setup.py`:
 ```python
 from setuptools import find_packages
@@ -490,6 +496,10 @@ mkdir trainer
 touch trainer/task.py
 ```
 - Copy the following code to `trainer/task.py`:
+
+<details>
+  <summary>Click me</summary>
+
 ```python
 import tensorflow as tf
 import tensorflow_datasets as tfds
@@ -564,6 +574,9 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+</details>
+
 - Define the following variables:
 ```bash
 PROJECT_ID='qwiklabs-gcp-01-f3f530bf53ff'
@@ -589,6 +602,9 @@ docker push $IMAGE_URI
 
 ## Hyperparameters Tuning with Vertex Vizier
 It is a multi-objective optimization algorithm. In the following code we want to minimise `y1=r*sin(theta)` and maximise `y2=r*cos(theta)`.
+
+<details>
+  <summary>Click me</summary>
 
 ```python
 # Parameter configuration
@@ -734,6 +750,8 @@ optimal_trials = vizier_client.list_optimal_trials({"parent": STUDY_ID})
 
 print("optimal_trials: {}".format(optimal_trials))
 ```
+
+</details>
 
 # Pipeline
 This chain of modular components covers all the steps of Machine Learning process, from data collection to model deployment. A Machine Learning Orchestrator is responsible for the execution of the pipeline. The Orchestrator is a service that schedules and runs the pipeline.
