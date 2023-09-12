@@ -757,18 +757,6 @@ Install the following packages:
 pip install kfp google-cloud-aiplatform google-cloud-pipeline-components
 ```
 
-# Model Deployment & Monitoring
-## Deployment steps
-- Define the machine type
-- Define the model's input
-- Automatic scaling
-- Specify model performance (metrics) requirements and define when to re-train the model
-
-## Monitoring Features
-- Skew detection (it looks for the degree of distortion between your model training and production data)
-- Data drift
-- Alert thresholds
-- Model input
 
 ## Sample components
 ```python
@@ -803,3 +791,56 @@ def emoji(
 ```
 - packages_to_install: it specifies the package dependencies
 
+
+## Create Pipeline
+Put all the components together into a Pipeline
+```python
+@dsl.pipeline(
+    name="hello-world",
+    description="An intro pipeline",
+    pipeline_root=PIPELINE_ROOT,
+)
+# You can change the `text` and `emoji_str` parameters here to update the pipeline output
+def intro_pipeline(text: str = "Vertex Pipelines", emoji_str: str = "sparkles"):
+    product_task = product_name(text)
+    emoji_task = emoji(emoji_str)
+    consumer_task = build_sentence(
+        product_task.output,
+        emoji_task.outputs["emoji"],
+        emoji_task.outputs["emoji_text"],
+    )
+```
+
+## Compile Pipeline
+```python
+compiler.Compiler().compile(
+    pipeline_func=intro_pipeline, package_path="intro_pipeline_job.json"
+)
+```
+## Run Pipeline
+```python
+# Create API Client
+api_client = AIPlatformClient(
+    project_id=PROJECT_ID,
+    region=REGION,
+)
+
+# Run pipeline
+response = api_client.create_run_from_job_spec(
+    job_spec_path="intro_pipeline_job.json"
+)
+```
+
+
+# Model Deployment & Monitoring
+## Deployment steps
+- Define the machine type
+- Define the model's input
+- Automatic scaling
+- Specify model performance (metrics) requirements and define when to re-train the model
+
+## Monitoring Features
+- Skew detection (it looks for the degree of distortion between your model training and production data)
+- Data drift
+- Alert thresholds
+- Model input
