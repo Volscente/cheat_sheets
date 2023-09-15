@@ -54,9 +54,12 @@ gcloud secrets versions access latest --secret=<secret_name>
 
 # Configuration
 
-## Set Project
-Set the default project
-```
+## Project
+```bash
+# Get default project
+gcloud config project get
+
+# Set default project
 gcloud config set project <project_id>
 ```
 
