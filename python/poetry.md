@@ -121,6 +121,9 @@ poetry add git+<github_repo_url>
 
 # Add .whl file
 poetry add <relative_path_to_whl>
+
+# List all the available versions to install
+poetry add "jupyterlab@*" --dry-run
 ```
 
 ### List Installed Libraries
