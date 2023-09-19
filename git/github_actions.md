@@ -47,3 +47,4 @@ Since job's steps are executed on the same runner, you can share data from one s
 An event is a specific activity in a repository that triggers a workflow run.
 
 ### Actions
+It is a custom application that performs complex but frequently repeated task. You can write your own actions, or you can find actions to use in your workflows in the GitHub Marketplace.
