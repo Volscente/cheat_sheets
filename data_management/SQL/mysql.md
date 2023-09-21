@@ -17,3 +17,8 @@ You can either go under `System Preference/mysql` on MacOS or in the directory `
 ```bash
 sudo ./mysql.server start
 ```
+
+## Login to the CLI
+```bash
+mysql -h localhost -u root -p
+```
