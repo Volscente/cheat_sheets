@@ -22,3 +22,12 @@ sudo ./mysql.server start
 ```bash
 mysql -h localhost -u root -p
 ```
+
+## Roles
+### List Available Roles
+```sql
+SELECT user AS role_name
+FROM mysql.user
+WHERE host = '%'
+  AND NOT LENGTH(authentication_string);
+```
