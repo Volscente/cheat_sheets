@@ -1,4 +1,4 @@
-# Layers
+# AI Layers
 ## Definition
 The Google Cloud Platform is organised in different layers:
 - **AI Foundations** - It includes the essential Cloud services and data tools
