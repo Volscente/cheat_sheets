@@ -1,9 +1,21 @@
-# AI Layers
+# AI Development on Google Cloud Platform
+## Principles
+Google focuses on AI by following seven principles:
+- AI should ne socially beneficial
+- AI should avoid creating and reinforcing unfair bias
+- AI should be built and tested for safety
+- AI should be accountable for people
+- AI should incorporate privacy design principles
+- AI should uphold high standards of scientific excellence
+- AI should be made available to users that accord with these principles
+
 ## Definition
 The Google Cloud Platform is organised in different layers:
 - **AI Foundations** - It includes the essential Cloud services and data tools
 - **AI Development** - It includes ML options and ML workflows
 - **AI Solutions** - It includes vertical and horizontal solutions
+
+
 # Services
 ## Data Analysis
 ### Analytics Hub
