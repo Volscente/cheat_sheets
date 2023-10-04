@@ -1,3 +1,9 @@
+# Layers
+## Definition
+The Google Cloud Platform is organised in different layers:
+- **AI Foundations** - It includes the essential Cloud services and data tools
+- **AI Development** - It includes ML options and ML workflows
+- **AI Solutions** - It includes vertical and horizontal solutions
 # Services
 ## Data Analysis
 ### Analytics Hub
@@ -12,7 +18,7 @@ The main components of Analytics Hub are:
 - Exchanges: collections of data and analytics designed to be shared
 - Shared Datasets: BigQuery tables/views made available by the data publisher (ideal for cross-projects and cross-organizational sharing)
 
-# Data Preparation
+# Data Preparation
 ### Dataprep
 It has three connection types:
 - Upload/Download - From local files
