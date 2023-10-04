@@ -9,11 +9,11 @@ Google focuses on AI by following seven principles:
 - AI should uphold high standards of scientific excellence
 - AI should be made available to users that accord with these principles
 
-## Definition
+## AI Development Layers
 The Google Cloud Platform is organised in different layers:
-- **AI Foundations** - It includes the essential Cloud services and data tools
-- **AI Development** - It includes ML options and ML workflows
-- **AI Solutions** - It includes vertical and horizontal solutions
+- **AI Foundations** - It includes the essential Cloud services for `Compute`, `Storage` and `Data & AI Products` (suitable for everyone)
+- **AI Development** - It includes ML options for developing end-to-end models (`Pre-trained APIs`, `BigQuery ML`, `AutoML` and `Custom Training`) and ML workflows, like `Vertex AI`(suitable for Data Scientists and ML Engineers)
+- **AI Solutions** - It includes vertical and horizontal solutions for `GenAI` (suitable for business users)
 
 
 # Services
