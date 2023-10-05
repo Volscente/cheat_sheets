@@ -47,6 +47,26 @@ It is a fully managed platform that allows to run request or event-driven statel
 
 ## Storage
 ### Cloud Storage
+Unstructured data. It comes with 4 different storage types:
+- Standard (for hot data)
+- Nearline (data access monthly)
+- Coldline (data access every 90 days)
+- Archive (for backup and disaster recovery. Data access once per year)
+
+### Cloud Bigtable
+Structured analytical NoSQL.
+
+### Cloud SQL
+Structured transactional local SQL.
+
+### Cloud Spanner
+Structured transactoinal global SQL.
+
+### Firestore
+Structured transactional NoSQL.
+
+### BigQuery
+Structured analytical SQL.
 
 ## Data Analysis
 ### Analytics Hub
