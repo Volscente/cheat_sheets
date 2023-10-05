@@ -21,6 +21,13 @@ The Google Cloud Platform is organised in different layers:
 - **Compute and Storage** - These two resources are decoupled, so that they can scale independently
 - **Data and AI Products** - It does not neet to worry about the udnerlying infrastructure
 
+## TPU (Tensor Processing Unit)
+It is a Google custom-developed application-specific integrated circuit (ASIC). It's a domain-specific hardware for matrix multiplication. It's faster and energy efficents.
+
+## Storage Transactional vs Analytical Workloads
+- **Transactional** - It is used when fast inserts and updates are required for structured data. It targets only specific rows.
+- **Analytical** - It is used when complex queries are required over all the rows of the database.
+
 # Services
 ## Compute
 ### Compute Engine
@@ -37,6 +44,9 @@ It executes codes in response to an event (it's serverless).
 
 ### Cloud Run
 It is a fully managed platform that allows to run request or event-driven stateless workloads.
+
+## Storage
+### Cloud Storage
 
 ## Data Analysis
 ### Analytics Hub
