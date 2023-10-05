@@ -28,7 +28,7 @@ It is a Google custom-developed application-specific integrated circuit (ASIC). 
 - **Transactional** - It is used when fast inserts and updates are required for structured data. It targets only specific rows.
 - **Analytical** - It is used when complex queries are required over all the rows of the database.
 
-# Services
+# Compute and Storage Services
 ## Compute
 ### Compute Engine
 It is an `IaaS` that provides compute, storage and network resource just like a normal hardware machine. This grants the maximum flexibility.
@@ -68,6 +68,13 @@ Structured transactional NoSQL.
 ### BigQuery
 Structured analytical SQL.
 
+# Data and AI Products 
+## Ingestion and Process
+### Pub/Sub
+### Dataflow
+### Dataproc
+### Cloud Data Fusion
+
 ## Data Analysis
 ### Analytics Hub
 Analytics Hub exchanges data analytics assets across organizations to address challenges of data reliability and cost. Essentially, Analytics Hub makes it convenient for you to build a data ecosystem.
@@ -81,7 +88,7 @@ The main components of Analytics Hub are:
 - Exchanges: collections of data and analytics designed to be shared
 - Shared Datasets: BigQuery tables/views made available by the data publisher (ideal for cross-projects and cross-organizational sharing)
 
-# Data Preparation
+## Data Preparation
 ### Dataprep
 It has three connection types:
 - Upload/Download - From local files
