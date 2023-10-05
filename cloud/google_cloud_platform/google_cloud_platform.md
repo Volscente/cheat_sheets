@@ -15,6 +15,11 @@ The Google Cloud Platform is organised in different layers:
 - **AI Development** - It includes ML options for developing end-to-end models (`Pre-trained APIs`, `BigQuery ML`, `AutoML` and `Custom Training`) and ML workflows, like `Vertex AI`(suitable for Data Scientists and ML Engineers)
 - **AI Solutions** - It includes vertical and horizontal solutions for `GenAI` (suitable for business users)
 
+# Google Cloud Infrastructure
+## GCP Layers
+- **Networking and Security** - It provides the basis for every other service
+- **Compute and Storage** - These two resources are decoupled, so that they can scale independently
+- **Data and AI Products** - It does not neet to worry about the udnerlying infrastructure
 
 # Services
 ## Data Analysis
