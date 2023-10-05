@@ -22,6 +22,22 @@ The Google Cloud Platform is organised in different layers:
 - **Data and AI Products** - It does not neet to worry about the udnerlying infrastructure
 
 # Services
+## Compute
+### Compute Engine
+It is an `IaaS` that provides compute, storage and network resource just like a normal hardware machine. This grants the maximum flexibility.
+
+### Google Kubernetes Engine (GKE)
+It runs containerized applications.
+
+### App Engine
+It is a fully `PaaS`.
+
+### Cloud Functions
+It executes codes in response to an event (it's serverless).
+
+### Cloud Run
+It is a fully managed platform that allows to run request or event-driven stateless workloads.
+
 ## Data Analysis
 ### Analytics Hub
 Analytics Hub exchanges data analytics assets across organizations to address challenges of data reliability and cost. Essentially, Analytics Hub makes it convenient for you to build a data ecosystem.
