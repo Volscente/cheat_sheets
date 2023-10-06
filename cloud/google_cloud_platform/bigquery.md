@@ -79,6 +79,15 @@ SELECT
 FROM
   ML.EVALUATE(MODEL <dataset_name>.<model_name>)
 ```
+
+## Compute Predictions
+```sql
+SELECT
+  *
+FROM
+  ML.PREDICT(MODEL `<dataset_name>.<model_name>`)
+```
+
 ## Feature Engineering
 ### Datetime Extract
 ```sql
