@@ -18,15 +18,34 @@ CALL db.schema.visualization()
 # Match
 ## Return Distinct Values
 ```sql
-# Template
-MATCH (<variable_name>:<Node>)
-RETURN <variable_name>
+-- Template
+MATCH (<variable>:<Node>)
+RETURN <variable>
 LIMIT 1
 
-# Example
+-- Example
 MATCH (g:Genre)
 RETURN g
 LIMIT 1 
 
-# Output: Adventure
+-- Output: Node 'Genre'
+
+-- Return the names
+MATCH (g.Genre)
+RETURN g.name
+
+-- Output: ['Adventure', 'Animation', ...]
+```
+
+## Where Clause
+```sql
+-- Template
+MATCH (<variable_1>:<Node_1>)-[:<relationship>]->(<variable_2>:<Node_2>)
+WHERE <variable_2>.<property> = '<value>'
+RETURN <varible_1>.<property>
+
+-- Example
+MATCH (m:Movie)-[:IN_GENRE]->(g:Genre)
+WHERE g.name = 'Comedy'
+RETURN m.title
 ```
