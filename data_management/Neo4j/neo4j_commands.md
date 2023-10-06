@@ -49,3 +49,11 @@ MATCH (m:Movie)-[:IN_GENRE]->(g:Genre)
 WHERE g.name = 'Comedy'
 RETURN m.title
 ```
+
+## Return Multiple Nodes
+```sql
+-- Example
+MATCH (actor:Person)-[:ACTED_IN]->(m:Movie)
+WHERE m.title = 'What We Do in the Shadows'
+RETURN actor, m
+```
