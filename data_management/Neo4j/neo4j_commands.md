@@ -68,3 +68,17 @@ MATCH(p:Person{name: 'Taika Waititi'})->(m:Movie)
 RETURN p, m
 ```
 **NOTE:** In the above example, the relationship is not specified. So, if there are multiple relationships between Person and Movie, it will return all of them (`ACTED_IN`, `DIRECTED`)
+
+## Double Relationship
+```sql
+MATCH(:Person{name: 'Taika Waititi'})-[:ACTED_IN]->(m:Movie)<-[r:RATED]-(u:User)
+RETURN m.title, properties(r)
+
+/*
+m.title: 'Boy'
+properties(r): {
+    'rating': 4.5
+    'timestamp': 1386885137
+}
+*/
+```
