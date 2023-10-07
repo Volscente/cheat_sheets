@@ -57,3 +57,13 @@ MATCH (actor:Person)-[:ACTED_IN]->(m:Movie)
 WHERE m.title = 'What We Do in the Shadows'
 RETURN actor, m
 ```
+
+## Implicit Where Clause
+```sql
+/* 
+    Return all the movies that have a relationship with the Person
+    'Taika Waititi'
+*/
+MATCH(p:Person{name: 'Taika Waititi'})->(m:Movie)
+RETURN p, m
+```
