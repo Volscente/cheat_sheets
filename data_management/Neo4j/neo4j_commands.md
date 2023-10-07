@@ -82,3 +82,15 @@ properties(r): {
 }
 */
 ```
+
+# Aggregations
+## Average
+```sql
+MATCH(:Person{name: 'Taika Waititi'})-[:ACTED_IN]->(m:Movie)<-[r:RATED]-(u:User)
+RETURN m.title, avg(r.rating)
+
+/*
+m.title: 'Boy'
+avg(r.rating): 4.75
+*/
+```
