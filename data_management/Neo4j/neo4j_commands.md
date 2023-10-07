@@ -87,10 +87,10 @@ properties(r): {
 ## Average
 ```sql
 MATCH(:Person{name: 'Taika Waititi'})-[:ACTED_IN]->(m:Movie)<-[r:RATED]-(u:User)
-RETURN m.title, avg(r.rating)
+RETURN m.title AS Movie, avg(r.rating) AS AverageRating
 
 /*
-m.title: 'Boy'
-avg(r.rating): 4.75
+Movie: 'Boy'
+AverageRating: 4.75
 */
 ```
