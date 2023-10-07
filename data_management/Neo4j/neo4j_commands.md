@@ -67,3 +67,4 @@ RETURN actor, m
 MATCH(p:Person{name: 'Taika Waititi'})->(m:Movie)
 RETURN p, m
 ```
+**NOTE:** In the above example, the relationship is not specified. So, if there are multiple relationships between Person and Movie, it will return all of them (`ACTED_IN`, `DIRECTED`)
