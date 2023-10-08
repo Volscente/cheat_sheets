@@ -10,6 +10,7 @@ Google focuses on AI by following seven principles:
 - AI should be made available to users that accord with these principles
 
 ## AI Development Layers
+### Introduction
 The Google Cloud Platform is organised in different layers:
 - **AI Foundations** - It includes the essential Cloud services for `Compute`, `Storage` and `Data & AI Products` (suitable for everyone)
 - **AI Development** - It includes *ML options* for developing end-to-end models (`Pre-trained APIs`, `BigQuery ML`, `AutoML` and `Custom Training`) and *ML workflows*, like `Vertex AI`(suitable for Data Scientists and ML Engineers)
@@ -20,6 +21,20 @@ The Google Cloud Platform is organised in different layers:
 - **BigQuery ML** - It allows to create models through SQL language
 - **AutoML** - It is a no-code solution for building ML models in Vertex AI
 - **Custom Training** - Through Vertex AI Workbench and Vertex AI Pipelines
+
+### AI Development - ML Workflows
+- **Data Preparation** - It includes data upload and feature engineering (data can be streaming or in batch)
+- **Model Development** - It includes model training and model evaluation
+- **Model Serving** - It includes model deploynment and model monitoring
+
+### Model Deploynment Options
+- **Endpoint** - It is suited for immediate results with low latency (online predictions)
+- **Batch Predictions** - It is suited when no immediate response is needed
+- **Offline Predictions** - It is suited when the model has to be deployed off the cloud
+
+## MLOps
+It combines ML development with operations, just like DevOps. It aims to solve production challenges like CI, CT and CD (Continuous Integration, Training and Delivery).
+In Vertex AI Pipelines, it is supported the usage of *Kubeflow* and *TensorFlow Extended* for implementing MLOps best practices.
 
 # Google Cloud Infrastructure
 ## GCP Layers
