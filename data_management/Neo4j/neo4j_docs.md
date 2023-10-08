@@ -25,3 +25,9 @@ Download the Neo4j desktop version from the [Officla Download Link](https://neo4
 - **Community** - It has some limitations (no role-based security and one single property uniqueness constraints), but it can be used under GPL-3.0.
 - **Neo4j AuraDB** - It is the cloud based version.
 - **Enterprise** - Unlimited graph size, role-based security and more advanced constraints options.
+
+**NOTE:** Neo4j Bloom is a natural language interface for querying and visualize data inside a graph.
+
+# Neo4j Browser
+## Start
+It can be accessed through the Neo4j Desktop application or through browser localhost:7474 upon starting the graph.
