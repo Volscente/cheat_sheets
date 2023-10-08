@@ -898,6 +898,15 @@ Artifacts can be organised by:
 - Artifact registry (images)
 
 
+# Model Development
+## Data Preparation
+### Feature Store 
+It is a resource in Vertex AI that allows to have a centralized repository to organise, store and serve features. They are:
+- Sharable
+- Reusable
+- Scalable
+- Easy to use
+
 
 # Model Deployment & Monitoring
 ## Deployment steps
@@ -911,5 +920,8 @@ Artifacts can be organised by:
 - **Data drift** - It looks for drift in production data
 - **Alert thresholds** - Set a threshold for model's metrics
 - **Model input** - Determine how to pass inputs to the model
+
+## Vertex AI Pipelines
+It is a way to automate, monitor and govern the Model Monitoring step/process in a serveless manner.
 
 **NOTE:** Model monitoring does not work with unstructured data
