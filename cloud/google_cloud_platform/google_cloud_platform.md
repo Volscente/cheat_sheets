@@ -44,6 +44,13 @@ They are divided in three categories:
 - **Task-Specific Solutions** - Models trained to solve specific problems
 - **Fine-Tunable Models** - Open source models that can be fine-tuned by using custom notebooks or pipelines
 
+### Generative AI Studio
+It allows to fast development and testing GenAI models.
+Prompting types:
+- **Zero-shot Prompting** - Providing a single command to the LLM without any example
+- **One-shot Prompting** - Providing a single example of the task to the LLM
+- **Few-shot Prompting** - Providing a few examples fo the task to the LLM
+
 # Google Cloud Infrastructure
 ## GCP Layers
 - **Networking and Security** - It provides the basis for every other service
