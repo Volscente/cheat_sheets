@@ -90,6 +90,13 @@ properties(r): {
 */
 ```
 
+## OR Relationship
+```sql
+MATCH(person:Person)-[relation:ACTED_IN | DIRECTED]->(movie:Movie)
+RETURN person, relation, movie
+LIMIT 10
+```
+
 # Aggregations
 ## Average
 ```sql
