@@ -51,6 +51,10 @@ Prompting types:
 - **One-shot Prompting** - Providing a single example of the task to the LLM
 - **Few-shot Prompting** - Providing a few examples fo the task to the LLM
 
+### AI Solutions
+- **Vertical Solutions** - Solve specific problems within certain industries
+- **Horizontal Solutions** - Solve similar problems across different industries
+
 # Google Cloud Infrastructure
 ## GCP Layers
 - **Networking and Security** - It provides the basis for every other service
