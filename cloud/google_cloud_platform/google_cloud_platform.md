@@ -36,6 +36,14 @@ The Google Cloud Platform is organised in different layers:
 It combines ML development with operations, just like DevOps. It aims to solve production challenges like CI, CT and CD (Continuous Integration, Training and Delivery).
 In Vertex AI Pipelines, it is supported the usage of *Kubeflow* and *TensorFlow Extended* for implementing MLOps best practices.
 
+## Generative AI
+### Model Garden
+It a single entrypoint to discover pre-trained Google GenAI models.
+They are divided in three categories:
+- **Foundation Models** - Multi-task models that can be tuned for specific tasks
+- **Task-Specific Solutions** - Models trained to solve specific problems
+- **Fine-Tunable Models** - Open source models that can be fine-tuned by using custom notebooks or pipelines
+
 # Google Cloud Infrastructure
 ## GCP Layers
 - **Networking and Security** - It provides the basis for every other service
