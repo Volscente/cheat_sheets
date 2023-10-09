@@ -16,6 +16,11 @@ CALL db.schema.visualization()
 ```
 
 # Match
+## Return Anything
+```sql
+MATCH(anything) RETURN anything
+```
+
 ## Return Distinct Values
 ```sql
 -- Template
