@@ -18,7 +18,9 @@ CALL db.schema.visualization()
 # Match
 ## Return Anything
 ```sql
-MATCH(anything) RETURN anything
+MATCH(anything) 
+RETURN anything
+LIMIT 5
 ```
 
 ## Return Distinct Values
