@@ -917,9 +917,14 @@ It is a resource in Vertex AI that allows to have a centralized repository to or
 
 ## Monitoring Features (Best practices)
 - **Skew detection** - It looks for the degree of distortion between your model training and production data. Use this as much as possible.
-- **Data drift** - It looks for drift in production data, both in the label and feature distributions. This force the model to make predictions in data region that are not well represented in the training data. Thus leads to model performance degradations.
+- **Data drift** - It looks for drift in production data, both in the label and feature distributions. This force the model to make predictions in data region that are not well represented in the training data. The capability of predicitng values from an already seen distribution is called *Interpolation*, on the contrary there is the *Extrapolation*. Thus leads to model performance degradations.
 - **Alert thresholds** - Set a threshold for model's metrics
 - **Model input** - Determine how to pass inputs to the model
+
+## Monitoring Techniques
+- Check data distribution
+- Check residuals
+- Emphasize data recency (give more importance to recent data)
 
 ## Vertex AI Pipelines
 It is a way to automate, monitor and govern the Model Monitoring step/process in a serveless manner.
