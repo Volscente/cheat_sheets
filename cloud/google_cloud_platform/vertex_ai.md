@@ -917,7 +917,7 @@ It is a resource in Vertex AI that allows to have a centralized repository to or
 
 ## Monitoring Features (Best practices)
 - **Skew detection** - It looks for the degree of distortion between your model training and production data. Use this as much as possible.
-- **Data drift** - It looks for drift in production data
+- **Data drift** - It looks for drift in production data, both in the label and feature distributions. This force the model to make predictions in data region that are not well represented in the training data. Thus leads to model performance degradations.
 - **Alert thresholds** - Set a threshold for model's metrics
 - **Model input** - Determine how to pass inputs to the model
 
