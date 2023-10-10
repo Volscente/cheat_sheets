@@ -921,6 +921,13 @@ It is a resource in Vertex AI that allows to have a centralized repository to or
 - **Alert thresholds** - Set a threshold for model's metrics
 - **Model input** - Determine how to pass inputs to the model
 
+### Drift
+It is a change in an entity with respect to a baseline. In case of ML Models, it is a change between real-time production data and a baseline data set, like the training set. There are several type of drifts:
+- **Data Drift** - A change in the model's input data distribution. In case such a drift is diagnosed, enough data needs to be labeled to introduce new classes and the model has to be retrained.
+- **Concept Drift** - A change in the relationship between model inputs and the output. In case such a drift is diagnosed, old data should be relabeled and the model has to be retrained.
+- **Prediction Drift** - Change in the model's prediction
+- **Label Drift** - Change in the ground truth of model's output or label distribution
+
 ## Monitoring Techniques
 - Check data distribution
 - Check residuals
