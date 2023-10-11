@@ -55,7 +55,8 @@ Before you call the **AnalyzeAndTransformDataset** (Analyze phase), save the tra
 
 # TensorFlow Data Validation
 ## Definition
-It is a library for analyzing and validation ML data.
+It is a library for analyzing and validation ML data. Useful to analyze and validate continuous arriving data.
+It is also used to detect distribution skew between training and serving data (training data is generated differently from how the data used to request predictions is generated).
 ## Process
 - The `ExampleGen` ingest raw data and output TensorFlow examples
 - `StatisticsGen` it recieves the examples and generate statistics
