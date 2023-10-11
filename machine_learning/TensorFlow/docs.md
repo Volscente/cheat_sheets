@@ -58,4 +58,6 @@ Before you call the **AnalyzeAndTransformDataset** (Analyze phase), save the tra
 It is a library for analyzing and validation ML data.
 ## Process
 - The `ExampleGen` ingest raw data and output TensorFlow examples
-- 
+- `StatisticsGen` it recieves the examples and generate statistics
+- `SchemaGen`
+- `Example Validator` it allows you to check for anomalies
