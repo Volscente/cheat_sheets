@@ -52,3 +52,10 @@ These are two methods for *Analyze and Transform* a dataset:
 - **TransformDataset** - It is executed in Beam to create the evaluation dataset (like *transform* in Scikit-Learn)
 
 Before you call the **AnalyzeAndTransformDataset** (Analyze phase), save the transformation function and then re-use it in the **TransformDataset** (Transform phase) to create the evaluation dataset.
+
+# TensorFlow Data Validation
+## Definition
+It is a library for analyzing and validation ML data.
+## Process
+- The `ExampleGen` ingest raw data and output TensorFlow examples
+- 
