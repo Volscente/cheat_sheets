@@ -61,5 +61,5 @@ It can also detect missing values, outliers, etc.
 ## Process
 - The `ExampleGen` ingest raw data and output TensorFlow examples
 - `StatisticsGen` it recieves the examples and generate statistics
-- `SchemaGen`
-- `Example Validator` it allows you to check for anomalies
+- `SchemaGen` It can automatically generate a Data Schema from the Data Statistics
+- `Example Validator` it allows you to check for anomalies between the Data Stastistics and the Data Schema
