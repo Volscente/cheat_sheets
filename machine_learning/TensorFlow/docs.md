@@ -58,8 +58,17 @@ Before you call the **AnalyzeAndTransformDataset** (Analyze phase), save the tra
 It is a library for analyzing and validation ML data. Useful to analyze and validate continuous arriving data.
 It is also used to detect distribution skew between training and serving data (training data is generated differently from how the data used to request predictions is generated).
 It can also detect missing values, outliers, etc.
+```python
+import tensorflow_data_validation as tfdv
+```
 ## Process
 - The `ExampleGen` ingest raw data and output TensorFlow examples
 - `StatisticsGen` it recieves the examples and generate statistics
+```python
+# Read data as a Pandas DataFrame
+data = pd.read_csv('./<data.csv>')
+
+statistics = tfdv.generate_statistics_from_dataframe(dataframe=data)
+```
 - `SchemaGen` It can automatically generate a Data Schema from the Data Statistics
 - `Example Validator` it allows you to check for anomalies between the Data Stastistics and the Data Schema
