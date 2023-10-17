@@ -68,7 +68,16 @@ import tensorflow_data_validation as tfdv
 # Read data as a Pandas DataFrame
 data = pd.read_csv('./<data.csv>')
 
+# Generate Statistics
 statistics = tfdv.generate_statistics_from_dataframe(dataframe=data)
+
+# Visualize Statistics
+tfdv.visualize_statistics(statistics)
+
+# Compare two Statistics
+tfdv.visualize_statistics(
+  lhs_statistics=train_statistics, lhs_name='Train Dataset',
+  rhs_statistics=test_statistics, rhs_name='Test Dataset')
 ```
 - `SchemaGen` It can automatically generate a Data Schema from the Data Statistics
 - `Example Validator` it allows you to check for anomalies between the Data Stastistics and the Data Schema
