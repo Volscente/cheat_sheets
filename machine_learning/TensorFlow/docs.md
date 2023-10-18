@@ -80,4 +80,11 @@ tfdv.visualize_statistics(
   rhs_statistics=test_statistics, rhs_name='Test Dataset')
 ```
 - `SchemaGen` It can automatically generate a Data Schema from the Data Statistics
-- `Example Validator` it allows you to check for anomalies between the Data Stastistics and the Data Schema
+```python
+# Infer schema from statistics
+schema = tfdv.infer_schema(statistics=statistics)
+
+# Display schema
+tfdv.display_schema(schema=schema)
+```
+- `Example Validator` it allows you to check for anomalies between the Data Stastistics and the Data Schema 
