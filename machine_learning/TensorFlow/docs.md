@@ -95,3 +95,8 @@ import tensorflow_data_validation as tfdv
   # Display the anomalies
   tfdv.display_anomalies(anomalies)
   ```
+
+## Schema Environments
+By default all datasets in a pipeline should use the same schema, but there are often exceptions. For example, in supervised learning we need to include labels in our dataset, but when we serve the model for inference the labels will not be included. In some cases introducing slight schema variations is necessary.
+
+**Environments** can be used to express such requirements. In particular, features in schema can be associated with a set of environments using `default_environment`, `in_environment` and `not_in_environment`.
