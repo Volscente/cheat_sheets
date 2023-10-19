@@ -64,27 +64,34 @@ import tensorflow_data_validation as tfdv
 ## Process
 - The `ExampleGen` ingest raw data and output TensorFlow examples
 - `StatisticsGen` it recieves the examples and generate statistics
-```python
-# Read data as a Pandas DataFrame
-data = pd.read_csv('./<data.csv>')
+  ```python
+  # Read data as a Pandas DataFrame
+  data = pd.read_csv('./<data.csv>')
 
-# Generate Statistics
-statistics = tfdv.generate_statistics_from_dataframe(dataframe=data)
+  # Generate Statistics
+  statistics = tfdv.generate_statistics_from_dataframe(dataframe=data)
 
-# Visualize Statistics
-tfdv.visualize_statistics(statistics)
+  # Visualize Statistics
+  tfdv.visualize_statistics(statistics)
 
-# Compare two Statistics
-tfdv.visualize_statistics(
-  lhs_statistics=train_statistics, lhs_name='Train Dataset',
-  rhs_statistics=test_statistics, rhs_name='Test Dataset')
-```
+  # Compare two Statistics
+  tfdv.visualize_statistics(
+    lhs_statistics=train_statistics, lhs_name='Train Dataset',
+    rhs_statistics=test_statistics, rhs_name='Test Dataset')
+  ```
 - `SchemaGen` It can automatically generate a Data Schema from the Data Statistics
-```python
-# Infer schema from statistics
-schema = tfdv.infer_schema(statistics=statistics)
+  ```python
+  # Infer schema from statistics
+  schema = tfdv.infer_schema(statistics=statistics)
 
-# Display schema
-tfdv.display_schema(schema=schema)
-```
-- `Example Validator` it allows you to check for anomalies between the Data Stastistics and the Data Schema 
+  # Display schema
+  tfdv.display_schema(schema=schema)
+  ```
+- `Example Validator` it allows you to check for anomalies between the Data Stastistics and the Data Schema
+  ```python
+  # Check for anomalies between the statistics and the schema
+  anomalies = tfdv.validate_statistics(statistics=statistics, schema=schema)
+
+  # Display the anomalies
+  tfdv.display_anomalies(anomalies)
+  ```
