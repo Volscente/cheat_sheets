@@ -916,7 +916,10 @@ It is a resource in Vertex AI that allows to have a centralized repository to or
 - Specify model performance (metrics) requirements and define when to re-train the model
 
 ## Monitoring Features (Best practices)
-- **Skew detection** - It looks for the degree of distortion between your model training and production data. Use this as much as possible.
+- **Skew detection** - It looks for the degree of distortion between your model training and production data. Use this as much as possible. Differences in performance might occur because:
+    - Discrepancy on how handle data in training and serving pipelines
+    - Change in data between train and serving
+    - Feedback loop between model and algorithm
 - **Data drift** - It looks for drift in production data, both in the label and feature distributions. This force the model to make predictions in data region that are not well represented in the training data. The capability of predicitng values from an already seen distribution is called *Interpolation*, on the contrary there is the *Extrapolation*. Thus leads to model performance degradations.
 - **Alert thresholds** - Set a threshold for model's metrics
 - **Model input** - Determine how to pass inputs to the model
