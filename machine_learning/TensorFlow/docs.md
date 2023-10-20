@@ -116,3 +116,22 @@ serving_anomalies_with_env = tfdv.validate_statistics(
 
 tfdv.display_anomalies(serving_anomalies_with_env)
 ```
+
+## Drift & Skew Detection
+It is possible to setup thresholds for detecting drift & skew in the data:
+```python
+# Add skew comparator for 'payment_type' feature.
+payment_type = tfdv.get_feature(schema, 'payment_type')
+payment_type.skew_comparator.infinity_norm.threshold = 0.01
+
+# Add drift comparator for 'company' feature.
+company=tfdv.get_feature(schema, 'company')
+company.drift_comparator.infinity_norm.threshold = 0.001
+
+# TODO
+skew_anomalies = tfdv.validate_statistics(train_stats, schema,
+                                          previous_statistics=eval_stats,
+                                          serving_statistics=serving_stats)
+
+tfdv.display_anomalies(skew_anomalies)
+```
