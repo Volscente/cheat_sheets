@@ -135,3 +135,13 @@ skew_anomalies = tfdv.validate_statistics(train_stats, schema,
 
 tfdv.display_anomalies(skew_anomalies)
 ```
+
+## Store Schema
+```python
+from tensorflow.python.lib.io import file_io
+from google.protobuf import text_format
+
+file_io.recursive_create_dir(OUTPUT_DIR)
+schema_file = os.path.join(OUTPUT_DIR, 'schema.pbtxt')
+tfdv.write_schema_text(schema, schema_file)
+```
