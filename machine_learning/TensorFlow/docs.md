@@ -100,3 +100,19 @@ import tensorflow_data_validation as tfdv
 By default all datasets in a pipeline should use the same schema, but there are often exceptions. For example, in supervised learning we need to include labels in our dataset, but when we serve the model for inference the labels will not be included. In some cases introducing slight schema variations is necessary.
 
 **Environments** can be used to express such requirements. In particular, features in schema can be associated with a set of environments using `default_environment`, `in_environment` and `not_in_environment`.
+
+In the following example, the label `tips` would be excluded from the serving dataset.
+
+```python
+# All features are by default in both TRAINING and SERVING environments.
+schema.default_environment.append('TRAINING')
+schema.default_environment.append('SERVING')
+
+# Specify that 'tips' feature is not in SERVING environment.
+tfdv.get_feature(schema, 'tips').not_in_environment.append('SERVING')
+
+serving_anomalies_with_env = tfdv.validate_statistics(
+    serving_stats, schema, environment='SERVING')
+
+tfdv.display_anomalies(serving_anomalies_with_env)
+```
