@@ -39,6 +39,8 @@ Information about the label ara somehow leaking into the training data.
 - **Batch Predictions** - It is suited when no immediate response is needed
 - **Offline Predictions** - It is suited when the model has to be deployed off the cloud
 
+**NOTE:** In order to optimise the cost, one can adopt an hybrid solution. Compute batch predictions for top 20% users, in order to reduce latency. The rest 80% is served through online predictions.
+
 ## MLOps
 It combines ML development with operations, just like DevOps. It aims to solve production challenges like CI, CT and CD (Continuous Integration, Training and Delivery).
 In Vertex AI Pipelines, it is supported the usage of *Kubeflow* and *TensorFlow Extended* for implementing MLOps best practices.
