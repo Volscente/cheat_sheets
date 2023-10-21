@@ -35,7 +35,7 @@ Consider also the difference between **Legacy Features** (old features that were
 Information about the label ara somehow leaking into the training data.
 
 ## Model Deploynment Options
-- **Endpoint** - It is suited for immediate results with low latency (online predictions)
+- **Endpoint** - It is suited for immediate results with low latency (online predictions). Performance is measured in QPS (Queries Per Second).
 - **Batch Predictions** - It is suited when no immediate response is needed
 - **Offline Predictions** - It is suited when the model has to be deployed off the cloud
 
