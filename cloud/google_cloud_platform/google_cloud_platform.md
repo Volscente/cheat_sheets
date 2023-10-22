@@ -153,3 +153,7 @@ The available options are:
 - Dataflow - It is based on Apache Beam and works well with unstructured data. It can also be used in combination with Pandas
 - Dataproc - It works well with Apach Spark infrastructure
 - Dataprep - It automatically detects data types and suggests transformations (e.g. missing values, outliers, etc.)
+
+# Distributed Training
+## Architectures
+### Data Parallelism
