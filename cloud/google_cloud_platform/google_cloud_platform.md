@@ -158,5 +158,8 @@ The available options are:
 ## Architectures
 ### Data Parallelism
 It is a model-agnostic in which each training is ran on a different device, with different data non-overlapping samples. Approaches:
-- **Synchronous**: model's parameters are computed on each single device and then exchanged to aggregate them (AllReduce - avg) for the next training iteration. The gradient computation becomes the main overhead in the process.
-- **Asynchronous**: no device waits for the model's parameters update. The gradients are shared as peers or through central *Parameter Servers*. The workers fetch and update gradients from the Parameter Servers independently.
+- **Synchronous**: model's parameters are computed on each single device and then exchanged to aggregate them (AllReduce - avg) for the next training iteration. The gradient computation becomes the main overhead in the process. Suitable for dense models.
+- **Asynchronous**: no device waits for the model's parameters update. The gradients are shared as peers or through central *Parameter Servers*. The workers fetch and update gradients from the Parameter Servers independently. The risk is that workers get out of sync and thus not converging. It is suitable for model that use sparse data, contain fewer features and consume less memory.
+
+### Model Parallelism
+Data are not splitted among devices, instead different parts of the model are used on each device. Then the results are stacked together to have the final model results. For example, different Layers to different GPUs.
