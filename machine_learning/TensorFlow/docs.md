@@ -149,3 +149,31 @@ tfdv.write_schema_text(schema, schema_file)
 # TensorFlow Distruted Strategies
 ## Definition
 It is an API that takes care of distributed training.
+
+## Strategies
+There are four Data Parallelism Strategies:
+- **Mirrored Strategy** - It creates a replica of the model on each GPU of the machine. Simplest solution. Each GPU is fed with different samples of the mini-batch.
+  ```python
+  # Create strategy
+  strategy = tf.distribute.MirroredStrategy()
+
+  with strategy.scope():
+
+    # Create a Keras DNN
+    model = create_model()
+
+    # Compile the model
+    model.compile(...)
+
+    # Define the batch size
+    batch_size = 64 * strategy.num_replicas_in_sync
+
+    # Map, Shuffle and prefetch the data
+    train_data = data['train'].map(preprocess_data)
+    train_data = train_data.shuffle(1000)
+    train_data = train_data.batch(batch_size)
+    train_data = train_data.prefetch(tf.data.experimental.AUTOTUNE)
+
+    # Model fit
+    model.fit(train_data, epochs=5)
+  ```
