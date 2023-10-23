@@ -163,3 +163,6 @@ It is a model-agnostic in which each training is ran on a different device, with
 
 ### Model Parallelism
 Data are not splitted among devices, instead different parts of the model are used on each device. Then the results are stacked together to have the final model results. For example, different Layers to different GPUs.
+
+## TensorFlow Distruted Strategies
+It is an API that takes care of distributed training.

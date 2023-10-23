@@ -145,3 +145,7 @@ file_io.recursive_create_dir(OUTPUT_DIR)
 schema_file = os.path.join(OUTPUT_DIR, 'schema.pbtxt')
 tfdv.write_schema_text(schema, schema_file)
 ```
+
+# TensorFlow Distruted Strategies
+## Definition
+It is an API that takes care of distributed training.
