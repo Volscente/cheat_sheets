@@ -177,3 +177,19 @@ There are four Data Parallelism Strategies:
     # Model fit
     model.fit(train_data, epochs=5)
   ```
+- **Multi-Worker Mirrored Strategy** - It just adds multiple machines to the above strategy.
+  ```python
+  # Define workers
+  os.environ["TF_CONFIG"] = jsonì.dumps({
+    "cluster": {
+      "chief": ["host1:port"],
+      "worker": ["host2:port", "host3:port"]
+    },
+    "task": {
+      "type": "worker", 
+      "index": 1}
+  })
+
+  # Create strategy
+  strategy = tf.distribute.MultiWorkerMirroredStrategy()
+  ```
