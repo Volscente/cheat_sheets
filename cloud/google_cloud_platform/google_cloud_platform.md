@@ -157,3 +157,5 @@ The available options are:
 # Distributed Training
 ## Architectures
 ### Data Parallelism
+It is a model-agnostic in which each training is ran on a different device, with different data samples. Approaches:
+- **Synchronous**: model's parameters are computed on each single device and then exchanged to aggregate them (avg) for the next training iteration.
