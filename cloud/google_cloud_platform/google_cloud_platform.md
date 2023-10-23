@@ -157,5 +157,6 @@ The available options are:
 # Distributed Training
 ## Architectures
 ### Data Parallelism
-It is a model-agnostic in which each training is ran on a different device, with different data samples. Approaches:
-- **Synchronous**: model's parameters are computed on each single device and then exchanged to aggregate them (avg) for the next training iteration.
+It is a model-agnostic in which each training is ran on a different device, with different data non-overlapping samples. Approaches:
+- **Synchronous**: model's parameters are computed on each single device and then exchanged to aggregate them (AllReduce - avg) for the next training iteration. The gradient computation becomes the main overhead in the process.
+- **Asynchronous**: no device waits for the model's parameters update. The gradients are shared as peers or through central *Parameter Servers*. The workers fetch and update gradients from the Parameter Servers independently.
