@@ -193,3 +193,4 @@ There are four Data Parallelism Strategies:
   # Create strategy
   strategy = tf.distribute.MultiWorkerMirroredStrategy()
   ```
+  - **TPU Strategy** - A model is replicated in each CPU of a single machine.
