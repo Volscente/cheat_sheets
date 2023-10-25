@@ -171,3 +171,14 @@ Data are not splitted among devices, instead different parts of the model are us
 
 ## TensorFlow Distruted Strategies
 It is an API that takes care of distributed training.
+
+# Hybrid Cloud
+## Definition
+It is used when part of your code is on the cloud, but another is not. The reasons might be:
+- On-premises resources not yet migrated
+- Multiple cloud providers
+
+## Requirements
+- **Composability** - It is the ability of build together a set of microservices/resources to construct a full ML pipeline.
+- **Portability** - Port the code anywhere.
+- **Scalability** - Scale your requirements at glance.
