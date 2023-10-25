@@ -194,6 +194,13 @@ There are four Data Parallelism Strategies:
   strategy = tf.distribute.MultiWorkerMirroredStrategy()
   ```
   - **TPU Strategy** - A model is replicated in each CPU of a single machine.
+    ```python
+    # TPU Detection
+    tpu = tf.distribute.cluster_resolver.TPUClusterResolver()
+    tf.config.experimental_connect_to_cluster(tpu)
+    tf.tpu.experimental.initialize_tpu_system(tpu)
+    strategy = tf.distribute.experimental.TPUStrategy(tpu)
+    ```
   - **Parameter Server Strategy** - It used a Parameter server to store model's parameters and workers to perform the training. A Coordinator (Cluster Resolver) is used to manage the synchronization of each elements.
   ```python
   strategy = tf.distribute.experimental.ParameterServerStrategy(
