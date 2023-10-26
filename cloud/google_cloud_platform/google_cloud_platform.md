@@ -186,7 +186,7 @@ It is used when part of your code is on the cloud, but another is not. The reaso
 # Computer Vision
 ## Applications
 - Image classification 
-- Semantic segmentation 
+- Semantic segmentation (assign a label to each ROI in the image)
 - Instance segmentation 
 - Image classification with localization O
 - bject recognition 
