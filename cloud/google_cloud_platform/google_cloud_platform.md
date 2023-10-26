@@ -182,3 +182,15 @@ It is used when part of your code is on the cloud, but another is not. The reaso
 - **Composability** - It is the ability of build together a set of microservices/resources to construct a full ML pipeline.
 - **Portability** - Port the code anywhere.
 - **Scalability** - Scale your requirements at glance.
+
+# Computer Vision
+## Applications
+- Image classification 
+- Semantic segmentation 
+- Instance segmentation 
+- Image classification with localization O
+- bject recognition 
+- Object detection
+- Pattern recognition 
+- Facial recognition 
+- Edge detection 
