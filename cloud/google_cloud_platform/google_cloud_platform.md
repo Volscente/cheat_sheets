@@ -189,8 +189,12 @@ It is used when part of your code is on the cloud, but another is not. The reaso
 - **Semantic segmentation** - assign a label to each ROI in the image. E.g., clouds, sunflower, etc.
 - **Instance segmentation** - highlihts objects
 - **Image classification with localization** -  detect and object and the location through a bounding box
-- **Object recognition** 
-- **Object detection**
-- **Pattern recognition**
+- **Object recognition** - detects an object without locations
+- **Object detection** - It is like Image classification with localization
+- **Pattern recognition**s
 - **Facial recognition**
 - **Edge detection**
+
+## Google Solutions
+- **AutoML Vision** - It allows to train a Computer Vision model without any code
+- **Vision API** - It is a pre-built model available through REST API
