@@ -185,12 +185,12 @@ It is used when part of your code is on the cloud, but another is not. The reaso
 
 # Computer Vision
 ## Applications
-- Image classification 
-- Semantic segmentation (assign a label to each ROI in the image)
-- Instance segmentation 
-- Image classification with localization O
-- bject recognition 
-- Object detection
-- Pattern recognition 
-- Facial recognition 
-- Edge detection 
+- **Image classification** - single object image
+- **Semantic segmentation** - assign a label to each ROI in the image. E.g., clouds, sunflower, etc.
+- **Instance segmentation** - highlihts objects
+- **Image classification with localization** -  detect and object and the location through a bounding box
+- **Object recognition** 
+- **Object detection**
+- **Pattern recognition**
+- **Facial recognition**
+- **Edge detection**
