@@ -207,3 +207,12 @@ There are four Data Parallelism Strategies:
     tf.distribute.cluster_resolver.TFConfigClusterResolver()
   )
   ```
+
+# TensorFlow Image
+## Read Image
+```python
+# Read image as a tensor of bytes
+image_bytes = tf.io.read_files(file_path)
+
+
+```
