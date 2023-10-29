@@ -216,4 +216,7 @@ image_bytes = tf.io.read_files(file_path)
 
 # Decode image into uint8
 image_uint8 = tf.image.decode_jpeg(image_bytes, channels=3)
+
+# Convert image to RBG
+image_rgb = tf.image.convert_image_dtype(image_uint8, tf.floar32)
 ```
