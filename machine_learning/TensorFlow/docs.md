@@ -214,5 +214,6 @@ There are four Data Parallelism Strategies:
 # Read image as a tensor of bytes
 image_bytes = tf.io.read_files(file_path)
 
-
+# Decode image into uint8
+image_uint8 = tf.image.decode_jpeg(image_bytes, channels=3)
 ```
