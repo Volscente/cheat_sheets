@@ -219,4 +219,7 @@ image_uint8 = tf.image.decode_jpeg(image_bytes, channels=3)
 
 # Convert image to RBG
 image_rgb = tf.image.convert_image_dtype(image_uint8, tf.floar32)
+
+# Resize image
+image_resized = tf.image.resize(image_rgb, resize_dimensions)
 ```
