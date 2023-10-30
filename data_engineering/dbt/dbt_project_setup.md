@@ -27,3 +27,7 @@ CREATE USER IF NOT EXISTS dbt
 ```sql
 CREATE DATABASE IF NOT EXISTS <dwh_name> -- AIRBNB
 ```
+- Create Schema
+```sql
+CREATE SCHMEA IF NOT EXISTS <dwh_name>.RAW
+```
