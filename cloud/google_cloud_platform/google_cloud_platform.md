@@ -198,3 +198,18 @@ It is used when part of your code is on the cloud, but another is not. The reaso
 ## Google Solutions
 - **AutoML Vision** - It allows to train a Computer Vision model without any code
 - **Vision API** - It is a pre-built model available through REST API
+
+## Model Parameters Computation Examples
+It is important to know the number of model parameters when dealing with computer vision, since this number can become quite big.
+- **Linear Model** - [Height * Width * Number Classes] (weights) + Number Classes (Bias)
+- **Dense Layer with 300 Neurons** - [Height * Width * 300 (weights)] + 300 (Bias)
+- **Convolutional 2D Layer with 10 Filters, Kernel Size 3 and Strides 1** -  10 (filters) * 9 (classes) + 10 (bias for eachfilters)
+
+The usage of CNN reduces drastically the number of required model parameters.
+
+## Data Scarcity
+Since CNNs require tons of data, data scarcity might be a problem. It can be addressed by:
+- **Data Augmentation**
+    - It is important to generate data points for which you are fairly sure about the corresponding class. Ambuiguity in the generated data can result in the model not converging.
+    - It is important to reflect about what features of the data point to change. Alterating the color of an image representing a Fungi, might alter its label too and thus the model's performance. Or think about the color sequence of a Flag, that's not possible to flip horizontally.
+- **Transfer Learning** - 
