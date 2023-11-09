@@ -212,4 +212,7 @@ Since CNNs require tons of data, data scarcity might be a problem. It can be add
 - **Data Augmentation**
     - It is important to generate data points for which you are fairly sure about the corresponding class. Ambuiguity in the generated data can result in the model not converging.
     - It is important to reflect about what features of the data point to change. Alterating the color of an image representing a Fungi, might alter its label too and thus the model's performance. Or think about the color sequence of a Flag, that's not possible to flip horizontally.
+    - `tf.image` provides several functions to perform data augmentation, like `tf.image.stateless_random_<method>`.
+    - It is also possible to define a custom augmentation function `def augmentation_function` and then use `tf.data.map` to apply that function to each data point. Since data points are independent, this process can be parallelized through `tf.py_function` in each GPU.
+    - Also Keras offers data augmentation layers.
 - **Transfer Learning** - 
