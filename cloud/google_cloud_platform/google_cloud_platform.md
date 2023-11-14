@@ -215,4 +215,10 @@ Since CNNs require tons of data, data scarcity might be a problem. It can be add
     - `tf.image` provides several functions to perform data augmentation, like `tf.image.stateless_random_<method>`.
     - It is also possible to define a custom augmentation function `def augmentation_function` and then use `tf.data.map` to apply that function to each data point. Since data points are independent, this process can be parallelized through `tf.py_function` in each GPU.
     - Also Keras offers data augmentation layers.
-- **Transfer Learning** - 
+- **Transfer Learning**
+    - It tackles the problem of Data Scarcity by not adding more data, but by decreasing the need of data by initialising the parameters with better values. 
+    - This approach will remove the last few layers of the Neural Network, since they are the ones more closed to the specific task of the original trained model, and re-train them with the new specific problem's data. 
+    - It is not possible to say where to cut the NN layers, so it's a best practice to cut just after the last Convolutional Layer. 
+    - Two possible approaches:
+        - Leave the original layers' weights unchanged and not train them &rarr; good when there are not much data &rarr; risk of overfitting
+        - Change also original layers' weights and train them &rarr; good when you have more data
