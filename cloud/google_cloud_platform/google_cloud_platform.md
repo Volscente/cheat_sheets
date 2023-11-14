@@ -243,3 +243,14 @@ It is a Natural Language Understanding (NLU) platform to design and integrate a 
 It offers two types of services:
 - **Dialogflow Essentials (ES)** - It provides a standard agent type, suitable for small and simple agents.
 - **Dialogflow Customer Experience (CX)** - It provides an advanced agent suitable for large and complex agents.
+
+### Natural Language API
+It is a set of pre-trained models that allow to easily apply NLU to applications. It includes:
+- Sentiment analysis
+- Entity analysis
+- Entity sentiment analysis
+- Content classification
+- Syntax analysis
+
+### Healthcare Natural Language API
+It provides real-time analysis of insights stored in unstructured medical text.
