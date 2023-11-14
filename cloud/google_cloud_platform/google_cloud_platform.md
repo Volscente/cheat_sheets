@@ -235,3 +235,11 @@ Since CNNs require tons of data, data scarcity might be a problem. It can be add
 - **One-to-Sequence** - It is given with an image and it returns, for example, a description
 - **Sequence-to-one** - It is given with a text and it returns, for example, a label for that text (e.g., the topic, the sentiment, etc.)
 - **Sequence-to-Sequence** - It is a classical translator or LLM
+
+## Google Pre-Build NLP APIs
+### Dialogflow
+It is a Natural Language Understanding (NLU) platform to design and integrate a conversational user interface. In can ingest/output both audio and text.
+
+It offers two types of services:
+- **Dialogflow Essentials (ES)** - It provides a standard agent type, suitable for small and simple agents.
+- **Dialogflow Customer Experience (CX)** - It provides an advanced agent suitable for large and complex agents.
