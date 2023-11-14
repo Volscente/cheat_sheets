@@ -222,3 +222,16 @@ Since CNNs require tons of data, data scarcity might be a problem. It can be add
     - Two possible approaches:
         - Leave the original layers' weights unchanged and not train them &rarr; good when there are not much data &rarr; risk of overfitting
         - Change also original layers' weights and train them &rarr; good when you have more data
+
+# Natural Language Processing
+## Applications
+- **Text-to-Speech and Speech-to-Text**
+- **Text Classification** - It includes also Sentiment Analysis
+- **Entity Extraction**
+- **Machine Translation**
+- **Interactive Conversation**
+
+## Model Types
+- **One-to-Sequence** - It is given with an image and it returns, for example, a description
+- **Sequence-to-one** - It is given with a text and it returns, for example, a label for that text (e.g., the topic, the sentiment, etc.)
+- **Sequence-to-Sequence** - It is a classical translator or LLM
