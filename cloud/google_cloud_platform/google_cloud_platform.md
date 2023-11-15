@@ -254,3 +254,14 @@ It is a set of pre-trained models that allow to easily apply NLU to applications
 
 ### Healthcare Natural Language API
 It provides real-time analysis of insights stored in unstructured medical text.
+
+## Google Solutions
+### Contact Center AI (CCAI)
+It aims to introduce AI in Contact Centers, in order to increase the operational efficiency with minimum AI expertise.
+It combines:
+- Dialogflow
+- Agent Assist
+- Insights
+
+## Document AI
+It takes un
