@@ -264,4 +264,8 @@ It combines:
 - Insights
 
 ## Document AI
-It takes un
+It takes unstructured data and provides structured data, easier to understand. For example, it can takes an image and returns a structured JSON file.
+
+Human reviews can be added to further improve the accuracy.
+
+A general or a specialized processor can be selected to better address the particular task. Specialized processors can be built yourself or from Google
