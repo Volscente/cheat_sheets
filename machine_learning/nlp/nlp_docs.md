@@ -9,4 +9,21 @@ The steps to prepare data are:
 4. Text Representation - Convert the texts into vectors
 
 ## Tokenization
-It divides the text into smaller pieces, called *Tokens*.
+It divides the text into smaller pieces, called *Tokens*. Different tokenization strategies might not be suited for all language. For example, using whitespaces do not work with Chinese.
+
+Every tokenization strategy has its pros and cons.
+
+## Preprocessing
+This step might involve different transformations:
+- Lowercasing
+- Stemming (keep root of the word)
+- Stopword Removal
+- Normalization
+
+# Technologies
+## TensorFlow TextVectorization API
+It offers a text processing layer that maps text features to integer sequences.
+It includes:
+- Proprocessing
+- Tokenization
+- Vectorization
