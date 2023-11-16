@@ -15,10 +15,17 @@ Every tokenization strategy has its pros and cons.
 
 ## Preprocessing
 This step might involve different transformations:
-- Lowercasing
-- Stemming (keep root of the word)
+- **Lowercasing**
+- **Stemming (keep root of the word)**
 - Stopword Removal
 - Normalization
+
+## Text Representation
+It includes several techniques to represent text in a numeric format while retaining its meaning and being able to be passed into an ML model.
+
+Such techniques include:
+- **One-hot Encoding**
+- **Bag-of-words** - A vector is created with the length of the words in the vocabulary. The values in the vector represent the frequency of that word in the text. (e.g., *"A dog is chasing a dog"* - Vocabulary: [dog, chase, person, my, cat, run] - Vector: [2, 1, 0, 1, 0, 0])
 
 # Technologies
 ## TensorFlow TextVectorization API
