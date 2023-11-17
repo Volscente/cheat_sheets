@@ -2,6 +2,7 @@
 ## GitHub Workflow GCP Authorization
 Reference materials:
 - [IAM - Grant Access to a Dataset](https://cloud.google.com/bigquery/docs/control-access-to-resources-iam#grant_access_to_a_dataset)
+- [GitHub GCP Authorization Action](https://github.com/google-github-actions/auth#with-service-account-key-json)
 
 Steps:
 1. Create a Service Account with the role `BigQuery Job User`
