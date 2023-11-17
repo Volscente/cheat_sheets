@@ -49,6 +49,20 @@ Two famous algorithms of word2vec are:
 - **Continuous bag-of-words (CBOW)** - It predicts the center word given the context.
 - **Skip-gram** - It predicts the context given the center word.
 
+The following is an example using TensorFlow:
+```python
+import tensorflow as tf
+from tensorflow.keras.layers import Embedding
+
+# Embed a 1000 word vocabulary into 5 dimensions
+embedding_layer = Embedding(1000, 5)
+
+result = embedding_layer(tf.constant([1, 2, 3]))
+result.numpy()
+
+result = embedding_layer(tf.constant([[0, 1, 2], [3, 4, 5]]))
+```
+
 # Technologies
 ## TensorFlow TextVectorization API
 It offers a text processing layer that maps text features to integer sequences.
