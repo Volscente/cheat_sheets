@@ -42,8 +42,12 @@ It is a technique to encode text into meaningful vectors, which are low dimensio
 - Keep the meaning words and relationship between words &rarr; Similar words have close vectors
 - Able to be feed in an ML model &rarr; Dense Vectors
 
-Technology:
-- **word2vec** - It is not a single algorithm, bus a family of model architectures used to learn word embeddings from large datasets. They use the context of the word in order to compute its vector representation.
+#### word2vec
+It is not a single algorithm, bus a family of model architectures used to learn word embeddings from large datasets. They use the context of the word in order to compute its vector representation.
+
+Two famous algorithms of word2vec are:
+- **Continuous bag-of-words (CBOW)** - It predicts the center word given the context.
+- **Skip-gram** - It predicts the context given the center word.
 
 # Technologies
 ## TensorFlow TextVectorization API
