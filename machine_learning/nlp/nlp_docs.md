@@ -63,6 +63,9 @@ result.numpy()
 result = embedding_layer(tf.constant([[0, 1, 2], [3, 4, 5]]))
 ```
 
+### Transfer Learning
+It is possible to use an laready trained model for computing the embeddings.
+
 # Technologies
 ## TensorFlow TextVectorization API
 It offers a text processing layer that maps text features to integer sequences.
