@@ -72,4 +72,4 @@ It offers a text processing layer that maps text features to integer sequences.
 It includes:
 - Proprocessing
 - Tokenization
-- Vectorization
+- Vectorization                                         
