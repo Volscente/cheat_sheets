@@ -223,3 +223,23 @@ image_rgb = tf.image.convert_image_dtype(image_uint8, tf.floar32)
 # Resize image
 image_resized = tf.image.resize(image_rgb, resize_dimensions)
 ```
+
+# TensorFlow Text
+## Tokenizer
+```python
+# Import Standard Library
+from tensorflow.keras.preprocessing.text import Tokenizer
+
+# Instance and fit the tokenizer
+tokenizer = Tokenizer()
+tokenizer.fit_on_texts(vocabulary)
+
+# Transform text into sequence
+sequence = tokenizer.texts_to_sequences(text)
+
+# Retrieve vocabulary size
+vocabulary_size = len(tokenizer.index_word)
+
+# Retrieve dataset size
+dataset_size = tokenizer.document_count
+```
