@@ -85,3 +85,8 @@ It does not however scale well with the vocabulary size.
 It can be further improved by adding an **Attention Mechanism**:
 - It passes more data from the encoder (hidden data)
 - It adds an extra step before producing its output
+
+## Transformer
+This technology is able to capture the context of a text, which is fundamental in many NLP problems, and adds it to the Encoder-Decoder architecture.
+
+Several Encoders and Decoders are stacked up together. Both Encoder and Decoder have a Self Attention layer and a Feedforward layer. However, the Decoder has in between also a Encoder-Decoder attention.
