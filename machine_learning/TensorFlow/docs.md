@@ -33,16 +33,62 @@ The module `tf.data` is a module to build efficient Data Pipeline of data prepro
 ## Dataset Class
 It represents a sequence of elements. It could represent, for example, a set of data points with the corresponding
 labels.
+
 # TensorFlow Model
 ## Sequential API
 It allows to create a model that is composed by several sequential layers, with a single input/output.
+
+### GRU RNN
+```python
+# Import Standard Libraries
+from tensorflow.keras.layers import Embedding, GRU, Dense
+
+# Define the model
+model = Sequential(
+  [
+    Embedding(
+      vocabulary_size + 1, 
+      embeddings_dimension,
+      input_shape=[sequence_max_length],
+      mask_zero=True
+    ),
+    GRU(neuron_units),
+    Dense(
+      number_classes, 
+      activation='softmax'
+    )
+])
+
+# Compile the model
+model.compile(
+  optimizer='adam',
+  loss='categorical_crossentropy',
+  metrics=['accuracy']
+)
+
+# Fit the model
+history = rnn_model.fit(
+    X_train, 
+    Y_train,
+    epochs=numbero_epochs,
+    batch_size=batch_size,
+    validation_data=(X_valid, Y_valid),
+    callbacks=[EarlyStopping(patience=patience_value), TensorBoard(model_directory)],
+)
+
+pd.DataFrame(history.history)[['loss', 'val_loss']].plot()
+pd.DataFrame(history.history)[['accuracy', 'val_accuracy']].plot()
+```
+
 ## Functional API
 It allows to create an arbitrary model, not only a Sequential Model. It is however limited in customization.
 That's why we want the Subclassing API.
+
 ## Subclassing API
 Implements everything from scratch.
 Like in the example below:
 ![Subclassing Example](./../../images/machine_learning/img_tf_docs_2.png)
+
 # TensorFlow Transform
 ## Definition
 This API is dedicated to processing data for train, prediction and evaluation processes. It is strictly related to Apache Beam, which performs the so called *Analyze* phase, while TensorFlow Transform does the *Transformation* phase.
