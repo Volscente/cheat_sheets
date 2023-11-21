@@ -17,8 +17,8 @@ Every tokenization strategy has its pros and cons.
 This step might involve different transformations:
 - **Lowercasing**
 - **Stemming (keep root of the word)**
-- Stopword Removal
-- Normalization
+- **Stopword Removal**
+- **Normalization**
 
 ## Text Representation
 It includes several techniques to represent text in a numeric format while retaining its meaning and being able to be passed into an ML model.
