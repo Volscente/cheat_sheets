@@ -101,3 +101,8 @@ It is trained on two different tasks, thus is a multi-task objective:
 - **Next Sentence Prediction (NPS)** - In this task, the model tries to predict what is the next sentence given two input sentences (Next Sentence & Not Next Sentence)
 
 It works on both sentence-level and token-level tasks.
+
+The input embeddings of BERT includes:
+- **Token Embeddings** - The vector representation of the input text (it includes a initial special token called "CLS", that identify the Classificaiton task)
+- **Segment Embeddings** - It defined where is the separator between the input sentence A and the input sentence B
+- **Position Embeddings** - It incorporates the order of the input sequences
