@@ -72,4 +72,16 @@ It offers a text processing layer that maps text features to integer sequences.
 It includes:
 - Proprocessing
 - Tokenization
-- Vectorization                                         
+- Vectorization
+
+# Advanced NLP Models
+## Encoder-Decoder Architecture
+Taking as example the Language Translation, it consists of two neural networks:
+- **Encoder** - It can be an LSTM/GRU that ingestes the input text, one word a time, and encode it
+- **Decoder** - It takes the encoded text and map it to the corresponding translation
+
+It does not however scale well with the vocabulary size.
+
+It can be further improved by adding an **Attention Mechanism**:
+- It passes more data from the encoder (hidden data)
+- It adds an extra step before producing its output
