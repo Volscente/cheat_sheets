@@ -90,3 +90,14 @@ It can be further improved by adding an **Attention Mechanism**:
 This technology is able to capture the context of a text, which is fundamental in many NLP problems, and adds it to the Encoder-Decoder architecture.
 
 Several Encoders and Decoders are stacked up together. Both Encoder and Decoder have a Self Attention layer and a Feedforward layer. However, the Decoder has in between also a Encoder-Decoder attention.
+
+## BERT
+The *Bidirectional Encoder Representations from Transformers* is a trained Transformer model.
+
+It is very powerful since it can handle very long input context and it has been trained on Wikipedia and BookCorpus. 
+
+It is trained on two different tasks, thus is a multi-task objective:
+- **Masked Language Modeling (MLM)** - In this task, some words of the sentence are masked and the model tries to predict those masked words
+- **Next Sentence Prediction (NPS)** - In this task, the model tries to predict what is the next sentence given two input sentences (Next Sentence & Not Next Sentence)
+
+It works on both sentence-level and token-level tasks.
