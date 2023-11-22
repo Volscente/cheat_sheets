@@ -5,7 +5,7 @@ Recommendation system is an umbrella term that collects every piece of the syste
 Sometimes, we think about recommendation only in the sense of items recommended to a user. However, especially in marketing, the other way around is also true: recommending potential interested users to a product.
 
 ## Goal
-The main goal of any recommendation system is to reduce the overload of information that the user is subjected to while, for example, looking at a product catalog. Given the amount of items, it is not feasible for the user to look through them all. A recommendation system is able to filtering that huge amount of information for just what the user might be interested to.
+The main goal of any recommendation system is to reduce the overload of information that the user is subjected to while, for example, looking at a product catalog. Given the amount of items, it is not feasible for the user to look through them all. A recommendation system is able to filtering that huge amount of information for just what the user might be interested to. This ultimately leads to improving the user decision-making process.
 
 ## Types
 ### Content-based Filtering
