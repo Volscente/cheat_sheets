@@ -12,6 +12,11 @@ This recommender uses the information about the product in order to recommend it
 
 This approach does not take into account the information coming from other users. This heavily relies on how you construct the features representing that item.
 
+### Similarity Measurement
+A crucial aspect of Content-based filtering is the capacity of measure the similarity between two items. In this case, embeddings come really helpful, because they can represent an item through a numeric feature vector.
+
+Once the embeddings are in place, a simple dot product between two items can give a similarity score.
+
 ## Collaborative Filtering
 It learns about similarity between items and users, in order to recommend the most appropriate element. It practice, it recommends an item to a user that other similar users liked. That's why it is *"Collaborative"*, because it uses information from other similar users in order to construct the recommendation. It is thus based on *"Interactions"* of the users.
 
