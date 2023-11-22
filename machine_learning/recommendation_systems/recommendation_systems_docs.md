@@ -8,7 +8,7 @@ The main goal of any recommendation system is to reduce the overload of informat
 
 # Types
 ## Content-based Filtering
-This recommender uses the information about the product in order to recommend it to the user. For example, recommending the most rated film among a category that a specific user likes. This recommendation is based on the product information (most rated) and then it is personalised on the specific user preferences (category that they like).
+This recommender uses the information about the product in order to recommend it to the user. For example, recommending a film to a user that is very similar to another film the user has "highly" rated. It is possible to use explicit and implicit feedbacks from the user in order to understand the rating of a movie (when not explicitly given).
 
 This approach does not take into account the information coming from other users. This heavily relies on how you construct the features representing that item.
 
