@@ -6,7 +6,7 @@ Sometimes, we think about recommendation only in the sense of items recommended 
 # Goal
 The main goal of any recommendation system is to reduce the overload of information that the user is subjected to while, for example, looking at a product catalog. Given the amount of items, it is not feasible for the user to look through them all. A recommendation system is able to filtering that huge amount of information for just what the user might be interested to. This ultimately leads to improving the user decision-making process.
 
-# Types
+# Types     
 ## Content-based Filtering
 This recommender uses the information about the product in order to recommend it to the user. For example, recommending a film to a user that is very similar to another film the user has "highly" rated. It is possible to use explicit and implicit feedbacks from the user in order to understand the rating of a movie (when not explicitly given).
 
