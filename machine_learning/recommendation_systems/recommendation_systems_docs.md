@@ -26,7 +26,7 @@ This approach is independent from the features used to represent an item, leadin
 They are based about the knowledge about the users, items and recommendation criteria. It is used in situation when there are not much previous interaction with certain items. For example, while selling high value houses: you would not have much previous or similar data about that. That's why the user is asked for specific preferences, before making recommendations.
 
 ## Deep Neural Network
-They are very flexible, since they can be used to predict the rating, the interactions or even the next item.
+They are very flexible, since they can be used to predict the rating, the interactions or even the next item. Using for example the user features, predict the rating of a movie like a standard regression problem. Or it is possible to predict the next movie, like a classification problem.
 
 # Pitfalls
 - Especially in Collaborative Filtering, the matrix factorization might lead to a very sparse and skewed matrix.
