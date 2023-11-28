@@ -289,3 +289,28 @@ vocabulary_size = len(tokenizer.index_word)
 # Retrieve dataset size
 dataset_size = tokenizer.document_count
 ```
+
+# TensorFlow WALS Matrix Factorization
+## Read Data (Users for an Item)
+```python
+# Import Standard Libraries
+import tensorflow as tf
+
+# Define the grouping strategy
+# NOTE: `mapped_df` is a dataframe in which User ID is mapped from [0, n_users] as well as Item ID
+grouped_by_items = mapped_df.groupby("itemId")
+
+# Open the file to write the data into
+with tf.python_io.TFRecordWriter("data/users_for_item") as ofp:
+
+  # Fetch each item in the group and create an example with the features
+  for item, grouped in grouped_by_items:
+
+    example = tf.train.Example(features = tf.train.Features(feature = {
+        "key": tf.train.Feature(int64_list = tf.train.Int64List(value = [item])), # User ID
+        "indices": tf.train.Feature(int64_list = tf.train.Int64List(value = grouped["userId"].values)),
+        "values": tf.train.Feature(float_list = tf.train.FloatList(value = grouped["rating"].values))
+    }))
+    
+    ofp.write(example.SerializeToString())
+```

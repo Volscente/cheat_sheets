@@ -66,8 +66,10 @@ In order to handle unobserved interaction pairs, some of the techniques are:
 - **ALS** - Ingores missing interactions
 - **SVD** - It sets them to zero
 
-##### WALS
+##### WALS (Weighted Alternating Least Squares)
 It is based on ALS, an algorithm that does not need labels, but only the ratings matrix organized into rows and columns. The weights in this WALS algorithm can be used to encode features like the revenue of an item, so that most profitable items would be recommended more.
+
+It iteratives fix U and computes V, then does the other way around, until convergence.
 
 ## Knowledge-based
 They are based about the knowledge about the users, items and recommendation criteria. It is used in situation when there are not much previous interaction with certain items. For example, while selling high value houses: you would not have much previous or similar data about that. That's why the user is asked for specific preferences, before making recommendations.
