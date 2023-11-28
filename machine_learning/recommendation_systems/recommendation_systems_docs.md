@@ -43,9 +43,31 @@ user_1_preference_film_1 = np.dot(items[0], users[0]) # -0.9
 ```
 
 ## Collaborative Filtering
-It learns about similarity between items and users, in order to recommend the most appropriate element. It practice, it recommends an item to a user that other similar users liked. That's why it is *"Collaborative"*, because it uses information from other similar users in order to construct the recommendation. It is thus based on *"Interactions"* of the users.
+### User Interaction Tables
+It learns about similarity between items and users, in order to recommend the most appropriate element. It practice, it recommends an item to a user that other similar users liked. That's why it is *"Collaborative"*, because it uses information from other similar users in order to construct the recommendation. It is thus based on *"Interactions"* of the users through the so called **User Interaction Table**.
 
 This approach is independent from the features used to represent an item, leading to less engineering effort in such a direction. It involves heavy matric factorization, which does not rely on any previously constructed features.
+
+### Factorization
+#### Definition
+However, the User Interaction Table is very sparse. So it is important to use a Matrix Factorization approach to shrink it into two smaller matrices:
+- **User Factors**
+- **Item Factors**
+
+Through the above two matrices, it is possible to take a User ID, multiply it by the Item Factors and obtain the ratings of that user for all the items. Also the other way around it is possible: all the ratings for all the users for a single item.
+
+#### Computation
+These two matrices are an approximation and are computed by minimize a cost function, for example the Squared Error between the original User Interaction Table and the Dot Product between the User Factors and the Item Factors. This can be achieved through:
+- **SGD** - Flexible and parallelizable, but slow. It does not capture unobserved interactions pairs
+- **ALS** - It works only for Least Squares, it is parallelizable and it is faster. It does capture unobserved interactions pairs. It first computes the User Factors while keeping the Item Factors constant. That's why it is called "Alternating".
+
+In order to handle unobserved interaction pairs, some of the techniques are:
+- **WALS** - It uses weights
+- **ALS** - Ingores missing interactions
+- **SVD** - It sets them to zero
+
+##### WALS
+It is based on ALS, an algorithm that does not need labels, but only the ratings matrix organized into rows and columns. The weights in this WALS algorithm can be used to encode features like the revenue of an item, so that most profitable items would be recommended more.
 
 ## Knowledge-based
 They are based about the knowledge about the users, items and recommendation criteria. It is used in situation when there are not much previous interaction with certain items. For example, while selling high value houses: you would not have much previous or similar data about that. That's why the user is asked for specific preferences, before making recommendations.
