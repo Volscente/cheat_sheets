@@ -17,7 +17,11 @@ A crucial aspect of Content-based filtering is the capacity of measure the simil
 
 Once the embeddings are in place, a simple dot product between two items can give a similarity score. This requires that both the User and Item embeddings have the same dimensions. Each dimension of the embedding represents a feature.
 
-The best way to build User & Item Embeddings is to learn them from the data and compress them to find the best generalities to rely on (**Latent Factors**)
+Dot products is a greast tool, but it does not scale well with huge data.
+
+The best way to build User & Item Embeddings to overcome the scale problem is to learn them from the data and compress them to find the best generalities to rely on (**Latent Factors**). In this way, the total amount of space required would be `latent_factors * (number_users + number_items)`.
+
+The number of latent factors should alwas be less than `(U * V)/(2(U+V))` where `U` is the number of users and `V` is the number of items.
 
 #### Example
 ```python
@@ -37,8 +41,6 @@ users = [
 # Perform the dot product to obtain the user preference
 user_1_preference_film_1 = np.dot(items[0], users[0]) # -0.9
 ```
-
-Dot products is a greast tool, but it does not scale well with huge data.
 
 ## Collaborative Filtering
 It learns about similarity between items and users, in order to recommend the most appropriate element. It practice, it recommends an item to a user that other similar users liked. That's why it is *"Collaborative"*, because it uses information from other similar users in order to construct the recommendation. It is thus based on *"Interactions"* of the users.
