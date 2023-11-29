@@ -77,6 +77,15 @@ They are based about the knowledge about the users, items and recommendation cri
 ## Deep Neural Network
 They are very flexible, since they can be used to predict the rating, the interactions or even the next item. Using for example the user features, predict the rating of a movie like a standard regression problem. Or it is possible to predict the next movie, like a classification problem.
 
+## Context-Aware Recommendation Systems (CARS)
+A user is not just a user and an item is not just an item. The context of why a user choose an item, when and how, is very important too. Such contenxt can be expressed as additional feauteres, like `Where: [Home, Theater, Event]`.
+
+There are three types of CARS algorithms:
+- **Contextual Prefiltering** - It filters data before computing the *User Interaction Matrix*. For example, it might filter every interaction happened on the weekend.
+- **Contextual Postfiltering** - It works the other way around: first compute the *User Interaction Matrix* and then filters by the context.
+- **Contextual Modeling** - It is a classic ML model.
+
 # Pitfalls
 - Especially in Collaborative Filtering, the matrix factorization might lead to a very sparse and skewed matrix.
 - The **Cold Start** problem arises, when there are not enough information about the user or the interactions. It affects both new users in the system and new items added to the catalog.
+

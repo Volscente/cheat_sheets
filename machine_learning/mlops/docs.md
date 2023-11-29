@@ -1,0 +1,10 @@
+# General
+## MLOps Definition
+MLOps, short for Machine Learning Operations, is a set of practices that aims to integrate machine learning (ML) systems into the broader context of software development and operations. MLOps seeks to streamline and automate the end-to-end ML lifecycle, ensuring the efficient development, deployment, monitoring, and maintenance of ML models.
+
+## Roles
+- **Data Analyst** - Queries and analyse
+- **Data Engineer** - Retrieve and clean data
+- **Data Scientist** - Train models
+- **Machine Learning Developer** - Create intelligent apps
+- **Machine Learning Engineer** - Deploy models
