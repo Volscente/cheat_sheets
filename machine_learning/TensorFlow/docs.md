@@ -315,6 +315,26 @@ with tf.python_io.TFRecordWriter("data/users_for_item") as ofp:
     ofp.write(example.SerializeToString())
 ```
 
+## Create Sparse Tensors
+```python
+def parse_tfrecords(filename, vocab_size):
+  files = tf.gfile.Glob(os.path.join(args['input_path'], filename))
+  dataset = tf.data.TFRecordDataset(files)
+  dataset = dataset.map(lambda x: decode_example(x, vocab_size))
+  dataset = dataset.repeat(num_epochs)
+  dataset = dataset.batch(args['batch_size'])
+  dataset = dataset.map(lambda x: remap_keys(x))
+  return dataset.make_one_shot_iterator().get_next()
+
+def _input_fn():
+  features = {
+    WALSMatrixFactorization.INPUT_ROWS: parse_tfrecords('items_for_user', args['nitems'])
+    WALSMatrixFactorization.INPUT_COLS: parse_tfrecords('users_for_item', args['nusers'])
+  }
+
+  return features, None
+```
+
 ## Train
 ```python
 # Import Standard Libraries
@@ -339,7 +359,7 @@ tf.contrib.learn.Experiment(
   eval_steps=1,
   min_eval_frequency_steps=steps_in_epoch,
   export_strategies=tf.contrib.learn.utils.saved_model_export_utils.make_export_strategy(
-    serving_input_fn= create_serving_input_fn(args)
+    serving_input_fn= create_serving_input_fn(args  )
   )
 )
 ```
