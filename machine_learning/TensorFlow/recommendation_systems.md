@@ -45,7 +45,16 @@ def decode_example(protos, vocab_size):
         vocab_size=vocab_size
     )
 
+    # Save the key for later re-mapping
+    key = parsed_features['key']
 
+    # Save the keys in a sparse tensor
+    decoded_sparse_tensor = tf.SparseTensor(
+      indices=tf.concat([values.indices, [key]], axis=0),
+      values=tf.concat([values.values, [0.0]], axis=0),
+      dense_shape=values.dense_shape)
+
+    return decoded_sparse_tensor
 ```
 
 ## Create Sparse Tensors
