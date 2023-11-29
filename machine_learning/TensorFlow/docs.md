@@ -314,3 +314,32 @@ with tf.python_io.TFRecordWriter("data/users_for_item") as ofp:
     
     ofp.write(example.SerializeToString())
 ```
+
+## Train
+```python
+# Import Standard Libraries
+import tensorflow as tf
+
+tf.contrib.learn.Experiment(
+
+  # Define the WASL Matrix Settings
+  tf.contrib.factorization.WALSMatrixFactorization(
+    num_rows=args['nusers'],
+    num_cols=args['nitems'],
+    embedding_dimension=args['n_embeds'],
+    model_dir=args['output_dir']
+  ),
+
+  # Define train and test data
+  train_input_fn=read_dataset(tf.estimator.ModeKeys.TRAIN, args),
+  eval_input_fn=read_dataset(tf.estimator.ModeKeys.EVAL, args),
+
+  # Define Training Parameters
+  train_steps=10,
+  eval_steps=1,
+  min_eval_frequency_steps=steps_in_epoch,
+  export_strategies=tf.contrib.learn.utils.saved_model_export_utils.make_export_strategy(
+    serving_input_fn= create_serving_input_fn(args)
+  )
+)
+```
