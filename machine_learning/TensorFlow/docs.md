@@ -318,12 +318,19 @@ with tf.python_io.TFRecordWriter("data/users_for_item") as ofp:
 ## Create Sparse Tensors
 ```python
 def parse_tfrecords(filename, vocab_size):
+
+  # Create list of files
   files = tf.gfile.Glob(os.path.join(args['input_path'], filename))
+
+  # Create a TFRecords Datraset
   dataset = tf.data.TFRecordDataset(files)
+
+  # Decode and create the dataset
   dataset = dataset.map(lambda x: decode_example(x, vocab_size))
   dataset = dataset.repeat(num_epochs)
   dataset = dataset.batch(args['batch_size'])
   dataset = dataset.map(lambda x: remap_keys(x))
+  
   return dataset.make_one_shot_iterator().get_next()
 
 def _input_fn():
