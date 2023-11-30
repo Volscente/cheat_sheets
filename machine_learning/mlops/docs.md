@@ -28,6 +28,7 @@ It is a central storage solution for features that provides the following capabi
 - Search and filter capabilities
 - Managed solution for online serving at scale
 - Mitigate training-serving skew
+- Detect drift
 
 # Levels
 ## Definition

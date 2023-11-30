@@ -907,6 +907,16 @@ It is a resource in Vertex AI that allows to have a centralized repository to or
 - Scalable
 - Easy to use
 
+It is organized in:
+- **Feature Store** - It is the centralized repository for feature storing
+- **Entity Type** - It identify a group of related features (e.g., *Movie Features*)
+- **Entity** - It is an instance of an *Entity Type* (e.g., The movie *Van Hellsing*, with all of its *Features*)
+- **Feature** - It is a measurable property of an *Entity Type* (e.g., *Movie Rating* and *Title*)
+- **Feature Value** - It captures the value of a *Feature* in a specific time (e.g., *Movie Rating* is *4.9* and, later on, it become *4.5*)
+
+**NOTE:** Two features can have the same name, only if they belong to different *Entity Types*.
+
+It is possible to choose between **Online Storage** and **Offline Storage**.
 
 # Model Deployment & Monitoring
 ## Deployment steps
