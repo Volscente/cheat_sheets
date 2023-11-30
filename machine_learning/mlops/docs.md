@@ -19,6 +19,16 @@ MLOps, short for Machine Learning Operations, is a set of practices that aims to
 7. Model Serving
 8. Model Monitoring
 
+## Components
+### Feature Store
+It is a central storage solution for features that provides the following capabilities:
+- Efficient sharing of features
+- Reduced duplicate efforts
+- Centralized management and serving of features
+- Search and filter capabilities
+- Managed solution for online serving at scale
+- Mitigate training-serving skew
+
 # Levels
 ## Definition
 Depending on the level of automation of the MLOps steps, there are different levels of MLOps.
