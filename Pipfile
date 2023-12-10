@@ -38,6 +38,7 @@ tensorflow-transform = "*"
 nltk = "*"
 flair = "*"
 transformers = "*"
+kaggle = "*"
 
 [dev-packages]
 
