@@ -145,3 +145,4 @@ machine_learning/PyTorch/CNN_MNIST_model.pt
 machine_learning/PyTorch/CCN_MNIST_model_torchscript.pt
 data/cats_and_dogs_images/*
 machine_learning/TensorFlow/models/*
+machine_learning/nlp/models
