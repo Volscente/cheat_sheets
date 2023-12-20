@@ -67,6 +67,9 @@ result = embedding_layer(tf.constant([[0, 1, 2], [3, 4, 5]]))
 It is possible to use an laready trained model for computing the embeddings.
 
 # Technologies
+## Spacy
+It is the *de facto* standard for **Named Entity Recognition** and **Speech Tagging** in Python.
+
 ## TensorFlow TextVectorization API
 It offers a text processing layer that maps text features to integer sequences.
 It includes:
