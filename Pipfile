@@ -39,6 +39,7 @@ nltk = "*"
 flair = "*"
 transformers = "*"
 kaggle = "*"
+spacy = "*"
 
 [dev-packages]
 
