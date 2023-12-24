@@ -148,3 +148,4 @@ machine_learning/TensorFlow/models/*
 machine_learning/nlp/models
 data/squad_dev_v2.0.json
 data/squad_train_v2.0.json
+data/squad_processed_train.json
