@@ -3,7 +3,7 @@
 A *Shell Script* is just a list of commands that are executed by an interpreter, which is the Shell itself.
 
 ## Shebang
-The interpreter is usually set at the top of the script by the so called *"Sharp Bang"* (#!) notation or *"Shebang"* (Contraction of Sharp Bang):
+The interpreter is usually set at the top of the script by the so called *"Sharp Bang"* (#!) notation or *"Shebang"* (Contraction of Sharp Bang).
 ```bash
 #!/bin/bash
 ```
@@ -12,7 +12,7 @@ The *Shebang* is used in order to pass the subsequent Shell path to the interpre
 
 The example above uses the `bash` shell as interpreter, but it is also possible to use others like `zsh` or `ksh`.
 
-It is also possible to use another interpreter with respect to a Shell's one, like a Python interpreter:
+It is also possible to use another interpreter with respect to a Shell's one, like a Python interpreter.
 ```python
 #!/usr/bin/python
 print("This is a Python script.")
@@ -37,12 +37,12 @@ Then we can execute the script:
 ```bash
 VARIABLE_NAME="Value"
 ```
-It is possible to define a variable inside your script an use curly braces to call it:
+It is possible to define a variable inside your script an use curly braces to call it.
 ```bash
 MY_SHELL="bash"
 echo "I am ${MY_SHELL}ing on my keyboard."
 ```
-It is also possible to store output of a command in a variable:
+It is also possible to store output of a command in a variable.
 ```bash
 SERVER_NAME=$(hostname)
 echo "You are running this script on ${SERVER_NAME}"
@@ -67,5 +67,29 @@ NUMBERS="1 2 3"
 for NUMBER in ${NUMBERS}
 do
     echo "Number: ${NUMBER}"
+done
+```
+
+## Positional Parameters
+```bash
+echo "This is the first positional parameter: ${0}" # Script's path
+echo
+echo "This is the second positional parameter: ${1}" # Empty if not passed
+echo
+```
+The best practice is to store the positional parameters into meaningful variables.
+```bash
+# Store positional parameter $1
+USERNAME=${1}
+
+echo "Received user: ${USERNAME}"
+```
+It is possible to retrieve also all the positional parameters
+```bash
+USERS=${@}
+
+for USER IN ${USERS}
+do
+    echo "Username: ${USER}"
 done
 ```
