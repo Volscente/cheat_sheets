@@ -59,3 +59,13 @@ then
 fi
 
 ```
+
+## For Loop
+```bash
+NUMBERS="1 2 3"
+
+for NUMBER in ${NUMBERS}
+do
+    echo "Number: ${NUMBER}"
+done
+```
