@@ -42,3 +42,20 @@ It is possible to define a variable inside your script an use curly braces to ca
 MY_SHELL="bash"
 echo "I am ${MY_SHELL}ing on my keyboard."
 ```
+It is also possible to store output of a command in a variable:
+```bash
+SERVER_NAME=$(hostname)
+echo "You are running this script on ${SERVER_NAME}"
+```
+
+## Tests
+They are used to test conditions:
+```bash
+MY_SHELL="bash"
+
+if [ ${MY_SHELL} = "bash" ]
+then
+    echo "You seem to like the bash shell."
+fi
+
+```
