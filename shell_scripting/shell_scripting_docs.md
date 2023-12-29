@@ -93,3 +93,9 @@ do
     echo "Username: ${USER}"
 done
 ```
+
+# Read STDIN
+```bash
+read -p "Insert your input here: " USER_INPUT
+echo "You've inserted: ${USER_INPUT}"
+```
