@@ -40,6 +40,7 @@ flair = "*"
 transformers = "*"
 kaggle = "*"
 spacy = "*"
+rogue = "*"
 
 [dev-packages]
 
