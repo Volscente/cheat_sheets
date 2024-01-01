@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c28f309750c04796ee822beb6d9be6b9f8bfde2e2a0a7a772616325f82de8d47"
+            "sha256": "2528ac1f2175d543958505051939e9244209cf2cdb92de55f6dc4ecf72f726de"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1689,11 +1689,11 @@
         },
         "jupyter-core": {
             "hashes": [
-                "sha256:1553311a97ccd12936037f36b9ab4d6ae8ceea6ad2d5c90d94a909e752178e40",
-                "sha256:220dfb00c45f0d780ce132bb7976b58263f81a3ada6e90a9b6823785a424f739"
+                "sha256:3d16aec2e1ec84b69f7794e49c32830c1d950ad149526aec954c100047c5f3a7",
+                "sha256:5139be639404f7f80f3db6f687f47b8a8ec97286b4fa063c984024720e7224dc"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==5.5.1"
+            "version": "==5.6.1"
         },
         "jupyter-events": {
             "hashes": [
@@ -2357,11 +2357,11 @@
         },
         "nbconvert": {
             "hashes": [
-                "sha256:2dc8267dbdfeedce2dcd34c9e3f1b51af18f43cb105549d1c5a18189ec23ba85",
-                "sha256:3c50eb2d326478cc90b8759cf2ab9dde3d892c6537cd6a5bc0991db8ef734bcc"
+                "sha256:483dde47facdaa4875903d651305ad53cd76e2255ae3c61efe412a95f2d22a24",
+                "sha256:92b9a44b63e5a7fb4f6fa0ef41261e35c16925046ccd1c04a5c8099bf100476e"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==7.13.1"
+            "version": "==7.14.0"
         },
         "nbformat": {
             "hashes": [
@@ -2464,6 +2464,8 @@
             "hashes": [
                 "sha256:1a9f0e6267de3a1a1db0c54213d022c7c8b5b9ca4b580e80bdc58516c922c9e1",
                 "sha256:3f16f08e02b2a2da44259c7cc712e779eff1dd8b55fdb0323e8cab09548086c0",
+                "sha256:71dfb9555ccccdd77305fc3dcca5897fbf0cf28b297c51ee55e079c065d812a3",
+                "sha256:7b34a52e9da36dda8c151c6394aed602e4b17fa041df0b9f5b93ae10b0fcca2a",
                 "sha256:7e5f7aa4486651a6ebfa8ed4b594b65bd2d2f41beeb4241a3e4b1b85acbbbadb",
                 "sha256:dcf000c36dd1651118a2462257e3a9e76db789a78432e1f303c7bac54f63ef6c",
                 "sha256:e4088cab82b66a3b37ffc452976b14a3c599269c247895ae9ceb4066d8188a57"
@@ -3528,12 +3530,13 @@
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
             "version": "==0.1.1"
         },
-        "rogue": {
+        "rouge": {
             "hashes": [
-                "sha256:f62e7d13421ecc8b36b4b998605ce7f3541de6ac6a0d545d5bb051b28af74f69"
+                "sha256:12b48346ca47d6bcf3c45061f315452b9ccec0620ee895ec85b7efc3d54aae34",
+                "sha256:28d118536e8c774dc47d1d15ec266479b4dd0914c4672ce117d4002789bdc644"
             ],
             "index": "pypi",
-            "version": "==0.0.2"
+            "version": "==1.0.1"
         },
         "rpds-py": {
             "hashes": [
@@ -3852,11 +3855,11 @@
         },
         "seaborn": {
             "hashes": [
-                "sha256:0e76abd2ec291c655b516703c6a022f0fd5afed26c8e714e8baef48150f73598",
-                "sha256:70d740828c48de0f402bb17234e475eda687e3c65f4383ea25d0cc4728f7772e"
+                "sha256:6baa69b6d1169ae59037971491c450c0b73332b42bd4b23570b62a546bc61cb8",
+                "sha256:bfad65e9c5989e5e1897e61bdbd2f22e62455940ca76fd49eca3ed69345b9179"
             ],
             "index": "pypi",
-            "version": "==0.13.0"
+            "version": "==0.13.1"
         },
         "segtok": {
             "hashes": [
@@ -4601,10 +4604,10 @@
         },
         "torch-model-archiver-nightly": {
             "hashes": [
-                "sha256:139092555c4b09d1f4f02baa8e194edf4595979f4e145ed9eb1c5deb7080b67f"
+                "sha256:0dd1d97019c853a9e18bc74a63418d8fb0e2669ee6e354a75a33a52e80b72c42"
             ],
             "index": "pypi",
-            "version": "==2023.12.31"
+            "version": "==2024.1.1"
         },
         "torch-workflow-archiver": {
             "hashes": [
@@ -4615,10 +4618,10 @@
         },
         "torch-workflow-archiver-nightly": {
             "hashes": [
-                "sha256:ca34ffa83d930b3633d644b8a657443e7f904d7dff6f09000d05918cba22980a"
+                "sha256:31203c29979341498756c68540d28da386d37c55363232ea2f30bae9f766614f"
             ],
             "index": "pypi",
-            "version": "==2023.12.31"
+            "version": "==2024.1.1"
         },
         "torchserve": {
             "hashes": [
@@ -4629,10 +4632,10 @@
         },
         "torchserve-nightly": {
             "hashes": [
-                "sha256:d174b290ed0b3a5ae3532b20dacd2ce22b45beb988a38d499487d9cdfd98d371"
+                "sha256:80cff9f016be89744091c895f8b6236a78d8d9a28abd95ee235805c33a436c13"
             ],
             "index": "pypi",
-            "version": "==2023.12.31"
+            "version": "==2024.1.1"
         },
         "torchvision": {
             "hashes": [
