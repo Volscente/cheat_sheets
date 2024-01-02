@@ -100,6 +100,16 @@ read -p "Insert your input here: " USER_INPUT
 echo "You've inserted: ${USER_INPUT}"
 ```
 
+## Chain Commands
+The exit status is not checked and commands chained would be always executed.
+```bash
+cp test.txt /tmp/bak ; cp test.txt /tmp
+
+# Same as
+cp test.txt /tmp/bak
+cp test.txt /tmp
+```
+
 # Exit Status
 ## Introduction
 They indicate if the command has been executed with or without errors. The value `0` is associated with *"No Errors"*, while everything different is associated with an error.
@@ -114,6 +124,8 @@ ping -c 1 "google.com"
 EXIT_STATUS=$?
 echo ${EXIT_STATUS} # 0
 ```
+
+Remember to check the documentation of the used command in order to understand the meaning behind each exit status code.
 
 ## IF-ELSE Statements
 It is possible to use the exit status code for decide which code to execute.
@@ -147,3 +159,29 @@ The **OR** (||) operator is used for executing a command after the previous one 
 cp test.txt /tmp/bask || cp test.txt /tmp
 ```
 The command `cp test.txt /tmp` would be executed only if `cp test.txt /tmp/bask` will fail.
+
+<br>
+
+The commands from the previous section can be written as following.
+```bash
+ping -c 1 "google.com" && echo "Host is reachable"
+ping -c 1 "google.com" || echo "Host is unreachable"
+```
+
+## Exit Command
+```bash
+HOST="google.com"
+ping -c 1 ${HOST}
+HOST_REACH_RETURN_CODE=$?
+echo
+
+if [ ${HOST_REACH_RETURN_CODE} -eq "0" ]
+then
+    echo "${HOST} reachable."
+    exit 0
+else
+    echo "${HOST} runeachable."
+    exit 255 # Custom exit status
+fi
+```
+The default value is that of the last command executed.

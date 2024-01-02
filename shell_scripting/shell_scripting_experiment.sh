@@ -50,7 +50,7 @@ echo "Status code: $?"
 echo
 
 # Switch based on command execution exit status
-HOST="google.com"
+read -p "Insert host to reach: " HOST
 ping -c 1 ${HOST}
 HOST_REACH_RETURN_CODE=$?
 echo
@@ -58,7 +58,9 @@ echo
 if [ ${HOST_REACH_RETURN_CODE} -eq "0" ]
 then
     echo "${HOST} reachable."
+    exit 0
 else
-    echo "${HOST} runeachable."
+    echo "${HOST} unreachable."
+    exit 255
 fi
 # ----------------
