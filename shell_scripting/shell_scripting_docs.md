@@ -94,8 +94,56 @@ do
 done
 ```
 
-# Read STDIN
+## Read STDIN
 ```bash
 read -p "Insert your input here: " USER_INPUT
 echo "You've inserted: ${USER_INPUT}"
 ```
+
+# Exit Status
+## Introduction
+They indicate if the command has been executed with or without errors. The value `0` is associated with *"No Errors"*, while everything different is associated with an error.
+
+It is possible to retrieve the exit status code for a command in a shell script.
+```bash
+<some command>
+EXIT_STATUS=$?
+
+# Example
+ping -c 1 "google.com"
+EXIT_STATUS=$?
+echo ${EXIT_STATUS} # 0
+```
+
+## IF-ELSE Statements
+It is possible to use the exit status code for decide which code to execute.
+```bash
+HOST="google.com"
+ping -c 1 ${HOST}
+HOST_REACH_RETURN_CODE=$?
+echo
+
+if [ ${HOST_REACH_RETURN_CODE} -eq "0" ]
+then
+    echo "${HOST} reachable."
+else
+    echo "${HOST} runeachable."
+fi
+```
+
+## && and ||
+They are used to chain commands depending on the exit status code.
+
+The **AND** (&&) operator is used for executing a command after the previous one exists with no errors.
+```bash
+mdkir /tmp/bak && cp test.txt /tmp/bask
+```
+The command `cp test.txt /tmp/bask` would be executed only if `mdkir /tmp/bak` exit without errors.
+
+<br>
+
+The **OR** (||) operator is used for executing a command after the previous one fails.
+```bash
+cp test.txt /tmp/bask || cp test.txt /tmp
+```
+The command `cp test.txt /tmp` would be executed only if `cp test.txt /tmp/bask` will fail.

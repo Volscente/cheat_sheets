@@ -52,9 +52,10 @@ echo
 # Switch based on command execution exit status
 HOST="google.com"
 ping -c 1 ${HOST}
+HOST_REACH_RETURN_CODE=$?
 echo
 
-if [ "$?" -eq "0" ]
+if [ ${HOST_REACH_RETURN_CODE} -eq "0" ]
 then
     echo "${HOST} reachable."
 else
