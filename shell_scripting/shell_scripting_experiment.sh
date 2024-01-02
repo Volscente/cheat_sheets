@@ -43,3 +43,21 @@ read -p "Insert your input here: " USER_INPUT
 echo "You've inserted: ${USER_INPUT}"
 echo
 # --------------------------
+
+# -------- Exit Status --------
+ls /not/here
+echo "Status code: $?"
+echo
+
+# Switch based on command execution exit status
+HOST="google.com"
+ping -c 1 ${HOST}
+echo
+
+if [ "$?" -eq "0" ]
+then
+    echo "${HOST} reachable."
+else
+    echo "${HOST} runeachable."
+fi
+# ----------------
