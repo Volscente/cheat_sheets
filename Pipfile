@@ -41,6 +41,7 @@ transformers = "*"
 kaggle = "*"
 spacy = "*"
 rouge = "*"
+tqdm = "*"
 
 [dev-packages]
 
