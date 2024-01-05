@@ -44,6 +44,20 @@ echo "You've inserted: ${USER_INPUT}"
 echo
 # --------------------------
 
+# -------- Functions --------
+function say_hello(){
+
+    for NAME in $@
+    do
+        echo "Hello ${NAME}"
+        echo
+    done
+}
+
+say_hello Simone Sarah
+
+# ---------------------------
+
 # -------- Exit Status --------
 ls /not/here
 echo "Status code: $?"

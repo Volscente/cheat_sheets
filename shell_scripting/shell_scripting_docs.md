@@ -110,6 +110,29 @@ cp test.txt /tmp/bak
 cp test.txt /tmp
 ```
 
+## Functions
+### Definition
+They implement the so called *DRY*: Don't Repeat Yourself! It's the concept associated with the writing of reusable code.
+Function advantages:
+- Write once, use many times
+- Reduces script length
+- Single place to edit and troubleshoot
+- Easy to maintain
+
+### Syntax
+```bash
+function function_name(){
+    # Code
+}
+
+function_name(){
+    # Code
+}
+
+# Call
+function_name
+```
+
 # Exit Status
 ## Introduction
 They indicate if the command has been executed with or without errors. The value `0` is associated with *"No Errors"*, while everything different is associated with an error.
