@@ -133,6 +133,36 @@ function_name(){
 function_name
 ```
 
+### Variables
+Variables defined within a function are globally available.
+```bash
+function my_function(){
+    GLOBAL_VAR=1
+}
+
+# Not available yet, because the function is not been called
+echo ${GLOBAL_VAR} # Output: 
+
+my_function
+
+echo ${GLOBAL_VAR} # Output: 1
+```
+
+In order to declare a local variable use the keyword `local`.
+
+```bash
+function my_function(){
+    local LOCAL_VAR=1
+}
+```
+
+### Return Codes
+```bash
+function my_function(){
+    return 0
+}
+```
+
 # Exit Status
 ## Introduction
 They indicate if the command has been executed with or without errors. The value `0` is associated with *"No Errors"*, while everything different is associated with an error.
