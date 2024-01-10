@@ -238,3 +238,26 @@ else
 fi
 ```
 The default value is that of the last command executed.
+
+# Wildcards
+## Definition
+They are character or string used for pattern matching.
+
+The *Globbing* is the process of expands the wildcard pattern into a list of files amd/or directories.
+
+## List
+### * Wildcard
+It matches zero or more characters
+```bash
+*.txt
+a*
+a*.txt
+```
+
+### ? Wildcard
+It matches exactly one characeter
+```bash
+?.txt
+a?
+a?.txt
+```
