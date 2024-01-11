@@ -42,8 +42,9 @@ kaggle = "*"
 spacy = "*"
 rouge = "*"
 tqdm = "*"
-farm-haystack = "*"
+farm-haystack = {extras = ["elasticsearch8"], version = "*"}
 numba = "*"
+elasticsearch-haystack = "*"
 
 [dev-packages]
 
