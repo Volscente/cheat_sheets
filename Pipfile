@@ -42,6 +42,8 @@ kaggle = "*"
 spacy = "*"
 rouge = "*"
 tqdm = "*"
+farm-haystack = "*"
+numba = "*"
 
 [dev-packages]
 
