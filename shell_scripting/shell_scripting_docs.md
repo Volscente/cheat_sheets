@@ -249,15 +249,50 @@ The *Globbing* is the process of expands the wildcard pattern into a list of fil
 ### * Wildcard
 It matches zero or more characters
 ```bash
-*.txt
-a*
-a*.txt
+*.txt # All .txt files
+a* # All files starting with "a"
+a*.txt # All .txt files starting with "a"
+
+ls *.locl # Match all files ending with ".lock"
 ```
 
 ### ? Wildcard
 It matches exactly one characeter
 ```bash
-?.txt
-a?
-a?.txt
+?.txt # All .txt files with a single character name
+a? # All file starting with "a" followed by a single character
+a?.txt # All .txt files starting with "a" followed by a single character
+```
+
+### [] Wildcard
+It matches any of the characters included between brackets.
+```bash
+ca[nt]* # can, cat, candy, catch
+```
+It can be used to define a range of characters/numberes.
+```bash
+[a-g]* # abaco, baseball, cricket
+[3-6]* # 3_test, 5, 6_test2
+```
+It is possible to use predefined *Named Character Classes*.
+```bash
+[[:alpha:]] # Match alphabetic letters
+[[:alnum:]] # Match alphanumeric digits
+[[:digit:]] # Match numbers
+[[:lower:]] # Match lowercase letters
+[[:space:]] # Match spaces
+[[:upper:]] # Match uppercase letters
+```
+
+### [!] Wildcard
+It matches any of the characters NOT included between the brackets.
+```bash
+# Exclude all files starting with a vowel
+[!aeiou]* # baseball, cricket
+```
+
+### \ Wildcard
+It is used to escape wildcard character and match them.
+```bash
+*\? # done?
 ```
