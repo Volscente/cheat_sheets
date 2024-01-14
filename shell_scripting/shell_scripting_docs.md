@@ -340,3 +340,8 @@ local CURRENT_DATE=$(date '+%Y%m%d')
 ```bash
 if [ $(ls -A *.jpg) ]
 ```
+
+## Test if Variable Exists
+```bash
+if [ -z ${PREFIX} ]
+```
