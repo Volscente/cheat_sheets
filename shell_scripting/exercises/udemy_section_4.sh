@@ -13,7 +13,7 @@ function file_count(){
         return 1
     fi
     
-    # TODO Check if it is a directory
+    # Check if it is a directory
     if [ -d ${DIR_PATH} ]
     then
         echo "${DIR_PATH}:"
