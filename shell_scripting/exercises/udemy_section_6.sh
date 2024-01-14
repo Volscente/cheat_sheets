@@ -3,17 +3,25 @@
 # This script includes solutions to the exercises of the Udemy Course - Section 6
 
 function rename_jpg_current_date(){
-    # Rename .jpg files in the given directory with the current date
+    # Append .jpg files in the current directory with the current date
 
-    local DIR_PATH=${1}
-
-    # Check if the argument is passed
-    if [ -z ${DIR_PATH} ]
+    # Check if there are .jpg files
+    if [ $(ls -A *.jpg) ]
     then
-        echo "No directory path is passed."
-        return 1
-    fi
 
-    # Check if the argument is a directory
-    
+        # Retrieve current date
+        local CURRENT_DATE=$(date '+%Y%m%d')
+
+        # Loop through .jpg files
+        for FILE in $(ls *.jpg)
+        do
+            mv ${FILE} ${CURRENT_DATE}${FILE}     
+        done
+        
+    else
+        echo "no files found"
+        exit 0
+    fi
 }
+
+rename_jpg_current_date

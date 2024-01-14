@@ -253,7 +253,7 @@ It matches zero or more characters
 a* # All files starting with "a"
 a*.txt # All .txt files starting with "a"
 
-ls *.locl # Match all files ending with ".lock"
+ls *.lock # Match all files ending with ".lock"
 ```
 
 ### ? Wildcard
@@ -321,4 +321,22 @@ else
     echo "The passed path is not a directory,"
     exit 2
 fi
+```
+
+## Loop Through LS
+```bash
+for FILE in $(ls *.jpg)
+do
+    mv ${FILE} ${CURRENT_DATE}${FILE}     
+done
+```
+
+## Curent Date
+```bash
+local CURRENT_DATE=$(date '+%Y%m%d')
+```
+
+## Test Files with LS
+```bash
+if [ $(ls -A *.jpg) ]
 ```
