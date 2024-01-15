@@ -110,6 +110,18 @@ cp test.txt /tmp/bak
 cp test.txt /tmp
 ```
 
+## Case Statements
+```bash
+case "$1" in
+    start)
+        /usr/sbin/sshd
+        ;;
+    stop)
+        kill $(cat /var/run/sshd.pid)
+    ;;
+esac
+```
+
 ## Functions
 ### Definition
 They implement the so called *DRY*: Don't Repeat Yourself! It's the concept associated with the writing of reusable code.
