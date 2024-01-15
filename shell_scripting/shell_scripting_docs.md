@@ -112,13 +112,31 @@ cp test.txt /tmp
 
 ## Case Statements
 ```bash
+# Example 1
 case "$1" in
-    start)
+    start|START)
         /usr/sbin/sshd
         ;;
-    stop)
+    stop|STOP)
         kill $(cat /var/run/sshd.pid)
-    ;;
+        ;;
+    *) # Matches anything else
+        echo "Usage: $0 start|stop"; exit 1
+        ;;
+esac
+
+# Example 2
+read -p "Enter y or n: " ANSWER
+case "$ANSWER" in
+    [yY] | [yY] [eE] [sS])
+        echo "You answered yes."
+        ;;
+    [nN] | [nN] [oO])
+        echo "You answered no."
+        ;;
+    *)
+        echo "Invalid answer."
+        ;;
 esac
 ```
 
