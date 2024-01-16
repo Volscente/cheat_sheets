@@ -42,9 +42,10 @@ kaggle = "*"
 spacy = "*"
 rouge = "*"
 tqdm = "*"
-farm-haystack = {extras = ["elasticsearch8"], version = "*"}
+farm-haystack = {extras = ["faiss"], version = "*"}
 numba = "*"
 elasticsearch-haystack = "*"
+faiss-cpu = "*"
 
 [dev-packages]
 
