@@ -327,6 +327,33 @@ It is used to escape wildcard character and match them.
 *\? # done?
 ```
 
+# Logging
+## Definition
+They store the following information about something that has occurred:
+- Who
+- What
+- When
+- Where
+- Why
+
+## Syslog
+The `Syslog` is a Logging system that uses facilities (what part of the system the log comes from) and severities to categorize messages
+
+**Facilities:** kern, user, mail, daemon, auth, local0, local7
+
+**Severities:** emerg, alert, crit, err, warning, notice, info, debug
+
+Logs are usually stored under: `/var/log/messages` and `/var/log/syslog`.
+
+## Usage
+```bash
+# Pass a text to the logger
+logger "Message"
+
+# Specify <facility>.<severity> through the -p option
+logger -p local0.info "Message"
+```
+
 # Useful Scripts
 ## Check Parameters
 ```bash
