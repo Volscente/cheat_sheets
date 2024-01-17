@@ -140,6 +140,9 @@ case "$ANSWER" in
 esac
 ```
 
+## While Loop
+
+
 ## Functions
 ### Definition
 They implement the so called *DRY*: Don't Repeat Yourself! It's the concept associated with the writing of reusable code.
@@ -352,6 +355,12 @@ logger "Message"
 
 # Specify <facility>.<severity> through the -p option
 logger -p local0.info "Message"
+
+# Tag the message with the name of your script (e.g., myscript) with the -t option
+logger -t myscript -p local0.info "Message"
+
+# Include the PID with the -i option
+logger -i -t myscript -p local0.info "Message"
 ```
 
 # Useful Scripts
@@ -401,4 +410,23 @@ if [ $(ls -A *.jpg) ]
 ## Test if Variable Exists
 ```bash
 if [ -z ${PREFIX} ]
+```
+
+## Log Function
+```bash
+function logit() {
+
+    local LOG_LEVEL=${1}
+
+    shift
+
+    MSG=$@
+
+    TIMESTAMP=$(date +"%Y-%m-%d %T")
+
+    if [ ${LOG_LEVEL} = 'ERROR' ] || $VERBOSE
+    then
+        echo "${TIMESTAMP} ${HOST} ${PROGRAM_NAME} [${PID}]: ${LOG_LEVEL} ${MS}
+    fi
+}
 ```
