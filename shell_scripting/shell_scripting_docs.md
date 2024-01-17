@@ -141,7 +141,22 @@ esac
 ```
 
 ## While Loop
+```bash
+# Basic syntax
+while [ CONDITION_IS_TRUE ]
+do
+    command 1
+    command N
+done
 
+# Example
+NUMBER=0
+while [ ${NUMBER} -lt 6 ]
+do
+    echo "${NUMBER}"
+    ((NUMBER++))
+done
+```
 
 ## Functions
 ### Definition
