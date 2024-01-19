@@ -158,6 +158,8 @@ do
 done
 ```
 
+Use the command `break` to interrupt the loop, but not the script. On the other hand, use the command `continue` to go to the next loop iteration.
+
 ## Functions
 ### Definition
 They implement the so called *DRY*: Don't Repeat Yourself! It's the concept associated with the writing of reusable code.
