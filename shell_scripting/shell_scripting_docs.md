@@ -158,7 +158,7 @@ do
 done
 ```
 
-Use the command `break` to interrupt the loop, but not the script. On the other hand, use the command `continue` to go to the next loop iteration.
+Use the statement `break` to interrupt the loop, but not the script. On the other hand, use the statement `continue` to go to the next loop iteration.
 
 ## Functions
 ### Definition
@@ -378,6 +378,22 @@ logger -t myscript -p local0.info "Message"
 
 # Include the PID with the -i option
 logger -i -t myscript -p local0.info "Message"
+```
+
+# Debugging
+## Built In Debugging Help
+Through the option `-x`, the x-trace or tracing would be called, offering debugging functionalities to the code.
+
+Such debugging can be activated for the whole script, by add `-x` to the Shebang.
+```bash
+#!/bin/bash -x
+TEST_VAR="test"
+echo "${TEST_VAR}"
+
+# OUPUT
++ TEST_VAR=test
++ echo test
+test
 ```
 
 # Useful Scripts
