@@ -396,6 +396,44 @@ echo "${TEST_VAR}"
 test
 ```
 
+Another option is to activate and deactivate the debugging just for the lines we need to debug.
+```bash
+#!/bin/bash
+TEST_VAR="test"
+
+# Activate debugging
+set -x
+
+echo "${TEST_VAR}"
+
+# Deactivate the debug
+set +x
+```
+
+The `-x` option can be combined with the `-e` option in order to output the error and exit the code.
+```bash
+#!/bin/bash -ex
+FILE_NAME="/not/here"
+ls ${FILE_NAME}
+echo ${FILE_NAME}
+
+# OUTPUT
++ FILE_NAME=/not/here
++ ls /not/here
+ls: cannot access /not/here: No such file or directory
+```
+
+The `-v` option diplays on the console whatever is inside the script.
+
+## Tips
+### DEBUG Variable
+It is possible to use a variable to control what commands to execute depending if you want the debug mode on or off.
+```bash
+DEBUG=true
+$DEBUG && echo "Debug mode ON." # The command after "&&" is executed only if DEBUG=true
+$DEBUG || echo "Debug mode OFF." # The command after "||" is executed only if DEBUG=false
+```
+
 # Useful Scripts
 ## Check Parameters
 ```bash
