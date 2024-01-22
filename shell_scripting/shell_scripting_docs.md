@@ -434,6 +434,31 @@ $DEBUG && echo "Debug mode ON." # The command after "&&" is executed only if DEB
 $DEBUG || echo "Debug mode OFF." # The command after "||" is executed only if DEBUG=false
 ```
 
+### Echo Variable
+Another possibility is to set a variable equals to "echo" and then prepend it to every command. In this way, if the variable is created, every command will be printed instead of being executed.
+```bash
+DEBUG="echo"
+$DEBUG ls # output: "ls"
+
+#DEBUG="echo"
+$DEBUG ls # output: execution of "ls" command
+```
+
+### PS4
+The PS4 variable holds the content of the debugging line and we can change it.
+```bash
+#!bin/bash -x
+PS4='+ $BASH_SOURCE : $LINENO : '
+TEST_VAR="test"
+echo "${TEST_VAR}"
+
+# OUTPUT
+#+ PS4='+ $BASH_SOURCE : $LINENO : '
+#+ ./udemy_section_10_debugging.sh : 14 : TEST_VAR=test
+#+ ./udemy_section_10_debugging.sh : 15 : echo test
+#test
+```
+
 # Useful Scripts
 ## Check Parameters
 ```bash
