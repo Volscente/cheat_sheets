@@ -459,6 +459,24 @@ echo "${TEST_VAR}"
 #test
 ```
 
+### Return Character
+Most of the OS add some special characters when creating a new file. Your script might give some strange errors due to these characters. Remember to check for such invisible special characters through the command: `cat -v my_script.sh` or `file my_script.sh`.
+
+# SED
+## Definition
+It stands for *Stream Editor* and it is used to manipulate especially text stream of data, which are text data that travels from:
+- One process to another
+- One file to another
+- One device to another
+
+## Usage
+```bash
+# The 's/.../' is called "Search Pattern" and it is a REGEX
+# The '/.../' is the new content to replace the Search Pattern with
+# NOTE: SED is not altering the content of the file, just display the replaced version
+sed 's/assistant/assistant to the/' ./data/manager.txt
+```
+
 # Useful Scripts
 ## Check Parameters
 ```bash
