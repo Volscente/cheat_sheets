@@ -475,6 +475,42 @@ It stands for *Stream Editor* and it is used to manipulate especially text strea
 # The '/.../' is the new content to replace the Search Pattern with
 # NOTE: SED is not altering the content of the file, just display the replaced version
 sed 's/assistant/assistant to the/' ./data/manager.txt
+
+# Same as using the pipe
+cat ./data/manager.txt | sed 's/assistant/assistant to the/'
+```
+
+**NOTE:** Remember that the SED commands works line by line in the text file &rarr; Use the `g` flag for Global Replace.
+
+```bash
+# ./data/love.txt: 'I love my wife and my wife loves me. Also, my wife loves the cat'
+
+# SED just substitute the first occurence in each line by default
+sed 's/my wife/sed/i' ./data/love.txt
+
+# Output: 'I love sed and my wife loves me. Also, my wife loves the cat'
+
+# Use the 'g' flag for Global Replacement
+sed 's/my wife/sed/ig' ./data/love.txt
+
+# Output: I love sed and sed loves me. Also, sed loves the cat
+
+# You can even specify wich occurent to replace
+sed 's/my wife/sed/2' ./data/love.txt
+
+# Output: I love my wife and sed loves me. Also, my wife loves the cat
+```
+
+## Create New Files
+It is also possible to specify the file name to backup before changing it.
+```bash
+# my_file.txt would change and a my_file.txt.bak would be created
+sed -i.bak 's/<pattern>/<replace>/<flags>' my_file.txt
+```
+
+It is also possible to directly redirect the output to a new file through the flag `w`.
+```bash
+sed 's/<pattern>/<replace>/<flags>w <new_file.txt' <input_file.txt>  
 ```
 
 # Useful Scripts
