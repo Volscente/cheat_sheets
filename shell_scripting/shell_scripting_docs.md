@@ -579,6 +579,17 @@ sed -e '/^#/d' -e '/^$/d' -e 's/apache/httpd/g' config
 
 ## Read SED Commands from File
 ```bash
+sed -f <script.sed< <input_file>
+```
+
+## Specific Lines
+```bash
+# Replace the word 'run' with 'execute' only for lines 1 and 4
+sed '1,4 s/run/execute/' <input_file>
+
+# Replace the word 'run' with 'execute' only between the first line that
+# starts with '#User' and the next blank line
+sed '/^#User/,/^$/ s/run/execute/' <input_file>
 ```
 
 
