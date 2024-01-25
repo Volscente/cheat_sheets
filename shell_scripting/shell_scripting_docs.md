@@ -513,6 +513,75 @@ It is also possible to directly redirect the output to a new file through the fl
 sed 's/<pattern>/<replace>/<flags>w <new_file.txt' <input_file.txt>  
 ```
 
+## Escape Slash Characters
+We might need to replace text with `/`. One way to do it by escaping the `/` character.
+```bash
+# Replace '/home/jason' with '/export/users/jasonc'
+echo '/home/jason' | sed 's/\/home\/jason/\/export\/users\/jasonc/'
+```
+
+Another way is to use another delimiter character instead of `/`, for example the `#`.
+```bash
+# Replace '/home/jason' with '/export/users/jasonc'
+echo '/home/jason' | sed 's#/home/jason#/export/users/jasonc#'
+```
+
+**NOTE:** You can use any other delimiter, also `:`, as long as it is used in the correct position of the command.
+
+## Templates
+They allow to perform some predefined actions on a text file using the SED command.
+```bash
+# It removes all the lines that match the pattern
+sed '/<pattern>/d' <file_path.txt>
+
+# Input:
+# """I love sed.
+# This is line 2.
+# I love sed with all of my heart"""
+#
+# Command:
+#
+# sed '/This/d' <file_path.txt>
+# 
+# Output:
+# 
+# """I love sed.
+# I love sed with all of my heart"""
+```
+
+This feature can also be used to manipulate configuration files.
+
+**Configuration File**
+```yaml
+# User to run services as
+User apache
+
+# Group to run service as
+Group apache
+```
+
+**SED Command**
+```bash
+# 1. Strip everything that starts with '#' (comments)
+sed '/^#/d' config
+
+# 2. Strip blank lines
+sed '/^$/d' config
+
+# 3. Combine 1 and 2 by using the ';'
+sed '/^#/d ; /^$/d' config
+
+# 4. Change text 'apache' with 'http'
+sed '/^#/d ; /^$/d ; s/apache/httpd/g' config
+# OR
+sed -e '/^#/d' -e '/^$/d' -e 's/apache/httpd/g' config
+```
+
+## Read SED Commands from File
+```bash
+```
+
+
 # Useful Scripts
 ## Check Parameters
 ```bash
