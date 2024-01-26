@@ -77,6 +77,16 @@ It includes:
 - Tokenization
 - Vectorization
 
+# Sentence Similarity
+## Definition
+It defines a metric to measure how similar two sentences are. It's quite useful for many other NLP applications.
+
+## Data Preparation
+The very first step is to use a model like BERT to convert the text into a collection of dense vectors. The output of this operation a huge number of vectors with an high dimensionality. Let's say 768 vectors with 512 dimensions each. There's the need to have a more condensed **Sentence Embedding**.
+
+One technique could be to just take the mean of all the dimension, in order to end up with 768 1-D vectors.
+
+
 # Advanced NLP Models
 ## Encoder-Decoder Architecture
 Taking as example the Language Translation, it consists of two neural networks:
