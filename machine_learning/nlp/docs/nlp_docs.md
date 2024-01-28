@@ -105,17 +105,40 @@ This technology is able to capture the context of a text, which is fundamental i
 Several Encoders and Decoders are stacked up together. Both Encoder and Decoder have a Self Attention layer and a Feedforward layer. However, the Decoder has in between also a Encoder-Decoder attention.
 
 ## BERT
-The *Bidirectional Encoder Representations from Transformers* is a trained Transformer model.
+### Definition
+The *Bidirectional Encoder Representations from Transformers* is a trained Transformer model with and *encoder-only* architecture.
 
-It is very powerful since it can handle very long input context and it has been trained on Wikipedia and BookCorpus. 
-
-It is trained on two different tasks, thus is a multi-task objective:
-- **Masked Language Modeling (MLM)** - In this task, some words of the sentence are masked and the model tries to predict those masked words
-- **Next Sentence Prediction (NPS)** - In this task, the model tries to predict what is the next sentence given two input sentences (Next Sentence & Not Next Sentence)
+It is very powerful since it can handle very long input context and it has been trained on Wikipedia and BookCorpus.
 
 It works on both sentence-level and token-level tasks.
 
+### Heads
+It is trained on two different tasks, thus is a multi-task objective. These two tasks represent the two heads (NSP Head and MLM Head) of the pre-trained BERT model.
+
+The architecture is thus composed by:
+- BERT Core Model
+- NSP Head on top of BERT Core Model
+- MLM Head on top of the BERT Core Model
+
+#### Masked Language Modeling (MLM)
+In this task, some words of the sentence are masked and the model tries to predict those masked words. 
+
+This head is a Feed Forward network that has as many output nodes as the number of maximum input tokens. In each output node there are as many elements as the vocabulary size. That's because you need ideally a `1.0` to the single word of the vocabulary that is predicted. It corresponds to the word in the vocabulary with the highest probability for that output node.
+
+In order to retrieve the single word, the output node has to go into a `Softmax` function in order to retrieve the index of the max probable word.
+
+
+#### Next Sentence Prediction (NPS)
+In this task, the model tries to predict what is the next sentence given two input sentences (Next Sentence & Not Next Sentence). 
+
+This head is a Feed Forward network that outputs two different values: `IsNextSentence` and `NotNextSentence`. If the first is high, then Sentence B comes after Sentence A.
+
+
+### Embeddings
 The input embeddings of BERT includes:
 - **Token Embeddings** - The vector representation of the input text (it includes a initial special token called "CLS", that identify the Classificaiton task)
 - **Segment Embeddings** - It defined where is the separator between the input sentence A and the input sentence B
 - **Position Embeddings** - It incorporates the order of the input sequences
+
+### Fine-Tuning
+When fine tuning the BERT Core model, the two heads (NSP and MLM) are used in tandem. After they are used to fine-tuning the BERT Core Model, the two heads are discarded.
