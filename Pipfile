@@ -46,6 +46,7 @@ farm-haystack = {extras = ["faiss"], version = "*"}
 numba = "*"
 elasticsearch-haystack = "*"
 faiss-cpu = "*"
+sentence-transformers = "*"
 
 [dev-packages]
 
