@@ -1,6 +1,78 @@
 # Useful Resource
 - [PyTorch Save&Loads](https://pytorch.org/tutorials/beginner/saving_loading_models.html)
 
+# Training Models
+## Traing with TQDM
+```python
+# Import Standard Libraries
+from transformers import BertTokenizer, BertForMaskedLM, AdamW
+import torch
+from tqdm import tqdm
+
+class MeditationsDataset(torch.utils.data.Dataset):
+    """
+    Datataset class
+    """
+    def __init__(self, encodings):
+        # Encodings are our "inputs" tensors
+        self.encodings = encodings
+
+    def __getitem__(self, idx):
+        # Get the sentence at indenx 'idx'
+        return {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
+    
+    def __len__(self):
+        return len(self.encodings.input_ids)
+
+# Initialise the dataset and create the PyTorch Data Loader from that
+dataset = MeditationsDataset(inputs)
+loader = torch.utils.data.DataLoader(dataset, batch_size=126, shuffle=True)
+
+# Use CUDA if available
+device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+model.to(device)
+
+# Activate training mode
+model.train()
+
+# Initialize optimizer
+optim = AdamW(model.parameters(), lr=5e-5)
+
+epochs = 2
+
+for epoch in range(epochs):
+
+    # Use TQDM for a progressive loading baar
+    loop = tqdm(loader, leave=True)
+
+    for batch in loop:
+
+        # Initialise gradients
+        optim.zero_grad()
+
+        # Retrieve data for training and load them to the chosen device
+        input_ids = batch['input_ids'].to(device)
+        attention_mask = batch['attention_mask'].to(device)
+        labels = batch['labels'].to(device)
+
+        # Feed forward
+        outputs = model(input_ids, 
+                        attention_mask=attention_mask,
+                        labels=labels)
+        # Extract loss
+        loss = outputs.loss
+
+        # Compute gradients
+        loss.backward()
+
+        # Update weights
+        optim.step()
+
+        # Print information on loading bar
+        loop.set_description(f'Epoch {epoch}')
+        loop.set_postfix(loss=loss.item())
+```
+
 # Save & Load Models
 ## Theory
 ### What is a `state_dict`?
