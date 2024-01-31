@@ -142,3 +142,6 @@ The input embeddings of BERT includes:
 
 ### Fine-Tuning
 When fine tuning the BERT Core model, the two heads (NSP and MLM) are used in tandem. After they are used to fine-tuning the BERT Core Model, the two heads are discarded.
+
+- The MLM encourages the BERT model to understand the context between words
+- The NSP encourages the BERT model to learn longer term contextual relationships between sentences, rather than words
