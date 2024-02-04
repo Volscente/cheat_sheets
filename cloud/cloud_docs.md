@@ -3,7 +3,7 @@
 There are several phases that, ultimately, lead to the advent of cloud computing:
 1. **Time Sharing** - 1960 IBM has a giant mainframe computer. People go there and use it when theyu want
 2. **Virtualisation** - Very populare between the 1990 and 2000. It creates a virtual machine on top of an hardware resource. So many poeple can use that hardware resource at the same time, through different virtual machines.
-3. **Serverless** - A cloud provider allocates machine resources and compute capabilities on demand and takes care of the server hardware on behalf of the customer
+3. **Serverless** - A cloud provider allocates machine resources and compute capabilities on demand and takes care of the server hardware on behalf of the customer.
 
 ## Characteristics
 NIST definition of key features of the Cloud:
@@ -12,3 +12,7 @@ NIST definition of key features of the Cloud:
 3. **Resource Pooling** - Cloud provider's computing resources are pooled together to service multiple consumers and consumers are independent of the geographical location of such computing resources
 4. **Rapid Elasticity** - Computing resources can be elastically provisioned or released commensurate with demand (Scalability)
 5. **Measured Service** - Resource usage can be monitored and reported to the consumer
+
+# High Availability and Fault Tolerance
+## Regions and Zones
+One way to deal with fault tolerance is to spread resources and compute capabilities across different regions and zones. In this way, even if a data center fails, other can be still available.

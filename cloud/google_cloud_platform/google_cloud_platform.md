@@ -74,7 +74,15 @@ Prompting types:
 Each resource in GCP is organised in:
 1. **Multi-Region** - Like North-US
 2. **Region** - Like north-us
-3. **Zones** - Like north-us1a, north-us1b and north-us1c
+3. **Zones** - Like north-us1a, north-us1b and north-us1c   
+
+Such division is not necesseraly related to a physical division.
+
+## Connect to GCP
+In order to use any GCP service, the host has to pass through an **Edge Points of Presence** (POPs) or use an **Edge Nodes** (Google Global Cache or GGC). The latest are sometimes referred also as **Content Delivery Network (CDN)**. All of such terms are usually referring to the same thing.+
+
+The above POPs, Edge Nodes or CNDs represent points where the Google's network is connected to the rest of the Internet via peering. Such connection is made possible through an ISP (Internet Service Provider).
+
 ## GCP Layers
 - **Networking and Security** - It provides the basis for every other service
 - **Compute and Storage** - These two resources are decoupled, so that they can scale independently
