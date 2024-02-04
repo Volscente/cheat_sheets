@@ -79,7 +79,7 @@ Each resource in GCP is organised in:
 Such division is not necesseraly related to a physical division.
 
 ## Connect to GCP
-In order to use any GCP service, the host has to pass through an **Edge Points of Presence** (POPs) or use an **Edge Nodes** (Google Global Cache or GGC). The latest are sometimes referred also as **Content Delivery Network (CDN)**. All of such terms are usually referring to the same thing.+
+In order to use any GCP service, the host has to pass through an **Edge Points of Presence** (POPs) or use an **Edge Nodes** (Google Global Cache or GGC). The latest are sometimes referred also as **Content Delivery Network (CDN)**. All of such terms are usually referring to the same thing. The main difference between POP and Edge Nodes is that the latter ones contain a cache of the most common and static information. So that it's easier to access them.
 
 The above POPs, Edge Nodes or CNDs represent points where the Google's network is connected to the rest of the Internet via peering. Such connection is made possible through an ISP (Internet Service Provider).
 
