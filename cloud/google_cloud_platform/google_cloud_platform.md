@@ -70,6 +70,11 @@ Prompting types:
 - **Horizontal Solutions** - Solve similar problems across different industries
 
 # Google Cloud Infrastructure
+## Regions and Zone
+Each resource in GCP is organised in:
+1. **Multi-Region** - Like North-US
+2. **Region** - Like north-us
+3. **Zones** - Like north-us1a, north-us1b and north-us1c
 ## GCP Layers
 - **Networking and Security** - It provides the basis for every other service
 - **Compute and Storage** - These two resources are decoupled, so that they can scale independently
