@@ -7,6 +7,8 @@ A virtual machine is a complete Operating System that runs over an hardware. The
 
 A Container, however, is a higher level of abstraction that relies on the exact same Kernel as the machine is running upon, without the need of having a complete Operating System.
 
+![VMs vs Containers](./../images/k8s_image_1.png)
+
 ## History
 It was originally designed by Google and then open-sourced thanks to the *Cloud Native Computing Foundation* in 2015.
 
@@ -29,7 +31,12 @@ Containeer Orchestrators, like Kubernetes, were born in order to solve such ques
 
 # Clusters
 ## Definition
-Kubernetes works in terms of *Clusters*: a collection of *Nodes*, which are composed by one or more *PODs*.
+Kubernetes works in terms of *Clusters*: a collection of *Nodes*, which are composed by one or more *PODs*, which are composed by *Containers*.
+
+Cluster &rarr; Node &rarr; PODs &rarr; Containers
+
+## Control Plance & Desired State
+They in which Kubernetes ensure that the cluster is running correctly is to use a *Control Plane* in order to manage the containers within the cluster. The state of such machines has to match a pre-defined *Desired State*.
 
 # Containers
 ## Definition
@@ -38,3 +45,7 @@ A container is a standard unit of software that packages up code and all its dep
 ## Permissions
 - **Namespaces** - They define what a proicess can see
 - **Cgroups** - They define what a process can use
+
+## Technologies
+### Docker
+Docker provides the ability to package and run an application in a loosely isolated environment called a container.
