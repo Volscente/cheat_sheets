@@ -33,10 +33,23 @@ Containeer Orchestrators, like Kubernetes, were born in order to solve such ques
 ## Definition
 Kubernetes works in terms of *Clusters*: a collection of *Nodes*, which are composed by one or more *PODs*, which are composed by *Containers*.
 
+## Nodes
+They contain everything necessary to run PODs:
+- Container Runtime (To run containers)
+- Kubelet (Run necessary k8s processes)
+- Kube-proxy (Handle networking for Kubernetes API)
+
 Cluster &rarr; Node &rarr; PODs &rarr; Containers
 
-## Control Plance & Desired State
+## Control Plane & Desired State
 They in which Kubernetes ensure that the cluster is running correctly is to use a *Control Plane* in order to manage the containers within the cluster. The state of such machines has to match a pre-defined *Desired State*.
+
+The **Control Plane** includes:
+- API Server
+- Etcd - It holds important key-value information for k8s
+- Scheduler - It organises the PODs' runs
+- Controller Manager - It it responsible for the lifecycle management of PODs
+- Cloud Controller - It is used to integrate with Cloud providers, such as GCP
 
 # Containers
 ## Definition
@@ -49,3 +62,7 @@ A container is a standard unit of software that packages up code and all its dep
 ## Technologies
 ### Docker
 Docker provides the ability to package and run an application in a loosely isolated environment called a container.
+
+# Kubernetes API
+## Definition
+It is a practical way used to communicate commands and instructions for Kubernetes. It both works in an *Imperative* approach, writing commands and execute them, or *Declarative*, create a file for the Kubernetes API to read the commands from.
