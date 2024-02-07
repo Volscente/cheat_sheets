@@ -72,3 +72,32 @@ The **Control Plane** includes:
 # Kubernetes API
 ## Definition
 It is a practical way used to communicate commands and instructions for Kubernetes. It both works in an *Imperative* approach, writing commands and execute them, or *Declarative*, create a file for the Kubernetes API to read the commands from.
+
+# Google Cloud Platform
+## Services
+### Google Build
+It is used in order to build container images:
+```bash
+# Syntax
+gcloud builds submit --region=<region> --tag gcr.io/<project_ID>/<image_name> .
+
+# Example
+gcloud builds submit --region=us-west2 --tag gcr.io/test_project_id/image_1 .
+```
+
+It is also possible to submit a **Build Configuration** file like:
+```yaml
+# Example
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/helloworld-image', '.']
+images:
+- 'gcr.io/$PROJECT_ID/helloworld-image'
+```
+
+Submit it to Google Build through:
+```
+gcloud builds submit --config <config_build_file>
+```
+
+- **Container Registry** - It is used in order to host docker images
