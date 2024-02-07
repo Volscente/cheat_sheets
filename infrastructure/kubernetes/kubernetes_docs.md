@@ -62,16 +62,55 @@ kubectl expose deployment <name> --port 80 --type LoadBalancer --target-port 808
 ## Control Plane & Desired State
 They in which Kubernetes ensure that the cluster is running correctly is to use a *Control Plane* in order to manage the containers within the cluster. The state of such machines has to match a pre-defined *Desired State*.
 
-The **Control Plane** includes:
-- API Server
+The **Control Plane** includes several controllers:
+- API Server - It receives and executes commands from the below elements
 - Etcd - It holds important key-value information for k8s
-- Scheduler - It organises the PODs' runs
-- Controller Manager - It it responsible for the lifecycle management of PODs
+- Scheduler - It organises the PODs inside the nodes
+- Controller Manager - It it responsible for the lifecycle management of PODs (it is responsible for checking the match between the current cluster state and the desired one)
 - Cloud Controller - It is used to integrate with Cloud providers, such as GCP
+
+On the PODs we have:
+- Kubelet - It is used for communication between Kube API Server and PODs
+- Kubeproxy - It is used to maintain the network between the cluster's PODs
+
+![Kubernetes Architecture](./../images/k8s_image_2.png)
 
 # Kubernetes API
 ## Definition
 It is a practical way used to communicate commands and instructions for Kubernetes. It both works in an *Imperative* approach, writing commands and execute them, or *Declarative*, create a file for the Kubernetes API to read the commands from.
+
+## Objects
+Kubernetes objects are persistent entities in the Kubernetes system. Kubernetes uses these entities to represent the state of your cluster. Specifically, they can describe:
+- What containerized applications are running (and on which nodes)
+- The resources available to those applications
+- The policies around how those applications behave, such as restart policies, upgrades, and fault-tolerance
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+```
+
+## Kubectl
+It is the CLI of K8s that allows to directly communicate with the Kubernetes API Server.
+
+Information about credentials and location of the Kubernetes Cluster can be found udner `$HOME/.kube/config`.
 
 # Google Cloud Platform
 ## Services
@@ -100,4 +139,19 @@ Submit it to Google Build through:
 gcloud builds submit --config <config_build_file>
 ```
 
-- **Container Registry** - It is used in order to host docker images
+### Artifact Registry
+Images built with **Google Build** are automatically pushed to the Artifact Registry.
+
+### GKE
+It offers capabilities to manage Kubernetes Clusters in a Standard (full control) or Autopilot (more automations) ways.
+
+It is possible to easily create a cluster through the GUI and specifies its configuration (e.g., the number of nodes)
+
+After that, click on *Workloads* to create PODs on that cluster.
+
+We can retrieve credentials for a GKE Cluster through:
+```bash
+gcloud container clusters get-credentials <cluster_name> --zone <zone_name>
+```
+
+The above command will automatically update the `$HOME/.kube/config` with the new GKE cluster credentials.
