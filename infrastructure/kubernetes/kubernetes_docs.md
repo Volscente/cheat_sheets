@@ -33,6 +33,11 @@ Containeer Orchestrators, like Kubernetes, were born in order to solve such ques
 ## Definition
 Kubernetes works in terms of *Clusters*: a collection of *Nodes*, which are composed by one or more *PODs*, which are composed by *Containers*.
 
+In GCP, you can create a cluster with:
+```bash
+gcloud container clusters create-auto <name_of_clsuter> --location=us-central1
+```
+
 ## Nodes
 They contain everything necessary to run PODs:
 - Container Runtime (To run containers)
@@ -40,6 +45,19 @@ They contain everything necessary to run PODs:
 - Kube-proxy (Handle networking for Kubernetes API)
 
 Cluster &rarr; Node &rarr; PODs &rarr; Containers
+
+## PODs
+They host the container application, which can be deployed through:
+```bash
+kubectls create deplyment <name> --image <image>
+```
+
+**NOTE:** It is also possible to specify the number of replicas that has to spread across different nodes.
+
+Then we need to expose the service:
+```bash
+kubectl expose deployment <name> --port 80 --type LoadBalancer --target-port 8080
+```
 
 ## Control Plane & Desired State
 They in which Kubernetes ensure that the cluster is running correctly is to use a *Control Plane* in order to manage the containers within the cluster. The state of such machines has to match a pre-defined *Desired State*.
@@ -50,18 +68,6 @@ The **Control Plane** includes:
 - Scheduler - It organises the PODs' runs
 - Controller Manager - It it responsible for the lifecycle management of PODs
 - Cloud Controller - It is used to integrate with Cloud providers, such as GCP
-
-# Containers
-## Definition
-A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another.
-
-## Permissions
-- **Namespaces** - They define what a proicess can see
-- **Cgroups** - They define what a process can use
-
-## Technologies
-### Docker
-Docker provides the ability to package and run an application in a loosely isolated environment called a container.
 
 # Kubernetes API
 ## Definition
