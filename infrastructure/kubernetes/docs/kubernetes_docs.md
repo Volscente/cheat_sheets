@@ -49,7 +49,7 @@ Cluster &rarr; Node &rarr; PODs &rarr; Containers
 ## PODs
 They host the container application, which can be deployed through:
 ```bash
-kubectls create deplyment <name> --image <image>
+kubectl create deplyment <name> --image <image>
 ```
 
 **NOTE:** It is also possible to specify the number of replicas that has to spread across different nodes.
