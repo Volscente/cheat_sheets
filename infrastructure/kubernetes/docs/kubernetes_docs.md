@@ -7,7 +7,7 @@ A virtual machine is a complete Operating System that runs over an hardware. The
 
 A Container, however, is a higher level of abstraction that relies on the exact same Kernel as the machine is running upon, without the need of having a complete Operating System.
 
-![VMs vs Containers](./../images/k8s_image_1.png)
+![VMs vs Containers](./../../images/k8s_image_1.png)
 
 ## History
 It was originally designed by Google and then open-sourced thanks to the *Cloud Native Computing Foundation* in 2015.
@@ -73,14 +73,14 @@ On the PODs we have:
 - Kubelet - It is used for communication between Kube API Server and PODs
 - Kubeproxy - It is used to maintain the network between the cluster's PODs
 
-![Kubernetes Architecture](./../images/k8s_image_2.png)
+![Kubernetes Architecture](./../../images/k8s_image_2.png)
 
 # Kubernetes API
 ## Definition
 It is a practical way used to communicate commands and instructions for Kubernetes. It both works in an *Imperative* approach, writing commands and execute them, or *Declarative*, create a file for the Kubernetes API to read the commands from.
 
-## Objects
-Kubernetes objects are persistent entities in the Kubernetes system. Kubernetes uses these entities to represent the state of your cluster. Specifically, they can describe:
+## Deployment Objects
+Kubernetes deployment objects are persistent entities in the Kubernetes system. Kubernetes uses these entities to represent the state of your cluster. Specifically, they can describe:
 - What containerized applications are running (and on which nodes)
 - The resources available to those applications
 - The policies around how those applications behave, such as restart policies, upgrades, and fault-tolerance
@@ -107,6 +107,32 @@ spec:
         - containerPort: 80
 ```
 
+## Manage Deployment Objects
+They can be scaled, also automatically through:
+
+`kubectl autoscale deployment <name> --min=1 --max=4 --cpu-percent=90`
+
+Another option is to use the **Apply** command to change the deployment based on a file:
+
+```bash
+# Remember to retrieve first the cluster credentials
+kubectl apply -g <deployment_file>.yaml
+```
+
+Or use the commands **Set** and **Rollout**:
+```bash
+# Set the new image
+kubectl set image <deployment_name> <container_name>=<image_name>
+
+# Rollout the change
+kubectl rollout status <deployment_name>
+```
+
+### Deployment Stragegies
+They define how to update an existing deployment with an update version.
+1. **Blue-Green Deployment** - A replica of the current deployment is made an tested in a separated environment. Once it's fully operational and tested, it is switched with the previous one. The main advantage is that the switch is instant, the problem is that is requires double the resources for maintaining both the blue and green environments.
+2. **Canary Deployment** - The new version is only released to a subset of users and gradually rolled-out to others. It is very flexible and also allows to collect feedback. However, it is very time consuming.
+ 
 ## Kubectl
 It is the CLI of K8s that allows to directly communicate with the Kubernetes API Server.
 
@@ -155,3 +181,14 @@ gcloud container clusters get-credentials <cluster_name> --zone <zone_name>
 ```
 
 The above command will automatically update the `$HOME/.kube/config` with the new GKE cluster credentials.
+
+## Deploy a Cluster Deployment on GCP - DEMO
+1. Activate GKE API and Artifact Registry on GCP
+2. Set default project on gcloud `glocud config set project <PROJECT_ID>`
+3. Set default zone `gcloud config set compute/zone <us-west1-a>`
+4. Set default region `gcloud config set compute/region <us-west1>`
+5. Create GKE cluster `gcloud container clusters create <cluster_name> --num-nodes=1`
+6. Get GKE cluster credentials `gcloud container clusters get-credentials <cluster_name>`
+7. Create deployment `kubectl create deployment <deployment_name> --image <image_name>`
+8. Expose the deployment through a service `kubectl expose deplyment <deployment_name> --type LoadBalancer --port 80 --target-port 8080`
+9. Check `kubectl get pods` and `kubectl get service <deployment_name>`
