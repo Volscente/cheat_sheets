@@ -1,4 +1,4 @@
-# GCP
+# GCP
 ## Build & Publish Docker Image to Artifact Registry
 1. Create a Drone Repository from the Drone Home Page
 2. Create a Service Account on GCP with the following roles and permissions:
