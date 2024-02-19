@@ -57,4 +57,30 @@ steps:
       - ${DRONE_TAG}
 ```
 
-   
+# Python CI
+## Lint
+```yml
+# Pipeline for run PyLint, SQLFluff and PyTest
+kind: pipeline
+type: docker
+name: default
+
+trigger:
+  event:
+    - push
+    - pull_request
+  branch:
+    include:
+      - main
+      - dev
+
+steps:
+  - name: Lint
+    image: python:latest
+    commands:
+      - pip install poetry
+      - poetry install
+      - ./scripts/sqlfluff_fix_and_lint.sh ./queries
+      - ./scripts/pylint_lint.sh
+
+```
