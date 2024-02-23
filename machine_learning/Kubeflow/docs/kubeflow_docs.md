@@ -16,8 +16,11 @@ Kubeflow is specifically designed to work with Kubernetes underneath. The pipeli
 - Metaflow
 
 # Building Pipelines
+## DSL
+It allows to build components and pipelines in order to create a DAG (Direct Acyclic Graph).
+
 ## Components
-They are defined by the `@dsl.component` decorator and are the building blocks of a Kubeflow Pipeline.
+They are defined by the `@dsl.component` decorator and are the building blocks of a Kubeflow Pipeline. Each component run in a dedicated container.
 
 ## Pipielines
 They are defined by the `@dsl.pipeline` decorator and combine several components together.
