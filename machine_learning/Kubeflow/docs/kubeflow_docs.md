@@ -22,6 +22,11 @@ It allows to build components and pipelines in order to create a DAG (Direct Acy
 ## Components
 They are defined by the `@dsl.component` decorator and are the building blocks of a Kubeflow Pipeline. Each component run in a dedicated container.
 
+There are three types of Components:
+- **Built-in** - Such components are already defined and available [here](https://github.com/kubeflow/pipelines/tree/master/components)
+- **Python**
+- **Custom**
+
 ## Pipielines
 They are defined by the `@dsl.pipeline` decorator and combine several components together.
 
