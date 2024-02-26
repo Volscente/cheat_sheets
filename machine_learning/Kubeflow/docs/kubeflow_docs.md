@@ -24,8 +24,35 @@ They are defined by the `@dsl.component` decorator and are the building blocks o
 
 There are three types of Components:
 - **Built-in** - Such components are already defined and available [here](https://github.com/kubeflow/pipelines/tree/master/components)
-- **Python**
-- **Custom**
+- **Python** - Defined through Python functions and `@dsl.component` decorator
+- **Custom** - Such components are built on top of Python components and are designed to loosening the hard requirements of
+Python components. Thanks to custom components, Python components can rely on modules and imports outside the function.
+
+### Python Components Limitations
+- They can not use anything defined outside the function
+- Each library used should be imported inside the component, since it runs in a dedicated container
+  - It possible to overcome this problem by using the `packages_to_install` argument in the dectorator
+  ```python
+  @dsl.component(packages_to_install=['numpy==1.21.6'])
+  def function_name():
+    ...
+  ```
+  
+Most of these limitations are fixed through the usage of **Custom Components**.
+  
+### Custom Components Process
+- Create a `/src` directory
+- Create your custom Python module (e.g. `/src/add_two_numbers.py`)
+- Now define your component under `/src/my_component.py`
+- Import in `/src/my_component.py` the custom Python module
+```python
+from kpf import dsl
+from add_two_numbers import compute_sum
+
+@dsl.component
+def my_component_function(a: int, b: int) -> int:
+    return compute_sum(a, b)
+```
 
 ## Pipielines
 They are defined by the `@dsl.pipeline` decorator and combine several components together.
