@@ -49,7 +49,7 @@ Most of these limitations are fixed through the usage of **Custom Components**.
 - Now define your component under `/src/my_component.py`
 - Import in `/src/my_component.py` the custom Python module
 ```python
-from kpf import dsl
+from kfp import dsl
 from add_two_numbers import compute_sum
 
 @dsl.component
@@ -111,4 +111,8 @@ client = Client(host='<endpoint>')
 run = client.create_run_from_pipeline_package(
     './../compiled_pipelines/example_pipeline.yaml',
     arguments={'recipient': 'World'})
+```
+- CLI
+```commandline
+kfp run create --experiment-name my-experiment --package-file path_to_the_pipeline_yaml_file
 ```

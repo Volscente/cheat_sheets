@@ -1,6 +1,6 @@
 # Import Standard Libraries
-from kpf import dsl, compiler
-from kpf.client import Client
+from kfp import dsl, compiler
+from kfp.client import Client
 
 @dsl.component
 def example_component(name: str) -> str:
@@ -10,6 +10,7 @@ def example_component(name: str) -> str:
 
     return f'Hello, {name}!'
 
+@dsl.pipeline
 def example_pipeline(name: str) -> str:
     """
     This implement a pipeline, composed by several components
