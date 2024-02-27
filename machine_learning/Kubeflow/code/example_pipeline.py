@@ -1,4 +1,4 @@
-# Import Standard Libraries
+# Import Standard Libraries
 from kpf import dsl, compiler
 from kpf.client import Client
 
@@ -27,5 +27,5 @@ client = Client(host='<endpoint>')
 
 # Create the pipeline
 run = client.create_run_from_pipeline_package(
-    './../compiled_pipelines/example_pipeline.yaml', 
+    './../compiled_pipelines/example_pipeline.yaml',
     arguments={'recipient': 'World'})

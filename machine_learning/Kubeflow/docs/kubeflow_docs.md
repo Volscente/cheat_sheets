@@ -25,7 +25,7 @@ They are defined by the `@dsl.component` decorator and are the building blocks o
 There are three types of Components:
 - **Built-in** - Such components are already defined and available [here](https://github.com/kubeflow/pipelines/tree/master/components)
 - **Python** - Defined through Python functions and `@dsl.component` decorator
-- **Custom** - Such components are built on top of Python components and are designed to loosening the hard requirements of
+- **Custom/Containerized Python** - Such components are built on top of Python components and are designed to loosening the hard requirements of
 Python components. Thanks to custom components, Python components can rely on modules and imports outside the function.
 
 ### Python Components Limitations
@@ -40,7 +40,10 @@ Python components. Thanks to custom components, Python components can rely on mo
   
 Most of these limitations are fixed through the usage of **Custom Components**.
   
-### Custom Components Process
+### Custom/Containerized Python Components Process
+
+**Import from Other Modules**
+
 - Create a `/src` directory
 - Create your custom Python module (e.g. `/src/add_two_numbers.py`)
 - Now define your component under `/src/my_component.py`
@@ -54,10 +57,58 @@ def my_component_function(a: int, b: int) -> int:
     return compute_sum(a, b)
 ```
 
-## Pipielines
+<br>
+
+**Modify Decorator**
+
+It is also possible to specify a `target_image` in the decorator, to tag the built container image:
+```python
+@dsl.component(base_image='python:3.7',
+               target_image='gcr.io/my-project/my-component:v1')
+def my_component_function(a: int, b: int) -> int:
+    return compute_sum(a, b)
+```
+
+<br>
+
+**Build Component**
+
+```bash
+kfp component build src/ --component-filepattern my_component.py --no-push-image
+```
+
+
+## Pipelines
 They are defined by the `@dsl.pipeline` decorator and combine several components together.
 
+```python
+@dsl.pipeline
+def addition_pipeline(x: int, y: int) -> int:
+    task1 = add(a=x, b=y)
+    task2 = add(a=task1.output, b=x)
+    return task2.output
+```
+
 ## Compiler
-The `kfp.compiler.Compiler()` object is used to compile a the domai-specific language (DSL) objects to a self-contained pipeline `YAML` file.
+The `kfp.compiler.Compiler()` object is used to compile to the domain-specific language (DSL) 
+objects to a self-contained pipeline `YAML` file.
+
+```python
+compiler.Compiler().compile(addition_pipeline, 'pipeline.yaml')
+```
 
 Afterwards, the `YAML` file can be submitted to a KFP-conformant backend for execution.
+
+## Run
+In order to run a Pipeline on GCP:
+- Upload the `.YAML` file directly from the UI
+- Use the SDK
+```python
+# Instance a Kubeflow Client where to submit the pipeline (e.g., GCP Vertex AI)
+client = Client(host='<endpoint>')
+
+# Create the pipeline
+run = client.create_run_from_pipeline_package(
+    './../compiled_pipelines/example_pipeline.yaml',
+    arguments={'recipient': 'World'})
+```
