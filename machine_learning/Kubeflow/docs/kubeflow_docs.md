@@ -118,3 +118,7 @@ kfp run create --experiment-name my-experiment --package-file path_to_the_pipeli
 ```
 
 **NOTE:** It will require a Cloud Storage bucket where to output the `output_json` with information about the pipeline's run execution exit status.
+
+# Features
+## Continuous Training
+A Pipeline execution can be conditioned to trigger under certain circumstances: the evaluation metrics surpass predefined thresholds.
