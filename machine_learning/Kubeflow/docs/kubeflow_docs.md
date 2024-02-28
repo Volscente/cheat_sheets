@@ -97,10 +97,10 @@ objects to a self-contained pipeline `YAML` file.
 compiler.Compiler().compile(addition_pipeline, 'pipeline.yaml')
 ```
 
-Afterwards, the `YAML` file can be submitted to a KFP-conformant backend for execution.
+Afterwards, the `YAML` file can be submitted to a KFP-conformant backend for execution (Check the **Run** section).
 
 ## Run
-In order to run a Pipeline on GCP:
+In order to run a Pipeline on GCP Vertex AI:
 - Upload the `.YAML` file directly from the UI
 - Use the SDK
 ```python
@@ -116,3 +116,5 @@ run = client.create_run_from_pipeline_package(
 ```commandline
 kfp run create --experiment-name my-experiment --package-file path_to_the_pipeline_yaml_file
 ```
+
+**NOTE:** It will require a Cloud Storage bucket where to output the `output_json` with information about the pipeline's run execution exit status.
