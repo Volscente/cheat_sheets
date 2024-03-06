@@ -169,3 +169,12 @@ pytest
 # If the venv is not recognised
 poetry run pytest
 ```
+
+# Custom Configurations
+## Update PYTHONPATH
+Add the following line:
+```bash
+# Update PYTHONPATH
+export PYTHONPATH="<path>:$PYTHONPATH"
+```
+In the `.venv/bin/activate` file.
