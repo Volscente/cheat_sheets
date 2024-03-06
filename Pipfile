@@ -47,6 +47,7 @@ numba = "*"
 elasticsearch-haystack = "*"
 faiss-cpu = "*"
 sentence-transformers = "*"
+bentoml = "*"
 
 [dev-packages]
 
