@@ -19,10 +19,11 @@ to celebrate what is being hailed as 'The Leap of the Century."
 )
 class Summarization:
     def __init__(self) -> None:
-        # Load model into pipeline
+        # Load a pre-trained pipeline from Hugging Face
         self.pipeline = pipeline('summarization')
     
     @bentoml.api
     def summarize(self, text: str = EXAMPLE_INPUT) -> str:
+        # Feed the input into the pipeline
         result = self.pipeline(text)
         return result[0]['summary_text']

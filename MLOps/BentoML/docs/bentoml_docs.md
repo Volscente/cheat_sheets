@@ -33,6 +33,11 @@ class Summarization:
 
 In each service, one or more APIs can be defined as function with the `@bentoml.api` decorator.
 
+A service can be run through the following command.
+```shell
+bentoml serve service:<service_class_name>
+```
+
 ### Deployment
 Before deploying the AI application, create a bentofile.yaml file, detailing all necessary build configurations such as Python dependencies and Docker settings.
 
