@@ -8,6 +8,22 @@ It is a complete Machine Development Framework based on Kubernetes, with the aim
 
 ![Kubeflow Components](./../images/kubeflow_image_1.svg)
 
+## Installation
+This is the [Reference Documentation](https://www.kubeflow.org/docs/components/pipelines/v1/installation/localcluster-deployment/).
+1. Install `kind`, designed to running local kubernetes clusters using Docker container nodes (`brew install kind`)
+2. Create a Kubernetes cluster (`kind create cluster --name kubeflow-kind-cluster`)
+
+This is the [Reference Documentation](https://dagshub.com/blog/how-to-install-kubeflow-locally/).
+1. Install `minikube` to run Kubernetes (K8s) clusters locally
+```bash
+brew install minikube
+```
+2. Install `kubectl` to execute K8s commands to send to K8s clusters
+```bash
+brew install kubectl
+```
+
+
 ## Kubeflow on GCP
 Kubeflow is specifically designed to work with Kubernetes underneath. The pipelines implemented with Kubeflow can natively run on top of a Kubernetes cluster. Moreover, Vertex AI Pipeline is another level of abstractation that allows us to easily manage Kubeflow Pipelines.
 
