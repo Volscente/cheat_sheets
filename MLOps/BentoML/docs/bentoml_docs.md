@@ -54,7 +54,8 @@ Each service is defined by the `@bentoml.service` decorator for a class. Each cl
 Service configuration can be specified in the decorator
 ```python
 @bentoml.service(
-    resources={"memory": "500MiB"},
+    name='summarization_service',
+    resources={"cpu": "200m", "memory": "500MiB"},
     traffic={"timeout": 10},
 )
 class Summarization:
@@ -72,6 +73,32 @@ def summarize(self, text: str) -> str:
     result = self.pipeline(text)
     return result[0]['summary_text']
 ```
+It is possible to retrieve information about the request from the `bentoml.Context`
+and, at the same time, populate the response information.
+```python
+@bentoml.api
+def summarize(self, text: str, ctx: bentoml.Context) -> str:
+    # Get request headers
+    request_headers = ctx.request.headers
+
+    # Populate response context
+    ctx.response.status_code = 202
+    ctx.response.cookies = [
+            bentoml.Cookie(
+                key="key",
+                value="value",
+                max_age=None,
+                expires=None,
+                path="/summarize",
+                domain=None,
+                secure=True,
+                httponly=True,
+                samesite="None"
+            )
+        ]
+```
+
+
 
 ## Testing Services
 A service can be started locally through `bentoml serve <service:class_name>`.
