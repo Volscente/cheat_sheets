@@ -9,6 +9,7 @@ It is a complete Machine Development Framework based on Kubernetes, with the aim
 ![Kubeflow Components](./../images/kubeflow_image_1.svg)
 
 ## Installation
+### Minikube
 This is the [Reference Documentation](https://dagshub.com/blog/how-to-install-kubeflow-locally/).
 
 1. Install `minikube` to run Kubernetes (K8s) clusters locally
@@ -47,6 +48,8 @@ kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80
 
 Navigate to http://localhost:8080/.
 
+**NOTE:** This installation seems to have problems with K8s minikube deployment.
+  
 ## Kubeflow on GCP
 Kubeflow is specifically designed to work with Kubernetes underneath. The pipelines implemented with Kubeflow can natively run on top of a Kubernetes cluster. Moreover, Vertex AI Pipeline is another level of abstractation that allows us to easily manage Kubeflow Pipelines.
 
