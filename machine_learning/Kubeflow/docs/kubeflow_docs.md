@@ -66,11 +66,11 @@ They are defined by the `@dsl.component` decorator and are the building blocks o
 
 There are three types of Components:
 - **Built-in** - Such components are already defined and available [here](https://github.com/kubeflow/pipelines/tree/master/components)
-- **Python** - Defined through Python functions and `@dsl.component` decorator
+- **Lightweight Python** - Defined through Python functions and `@dsl.component` decorator
 - **Custom/Containerized Python** - Such components are built on top of Python components and are designed to loosening the hard requirements of
-Python components. Thanks to custom components, Python components can rely on modules and imports outside the function.
+Lightweight Python components. Thanks to custom components, Python components can rely on modules and imports outside the function.
 
-### Python Components Limitations
+### Lightweight Python Components Limitations
 - They can not use anything defined outside the function
 - Each library used should be imported inside the component, since it runs in a dedicated container
   - It possible to overcome this problem by using the `packages_to_install` argument in the dectorator
@@ -121,6 +121,7 @@ kfp component build src/ --component-filepattern my_component.py --no-push-image
 
 
 ## Pipelines
+### Definition
 They are defined by the `@dsl.pipeline` decorator and combine several components together.
 
 ```python
@@ -129,6 +130,66 @@ def addition_pipeline(x: int, y: int) -> int:
     task1 = add(a=x, b=y)
     task2 = add(a=task1.output, b=x)
     return task2.output
+```
+
+### Arguments
+The `@dsl.pipeline` can receive the following optional arguments:
+- `name` is the name of the pipeline
+- `description` is the description of the pipeline
+- `pipeline_root` s the root path of the remote storage destination within which the tasks in your pipeline will create outputs
+- `display_name` is a human-readable name for the pipeline
+
+```python
+@dsl.pipeline(name='pythagorean-theorem-pipeline',
+              description='Solve for the length of a hypotenuse of a triangle with sides length `a` and `b`.',
+              pipeline_root='gs://my-pipelines-bucket',
+              display_name='Pythagorean pipeline.')
+def pythagorean(a: float, b: float) -> float:
+    pass
+```
+
+### Pipelines as Components
+A Pipeline component can be used as a component in another pipeline:
+```python
+from kfp import dsl
+
+@dsl.component
+def square(x: float) -> float:
+    return x ** 2
+
+@dsl.component
+def add(x: float, y: float) -> float:
+    return x + y
+
+@dsl.component
+def square_root(x: float) -> float:
+    return x ** .5
+
+@dsl.pipeline
+def square_and_sum(a: float, b: float) -> float:
+    a_sq_task = square(x=a)
+    b_sq_task = square(x=b)
+    return add(x=a_sq_task.output, y=b_sq_task.output).output
+
+@dsl.pipeline
+def pythagorean(a: float = 1.2, b: float = 1.2) -> float:
+    sq_and_sum_task = square_and_sum(a=a, b=b)
+    return square_root(x=sq_and_sum_task.output).output
+```
+
+### Control Flow
+```python
+from kfp import dsl
+
+@dsl.pipeline
+def my_pipeline():
+    coin_flip_task = flip_three_sided_coin()
+    with dsl.If(coin_flip_task.output == 'heads'):
+        print_comp(text='Got heads!')
+    with dsl.Elif(coin_flip_task.output == 'tails'):
+        print_comp(text='Got tails!')
+    with dsl.Else():
+        print_comp(text='Draw!')
 ```
 
 ## Compiler
