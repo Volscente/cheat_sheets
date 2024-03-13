@@ -1,4 +1,7 @@
 # Introduction
+## Resources
+- [Colab Example](https://colab.research.google.com/github/GoogleCloudPlatform/vertex-ai-samples/blob/main/notebooks/official/pipelines/lightweight_functions_component_io_kfp.ipynb)
+
 ## Definition
 Vertex AI Pipelines lets you automate, monitor, 
 and govern your machine learning (ML) systems in a serverless manner by using ML pipelines to orchestrate your ML workflows. 
@@ -23,6 +26,13 @@ There can be either predefined or custom components.
 
 ## Pipeline Task
 It is the instantiation of a pipeline component. It is the actual execution of that pipeline component in the ML pipeline.
+
+## Pipeline Run
+It is the execution of an ML pipeline. 
+All the artifacts generated in a Pipeline Run are stored into *Vertex ML Metadata*.
+
+## Vertex AI Experiments
+THey are a collection of Pipelines Runs.
 
 # ML Pipelines
 ## Lifecycle
