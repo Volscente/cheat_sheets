@@ -69,5 +69,34 @@ job = aip.PipelineJob(
         'project_id': project_id
     }
 )
+```
 
+# Pipeline Templates
+## Definition
+A pipeline template is a resource that you can use to publish a workflow definition so that it can be reused multiple times.
+
+## Kubeflow Pipelines SDK Registry Client
+This software can be configured to be compatible with a registry server, like Google Artifact Registry.
+
+## Permissions
+The following permissions have to be granted in order to use the Artifact Registry as a Pipeline Template:
+- `roles/artifactregistry.admin` (Assign this role to create and manage a repository)
+- `roles/artifactregistry.repoAdmin` or `roles/artifactregistry.writer` (Assign any of these roles to manage templates inside a repository)
+- `roles/artifactregistry.reader` (Assign this role to download templates from a repository)
+- `roles/artifactregistry.reader` (Assign this role to a service account associated with Vertex AI Pipelines to create a pipeline run from a template)
+
+## Create Pipeline Template
+1. In Vertex AI Pipelines selects `You templates`
+2. Open `Select repository`
+3. Click `Create repository`
+4. Format `Kubeflow Piplines`
+5. Upload a pre-compiled ML Pipeline in `YAML` file in the new Pipeline Template repository
+
+### Upload a pipeline template using the Artifact Registry REST API
+```bash
+curl -X POST \
+    -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+    -F tags=v1,latest \
+    -F content=@pipeline_spec.yaml \
+    https://us-central1-kfp.pkg.dev/PROJECT_ID/REPO_ID
 ```
