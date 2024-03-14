@@ -40,3 +40,34 @@ THey are a collection of Pipelines Runs.
 2. Compile to generate the YAML file and upload it
 3. Run the ML Pipeline
 4. Monitor, visualise and analyse runs
+
+## Submit Pipeline Run
+### Requirements
+Set the `GOOGLE_APPLICATION_CREDENTIALS` to the corresponding `JSON` file.
+```bash
+export GOOGLE_APPLICATION_CREDENTIALS="/home/user/Downloads/service-account-file.json"
+```
+
+### Uploading YAML File
+After the Pipeline has been compiled into a `YAML` file, it can be uploaded into Vertex AI Pipeline in order to
+create a Pipeline Run.
+```python
+import google.cloud.aiplatform as aip
+
+# Initialise AI Platform object
+aip.init(
+    project=project_id,
+    location=PROJECT_REGION,
+)
+
+# Prepare the pipeline job
+job = aip.PipelineJob(
+    display_name="automl-image-training-v2",
+    template_path="image_classif_pipeline.yaml",
+    pipeline_root=pipeline_root_path,
+    parameter_values={
+        'project_id': project_id
+    }
+)
+
+```
