@@ -35,7 +35,10 @@ run['paramters'] = {
 
 run['data/train_version'].track_files('train/images')
 
+# Upload files to Neptune server
 run['model/weights'].upload('my_model.pkl')
 
 run.stop()
 ```
+
+Tracking elements are organised through "Namespace", like `test/`, `train/`, `data/` or `model`.
