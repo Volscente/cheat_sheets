@@ -15,3 +15,27 @@ It is organised in:
 - **Workspace** - It is usually one
 - **Projects** - It is like the experiments in MLflow, where in a single project you can compare several runs
 - **Runs** - It is a single experiment executions
+
+## Quickstart
+```python
+import neptune
+
+# Connect to Neptune and create a run
+run = neptune.init_run()
+
+run['test/f1_score'] = 0.01
+
+for _ in range(100):
+    run['train/accuracy'] = append(0.90)
+
+run['paramters'] = {
+    'batch_size': 64,
+    'dropout': 0.5
+}
+
+run['data/train_version'].track_files('train/images')
+
+run['model/weights'].upload('my_model.pkl')
+
+run.stop()
+```
