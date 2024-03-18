@@ -7,6 +7,12 @@ Databricks and first released in 2018. It is designed to be tool-agnostic and pl
 It makes easy to track model's development and ensure re-usability and reproducibility of the code. 
 In addition, it makes it easy to provision models into production and facilitate the re-training process.
 
+## Components
+- **Tracking** - It tracks experiments to record and compare parameters and results
+- **Projects** - It packages code to ensure reusability and reproducibility
+- **Models** - It provides a standard unit for packaging models
+- **Registry** - It is a central model store for model versioning and annotations
+
 ## Terminology
 ### Run
 A run is a collection of parameters, metrics, labels, and artifacts related to the training process of a machine learning model.
@@ -104,12 +110,12 @@ It is possible to add metadata to the model, like:
 It is possible to define a YAML file with all the MLflow model information (Favlor, signature, input example) in order to easily
 deploy it to Docker, Azure ML or Flask.
 
-## Models Registry
-### Definition
+# Models Registry
+## Definition
 MLflow Model Registry provides an API and UI for centrally managing your models and their lifecycle. 
 The registry provides model lineage, model versioning, annotations, and stage transitions.
 
-### Stored Features
+## Stored Features
 - **Registered Model** - A registered model is one that has a unique name and metadata, contains model versions and transitional stages, and has a model lineage.
 - **Model Version**
 - **Model Stage** - They are such as staging, production or archived.
