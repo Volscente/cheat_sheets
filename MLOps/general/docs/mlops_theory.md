@@ -55,6 +55,28 @@ It auitomates the training phase.
 ## Level 2
 It automates the training, validation and deployment.
 
+# Model Deployment/Serving
+## Definition
+It is the step in which the model is made ready to be deployed.
+
+It involves:
+- Packaging (Compile the code, create the Dockerfile, etc.)
+- Performance (Ensure to add scalability, load balancing, parallelism, etc.)
+- Instrument (versioning, repo management, security, etc.)
+- Automation (Re-training, re-deploy, etc.)
+
+## Instrument
+### Versioning
+It is mainly focus on versioning the following elements:
+- Code
+- Data
+- Feature parameters
+- Hyperparameters
+- Environment
+
+Versioning is a very important aspect for *Reproducibility*: the capability of recreating the exact same model.
+This can be due to the need of porting the model into a different environment or for rollback.
+
 # Model Monitoring
 ## Definition
 It is the step in which the deployed ML model is monitored in a real-world environment.
