@@ -25,7 +25,11 @@ Experiments are maintained on an MLflow tracking server
 
 # MLflow Tracking
 ## Definition
-It allows to record machine learning model training sessions and allows to query them.
+It allows to record machine learning model training sessions 
+(e.g., code version, hyperparameters, metrics, etc.) and allows to query them.
+
+It allows to track everything in order to reproduce that exact same experiment.
+
 It is composed by an API and a user interface component.
 
 ## Tracking Components
@@ -65,6 +69,9 @@ as well as visualize metrics of each run.
 # MLflow Project
 ## Definition
 It packages code used in data science projects, ensuring it can easily be reused and experiments can be reproduced.
+
+The main element is a `MLproject` file, which is a `YAML` file which describes project environment, parameters and entry points.
+
 It comes with API and a CLI designed to running projects and chaining them together into an ML workflow.
 
 ## Properties
