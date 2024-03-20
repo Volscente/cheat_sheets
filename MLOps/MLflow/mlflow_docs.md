@@ -23,6 +23,11 @@ For each experiment, you can analyze and compare the results of different runs,
 and easily retrieve metadata artifacts for analysis using downstream tools. 
 Experiments are maintained on an MLflow tracking server
 
+## MLRuns Folder Structure
+- **Trash** - It includes every experiment/runs/artifact that has been deleted
+- **0** - It is the default experiment folder, unless an experiment name has been specified
+- **Other Folders** - They are the experiment folders
+
 # MLflow Tracking
 ## Definition
 It allows to record machine learning model training sessions 
