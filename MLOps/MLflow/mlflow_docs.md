@@ -37,6 +37,10 @@ It allows to track everything in order to reproduce that exact same experiment.
 
 It is composed by an API and a user interface component.
 
+## Logging Functions
+- **set_tracking_uri()** - It sets the path to the storage location for tracking information (Default is the local `mlruns` folder)
+- **get_tracking_uri()**
+
 ## Tracking Components
 - **Source** - It can be the name of the file that launches the run. 
 If using MLflow project, it can be the name of the project and the entry point of the run
