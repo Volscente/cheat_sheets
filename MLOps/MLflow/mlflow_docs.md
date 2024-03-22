@@ -11,7 +11,11 @@ In addition, it makes it easy to provision models into production and facilitate
 - **Tracking** - It tracks experiments to record and compare parameters and results
 - **Projects** - It packages code to ensure reusability and reproducibility
 - **Models** - It provides a standard unit for packaging models
-- **Registry** - It is a central model store for model versioning and annotations
+- **Model Registry** - It is a central model store for model versioning and annotations
+- **MLflow Deployments for LLMs** - This server, equipped with a set of standardized APIs, streamlines access to both SaaS and OSS LLM models.
+- **Evaluate** - Designed for in-depth model analysis, this set of tools facilitates objective model comparison
+- **Prompt Engineering UI** - A dedicated environment for prompt engineering
+- **Recipes** - Serving as a guide for structuring ML projects
 
 ## Terminology
 ### Run
