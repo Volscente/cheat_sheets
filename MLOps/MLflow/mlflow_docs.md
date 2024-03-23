@@ -72,8 +72,13 @@ The most common solution for storing Artifacts is a Datalake such as AWS S3 or G
 
 ## Tracking UI
 It allows to visualise, compare and search runs. Additionally, it lets you download metadata or artifacts for runs, 
-which you can input for analysis in other tools. MLflow logs information about runs in an mlruns directory; 
-in order to view the data, you can run the MLflow UI one directory above the mlruns folder.
+which you can input for analysis in other tools. MLflow logs information about runs in a `mlruns` directory; 
+in order to view the data, you can run the MLflow UI one directory above the `mlruns` folder.
+
+To open the Tracking UI run:
+```bash
+mlflow server --host 127.0.0.1 --port 8080
+```
 
 Notable features of the tracking UI include listing and comparison of runs by experiments, 
 and downloading the results of your runs. Additionally, you can search runs by metric value or parameters, 
