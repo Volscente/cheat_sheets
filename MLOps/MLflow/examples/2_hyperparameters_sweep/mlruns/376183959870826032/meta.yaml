@@ -1,0 +1,6 @@
+artifact_location: file:///Users/s.porreca/Projects/cheat_sheets/MLOps/MLflow/examples/2_hyperparameters_sweep/mlruns/376183959870826032
+creation_time: 1711218568996
+experiment_id: '376183959870826032'
+last_update_time: 1711218568996
+lifecycle_stage: active
+name: wine-quality

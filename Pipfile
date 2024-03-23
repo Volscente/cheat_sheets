@@ -48,6 +48,7 @@ elasticsearch-haystack = "*"
 faiss-cpu = "*"
 sentence-transformers = "*"
 bentoml = "*"
+hyperopt = "*"
 
 [dev-packages]
 

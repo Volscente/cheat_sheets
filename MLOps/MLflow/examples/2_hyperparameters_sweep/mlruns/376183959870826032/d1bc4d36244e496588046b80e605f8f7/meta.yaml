@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/s.porreca/Projects/cheat_sheets/MLOps/MLflow/examples/2_hyperparameters_sweep/mlruns/376183959870826032/d1bc4d36244e496588046b80e605f8f7/artifacts
+end_time: 1711218569200
+entry_point_name: ''
+experiment_id: '376183959870826032'
+lifecycle_stage: active
+run_id: d1bc4d36244e496588046b80e605f8f7
+run_name: likeable-stork-886
+run_uuid: d1bc4d36244e496588046b80e605f8f7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711218569133
+status: 4
+tags: []
+user_id: s.porreca
