@@ -1,0 +1,15 @@
+artifact_uri: file:///content/mlruns/527586936323570039/b0fb2a61ea9845288147d597f9353d0a/artifacts
+end_time: 1711302192035
+entry_point_name: ''
+experiment_id: '527586936323570039'
+lifecycle_stage: active
+run_id: b0fb2a61ea9845288147d597f9353d0a
+run_name: beautiful-ox-465
+run_uuid: b0fb2a61ea9845288147d597f9353d0a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711302116314
+status: 3
+tags: []
+user_id: root

@@ -1,0 +1,15 @@
+artifact_uri: file:///content/mlruns/527586936323570039/42939c735c1b44dfa26c049a9bf2c75d/artifacts
+end_time: 1711302180131
+entry_point_name: ''
+experiment_id: '527586936323570039'
+lifecycle_stage: active
+run_id: 42939c735c1b44dfa26c049a9bf2c75d
+run_name: legendary-moose-819
+run_uuid: 42939c735c1b44dfa26c049a9bf2c75d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711302172791
+status: 3
+tags: []
+user_id: root

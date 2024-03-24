@@ -1,0 +1,6 @@
+artifact_location: file:///content/mlruns/527586936323570039
+creation_time: 1711302116240
+experiment_id: '527586936323570039'
+last_update_time: 1711302116240
+lifecycle_stage: active
+name: wine-quality

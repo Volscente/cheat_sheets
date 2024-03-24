@@ -1,0 +1,15 @@
+artifact_uri: file:///content/mlruns/527586936323570039/1cfb9a777f254583813834ad0f951f8d/artifacts
+end_time: 1711302158910
+entry_point_name: ''
+experiment_id: '527586936323570039'
+lifecycle_stage: active
+run_id: 1cfb9a777f254583813834ad0f951f8d
+run_name: unruly-bug-893
+run_uuid: 1cfb9a777f254583813834ad0f951f8d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711302150975
+status: 3
+tags: []
+user_id: root

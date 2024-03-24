@@ -1,0 +1,15 @@
+artifact_uri: file:///content/mlruns/527586936323570039/d09445b8887d488c9e338cbd32ec307e/artifacts
+end_time: 1711302186536
+entry_point_name: ''
+experiment_id: '527586936323570039'
+lifecycle_stage: active
+run_id: d09445b8887d488c9e338cbd32ec307e
+run_name: unleashed-mule-120
+run_uuid: d09445b8887d488c9e338cbd32ec307e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711302180183
+status: 3
+tags: []
+user_id: root
