@@ -88,6 +88,18 @@ Notable features of the tracking UI include listing and comparison of runs by ex
 and downloading the results of your runs. Additionally, you can search runs by metric value or parameters, 
 as well as visualize metrics of each run.
 
+### Nested Runs for Hyperparameters Tuning with Hyperopt
+It is possible to create a Run containing other runs. This is particularly useful in case of Hyperparameters Tuning,
+when several trials are done in order to check different parameter combinations. Check the example in 
+[MLOps/MLflow/examples/2_hyperparameters_sweep/hyperopt.ipynb](./MLOps/MLflow/examples/2_hyperparameters_sweep/hyperopt.ipynb).
+
+The single "root" Run contains several ones, each representing a hyperparameter trial.
+It is possible to compare them through a `Parallel Coordinates`:
+![Tracking Nested Runs](./../images/tracking_hyperparameters_tuning_1.png)
+
+After identified the best run, it is possible to click on it and register the model.
+Check the section Model Registry for more information.
+
 # MLflow Project
 ## Definition
 It packages code used in data science projects, ensuring it can easily be reused and experiments can be reproduced.
@@ -149,6 +161,17 @@ The registry provides model lineage, model versioning, annotations, and stage tr
 - **Model Version**
 - **Model Stage** - They are such as staging, production or archived.
 - **Annotations and Descriptions** - It is possible to annotate the model using markdown.
+
+## Register a Model from a Run
+Click on the run and select *"Register Model"*.
+After given a name, it would be available under the *"Models"* tab.
+After the model is registered, it is possible to serve it.
+
+# MLflow Deployments
+## Deployed Registered Model
+```bash
+mlflow models serve -m "models:/<model_name>>/<version>" --port 5002
+```
 
 # MLflow Pipelines
 ## Definition
