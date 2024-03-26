@@ -1,5 +1,6 @@
-aliases: {}
+aliases:
+  staging: '1'
 creation_timestamp: 1711401715371
 description: ''
-last_updated_timestamp: 1711401715408
+last_updated_timestamp: 1711486114941
 name: wine-quality-model

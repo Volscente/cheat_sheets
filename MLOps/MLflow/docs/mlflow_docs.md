@@ -74,19 +74,41 @@ Let's see different options for storing the **FileStore** and the **Artifacts**:
 
 The most common solution for storing Artifacts is a Datalake such as AWS S3 or Google Cloud Storage.
 
-## Tracking UI
-It allows to visualise, compare and search runs. Additionally, it lets you download metadata or artifacts for runs, 
-which you can input for analysis in other tools. MLflow logs information about runs in a `mlruns` directory; 
-in order to view the data, you can run the MLflow UI one directory above the `mlruns` folder.
+## Tracking Server
+### Definition
+The Tracking Server need to be up in order to start tracking experiments.
 
-To open the Tracking UI run:
+### Start Tracking Server
 ```bash
 mlflow server --host 127.0.0.1 --port 8080
 ```
 
-Notable features of the tracking UI include listing and comparison of runs by experiments, 
-and downloading the results of your runs. Additionally, you can search runs by metric value or parameters, 
-as well as visualize metrics of each run.
+### Connecting MLflow to Tracking Server
+Once the Tracking server is started (e.g., through `mlflow server --host 127.0.0.1 --port 8080`),
+it is possible to connect mlflow to it:
+```python
+# Set our tracking server uri for logging
+mlflow.set_tracking_uri(uri="http://127.0.0.1:8080")
+```
+
+This will allow to start tracking experiments.
+
+
+## Tracking UI
+### Definition
+It allows to visualise, compare and search runs. Additionally, it lets you download metadata or artifacts for runs, 
+which you can input for analysis in other tools. MLflow logs information about runs in a `mlruns` directory; 
+in order to view the data, you can run the MLflow UI one directory above the `mlruns` folder.
+
+### Start Tracking UI
+```bash
+mlflow ui
+```
+
+## Tracking Server vs Tracking UI
+The first one is started by `mlflow server --host 127.0.0.1 --port 8080` and it is necessary to log anything from Python code.
+The second one is started by `mlflow ui` and it is used to see what has been tracked during the experiments.
+
 
 ### Nested Runs for Hyperparameters Tuning with Hyperopt
 It is possible to create a Run containing other runs. This is particularly useful in case of Hyperparameters Tuning,
@@ -166,11 +188,18 @@ The registry provides model lineage, model versioning, annotations, and stage tr
 Click on the run and select *"Register Model"*.
 After given a name, it would be available under the *"Models"* tab.
 After the model is registered, it is possible to serve it.
+It is also possible to use `aliases` to identify models as `staging` or `production`.
+It is also important to associate a model `version`.
 
 # MLflow Deployments
-## Deployed Registered Model
+## Deploy as REST API
 ```bash
-mlflow models serve -m "models:/<model_name>>/<version>" --port 5002
+mlflow models serve -m "models:/<model_name>/<version>" --port 5002
+```
+
+## Create Docker Image
+```bash
+mlflow models build-docker --model-uri "models:/<model_name>/<version>" --name "<image_name>"
 ```
 
 # MLflow Pipelines

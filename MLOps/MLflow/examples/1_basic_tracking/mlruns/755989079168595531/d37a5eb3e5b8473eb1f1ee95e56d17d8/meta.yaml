@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/755989079168595531/d37a5eb3e5b8473eb1f1ee95e56d17d8/artifacts
+end_time: 1711486781433
+entry_point_name: ''
+experiment_id: '755989079168595531'
+lifecycle_stage: active
+run_id: d37a5eb3e5b8473eb1f1ee95e56d17d8
+run_name: carefree-swan-92
+run_uuid: d37a5eb3e5b8473eb1f1ee95e56d17d8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711486777786
+status: 3
+tags: []
+user_id: s.porreca
