@@ -185,11 +185,32 @@ The registry provides model lineage, model versioning, annotations, and stage tr
 - **Annotations and Descriptions** - It is possible to annotate the model using markdown.
 
 ## Register a Model from a Run
-Click on the run and select *"Register Model"*.
-After given a name, it would be available under the *"Models"* tab.
-After the model is registered, it is possible to serve it.
-It is also possible to use `aliases` to identify models as `staging` or `production`.
-It is also important to associate a model `version`.
+### Tracking UI
+- Click on the run from the Tracking UI and select *"Register Model"*.
+- After given a name, it would be available under the *"Models"* tab.
+- After the model is registered, it is possible to serve it.
+- It is also possible to use `aliases` to identify models as `staging` or `production`.
+- It is also important to associate a model `version`.
+
+### Code
+Use the `registered_model_name` from the `log_model` function.
+```python
+# Log the model
+model_info = mlflow.sklearn.log_model(
+    sk_model=lr,
+    artifact_path="iris_model",
+    signature=signature,
+    input_example=X_train,
+    registered_model_name="tracking-quickstart", # Register the model in the model registry
+)
+```
+
+Or register the model **after** logged it through:
+```python
+mlflow.register_model()
+```
+
+The first approach with the `log_model` is preferred, since it's more concise.
 
 # MLflow Deployments
 ## Deploy as REST API
