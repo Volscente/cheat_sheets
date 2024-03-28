@@ -104,3 +104,29 @@ data = dict(
 response = client.predict(endpoint=name, inputs=data)
 print(response)
 ```
+
+## Endpoints
+### Definition
+They are defined in the `YAML` file and acts as a proxy between the service provider and the user.
+
+### Parameters
+- **endpoint_type** - They are either `llm/v1/completions`, `llm/v1/embeddings` and `llm/v1/chat`
+- **model** - It has a `provider`, `name` and `config` ([here](https://mlflow.org/docs/latest/llms/deployments/index.html#provider-specific-configuration-parameters) 
+is a list of each model specific configurations required)
+- **renewal_period** - The time unit of the rate limit, one of [second|minute|hour|day|month|year]
+- **calls* - The number of calls this endpoint will accept within the specified time unit
+
+### Example
+```yaml
+endpoints:
+  - name: completions
+    endpoint_type: llm/v1/chat
+    model:
+      provider: openai
+      name: gpt-3.5-turbo
+      config:
+        openai_api_key: $OPENAI_API_KEY
+    limit:
+      renewal_period: minute
+      calls: 10
+```
