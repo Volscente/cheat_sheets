@@ -5,3 +5,9 @@
 - command + D - Duplicate lines (usable on multiple lines)
 - shift + up arrow - Select whole line
 - command + back - Delete whole line
+- shift + option + up/down arrow - Move line
+- shift + command + up/down arrow - Move entire function
+- command + - (minus) - Collapse function
+- command + = (equal) - Expand function
+- shift + command + - - Collapse all region
+- option + command + T - Surround code with a template (e.g., if, while, try & except, etc)
