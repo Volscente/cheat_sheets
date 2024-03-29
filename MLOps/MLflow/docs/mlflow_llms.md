@@ -130,3 +130,103 @@ endpoints:
       renewal_period: minute
       calls: 10
 ```
+
+# Evaluation
+## Example
+```python
+import mlflow
+import openai
+import os
+import pandas as pd
+from getpass import getpass
+
+eval_data = pd.DataFrame(
+    {
+        "inputs": [
+            "What is MLflow?",
+            "What is Spark?",
+        ],
+        "ground_truth": [
+            "MLflow is an open-source platform for managing the end-to-end machine learning (ML) "
+            "lifecycle. It was developed by Databricks, a company that specializes in big data and "
+            "machine learning solutions. MLflow is designed to address the challenges that data "
+            "scientists and machine learning engineers face when developing, training, and deploying "
+            "machine learning models.",
+            "Apache Spark is an open-source, distributed computing system designed for big data "
+            "processing and analytics. It was developed in response to limitations of the Hadoop "
+            "MapReduce computing model, offering improvements in speed and ease of use. Spark "
+            "provides libraries for various tasks such as data ingestion, processing, and analysis "
+            "through its components like Spark SQL for structured data, Spark Streaming for "
+            "real-time data processing, and MLlib for machine learning tasks",
+        ],
+    }
+)
+
+with mlflow.start_run() as run:
+    system_prompt = "Answer the following question in two sentences"
+    # Wrap "gpt-4" as an MLflow model.
+    logged_model_info = mlflow.openai.log_model(
+        model="gpt-4",
+        task=openai.chat.completions,
+        artifact_path="model",
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": "{question}"},
+        ],
+    )
+
+    # Use predefined question-answering metrics to evaluate our model.
+    results = mlflow.evaluate(
+        logged_model_info.model_uri,
+        eval_data,
+        targets="ground_truth",
+        model_type="question-answering",
+    )
+    print(f"See aggregated evaluation results below: \n{results.metrics}")
+
+    # Evaluation result for each data record is available in `results.tables`.
+    eval_table = results.tables["eval_results_table"]
+    print(f"See evaluation table below: \n{eval_table}")
+```
+
+## Metrics
+### Types
+- **SaaS Model Metrics** - They use another SaaS Model (e.g., OpenAI) to provide an evaluation of one specific prompt
+- **Function-based Row Metrics** - They use specific metrics like ROUGE
+
+### Function-based Row Metrics
+MLflow LLM evaluation includes **default** collections of metrics for pre-selected tasks, e.g, “question-answering”.
+They are then passed as an argument to the `mlflow.evaluate` function.
+```python
+results = mlflow.evaluate(
+    model,
+    eval_data,
+    targets="ground_truth",
+    model_type="question-answering",
+)
+```
+It is also possible to have custom metrics in addition to the default ones.
+```python
+results = mlflow.evaluate(
+    model,
+    eval_data,
+    targets="ground_truth",
+    model_type="question-answering",
+    extra_metrics=[mlflow.metrics.latency()],
+)
+```
+Or exclude the default metrics entirely by not passing the `model_type` argument.
+```python
+results = mlflow.evaluate(
+    model,
+    eval_data,
+    targets="ground_truth",
+    extra_metrics=[mlflow.metrics.toxicity(), mlflow.metrics.latency()],
+)
+```
+### Metrics with LLM as a Judge
+It is also possible to use another LLM as a `extra_metrics`. 
+Check the list of available judges [here](https://mlflow.org/docs/latest/llms/llm-evaluate/index.html#metrics-with-llm-as-the-judge).
+
+
+
