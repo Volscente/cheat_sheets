@@ -194,6 +194,10 @@ with mlflow.start_run() as run:
 - **SaaS Model Metrics** - They use another SaaS Model (e.g., OpenAI) to provide an evaluation of one specific prompt
 - **Function-based Row Metrics** - They use specific metrics like ROUGE
 
+### SaaS Model Metrics
+It is also possible to use another LLM as a `extra_metrics` that acts like a Judge. 
+Check the list of available judges [here](https://mlflow.org/docs/latest/llms/llm-evaluate/index.html#metrics-with-llm-as-the-judge).
+
 ### Function-based Row Metrics
 MLflow LLM evaluation includes **default** collections of metrics for pre-selected tasks, e.g, “question-answering”.
 They are then passed as an argument to the `mlflow.evaluate` function.
@@ -224,9 +228,6 @@ results = mlflow.evaluate(
     extra_metrics=[mlflow.metrics.toxicity(), mlflow.metrics.latency()],
 )
 ```
-### Metrics with LLM as a Judge
-It is also possible to use another LLM as a `extra_metrics`. 
-Check the list of available judges [here](https://mlflow.org/docs/latest/llms/llm-evaluate/index.html#metrics-with-llm-as-the-judge).
 
 
 
