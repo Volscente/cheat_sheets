@@ -20,3 +20,6 @@
 - shift + control + space - Smart completion
 - control + space - After click "tab" for replace
 - Type ".if" after a if (condition) - Explore possible conditions
+- control + T - Refactoring type
+- shift + F6 - Rename
+- option + command + V - Rename in the context (e.g., for loop)
