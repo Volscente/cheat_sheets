@@ -2,8 +2,10 @@
 # Utils
 ## Create Dataset from BigQuery Table
 - Create a BigQuery table in a BigQuery Dataset under the same location as your desired Vertex AI Dataset.
+- 
 <details>
   <summary>Example Query</summary>
+  
 ```sql
  /*
  Define the First Prototype input training dataset for Sales Predictor.
