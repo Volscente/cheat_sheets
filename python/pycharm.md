@@ -32,8 +32,13 @@
 - command + P - Show function signature
 - option + space - See function definition
 
-## Navigation
+## Navigation
 - option + W - In the global search for exact match
 - command + B - Jump to method definition or, on the method definition, to see all the places where it is used
 - command + 7 - Show project structure
 - command + E - Open recent opened files (or shift + command + E)
+
+# Common Errors
+## Jupyter No Find Interpreter
+- Create a new kernal from the venv terminal `python -m ipykernel install --user --name=venv_kernel`
+- Select the new kernel from the drop-down menu
