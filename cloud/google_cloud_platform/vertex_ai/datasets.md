@@ -1,8 +1,8 @@
 # Introduction
 # Utils
-## Create Dataset from BigQuery Table
+## Create Tabular Dataset from BigQuery Table
 - Create a BigQuery table in a BigQuery Dataset under the same location as your desired Vertex AI Dataset.
-- 
+
 <details>
   <summary>Example Query</summary>
   
@@ -107,3 +107,23 @@ GROUP BY
 ```
 
 </details>
+
+- Install Python libraries `google-cloud-bigquery` and `google-cloud-aiplatform`
+- Create the dataset as in the example below
+
+```python
+# Import Standard Libraries
+from google.cloud import aiplatform
+
+# Create the Vertex AI dataset from the configurations
+aiplatform.TabularDataset.create(
+    display_name='training-dataset',
+    bq_source='bq://project_id.curated_dataset.training_dataset',
+    project='project_id',
+    location='us-west1',
+    labels={
+        'model_name': 'first_prototype',
+        'version': '0_1_1'
+    }
+)
+```
