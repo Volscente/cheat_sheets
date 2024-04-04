@@ -1,0 +1,109 @@
+# -------- Sales EDA --------
+# BigQuery
+bigquery_config:
+  bigquery_project_id: 'test-project-id'
+  bigquery_location: 'US'
+
+# Top Countries Sale Sales Query
+top_countries_sales_volume:
+  query_path:
+    - 'queries'
+    - 'apac'
+    - 'sales'
+    - 'top_countries_sales_volume.sql'
+  query_parameters:
+    top_k_countries_sales_volume:
+      name: 'top_k_countries_sales_volume'
+      type: 'INTEGER'
+      value: 5
+
+# Sales Volume over Created Date Query
+sales_volume_over_created_date:
+  query_path:
+    - 'queries'
+    - 'apac'
+    - 'sales'
+    - 'sale_volume_over_created_date.sql'
+  query_parameters:
+    countries:
+      name: 'countries'
+      type: 'STRING'
+      value:
+        - 'Germany'
+        - 'Austria'
+        - 'Switzerland'
+        - 'Italy'
+        - 'France'
+
+# Sale Volume per Delivery Type over Created Data
+sale_volume_per_delivery_type_over_created_date:
+  query_path:
+    - 'queries'
+    - 'apac'
+    - 'sales'
+    - 'sale_volume_per_delivery_type_over_created_date.sql'
+  query_parameters:
+    countries:
+      name: 'countries'
+      type: 'STRING'
+      value:
+        - 'Germany'
+        - 'Austria'
+        - 'Switzerland'
+        - 'Italy'
+        - 'France'
+
+# Sale Volume with Day Seasonality
+sale_volume_days_seasonality:
+  query_path:
+    - 'queries'
+    - 'apac'
+    - 'sales'
+    - 'sale_volume_days_seasonality.sql'
+  query_parameters:
+    countries:
+      name: 'countries'
+      type: 'STRING'
+      value:
+        - 'Germany'
+        - 'Austria'
+        - 'Switzerland'
+        - 'Italy'
+        - 'France'
+
+# Sale Volume with Day of Week Seasonality
+sale_volume_day_of_week_seasonality:
+  query_path:
+    - 'queries'
+    - 'apac'
+    - 'sales'
+    - 'sale_volume_day_of_week_seasonality.sql'
+  query_parameters:
+    countries:
+      name: 'countries'
+      type: 'STRING'
+      value:
+        - 'Germany'
+        - 'Austria'
+        - 'Switzerland'
+        - 'Italy'
+        - 'France'
+
+# Sale Volume with Day of Week Seasonality
+sale_volume_hours_seasonality:
+  query_path:
+    - 'queries'
+    - 'apac'
+    - 'sales'
+    - 'sale_volume_hours_seasonality.sql'
+  query_parameters:
+    countries:
+      name: 'countries'
+      type: 'STRING'
+      value:
+        - 'Germany'
+        - 'Austria'
+        - 'Switzerland'
+        - 'Italy'
+        - 'France'
+# ----------------------------------

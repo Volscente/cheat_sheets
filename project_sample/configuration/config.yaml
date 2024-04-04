@@ -1,0 +1,17 @@
+# -------- Test Configurations--------
+test_value: 1
+
+test_dictionary_query_parameters:
+  query_path:
+    - 'queries'
+    - 'test_queries'
+    - 'test_access_bigquery_query.sql'
+  query_parameters:
+    test_parameter:
+      name: 'test_parameter'
+      type: 'INT64'
+      value: 1
+
+# BigQuery
+bigquery_project_id: 'test-project-id'
+# ----------------------------------
