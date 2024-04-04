@@ -1,6 +1,7 @@
 # Introduction
 # Utils
 ## Create Tabular Dataset from BigQuery Table
+[Reference Documentation](https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.TabularDataset#google_cloud_aiplatform_TabularDataset)
 - Create a BigQuery table in a BigQuery Dataset under the same location as your desired Vertex AI Dataset.
 
 <details>
