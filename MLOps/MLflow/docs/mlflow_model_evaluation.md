@@ -126,3 +126,90 @@ print(results.metrics)
 ```
 
 ### LLM-Judged Correctness with Another LLM
+Use another LLM to evaluate the correctness of the first one.
+```python
+from mlflow.metrics.genai import EvaluationExample, answer_similarity
+
+# Create an example to describe what answer_similarity means like for this problem.
+example = EvaluationExample(
+    input="What is MLflow?",
+    output="MLflow is an open-source platform for managing machine "
+    "learning workflows, including experiment tracking, model packaging, "
+    "versioning, and deployment, simplifying the ML lifecycle.",
+    score=4,
+    justification="The definition effectively explains what MLflow is "
+    "its purpose, and its developer. It could be more concise for a 5-score.",
+    grading_context={
+        "targets": "MLflow is an open-source platform for managing "
+        "the end-to-end machine learning (ML) lifecycle. It was developed by Databricks, "
+        "a company that specializes in big data and machine learning solutions. MLflow is "
+        "designed to address the challenges that data scientists and machine learning "
+        "engineers face when developing, training, and deploying machine learning models."
+    },
+)
+
+# Construct the metric using OpenAI GPT-4 as the judge
+answer_similarity_metric = answer_similarity(model="openai:/gpt-4", examples=[example])
+
+# Use the metric into model.evaluate()
+with mlflow.start_run() as run:
+    results = mlflow.evaluate(
+        basic_qa_model.model_uri,
+        eval_df,
+        targets="ground_truth",
+        model_type="question-answering",
+        evaluators="default",
+        extra_metrics=[answer_similarity_metric],  # use the answer similarity metric created above
+    )
+```
+
+Otherwise, it is possible to define a custom metric with LLM.
+```python
+from mlflow.metrics.genai import EvaluationExample, make_genai_metric
+
+# Define e custom metric
+professionalism_metric = make_genai_metric(
+    name="professionalism",
+    definition=(
+        "Professionalism refers to the use of a formal, respectful, and appropriate style of communication that is tailored to the context and audience. It often involves avoiding overly casual language, slang, or colloquialisms, and instead using clear, concise, and respectful language"
+    ),
+    grading_prompt=(
+        "Professionalism: If the answer is written using a professional tone, below "
+        "are the details for different scores: "
+        "- Score 1: Language is extremely casual, informal, and may include slang or colloquialisms. Not suitable for professional contexts."
+        "- Score 2: Language is casual but generally respectful and avoids strong informality or slang. Acceptable in some informal professional settings."
+        "- Score 3: Language is balanced and avoids extreme informality or formality. Suitable for most professional contexts. "
+        "- Score 4: Language is noticeably formal, respectful, and avoids casual elements. Appropriate for business or academic settings. "
+        "- Score 5: Language is excessively formal, respectful, and avoids casual elements. Appropriate for the most formal settings such as textbooks. "
+    ),
+    examples=[
+        EvaluationExample(
+            input="What is MLflow?",
+            output=(
+                "MLflow is like your friendly neighborhood toolkit for managing your machine learning projects. It helps you track experiments, package your code and models, and collaborate with your team, making the whole ML workflow smoother. It's like your Swiss Army knife for machine learning!"
+            ),
+            score=2,
+            justification=(
+                "The response is written in a casual tone. It uses contractions, filler words such as 'like', and exclamation points, which make it sound less professional. "
+            ),
+        )
+    ],
+    version="v1",
+    model="openai:/gpt-4",
+    parameters={"temperature": 0.0},
+    grading_context_columns=[],
+    aggregations=["mean", "variance", "p90"],
+    greater_is_better=True,
+)
+
+# Use the metric in the evaluation
+with mlflow.start_run() as run:
+    results = mlflow.evaluate(
+        basic_qa_model.model_uri,
+        eval_df,
+        model_type="question-answering",
+        evaluators="default",
+        extra_metrics=[professionalism_metric],  # use the professionalism metric we created above
+    )
+```
+
