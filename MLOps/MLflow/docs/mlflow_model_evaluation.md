@@ -213,3 +213,49 @@ with mlflow.start_run() as run:
     )
 ```
 
+# Traditional Models Evaluation
+## Evaluate with a Function
+Once the `model` if fitted (`model.fit()`), it is possible to evaluate it through a function
+that computes predictions for an `eval_data`.
+
+```python
+# Define a function that calls the model's predict method
+def compute_predictions(X):
+    return model.predict(X)
+
+
+with mlflow.start_run() as run:
+    # Evaluate the function without logging the model
+    result = mlflow.evaluate(
+        compute_predictions,
+        eval_data,
+        targets="label",
+        model_type="classifier",
+        evaluators=["default"],
+    )
+
+print(f"metrics:\n{result.metrics}")
+print(f"artifacts:\n{result.artifacts}")
+```
+
+## Evaluate with Static Dataset
+Use a dataset to statically compared `y_true` and `y_pred`.
+```python
+model.fit(...)
+
+# Build the Evaluation Dataset from the test set
+y_test_pred = model.predict(X=X_test)
+eval_data = X_test
+eval_data["label"] = y_test # y_true
+eval_data["predictions"] = y_test_pred # y_pred
+
+
+with mlflow.start_run() as run:
+    # Evaluate the static dataset without providing a model
+    result = mlflow.evaluate(
+        data=eval_data, # Evaluate with a static dataset
+        targets="label", # Column for y_true
+        predictions="predictions", # Column for y_pred
+        model_type="classifier",
+    )
+```
