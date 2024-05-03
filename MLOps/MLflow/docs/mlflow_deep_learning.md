@@ -50,3 +50,6 @@ with mlflow.start_run() as run:
         callbacks=[mlflow.keras.MlflowCallback(run, log_every_epoch=False, log_every_n_steps=5)],
     )
 ```
+
+## PyTorch
+At the moment it is not supported.
