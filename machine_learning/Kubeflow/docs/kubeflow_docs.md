@@ -100,8 +100,11 @@ def my_component_function(a: int, b: int) -> int:
 ```
 
 <br>
+
 **Base Image**
+
 It is possible to specify a base Docker image from a Docker registry
+
 ```python
 @dsl.component(base_image="us-central1-docker.pkg.dev/project-id/artifact-registry-docker-registry/image-name@sha256:421bc4d1c48a739d0555672872163092bad2f0599e92cd0ef419e6c241270a8e")
 def custom_component() -> str:
