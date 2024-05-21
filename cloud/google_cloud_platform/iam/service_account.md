@@ -25,3 +25,9 @@ service_account_info = json.loads(secret_manager_client.access_secret_version(na
 # Retrieve Service Account credentials
 service_account_credentials = service_account.Credentials.from_service_account_info(service_account_info)
 ```
+
+## Assign Role
+From the gcloud shell:
+```bash
+sudo gcloud projects add-iam-policy-binding my-project-id --member="serviceAccount:712912383210-compute@developer.gserviceaccount.com" --role="roles/artifactregistry.reader"
+```
