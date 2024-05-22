@@ -150,6 +150,11 @@ def addition_pipeline(x: int, y: int) -> int:
     return task2.output
 ```
 
+Parameters like "x" and "y" can be passed to the Pipeline upon creating a Vertex AI Pipeline Run.
+In the example below, the parameter `path` has been defined:
+
+![Vertex AI Pipeline Parameters](./../images/vertex_ai_pipeline_parameters.png)
+
 ### Arguments
 The `@dsl.pipeline` can receive the following optional arguments:
 - `name` is the name of the pipeline
