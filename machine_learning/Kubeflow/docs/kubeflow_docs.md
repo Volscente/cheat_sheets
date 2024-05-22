@@ -112,6 +112,10 @@ def custom_component() -> str:
     return 'custom_component'
 ```
 
+**NOTE:** Ensure that the Vertex AI service account has the required authorisation for pulling the image
+
+You can see the Service Account from the Vertex AI Pipeline execution summary:
+![Vertex AI Service Account](./../images/vertex_ai_service_account.png)
 
 <br>
 
