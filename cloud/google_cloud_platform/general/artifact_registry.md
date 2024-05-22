@@ -21,6 +21,7 @@ docker tag super-cool-project:1.0.3 us-central1-docker.pkg.dev/my-project/super-
 gcloud auth configure-docker us-central1-docker.pkg.dev
 ```
 **NOTE:** Ensure to be already authenticated in gcloud
+
 4. Push the image to GCP Artifact Registry
 ```bash
 # Example
