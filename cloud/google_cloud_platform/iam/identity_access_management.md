@@ -1,3 +1,11 @@
+# Roles
+## Assign Roles
+Steps:
+1. Go under IAM & Admin
+2. Select IAM
+3. Identify the principal to edit
+4. Click on the pencil icon to edit and assign/modify roles
+
 # Service Account
 ## GitHub Workflow GCP Authorization
 Reference materials:
