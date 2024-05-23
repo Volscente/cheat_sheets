@@ -248,3 +248,54 @@ kfp run create --experiment-name my-experiment --package-file path_to_the_pipeli
 # Features
 ## Continuous Training
 A Pipeline execution can be conditioned to trigger under certain circumstances: the evaluation metrics surpass predefined thresholds.
+
+# Testing
+## PyTest Component
+```python
+# src.general_utils.general_utils_pipeline_components.py
+@dsl.component(base_image=components_configuration['data_preparation_pipeline']['docker_image_uri'])
+def read_pipeline_configuration(configuration_path: str) -> dict:
+    """
+    Read pipeline configuration file and return as dictionary
+
+    Args:
+        configuration_path: String path to pipeline configuration file
+
+    Returns:
+        configuration: Dictionary with pipeline configurations
+    """
+    # Import Standard Libraries
+    from pathlib import Path
+
+    # Import Package Modules
+    from src.general_utils.general_utils import read_configuration
+
+    # Read configuration
+    configuration = read_configuration(Path(configuration_path))
+
+    return configuration
+
+# tests/test_general_utils.py
+@pytest.mark.parametrize('test_config_file, test_config, expected_value', [
+    ('./../configuration/test_config.yaml', 'test_value', 1)
+])
+def test_read_pipeline_configuration(test_config_file: str,
+                                     test_config: str,
+                                     expected_value: int) -> bool:
+    """
+    Test the function src.general_utils.general_utils_pipeline_components.read_pipeline_configuration
+    by reading test configuration entries and comparing them to expected value
+
+    Args:
+        test_config_file: String configuration file
+        test_config: String configuration entry key
+        expected_value: Integer configuration expected value
+
+    Returns:
+    """
+
+    # Read configuration
+    configuration = read_pipeline_configuration.python_func(configuration_path=test_config_file)
+
+    assert configuration[test_config] == expected_value
+```
