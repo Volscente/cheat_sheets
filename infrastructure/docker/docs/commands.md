@@ -160,3 +160,9 @@ docker container run -d --name elasticsearch1 --network app_net --network-alias 
 
 docker container run -d --name elasticsearch2 --network app_net --network-alias es elasticsearch:2
 ```
+
+# Common Errors
+## No Space Left
+```bash
+docker system prune --all --force
+```
