@@ -1,4 +1,5 @@
 # Model Comparison
+## Single Metric
 ``` python
 # Sort dataframe by the metric
 performance.sort_values('RMSE', inplace=True)
@@ -19,6 +20,47 @@ ax.set_title('Models Comparison',
 plt.xticks(rotation=45)
 
 # Plot with tight layout
+plt.tight_layout()
+```
+
+## Multiple Metrics
+```python
+# Create figure
+figure = plt.figure(tight_layout=True, figsize=(16, 6))
+
+# Melt the dataframe
+melted_performance = pd.melt(performance.reset_index(names='Models'), id_vars='Models', var_name='Metric', value_name='Value')
+
+# Plot models' metrics
+ax = sns.barplot(data=melted_performance,
+                 x='Models',
+                 y='Value', 
+                 hue='Metric')
+
+
+# Set labels
+ax.set_xlabel('Models', fontsize=20, weight='bold')
+ax.set_ylabel('Metric Value', fontsize=20, weight='bold')
+
+# Retrieve legend information
+handles = ax.get_legend_handles_labels()[0]
+labels = ax.get_legend_handles_labels()[1]
+ax.legend().remove()
+
+# Set the legend
+figure.legend(handles, 
+              labels, 
+              loc='center', 
+              bbox_to_anchor=(0.5, 1.03), 
+              fontsize=12,
+              ncol=len(metrics))
+
+# Set figure Title
+figure.suptitle('Model Comparison',
+                fontweight='bold',
+                fontsize=24)
+
+# Plot with tight layout
 plt.tight_layout()
 ```
 
