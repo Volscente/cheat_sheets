@@ -53,6 +53,7 @@ Each section identified by square brackets is called "Table". If a table is too-
 You now see that the only tool is poetry, but you might also have `[tool.pytest.ini_options]` for pytest.
 
 ## Virtual Environment
+### Introduction
 Poetry is able to manage virtual environments and it is not created by default when creating a new poetry project.
 **NOTE:** PyCharm will ask you if you want to create one.
 
@@ -61,7 +62,22 @@ Otherwise, inside the project directory, use the following command:
 poetry env use python3
 ```
 
-The virtual environment will be created in the directory `~/Library/Caches/pypoetry` for MacOS
+The virtual environment will be created in the directory `~/Library/Caches/pypoetry` for MacOS.
+Although the configuration of Poetry can be changed and create the virtual environment "in-project":
+```
+poetry config --list
+
+virtualenvs.in-project = null
+```
+
+### Changing Python Version
+1. Ensure the current Python version `poetry run python --version`
+2. Change the Python version in the `pyproject.toml`
+3. Use pyenv and install the new Python version
+4. List all the pyenv versions `pyenv versions`
+5. Switch to the new Python version with pyenv `pyenv local <version>` like `pyenv local 3.12.7`
+6. Locate the Python bin in pyenv (e.g., /Users/simone.porreca/.pyenv/versions/3.12.7/bin/python)
+7. Update the Poetry virtual environment poetry env use <python_bin_absolute_path>
 
 # Commands
 
