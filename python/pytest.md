@@ -21,3 +21,18 @@ pythonpath = [
   "src"
 ]
 ```
+
+## .Env Variables
+- Create a `.env` file in the root folder like
+```
+# Set environment variables
+ROOT_PATH="/Users/user.fake/Projects/project_repo"
+ANOTHER_VAR="Test Value"
+```
+- Install `poetry add pytest-dotenv`
+- Modify the `pyproject.toml`
+```
+[tool.pytest.ini_options]
+# Read from .env file
+env_files = [".env"]
+```
