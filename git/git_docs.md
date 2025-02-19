@@ -8,3 +8,7 @@ Open the project that you're trying to push on GitHub. Open the terminal and, fr
 git config lfs.activitytimeout 30
 ```
 Now close and re-open GitHub Desktop and push again.
+
+# Branches
+## Compare
+Add the `/compare` at the end of the repository URL.
