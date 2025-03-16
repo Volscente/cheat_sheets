@@ -77,7 +77,7 @@ virtualenvs.in-project = null
 4. List all the pyenv versions `pyenv versions`
 5. Switch to the new Python version with pyenv `pyenv local <version>` like `pyenv local 3.12.7`
 6. Locate the Python bin in pyenv (e.g., /Users/simone.porreca/.pyenv/versions/3.12.7/bin/python)
-7. Update the Poetry virtual environment poetry env use <python_bin_absolute_path>
+7. Update the Poetry virtual environment `poetry env use <python_bin_absolute_path>`
 
 # Commands
 
