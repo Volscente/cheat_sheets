@@ -152,3 +152,4 @@ data/squad_processed_train.json
 data/squad_processed_dev.json
 http_ca.crt
 machine_learning/PyTorch/data/*
+machine_learning/PyTorch/models/*
