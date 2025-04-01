@@ -37,6 +37,31 @@ big_query_client = bigquery.Client(credentials=service_account_credentials,
                                    project=service_account_credentials.project_id)
 ```
 
+## BigFrames
+### Upload Pandas DataFrame
+```python
+# Import Standard Libraries
+import pandas as pd
+import bigframes.pandas as bf
+
+# Setup BigFrames Options
+bf.options.bigquery.project = 'project_id'
+bf.options.bigquery.location = 'location'
+bf.options.display.progress_bar = True
+
+# Read data
+data = pd.read_csv('./local_data.csv')
+
+# Convert to BigFrames
+data_to_upload = bf.read_pandas(data)
+
+# Upload the row
+data_to_upload.to_gbq(
+    destination_table=f'{dataset_id}.{mds_labels_table_id}',
+    if_exists='append'
+)
+```
+
 # CLI
 ## List Datasets
 ``` bash
