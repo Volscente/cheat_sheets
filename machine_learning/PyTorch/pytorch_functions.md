@@ -1,7 +1,11 @@
 # Useful Resource
 - [PyTorch Save&Loads](https://pytorch.org/tutorials/beginner/saving_loading_models.html)
 
-# Training Models
+# Training Models
+## Theory
+The `nn.Module` has subclasses with learning weights, which are expressed as instances of `torch.nn.Parameter`. 
+The `Paramter` class is a subclass of `torch.Tensor`.
+0
 ## Traing with TQDM
 ```python
 # Import Standard Libraries
