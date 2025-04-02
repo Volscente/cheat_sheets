@@ -38,6 +38,27 @@ big_query_client = bigquery.Client(credentials=service_account_credentials,
 ```
 
 ## BigFrames
+### Read Data
+```python
+# Import Standard Libraries
+import pandas as pd
+import bigframes.pandas as bf
+
+# Setup BigFrames Options
+bf.options.bigquery.project = 'project_id'
+bf.options.bigquery.location = 'location'
+bf.options.display.progress_bar = True
+
+# Define the query
+query = """
+SELECT *
+FROM `{dataset_id}.{table_name}`
+""".format(dataset_id=dataset_id, table_name=table_name)
+
+data_bigframes = bf.read_gbq(query)
+data_dataframe = data_bigframes.to_pandas()
+```
+
 ### Upload Pandas DataFrame
 ```python
 # Import Standard Libraries
