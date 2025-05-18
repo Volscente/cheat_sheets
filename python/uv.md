@@ -59,6 +59,22 @@ uv remove --script
 ```bash
 # Create a new project
 uv init <project_name>
+
+# Add dependencies
+uv add requests
+uv add 'requests==2.31.0'
+uv add git+https://github.com/psf/requests
+v add -r requirements.txt -c constraints.txt
+
+# Build distributions
+uv build
+uv publish
+
+# Virtual environment
+uv sync # Sync the project's dependencies with the environment.
+uv lock # Create a lockfile for the project's dependencies.
+uv run # Run a command in the project environment.
+uv tree # View the dependency tree for the project.
 ```
 
 ### project.toml
@@ -119,3 +135,7 @@ spam-gui = "spam:main_gui"
 [project.entry-points."spam.magical"]
 tomatoes = "spam:main_tomatoes"
 ```
+
+## Files
+- .python-version &rarr; Pin the Python version
+- .venv &rarr; Include the virtual environment
