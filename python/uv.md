@@ -137,5 +137,29 @@ tomatoes = "spam:main_tomatoes"
 ```
 
 ## Files
-- .python-version &rarr; Pin the Python version
-- .venv &rarr; Include the virtual environment
+- `.python-version` &rarr; Pin the Python version
+- `.venv` &rarr; Include the virtual environment
+
+# Tools
+Many Python packages provide applications that can be used as tools.
+
+```bash
+# Run a tool (e.g., "ruff")
+uvx ruff # Option 1
+uv tool run ruff # Option 2
+
+# Use arguments (e.g., "hello from uv")
+uvx pycowsay hello from uv
+
+# Specific tool version
+uvx ruff@0.3.0 check
+uvx --from 'ruff==0.3.0' ruff check
+uvx --from 'ruff>0.2.0,<0.3.0' ruff check
+
+# Specify source
+uvx --from git+https://github.com/httpie/cli httpie
+uvx --from git+https://github.com/httpie/cli@3.2.4 httpie
+
+# Install tool
+uv tool install ruff # Installed in /bin and used like "ruff --version"
+```
