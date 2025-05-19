@@ -67,7 +67,8 @@ uv init <project_name>
 uv add requests
 uv add 'requests==2.31.0'
 uv add git+https://github.com/psf/requests
-v add -r requirements.txt -c constraints.txt
+uv add -r requirements.txt -c constraints.txt
+uv add --dev pytest black
 
 # Build distributions
 uv build
