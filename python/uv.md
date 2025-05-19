@@ -167,6 +167,23 @@ uvx --from git+https://github.com/httpie/cli@3.2.4 httpie
 uv tool install ruff # Installed in /bin and used like "ruff --version"
 ```
 
+## Virtual Environment
+```bash
+# Create venv
+uv venv
+
+# Other commands
+uv pip install # Install packages into the current environment
+uv pip show # Show details about an installed package
+uv pip freeze # List installed packages and their versions
+uv pip check # Check that the current environment has compatible packages
+uv pip list # List installed packages
+uv pip uninstall # Uninstall packages
+uv pip tree # View the dependency tree for the environment
+uv pip compile # Compile requirements into a lockfile
+uv pip sync # Sync an environment with a lockfile
+```
+
 # Process
 ## Setup Environment
 ```bash
