@@ -170,18 +170,21 @@ uv tool install ruff # Installed in /bin and used like "ruff --version"
 # Process
 ## Setup Environment
 ```bash
+# Check python installations
+uv python list
+
 # Install python
 uv python install 3.13
 
 # Creating project
 uv init my_project
 
-# Pin python version
-uv python pin 3.13
+# Pin python version to the project
+uv python pin --project 3.13
 
 # Add libraries
 uv add numpy
 
 # Creating virtual
-uv venv my_project_venv
+uv venv
 ```
