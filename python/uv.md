@@ -35,6 +35,9 @@ uv python find <version>
 
 # Pin the python version to the current project
 uv python pin <version>
+
+# Show the uv installed Python versions path
+uv python dir
 ```
 
 ## Scripts
