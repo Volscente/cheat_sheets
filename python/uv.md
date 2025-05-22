@@ -197,6 +197,8 @@ uv python install 3.13
 # Creating project
 uv init my_project
 
+# Bonus: Manually update the pyproject.toml with the desidered elements (Example in this wiki)
+
 # Pin python version to the project
 uv python pin --project 3.13
 
