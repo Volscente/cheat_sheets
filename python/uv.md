@@ -202,9 +202,9 @@ uv init my_project
 # Pin python version to the project
 uv python pin 3.13
 
-# Add libraries
-uv add numpy
-
 # Creating virtual
 uv venv
+
+# Add libraries
+uv add numpy
 ```
