@@ -208,3 +208,14 @@ uv venv
 # Add libraries
 uv add numpy
 ```
+
+## Update Library
+```bash
+# 0. Update the pyproject.toml library version
+
+# 1. Update env
+uv sync
+
+# 2. Update .lock file
+uv lock
+```
