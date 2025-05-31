@@ -17,4 +17,7 @@ pre-commit install
 
 # Update from the .pre-commit-config.yaml file
 pre-commit autoupdate
+
+# Check locally
+pre-commit run --all-files
 ```
