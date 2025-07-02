@@ -23,6 +23,10 @@ gcloud init
 ## Account Login
 Ensure to login with your account through:
 ```
+# Login google account
+gcloud auth login
+
+# Login service account
 gcloud auth application-default login
 ```
 The credentials would be logged into the following file `$HOME/.config/gcloud/application_default_credentials.json`
