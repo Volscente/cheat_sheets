@@ -46,3 +46,38 @@ except HttpError as e:
     else:
         print(f"❌ An error occurred: {e}")
 ```
+
+## Fetch folder
+```python
+from google.auth import default
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
+# Variables
+scopes = ['https://www.googleapis.com/auth/drive.readonly', 'https://www.googleapis.com/auth/cloud-platform']
+creds = None
+
+try:
+    creds, project = default(scopes=scopes)
+    print(f"Successfully loaded Application Default Credentials for project: {project}")
+except Exception as e:
+    print(f"Error loading Application Default Credentials: {e}")
+    exit(1)
+
+# Build the Drive API service
+drive_service = build('drive', 'v3', credentials=creds)
+
+# Retrieve language folder IDs
+response = drive_service.files().list(
+    q=f"'{parent_folder_id}' in parents and name='{folder_name}' and mimeType='application/vnd.google-apps.folder' and trashed=false",
+    fields="files(id, name)",
+    supportsAllDrives=True,
+    includeItemsFromAllDrives=True
+).execute()
+
+# Retrieve the files
+files = response.get('files', [])
+if not files:
+    print(f"Folder '{folder_name}' not found in the parent folder.")
+    continue
+```
