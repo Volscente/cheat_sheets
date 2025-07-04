@@ -16,6 +16,12 @@ using input-output dependencies.
 
 ## Pipeline Components
 A pipeline component is a self-contained set of code that performs a specific step of an ML workflow.
+They run in ephimeral and isolated Docker containers. They communicate by passing references to data stored in a shared location (typically cloud storage like Google Cloud Storage for Vertex AI).
+
+The way such Cloud Storage locations are defined is typically by generating dynamic and unique URIs:
+```python
+dataset = Dataset(uri=dsl.get_uri())
+```
 
 It consists of:
 - Inputs
