@@ -221,6 +221,9 @@ def pythagorean(a: float = 1.2, b: float = 1.2) -> float:
     return square_root(x=sq_and_sum_task.output).output
 ```
 
+In the Pipeline definition `pythagorean`, the variable `sq_and_sum_task` is a Pipeline Task (`kfp.dsl.Task`).
+It's not the Python function `square_and_sum` itself, but rather a specific invocation of that component within the context of the `pythagorean` pipeline. It represents an operation in the Pipeline Graph.
+
 ### Control Flow
 ```python
 from kfp import dsl
