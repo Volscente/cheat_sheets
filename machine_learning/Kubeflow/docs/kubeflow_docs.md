@@ -57,6 +57,27 @@ Kubeflow is specifically designed to work with Kubernetes underneath. The pipeli
 - TFX
 - Metaflow
 
+# Datasets
+## Creation
+A `Dataset` object is an artificat produced by a Kubeflow Component.
+It doesn't return the raw data itself. Instead, it signals to KFP where it has written the data.
+
+It is instanced through
+```python
+# Initialise Vertex AI Dataset
+dataset = Dataset(uri=dsl.get_uri())
+```
+
+A dynamic and unique URI is generated, which is a Google Cloud Storage location where the data of the Dataset can be stored and, therefore, passed to the next Kubeflow component.
+
+The data to be passed has to be written in the URI of the dataset by:
+```python
+# Write the data to the GCS location of the Dataset
+data_df.to_csv(dataset.path, index=False)
+```
+
+It is the critical step that materializes the data for that artifact at the designated local path (`dataset.path`), allowing KFP to then upload it to the cloud URI for consumption by downstream components
+
 # Building Pipelines
 ## DSL
 It allows to build components and pipelines in order to create a DAG (Direct Acyclic Graph).
