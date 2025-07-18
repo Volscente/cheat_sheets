@@ -1,4 +1,12 @@
 # Introduction
+## Resources
+- [Create a build configuration file](https://cloud.google.com/build/docs/configuring-builds/create-basic-configuration#yaml)
+- [Substituting variable values](https://cloud.google.com/build/docs/configuring-builds/substitute-variable-values)
+- [Build container images](https://cloud.google.com/build/docs/building/build-containers)
+- [Cloud builders](https://cloud.google.com/build/docs/cloud-builders)
+- [Using community-contributed builders and custom builders](https://cloud.google.com/build/docs/configuring-builds/use-community-and-custom-builders)
+- [Configure user-specified service accounts](https://cloud.google.com/build/docs/securing-builds/configure-user-specified-service-accounts)
+
 ## Scope
 It is a service dedicated to build Docker images or Vertex AI Pipeline templates.
 
