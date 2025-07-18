@@ -9,6 +9,7 @@ In general, any kind of build can be executed here.
 2. Create a Cloud Storage bucket where to store the logs
 3. Create the Artifact Registry for Docker Images and/or Kubeflow pipelines
 4. Define the `cloudbuild.yml`
+5. Submit the build to Google Cloud Build
 
 # Steps
 ## Prerequisites
@@ -89,4 +90,29 @@ options:
     logging: GCS_ONLY
 # Specify the Cloud Build tags
 tags: [$_COMPONENT, $_MODEL_VERSION]
+```
+
+## Step 5 - Submit the build to Google Cloud Build
+```bash
+#!/bin/bash
+# Trigger the Google Cloud Build pipeline as defined in /pipelines/cloudbuild.yaml to build and push
+# The Docker image for the Kubeflow Pipeline and the Kubeflow Pipeline Vertex AI template
+
+# Read variables
+source ./scripts/env.sh
+
+# Define substitutions for triggering the Google Cloud Build
+SUBSTITUTIONS=\
+_IMAGE_REPOSITORY_NAME=$IMAGE_REPOSITORY_NAME,\
+_PIPELINE_REPOSITORY_NAME=$PIPELINE_REPOSITORY_NAME,\
+TAG_NAME=$TAG_NAME,\
+_COMPONENT=$COMPONENT,\
+_MODEL_VERSION=$MODEL_VERSION
+
+# Trigger the Google Cloud Build
+gcloud builds submit \
+    --config ./pipelines/cloudbuild_evaluation_pipeline.yaml \
+    --region=$LOCATION \
+    --project=$PROJECT_ID \
+    --substitutions=$SUBSTITUTIONS
 ```
