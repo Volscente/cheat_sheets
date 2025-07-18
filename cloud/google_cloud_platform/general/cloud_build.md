@@ -8,6 +8,7 @@ In general, any kind of build can be executed here.
 1. Create a Service Account. This would be used to trigger the Cloud Build build instance on Google Cloud Platform
 2. Create a Cloud Storage bucket where to store the logs
 3. Create the Artifact Registry for Docker Images and/or Kubeflow pipelines
+4. Define the `cloudbuild.yml`
 
 # Steps
 ## Prerequisites
@@ -40,4 +41,52 @@ gcloud artifacts repositories create \
     --repository-format=KFP \
     --location=$LOCATION \
     --project=$PROJECT_ID
+```
+
+## Step 4 - Cloudbuild.yml Example
+```yml
+# Build the Docker image for the pyhon container used in the Kubeflow Pipeline
+# Configurations of the python container are in the Dockerfile
+steps:
+- id: build-pipeline-docker-image
+  name: 'gcr.io/cloud-builders/docker' # Container image name
+  args:
+    - build
+    - --file
+    - ./Dockerfile.my_project
+    - --tag
+    - $LOCATION-docker.pkg.dev/$PROJECT_ID/$_IMAGE_REPOSITORY_NAME/my-project-docker-image:$TAG_NAME
+    - --tag
+    - $LOCATION-docker.pkg.dev/$PROJECT_ID/$_IMAGE_REPOSITORY_NAME/my-project-docker-imag:$_MODEL_VERSION
+    - '.'
+# Compile the Kubeflow pipeline as specified in the pipelines/pipelines.py file
+# Providing also the pipeline arguments
+# NOTES: "images" field does not refer to this step. This step just runs the "pipelines.py" main function.
+- id: compile-pipelines
+  name: 'python:3.12' # Container image name
+  script: |
+    pip install kfp==2.7.0 &&\
+    python pipelines/pipelines.py \
+      --python_image_name=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_IMAGE_REPOSITORY_NAME/my-project-docker-image:$TAG_NAME \
+      --pipeline_repository_name=https://$LOCATION-kfp.pkg.dev/$PROJECT_ID/$_PIPELINE_REPOSITORY_NAME \
+      --tag=$TAG_NAME \
+      --model_version=$_MODEL_VERSION \
+      --project_id=$PROJECT_ID \
+# Specify the image location on the artifact registry for the step "build-pipeline-docker-image"
+images:
+- $LOCATION-docker.pkg.dev/$PROJECT_ID/$_IMAGE_REPOSITORY_NAME/mds-evaluation-image:$TAG_NAME
+substitutions:
+  _IMAGE_REPOSITORY_NAME: my-project-docker-registry # default
+  _PIPELINE_REPOSITORY_NAME: kf-my-project-pipelines # default
+  _COMPONENT: cool-project-name # default
+  _MODEL_VERSION: latest # default
+# Use a specific service account
+logsBucket: 'gs://my-project-google-cloud-storage-bucket/cloud_build_logs'
+serviceAccount: 'projects/$PROJECT_ID/serviceAccounts/project-service-account@e-company-name.iam.gserviceaccount.com'
+options:
+    dynamicSubstitutions: true
+    automapSubstitutions: true
+    logging: GCS_ONLY
+# Specify the Cloud Build tags
+tags: [$_COMPONENT, $_MODEL_VERSION]
 ```
