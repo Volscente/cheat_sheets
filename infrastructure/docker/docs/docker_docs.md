@@ -11,3 +11,8 @@ A container is a standard unit of software that packages up code and all its dep
 ## Technologies
 ### Docker
 Docker provides the ability to package and run an application in a loosely isolated environment called a container.
+
+# Errors
+## Build
+It looks like `docker build` is deprecated.
+Now it is requires to install `brew install docker-buildx` and use the command `docker-buildx` instead.
