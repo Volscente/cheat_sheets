@@ -8,8 +8,12 @@ uv add google-api-python-client
 ## Check Connection
 Authentication
 ```bash
-# Login with Service Account and required scopes
+# Login with Service Account and read
 gcloud auth application-default login --scopes=https://www.googleapis.com/auth/drive.readonly,https://www.googleapis.com/auth/cloud-platform
+
+# Loging with Service Account and full permissions
+gcloud auth application-default login \
+  --scopes=https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/drive
 ```
 
 Use the following script
