@@ -45,6 +45,41 @@ class BranchFlow(FlowSpec):
         self.next(self.join)
 ```
 
+ Loop steps:
+
+ ```python
+import time
+from metaflow import step, FlowSpec
+
+
+class ForeachFlow(FlowSpec):
+    @step
+    def start(self):
+        self.data = ["Apple", "Orange"]
+        self.next(self.process, foreach="data")
+
+    @step
+    def process(self):
+        print("Processing:", self.input)
+        self.fruit = self.input
+        self.score = len(self.input)
+        self.next(self.join)
+
+    @step
+    def join(self, inputs):
+        print("Choosing the best fruit")
+        self.best = max(inputs, key=lambda x: x.score).fruit
+        print("Best fruit:", self.best)
+        self.next(self.end)
+
+    @step
+    def end(self):
+        pass
+
+
+if __name__ == "__main__":
+    ForeachFlow()
+```
 
 # Next
 ## Commands
