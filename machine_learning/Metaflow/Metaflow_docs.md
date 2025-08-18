@@ -81,6 +81,65 @@ if __name__ == "__main__":
     ForeachFlow()
 ```
 
+## Docker Images
+The decorator `@pypi_base` is used to freeze library dependencies for the entire flow:
+
+```python
+@pypi_base(packages={"datashader": "0.16.3", "pandas": "2.2.2", "pyarrow": "17.0.0"})
+class NYCVizFlow(FlowSpec):
+    pass
+```
+
+## Access Flows' Artifact
+Create a Flow `ArtifactFlow`:
+```python
+from metaflow import FlowSpec, step
+
+
+class ArtifactFlow(FlowSpec):
+    @step
+    def start(self):
+        self.next(self.create_artifact)
+
+    @step
+    def create_artifact(self):
+        self.dataset = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        self.metadata_description = "created"
+        self.next(self.transform_artifact)
+
+    @step
+    def transform_artifact(self):
+        self.dataset = [[value * 10 for value in row] for row in self.dataset]
+        self.metadata_description = "transformed"
+        self.next(self.end)
+
+    @step
+    def end(self):
+        print(
+            "Artifact is in state `{}` with values {}".format(
+                self.metadata_description, self.dataset
+            )
+        )
+
+
+if __name__ == "__main__":
+    ArtifactFlow()
+```
+
+Later on it's possible to access what was inside of it:
+```python
+from metaflow import Flow
+run_artifacts = Flow("ArtifactFlow").latest_run.data
+assert run_artifacts.dataset == [[10, 20, 30], [40, 50, 60], [70, 80, 90]]
+```
+
+
+# Visualising Results
+## Card Decorator
+They are used to add reports to the flow's step.
+
+It creates a "Card" artifact inside the MetaFlow UI, in order to store more information for a specific task inside the Flow.
+
 # Next
 ## Commands
 ```bash
