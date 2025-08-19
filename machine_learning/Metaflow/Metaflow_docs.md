@@ -81,6 +81,29 @@ if __name__ == "__main__":
     ForeachFlow()
 ```
 
+## Parameters
+
+```python
+from metaflow import FlowSpec, step, Parameter
+
+
+class ParameterizedFlow(FlowSpec):
+
+    learning_rate = Parameter("lr", default=0.01)
+
+    @step
+    def start(self):
+        self.next(self.end)
+
+    @step
+    def end(self):
+        print("Learning rate value is {}".format(self.learning_rate))
+
+
+if __name__ == "__main__":
+    ParameterizedFlow()
+```
+
 ## Docker Images
 The decorator `@pypi_base` is used to freeze library dependencies for the entire flow:
 
