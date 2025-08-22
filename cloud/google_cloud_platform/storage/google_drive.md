@@ -100,11 +100,13 @@ This module includes utils function for interacting with Google Drive
 """
 
 # Import Standard Libraries
+import io
 import logging
 from typing import List
 from google.auth import default
 from googleapiclient.discovery import build, Resource
 from googleapiclient.errors import HttpError
+from googleapiclient.http import MediaIoBaseUpload
 
 # Setup logger
 logging.basicConfig(
@@ -208,6 +210,81 @@ def write_google_sheet(
         print(f"An error occurred: {error}")
 
     logging.debug("write_google_sheet - End")
+
+
+def create_folder(service: Resource, parent_folder_id: str, folder_name: str) -> str:
+    """
+    Create a folder in Google Drive.
+
+    Args:
+        service (Resource): Resource builder for Google Drive
+        parent_folder_id (String): Parent folder ID
+        folder_name (String): Output file name
+
+    Returns:
+        (String): Created Folder ID
+    """
+    logging.debug("create_folder - Start")
+
+    # Define the request metadata
+    file_metadata = {
+        "name": folder_name,
+        "mimeType": "application/vnd.google-apps.folder",
+        "parents": [parent_folder_id],
+    }
+
+    # Create the folder
+    folder = (
+        service.files().create(body=file_metadata, supportsAllDrives=True, fields="id").execute()
+    )
+
+    logging.debug("create_folder - End")
+
+    return folder.get("id")
+
+
+def upload_image_to_drive(
+    service: Resource, bytes_image: io.BytesIO, image_name: str, folder_id: str, mime_type: str
+) -> str:
+    """
+    Upload an image to Google Drive folder.
+
+    Args:
+        service (Resource): Resource builder for Google Drive
+        bytes_image (io.BytesIO): Image to upload
+        image_name (String): Image name
+        folder_id (String): Folder ID
+        mime_type (String): MIME type
+
+    Returns:
+        (String): Uploaded Image ID
+    """
+    logging.debug("upload_image_to_drive - Start")
+
+    # Prepare image metadata
+    file_metadata = {
+        "name": image_name,
+        "parents": [folder_id],
+    }
+
+    # Prepare media to upload
+    media = MediaIoBaseUpload(bytes_image, mimetype=mime_type)
+
+    # Upload the image
+    uploaded_file = (
+        service.files()
+        .create(
+            body=file_metadata,
+            media_body=media,
+            fields="id",
+            supportsAllDrives=True,  # important for Shared Drives
+        )
+        .execute()
+    )
+
+    logging.debug("upload_image_to_drive - End")
+
+    return uploaded_file.get("id")
 
 ```
 ## Usage
