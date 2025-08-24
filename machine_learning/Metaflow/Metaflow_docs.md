@@ -169,6 +169,12 @@ It creates a "Card" artifact inside the MetaFlow UI, in order to store more info
 # Next
 ## Commands
 ```bash
+# Show help
+python flow.py help
+
+# Show flow
+python flow.py show
+
 # Execute locally
 python flow.py run
 ```

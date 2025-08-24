@@ -154,3 +154,4 @@ http_ca.crt
 machine_learning/PyTorch/data/*
 machine_learning/PyTorch/models/*
 /machine_learning/PyTorch/advanced_topics/runs/
+/machine_learning/Metaflow/.metaflow/
