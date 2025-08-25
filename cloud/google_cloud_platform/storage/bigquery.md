@@ -181,3 +181,9 @@ SELECT
 FROM
   <dataset_name>.<table_data_name>
 ```
+
+# Recovery
+## Recover deleted table
+```bash
+bq cp curated_mds_model_data.evaluation_results_v2@-3600000 curated_mds_model_data.evaluation_results_v2_backup
+```
