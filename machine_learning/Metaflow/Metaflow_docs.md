@@ -92,7 +92,9 @@ from metaflow import FlowSpec, step, Parameter
 
 class ParameterizedFlow(FlowSpec):
 
-    learning_rate = Parameter("lr", default=0.01)
+    learning_rate = Parameter('learning_rate',
+                              help='Learning rate',
+                              default=0.01)
 
     @step
     def start(self):
@@ -106,6 +108,8 @@ class ParameterizedFlow(FlowSpec):
 if __name__ == "__main__":
     ParameterizedFlow()
 ```
+
+Run the above like `python parameter_flow.py run --learning_rate 0.6`
 
 ## Docker Images
 The decorator `@pypi_base` is used to freeze library dependencies for the entire flow:
