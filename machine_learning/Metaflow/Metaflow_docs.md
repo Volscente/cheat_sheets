@@ -47,6 +47,33 @@ print(Step('DebugFlow/2/a').task.data.x)
 # -------------------
 ```
 
+## Properties
+The list of all object, flows, runs, steps and tasks properties can
+be found in the [Metaflow Documentation](https://docs.metaflow.org/metaflow/client#common-properties).
+
+```python
+# -------- Tags --------
+from metaflow import Run
+run = Run('HelloFlow/2')
+
+# List
+print(Run('HelloFlow/2').system_tags)
+print(Run('HelloFlow/2').tags)
+
+# Adding
+run.add_tag('one_tag') # add one tag
+run.add_tags(['another_tag', 'yet_another', 'one_tag']) # add many tags
+
+# Removing
+run.remove_tag('one_tag') # remove one tag
+run.remove_tags(['another_tag', 'yet_another']) # remove many tags
+
+# Replacing
+run.replace_tag('one_tag', 'better_tag')
+run.replace_tags(['yet_another', 'another_tag'], ['better_tag'])
+# ----------------------
+```
+
 ## Steps
 Execute the next step:
 
