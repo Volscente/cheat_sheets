@@ -9,6 +9,44 @@ variety of projects, from classical statistics to state-of-the-art deep learning
 - [Tutorials](https://github.com/Netflix/metaflow/tree/master/metaflow/tutorials)
 
 # Flows
+## Hierarchy
+### Definition
+The flows are organised in the following way:
+
+![Metaflow Hierarchy](./images/metaflow_hierarchy.png)
+
+Each object in the above hierarchy can be imported from the `metaflow` library, like `from metaflow import Run`.
+
+### Accessing Flow Data
+```python
+# ---- List flows ----
+from metaflow import Metaflow
+print(Metaflow().flows)
+# --------------------
+
+# ---- List flow runs ----
+from metaflow import Flow
+flow = Flow('HelloFlow')
+
+# Fetch the runs
+for run in flow:
+    print(run)
+    
+# Access a specific run
+run = flow['2']
+# -------------------
+
+# ---- Access objects ----
+from metaflow import Run, Step
+run = Run('HelloFlow/2')
+step = Step('HelloFlow/2/start')
+
+# Access a DataArtifact
+from metaflow import Step
+print(Step('DebugFlow/2/a').task.data.x)
+# -------------------
+```
+
 ## Steps
 Execute the next step:
 
