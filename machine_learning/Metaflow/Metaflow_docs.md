@@ -228,6 +228,9 @@ run_artifacts = Flow("ArtifactFlow").latest_run.data
 assert run_artifacts.dataset == [[10, 20, 30], [40, 50, 60], [70, 80, 90]]
 ```
 
+## Managing Flows
+The section [Managing Flows](https://docs.metaflow.org/metaflow/managing-flows/introduction) 
+presents the Runner and Client API, used to run flows and interact with them.
 
 # Visualising Results
 ## Card Decorator
