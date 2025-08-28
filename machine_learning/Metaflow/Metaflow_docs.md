@@ -232,6 +232,41 @@ assert run_artifacts.dataset == [[10, 20, 30], [40, 50, 60], [70, 80, 90]]
 The section [Managing Flows](https://docs.metaflow.org/metaflow/managing-flows/introduction) 
 presents the Runner and Client API, used to run flows and interact with them.
 
+# Debug Flows
+## Resume Command
+The resume command allows you to resume execution of a past run at a failed step.
+
+Suppose running a flow with `python debug.py run` and it produces the following error:
+
+```bash
+...
+2018-01-27 22:59:40.313 [3/b/21638 (pid 13720)] File "debug.py", line 17, in b
+2018-01-27 22:59:40.313 [3/b/21638 (pid 13720)] self.x = int('2fail')
+2018-01-27 22:59:40.314 [3/b/21638 (pid 13720)] ValueError: invalid literal for int() with base 10: '2fail'
+2018-01-27 22:59:40.314 [3/b/21638 (pid 13720)]
+2018-01-27 22:59:40.361 [3/a/21637 (pid 13719)] Task finished successfully.
+2018-01-27 22:59:40.362 [3/b/21638 (pid 13720)] Task failed.
+2018-01-27 22:59:40.362 Workflow failed.
+    Step failure:
+    Step b (task-id 21638) failed.
+```
+
+This shows that the step b of the run 3 failed.
+
+The command `python debug.py resume` runs the flow by re-using all the successfull steps from the
+previous run. 
+
+```bash
+# Resume the run specifying ID
+python debug.py resume --origin-run-id 3
+
+# Resume from a step
+python debug.py resume start
+```
+
+It is also possible to debug directly through PyCharm "Edit Configurations" of the flow's script.
+
+
 # Visualising Results
 ## Card Decorator
 They are used to add reports to the flow's step.
