@@ -3,7 +3,16 @@
 `brew install postgresql`
 
 ## Commands
-### Database
+### Service
+```bash
+# Start
+brew services start postgresql@14
+
+# Stop
+brew services stop postgresql@14
+```
+
+### Database
 ```bash
 # Create
 createdb mydb
