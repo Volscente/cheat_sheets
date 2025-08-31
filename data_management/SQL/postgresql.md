@@ -1,6 +1,8 @@
 # General
 ## Installation
-`brew install postgresql`
+```bash
+brew install postgresql
+```
 
 ## Commands
 ### Service
