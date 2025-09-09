@@ -14,6 +14,12 @@ brew services start postgresql@14
 brew services stop postgresql@14
 ```
 
+### User
+```bash
+# Create user
+createuser --interactive -P
+```
+
 ### Database
 ```bash
 # Create
