@@ -183,7 +183,7 @@ FROM
 ```
 
 # Recovery
-## Recover deleted table
+## Recover deleted table
 ```bash
 bq cp curated_mds_model_data.evaluation_results_v2@-3600000 curated_mds_model_data.evaluation_results_v2_backup
 ```
