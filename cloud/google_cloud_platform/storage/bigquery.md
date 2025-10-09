@@ -1,6 +1,7 @@
 # Introduction
 The library offers several methods to manage and communicate with a BigQuery instance.
-To install:
+
+Installation:
 ``` bash
 pip install --user google-cloud-bigquery
 ```
