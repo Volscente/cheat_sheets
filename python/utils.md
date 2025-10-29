@@ -81,3 +81,10 @@ object.__dir__()
 import json
 print(json.dumps(json.loads(json_format_variable), indent=4))
 ```
+
+# Errors
+## Pyzbar
+```bash
+mkdir ~/lib
+ln -s $(brew --prefix zbar)/lib/libzbar.dylib ~/lib/libzbar.dylib
+```
