@@ -233,6 +233,19 @@ The section [Managing Flows](https://docs.metaflow.org/metaflow/managing-flows/i
 presents the Runner and Client API, used to run flows and interact with them.
 
 # Debug Flows
+## Debug with PyCharm
+The following steps will allow you to debug your Flow within PyCharm.
+The flow script has to include the class with the steps and the main function.
+
+1. In the "Run" menu, select "Edit Configurations..."
+2. Create a new configuration with the following items:
+    - Set the "Script path" field to point to the absolute path of your Flow script
+    - Set the "Parameters" field to "run"
+    - Set the "Working directory" field to the directory containing your Flow script
+3. You can now set your breakpoints as usual in your Flow code and select "Debug" from the "Run" menu.
+
+Note that since Metaflow may launch multiple steps in parallel, you may actually hit multiple breakpoints at the same time; you will be able to switch between those breakpoints using the dropdown menu (it will say "MainThread"). You can also restrict Metaflow to only execute one step at a time by adding "--max-workers 1" to the "Parameters" field.
+
 ## Resume Command
 The resume command allows you to resume execution of a past run at a failed step.
 
