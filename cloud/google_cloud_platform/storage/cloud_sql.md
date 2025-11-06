@@ -31,4 +31,14 @@ Step 4: Create the table with the Schema
 > [!NOTE]
 > Generate it by taking the first 5 rows of the CSV file and ask ChatGPT to generate the query with the schema.
 
-Step 5: Import into the Cloud SQL Instance
+Step 5: Export without header
+It is mandatory for the uploading in Cloud SQL to remove the CSV header
+
+```bash
+bq extract \
+  --destination_format=CSV \
+  --field_delimiter="," \
+  --print_header=false \
+  dh-global-sales-data-dev:dim_mds_model_data.talabat_items_data \
+  gs://dh-menu-digitalisation-service-data-storage/talabat-items-data/bigquery_export_no_header.csv
+```
