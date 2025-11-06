@@ -42,3 +42,12 @@ bq extract \
   dh-global-sales-data-dev:dim_mds_model_data.talabat_items_data \
   gs://dh-menu-digitalisation-service-data-storage/talabat-items-data/bigquery_export_no_header.csv
 ```
+
+Step 6: Import the data
+
+```bash
+gcloud sql import csv mds-postgresql-prod \
+  gs://dh-menu-digitalisation-service-data-storage/talabat-items-data/bigquery_export_no_header.csv \
+  --database=raw_mds_postgresql_prod \
+  --table=talabat_items_data
+```
