@@ -26,4 +26,9 @@ gcloud sql instances describe mds-postgresql-prod --format="value(serviceAccount
 gsutil iam ch serviceAccount:p433987166697-7gismu@gcp-sa-cloud-sql.iam.gserviceaccount.com:roles/storage.objectViewer gs://dh-menu-digitalisation-service-data-storage
 ```
 
-Step 4: Import into the Cloud SQL Instance
+Step 4: Create the table with the Schema
+
+> [!NOTE]
+> Generate it by taking the first 5 rows of the CSV file and ask ChatGPT to generate the query with the schema.
+
+Step 5: Import into the Cloud SQL Instance
