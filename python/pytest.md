@@ -36,3 +36,8 @@ ANOTHER_VAR="Test Value"
 # Read from .env file
 env_files = [".env"]
 ```
+
+## Logs
+```bash
+-o log_cli=true --log-cli-level=DEBUG
+```
