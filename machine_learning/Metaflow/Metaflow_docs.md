@@ -298,3 +298,18 @@ python flow.py show
 # Execute locally
 python flow.py run
 ```
+
+# Metaflow UI
+## Introduction
+It requires other two repositories:
+- [Metaflow-service](https://github.com/Netflix/metaflow-service) - It is the backend for managing data and artifacts
+- [Metaflow-ui](https://github.com/Netflix/metaflow-ui) - It is the UI itself
+
+## Build Docker Images
+In both repos, the docker images have to be built:
+```bash
+# metaflow-service
+docker-buildx build -t metaflow_service -f Dockerfile.metadata_service .
+
+# metaflow-service UI
+```
