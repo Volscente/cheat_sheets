@@ -4,6 +4,16 @@
 brew install postgresql
 ```
 
+## Extensions
+```bash
+# Vector Database
+CREATE EXTENSION IF NOT EXISTS vector;
+
+# Add vector column
+ALTER TABLE your_table_name
+ADD COLUMN embedding vector(768);
+```
+
 ## Commands
 ### Service
 ```bash
