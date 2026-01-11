@@ -13,6 +13,9 @@ gcloud storage buckets create gs://qwiklabs-gcp-03-633e0dea4408
 gcloud storage cp basic_pipeline.json gs://qwiklabs-gcp-03-633e0dea4408/pipeline-input/basic_pipeline.json
 ```
 
+## Download
+`gsutil cp -r gs://bucket/folder .`
+
 # UI
 ## Create from .json
 - Go to the `Vertex AI > Pipelines > Create Run`
