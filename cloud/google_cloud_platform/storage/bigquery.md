@@ -183,6 +183,16 @@ FROM
   <dataset_name>.<table_data_name>
 ```
 
+# Query Utils
+## String
+```
+SELECT
+  SPLIT(labels.menu_image_urls[OFFSET(0)], '/')[1] AS image_url
+FROM `table.labels_dataset` AS labels
+WHERE 
+  labels.language IS NULL
+```
+
 # Recovery
 ## Recover deleted table
 ```bash
