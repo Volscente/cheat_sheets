@@ -185,7 +185,7 @@ FROM
 
 # Query Utils
 ## String
-```
+```sql
 SELECT
   SPLIT(labels.menu_image_urls[OFFSET(0)], '/')[1] AS image_url
 FROM `table.labels_dataset` AS labels
