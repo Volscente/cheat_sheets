@@ -19,3 +19,21 @@ Files included:
 - `routes.d.ts`: It scans your `src/app` folder and makes a list of every valid link.
 - `cache-life.d.ts`: It defines the "shape" of how your app handles data caching.
 - `validator.ts`: It validates that your "Server Components" and "Client Components" aren't breaking the rules (e.g., trying to use a database secret in a file that runs in the browser).
+
+## Folder app
+
+In Next.js, this folder uses a file-system based router, meaning the way you organize your folders and files here directly dictates how your website looks and functions.
+
+Basic files:
+
+- `favicon.ico`: It’s the icon that appears in the browser tab, next to your page title
+- `globals.css`: This is where Tailwind CSS is initialized. It contains instructions that apply to every single page of your app. A global stylesheet.
+- `layout.tsx`: This file defines the permanent structure of your website. If you want a Navigation Bar or a Footer to stay on the screen while you switch between pages, you put it here. It contains the `<html>` and `<body>` tags. Every "Page" you create is injected into this layout as a "child."
+- `page.tsx`: This file maps to your root URL (`<http://localhost:3000/>`). Whatever code you write here is what the user sees first.
+
+When a user visits your site, Next.js does this:
+
+1. Loads the `layout.tsx` (The wrapper).
+2. Imports the `globals.css` (The styling rules).
+3. Injects the content of `page.tsx` into the middle of the layout.
+4. Displays the `favicon.ico` in the tab.
