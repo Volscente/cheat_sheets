@@ -32,3 +32,11 @@ npx create-next-app@latest frontend
 ## TypeScript
 
 It adds the typing functionality to JavaScript code.
+
+`.ts` (**TypeScript Source**): These are files where you write logic (functions, variables, loops). They get compiled into `.js` files.
+
+`.d.ts` (**Declaration File**): The `d` stands for Declaration.
+
+Think of a `.d.ts` file as a "Table of Contents" or a "Contract."
+It contains no logic (no if statements or calculations).
+It only tells TypeScript: "Hey, I promise that a function named X exists and it returns a String.
