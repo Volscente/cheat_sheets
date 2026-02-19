@@ -20,13 +20,21 @@ The **npm Packages** are specific to the Node.js ecosystem.
 
 The `npx` is used in order to execute packages without installing them.
 
+```bash
+# Update npm version
+sudo npm install -g npm@11.10.0
+```
+
 ## Next.js
 
 It is a Full-Stack Framework.
 
 ```bash
-# Create a new Next.js application using the default template
+# Create a new Next.js application using the default template in the folder "frontend"
 npx create-next-app@latest frontend
+
+# In case there are reported vulerabilties, run the following command inside the "frontend" folder
+npm audit fix
 ```
 
 ## TypeScript
