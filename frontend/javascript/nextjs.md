@@ -1,6 +1,8 @@
 # NextJS Framework
 
-## Folder .next
+## Folders
+
+### .next
 
 The folder is automatically created upon running one of the following commands:
 
@@ -20,7 +22,7 @@ Files included:
 - `cache-life.d.ts`: It defines the "shape" of how your app handles data caching.
 - `validator.ts`: It validates that your "Server Components" and "Client Components" aren't breaking the rules (e.g., trying to use a database secret in a file that runs in the browser).
 
-## Folder app
+### app
 
 In Next.js, this folder uses a file-system based router, meaning the way you organize your folders and files here directly dictates how your website looks and functions.
 
@@ -37,3 +39,18 @@ When a user visits your site, Next.js does this:
 2. Imports the `globals.css` (The styling rules).
 3. Injects the content of `page.tsx` into the middle of the layout.
 4. Displays the `favicon.ico` in the tab.
+
+### node_modules
+
+It stores all project dependencies.
+
+The `.bin` contains executable scripts. When you run `npm run dev`, it actually goes into `node_modules/.bin/next` to start the engine.
+
+## Files
+
+- `package.json`: It is the Main Manifest. It lists the name of the app, the scripts (like `dev`),
+  and the list of libraries required.
+- `package-lock.json`: It records the exact version of every single sub-dependency.
+- `tsconfig.json`: It includes TypeScript rules and when to apply them.
+- `next.config.ts`: Specific configurations for Next.js framework and how it should behave (e.g., adding an image domain).
+- `postcss.config.mjs`and `tailwind.config.ts`: Tailwind specific configurations for CSS generation.

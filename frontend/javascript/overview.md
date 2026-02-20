@@ -45,6 +45,8 @@ It adds the typing functionality to JavaScript code.
 
 `.d.ts` (**Declaration File**): The `d` stands for Declaration.
 
+`.tsx` (**TypeScript with JSX - JavaScript XML**): Used for React Components. It allows you to write HTML-like code directly inside your TypeScript logic.
+
 Think of a `.d.ts` file as a "Table of Contents" or a "Contract."
 It contains no logic (no if statements or calculations).
 It only tells TypeScript: "Hey, I promise that a function named X exists and it returns a String.
