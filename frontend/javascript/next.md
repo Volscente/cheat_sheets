@@ -66,3 +66,9 @@ It includes for example the repository root path reference:
       "@/*": ["./src/*"]
     }
 ```
+
+## page.tsx
+
+As the user opens the Browser, the AppRouter from Next.js automatically searches in the `app` or `src/app` for the file `page.tsx`.
+
+In this file there is a `export default` that defines what should be called in that occsaion.
