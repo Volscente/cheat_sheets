@@ -48,9 +48,21 @@ The `.bin` contains executable scripts. When you run `npm run dev`, it actually 
 
 ## Files
 
+### Overview
+
 - `package.json`: It is the Main Manifest. It lists the name of the app, the scripts (like `dev`),
   and the list of libraries required.
 - `package-lock.json`: It records the exact version of every single sub-dependency.
 - `tsconfig.json`: It includes TypeScript rules and when to apply them.
 - `next.config.ts`: Specific configurations for Next.js framework and how it should behave (e.g., adding an image domain).
 - `postcss.config.mjs`and `tailwind.config.ts`: Tailwind specific configurations for CSS generation.
+
+### tsconfig.json
+
+It includes for example the repository root path reference:
+
+```json
+"paths": {
+      "@/*": ["./src/*"]
+    }
+```

@@ -50,3 +50,20 @@ It adds the typing functionality to JavaScript code.
 Think of a `.d.ts` file as a "Table of Contents" or a "Contract."
 It contains no logic (no if statements or calculations).
 It only tells TypeScript: "Hey, I promise that a function named X exists and it returns a String.
+
+## Syntax
+
+### Const
+
+In JavaScript/TypeScript, `const` stands for Constant. It is the standard way to declare variables that you don't intend to re-assign using the `=` operator. In React, we use `const` for state because we never change words directly (e.g., `words = [...]` is forbidden); we only change it via its setter function.
+
+### Array Destructuring
+
+```javascript
+const [words, setWords] = useState<Word[]>([]);
+```
+
+It uses the `useState` from the React library to returns two items:
+
+- `words`: the read data
+- `setWords`: the function to call to update the data
