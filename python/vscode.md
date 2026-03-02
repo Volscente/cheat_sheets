@@ -511,3 +511,22 @@ DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST_
   "python.testing.pytestPath": "pytest"
 }
 ```
+- Ensure that the database is running as docker-compose service
+```yml
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: vademecum_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT}:5432"
+```
+```bash
+# The name of the service you can find in docker-compose.yml
+docker-compose up -d db
+```
