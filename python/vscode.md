@@ -480,3 +480,34 @@ Since you're a Data Scientist, you likely appreciate the "visual contrast" aspec
 }
 
 ```
+
+
+## Problem Fix
+### Testing with Docker-Compose
+
+- Ensure to stop any PostgreSQL instance running on your local machine.
+- Ensure to make the DATABASE_URL available in the .env file, like:
+
+```
+# .env
+POSTGRES_USER=devuser
+POSTGRES_PASSWORD=asdsa
+POSTGRES_DB=vademecum
+POSTGRES_HOST_LOCAL=localhost
+POSTGRES_HOST_DOCKER=db
+POSTGRES_PORT=5432
+
+# Assemble the URL for local debugging (VS Code / Pytest)
+DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST_LOCAL}:${POSTGRES_PORT}/${POSTGRES_DB}
+```
+
+- Add a `.vscode/settings.json`:
+```json
+{
+  "python.testing.pytestArgs": ["backend/tests"],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "python.envFile": "${workspaceFolder}/.env",
+  "python.testing.pytestPath": "pytest"
+}
+```
