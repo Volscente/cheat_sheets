@@ -1,5 +1,11 @@
 # TypeScript
 
+## Types vs. Interfaces
+An interfaces is always used to defining the shape of an **Object**.
+
+A type is more flexible: it can be used to defining objects, strings, numbers and complex combinations of those.
+
+
 ## Static Typing and Runtime Validation
 
 There is a main difference between the usage of **TypeScript Interfaces** and **Zod Objects**
@@ -37,4 +43,4 @@ export const wordSchema = z.object({
 export type WordFormValues = z.infer<typeof wordSchema>;
 ```
 
-By using `z.infer<typeof wordSchema>`, you actually generate a TypeScript type from the Zod schema. This ensures your validation rules and your TypeScript types are always perfectly synchronized, so you never have to define them twice.
+By using `export type WordFormValues = z.infer<typeof wordSchema>;`, you actually generate a TypeScript type from the Zod schema. It is a bridge between Zod and TypeScript. The `typeof` looks at the object `WordSchema` and retrieves the attributes. The `infer<...>` is a function provided by Zod and creates the TypeScript Interface from the Zod object. 
