@@ -53,6 +53,9 @@ claude
 ### Context
 
 - Add context into a prompt by using `@path_to_the_file`
+- You can also use the commands `/exit`, `/clear` or `/compact`
+- Use double ESC for going back in the session memory history to a previous point in the session time
+- Some configurations are saved in `settings.local.json`
 
 ## Files
 
