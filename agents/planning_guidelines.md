@@ -3,7 +3,7 @@
 A three-tier planning workflow for developing coding features and implementations.
 Each tier owns distinct content — no content is duplicated across tiers.
 
-```
+```text
 Notion (WHY + WHAT)
   └── GitHub Issues (WHICH task + tracking)
         └── specs/ (HOW it gets built)
@@ -20,12 +20,12 @@ high-level scope live here and are referenced downward — never copied.
 
 One page per feature or major initiative.
 
-| Section | Content |
-|---|---|
-| **Scope** | What is and is not included in this feature |
-| **Rationale** | Why this feature, what problem it solves |
-| **Background** | Prior work, constraints, decisions that led here |
-| **Deliverables** | Measurable outcomes that define success |
+| Section             | Content                                              |
+| ------------------- | ---------------------------------------------------- |
+| **Scope**           | What is and is not included in this feature          |
+| **Rationale**       | Why this feature, what problem it solves             |
+| **Background**      | Prior work, constraints, decisions that led here     |
+| **Deliverables**    | Measurable outcomes that define success              |
 | **Sprint Overview** | Table: sprint number, goal, status, link to sub-page |
 
 ### Sprint Sub-Pages
@@ -33,12 +33,12 @@ One page per feature or major initiative.
 One sub-page per sprint. Sprint pages are about execution — they do not repeat the feature's
 Scope/Rationale/Background, which already live on the main page.
 
-| Section | Content |
-|---|---|
-| **Sprint Goal** | One sentence: what this sprint achieves |
-| **GitHub Issues** | Table with issue number, title, assignee, status |
-| **Dependencies** | Other sprints or external work this sprint waits on |
-| **Definition of Done** | Conditions that close this sprint |
+| Section                | Content                                             |
+| ---------------------- | --------------------------------------------------- |
+| **Sprint Goal**        | One sentence: what this sprint achieves             |
+| **GitHub Issues**      | Table with issue number, title, assignee, status    |
+| **Dependencies**       | Other sprints or external work this sprint waits on |
+| **Definition of Done** | Conditions that close this sprint                   |
 
 ---
 
@@ -49,24 +49,29 @@ instead they link to it and focus on what needs to be done and how to verify it.
 
 ### Issue Structure
 
-```
+```markdown
 Title: [Sprint N] Brief description of the task
 
 ## Notion Sprint
+
 <URL to the Notion sprint sub-page>
 
 ## Scope
+
 What this specific issue covers (narrow, concrete — not the feature scope).
 
 ## Acceptance Criteria
+
 - [ ] Criterion 1
 - [ ] Criterion 2
 - [ ] ...
 
 ## Notes
+
 Pointers to the spec file, known constraints, or implementation hints.
 
 ## Checklist
+
 - [ ] Spec file updated (`specs/planning/gh-{number}-{title}.md`)
 - [ ] Tests written
 - [ ] Documentation updated
@@ -97,11 +102,11 @@ Each issue links back to its Notion sprint page; the sprint page lists all its i
 ## Tier 3: Repository Specs (Technical)
 
 Specs are pure technical documents for engineers. No business rationale. The spec answers
-*how* something gets built; Notion answers *why*.
+_how_ something gets built; Notion answers _why_.
 
 ### Folder Structure
 
-```
+```text
 specs/
 └── planning/
     ├── gh-42-add-user-auth.md
@@ -114,7 +119,7 @@ specs/
 
 ### File Naming Convention
 
-```
+```text
 gh-{issue-number}-{kebab-case-title}.md
 ```
 
@@ -124,7 +129,7 @@ The issue number makes the link to GitHub explicit and searchable.
 
 ### Spec File Structure
 
-```markdown
+````markdown
 # gh-{number}: {Title}
 
 **GitHub Issue:** #{number}
@@ -145,18 +150,18 @@ Describe how the new code integrates with existing components.
 
 New packages or dependencies introduced:
 
-| Package | Version | Justification |
-|---|---|---|
+| Package        | Version | Justification                        |
+| -------------- | ------- | ------------------------------------ |
 | `package-name` | `>=x.y` | Why this package, not an alternative |
 
 ## Implementation Details
 
 ### Modules / Files
 
-| File | Action | Description |
-|---|---|---|
-| `src/module/file.py` | Create | What this file does |
-| `src/existing/file.py` | Modify | What changes |
+| File                   | Action | Description         |
+| ---------------------- | ------ | ------------------- |
+| `src/module/file.py`   | Create | What this file does |
+| `src/existing/file.py` | Modify | What changes        |
 
 ### Key Functions
 
@@ -177,6 +182,7 @@ def function_name(param: Type, param2: Type) -> ReturnType:
     """
     ...
 ```
+````
 
 ### Data Models / Schemas
 
@@ -191,39 +197,43 @@ Pydantic models, dataclasses, or DB schema changes with field descriptions.
 ## Open Questions / Risks
 
 - [ ] Question or risk description — owner, target resolution date
-```
+
+```text
 
 ---
 
 ## Cross-Tier Reference Map
 
 ```
+
 ┌─────────────────────────────────────────────┐
-│  NOTION                                     │
-│  Feature Main Page                          │
-│  Scope · Rationale · Background             │
-│  Deliverables · Sprint Overview             │
-│       │                                     │
-│  Sprint Sub-Page (per sprint)               │
-│  Goal · Issue Table · Dependencies · DoD    │
+│ NOTION │
+│ Feature Main Page │
+│ Scope · Rationale · Background │
+│ Deliverables · Sprint Overview │
+│ │ │
+│ Sprint Sub-Page (per sprint) │
+│ Goal · Issue Table · Dependencies · DoD │
 └──────────────────┬──────────────────────────┘
-                   │ URL reference
-                   ▼
+│ URL reference
+▼
 ┌─────────────────────────────────────────────┐
-│  GITHUB ISSUES                              │
-│  Scope (narrow) · Acceptance Criteria       │
-│  Notes · Checklist                          │
-│  [links back to Notion sprint]              │
+│ GITHUB ISSUES │
+│ Scope (narrow) · Acceptance Criteria │
+│ Notes · Checklist │
+│ [links back to Notion sprint] │
 └──────────────────┬──────────────────────────┘
-                   │ issue number in filename
-                   ▼
+│ issue number in filename
+▼
 ┌─────────────────────────────────────────────┐
-│  specs/planning/gh-{N}-{title}.md           │
-│  Technical Scope · Architecture             │
-│  Tech Stack · Implementation Details        │
-│  Testing Strategy · Open Questions          │
-│  [links back to GitHub issue + Notion]      │
+│ specs/planning/gh-{N}-{title}.md │
+│ Technical Scope · Architecture │
+│ Tech Stack · Implementation Details │
+│ Testing Strategy · Open Questions │
+│ [links back to GitHub issue + Notion] │
 └─────────────────────────────────────────────┘
+
 ```
 
 Each tier links to the tier above it for context. Content flows down; references flow up.
+```
