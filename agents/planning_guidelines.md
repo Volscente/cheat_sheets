@@ -198,42 +198,203 @@ Pydantic models, dataclasses, or DB schema changes with field descriptions.
 
 - [ ] Question or risk description — owner, target resolution date
 
-```text
-
 ---
 
 ## Cross-Tier Reference Map
 
-```
-
+```text
 ┌─────────────────────────────────────────────┐
-│ NOTION │
-│ Feature Main Page │
-│ Scope · Rationale · Background │
-│ Deliverables · Sprint Overview │
-│ │ │
-│ Sprint Sub-Page (per sprint) │
-│ Goal · Issue Table · Dependencies · DoD │
+│                   NOTION                    │
+│             Feature Main Page               │
+│     Scope · Rationale · Background          │
+│       Deliverables · Sprint Overview        │
+│                                             │
+│        Sprint Sub-Page (per sprint)         │
+│   Goal · Issue Table · Dependencies · DoD   │
 └──────────────────┬──────────────────────────┘
-│ URL reference
-▼
+                   │ URL reference
+                   ▼
 ┌─────────────────────────────────────────────┐
-│ GITHUB ISSUES │
-│ Scope (narrow) · Acceptance Criteria │
-│ Notes · Checklist │
-│ [links back to Notion sprint] │
+│              GITHUB ISSUES                  │
+│     Scope (narrow) · Acceptance Criteria    │
+│            Notes · Checklist                │
+│       [links back to Notion sprint]         │
 └──────────────────┬──────────────────────────┘
-│ issue number in filename
-▼
+                   │ issue number in filename
+                   ▼
 ┌─────────────────────────────────────────────┐
-│ specs/planning/gh-{N}-{title}.md │
-│ Technical Scope · Architecture │
-│ Tech Stack · Implementation Details │
-│ Testing Strategy · Open Questions │
-│ [links back to GitHub issue + Notion] │
+│    specs/planning/gh-{N}-{title}.md         │
+│    Technical Scope · Architecture           │
+│    Tech Stack · Implementation Details      │
+│    Testing Strategy · Open Questions        │
+│    [links back to GitHub issue + Notion]    │
 └─────────────────────────────────────────────┘
-
 ```
 
 Each tier links to the tier above it for context. Content flows down; references flow up.
+
+---
+
+## Examples
+
+All three examples trace the same feature — **User Authentication** (JWT-based login).
+
+---
+
+### Tier 1 Example: Notion
+
+#### Main Feature Page — "User Authentication"
+
+| Section             | Content                                                                              |
+| ------------------- | ------------------------------------------------------------------------------------ |
+| **Scope**           | JWT-based login and token refresh. Excludes OAuth, SSO, and social login.            |
+| **Rationale**       | Unprotected API endpoints expose customer data; auth is a compliance requirement.    |
+| **Background**      | Prior session-cookie approach caused cross-domain failures on the mobile client.     |
+| **Deliverables**    | All API routes enforce auth; login endpoint live in staging by end of Sprint 1.      |
+| **Sprint Overview** | Sprint 1: login endpoint · Sprint 2: token refresh · Sprint 3: logout + cleanup      |
+
+#### Sprint 1 Sub-Page — "Login Endpoint"
+
+| Section                | Content                                                                |
+| ---------------------- | ---------------------------------------------------------------------- |
+| **Sprint Goal**        | Ship a working `POST /auth/login` endpoint to staging.                 |
+| **GitHub Issues**      | #42 Implement JWT login endpoint · #43 Add auth middleware              |
+| **Dependencies**       | PyJWT package approved by security review (Sprint 0 prerequisite).     |
+| **Definition of Done** | Both issues closed; end-to-end login verified in staging environment.  |
+
+---
+
+### Tier 2 Example: GitHub Issue
+
+```markdown
+Title: [Sprint 1] Implement JWT login endpoint
+
+## Notion Sprint
+
+https://www.notion.so/acme/Sprint-1-Login-Endpoint-a1b2c3d4e5f678901234567890abcdef
+
+## Scope
+
+Create `POST /auth/login`. Validates email + password against the users table and
+returns a signed JWT (24 h expiry). Does not include token refresh or logout.
+
+## Acceptance Criteria
+
+- [ ] POST /auth/login returns 200 + `{ token }` on valid credentials
+- [ ] Returns 401 `{ error: "invalid credentials" }` on bad email or password
+- [ ] Token payload includes `user_id`, `email`, `exp`
+- [ ] Token is rejected by the auth middleware after expiry
+
+## Notes
+
+Spec: `specs/planning/gh-42-implement-jwt-login.md`
+Use PyJWT (already in requirements.txt). Secret loaded from `JWT_SECRET` env var.
+
+## Checklist
+
+- [ ] Spec file updated (`specs/planning/gh-42-implement-jwt-login.md`)
+- [ ] Tests written
+- [ ] Documentation updated
+- [ ] CHANGELOG.md updated
 ```
+
+---
+
+### Tier 3 Example: Spec File
+
+**File:** `specs/planning/gh-42-implement-jwt-login.md`
+
+````markdown
+# gh-42: Implement JWT Login Endpoint
+
+**GitHub Issue:** #42
+**Notion Sprint:** https://www.notion.so/acme/Sprint-1-Login-Endpoint-a1b2c3d4e5f678901234567890abcdef
+
+---
+
+## Technical Scope
+
+**In scope:** `src/auth/router.py`, `src/auth/service.py`, `src/auth/schemas.py`, `src/main.py`
+**Out of scope:** token refresh (`/auth/refresh`), logout, OAuth providers.
+
+## Architecture
+
+```text
+Client
+  │  POST /auth/login  { email, password }
+  ▼
+AuthRouter (FastAPI)
+  │  calls
+  ▼
+AuthService.login(email, password)
+  │  queries
+  ▼
+UserRepository.get_by_email(email)   ← existing component, no changes
+  │  on match: verify password hash
+  ▼
+jwt.encode({ user_id, email, exp }, JWT_SECRET)
+  │  returns
+  ▼
+{ token: "<jwt>" }  →  200 OK
+```
+
+## Tech Stack
+
+| Package | Version | Justification                                         |
+| ------- | ------- | ----------------------------------------------------- |
+| `PyJWT` | `>=2.8` | Lightweight, well-audited JWT library; no extra deps. |
+
+## Implementation Details
+
+### Modules / Files
+
+| File                       | Action | Description                                            |
+| -------------------------- | ------ | ------------------------------------------------------ |
+| `src/auth/schemas.py`      | Create | Pydantic models: `LoginRequest`, `TokenResponse`       |
+| `src/auth/service.py`      | Create | `AuthService.login()` — validates credentials, signs JWT |
+| `src/auth/router.py`       | Create | FastAPI router: `POST /auth/login`                     |
+| `src/main.py`              | Modify | Register `auth_router` on the app instance             |
+
+### Key Functions
+
+```python
+def login(email: str, password: str) -> str:
+    """
+    Validate credentials and return a signed JWT.
+
+    Args:
+        email: The user's email address.
+        password: Plaintext password to verify against the stored hash.
+
+    Returns:
+        A signed JWT string with 24-hour expiry.
+
+    Raises:
+        AuthenticationError: If email not found or password does not match.
+    """
+    ...
+```
+
+### Data Models / Schemas
+
+```python
+class LoginRequest(BaseModel):
+    email: EmailStr
+    password: str        # plaintext; hashing is handled inside AuthService
+
+class TokenResponse(BaseModel):
+    token: str           # signed JWT string
+```
+
+## Testing Strategy
+
+- **Unit tests:** mock `UserRepository.get_by_email`; cover valid login, wrong password,
+  unknown email, and expired token rejection.
+- **Integration tests:** POST to `/auth/login` against a seeded test DB; assert 200 + valid JWT.
+- **Edge cases:** empty password, email with mixed case, token used at exact expiry second.
+
+## Open Questions / Risks
+
+- [ ] Should token expiry (24 h) be configurable via env var? — @simone, target 2026-04-18
+- [ ] Do we blacklist tokens on logout? If yes, this expands scope to Sprint 3. — @simone, target 2026-04-18
+````
