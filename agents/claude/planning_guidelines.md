@@ -245,22 +245,22 @@ All three examples trace the same feature — **User Authentication** (JWT-based
 
 #### Main Feature Page — "User Authentication"
 
-| Section             | Content                                                                              |
-| ------------------- | ------------------------------------------------------------------------------------ |
-| **Scope**           | JWT-based login and token refresh. Excludes OAuth, SSO, and social login.            |
-| **Rationale**       | Unprotected API endpoints expose customer data; auth is a compliance requirement.    |
-| **Background**      | Prior session-cookie approach caused cross-domain failures on the mobile client.     |
-| **Deliverables**    | All API routes enforce auth; login endpoint live in staging by end of Sprint 1.      |
-| **Sprint Overview** | Sprint 1: login endpoint · Sprint 2: token refresh · Sprint 3: logout + cleanup      |
+| Section             | Content                                                                           |
+| ------------------- | --------------------------------------------------------------------------------- |
+| **Scope**           | JWT-based login and token refresh. Excludes OAuth, SSO, and social login.         |
+| **Rationale**       | Unprotected API endpoints expose customer data; auth is a compliance requirement. |
+| **Background**      | Prior session-cookie approach caused cross-domain failures on the mobile client.  |
+| **Deliverables**    | All API routes enforce auth; login endpoint live in staging by end of Sprint 1.   |
+| **Sprint Overview** | Sprint 1: login endpoint · Sprint 2: token refresh · Sprint 3: logout + cleanup   |
 
 #### Sprint 1 Sub-Page — "Login Endpoint"
 
-| Section                | Content                                                                |
-| ---------------------- | ---------------------------------------------------------------------- |
-| **Sprint Goal**        | Ship a working `POST /auth/login` endpoint to staging.                 |
-| **GitHub Issues**      | #42 Implement JWT login endpoint · #43 Add auth middleware              |
-| **Dependencies**       | PyJWT package approved by security review (Sprint 0 prerequisite).     |
-| **Definition of Done** | Both issues closed; end-to-end login verified in staging environment.  |
+| Section                | Content                                                               |
+| ---------------------- | --------------------------------------------------------------------- |
+| **Sprint Goal**        | Ship a working `POST /auth/login` endpoint to staging.                |
+| **GitHub Issues**      | #42 Implement JWT login endpoint · #43 Add auth middleware            |
+| **Dependencies**       | PyJWT package approved by security review (Sprint 0 prerequisite).    |
+| **Definition of Done** | Both issues closed; end-to-end login verified in staging environment. |
 
 ---
 
@@ -348,12 +348,12 @@ jwt.encode({ user_id, email, exp }, JWT_SECRET)
 
 ### Modules / Files
 
-| File                       | Action | Description                                            |
-| -------------------------- | ------ | ------------------------------------------------------ |
-| `src/auth/schemas.py`      | Create | Pydantic models: `LoginRequest`, `TokenResponse`       |
-| `src/auth/service.py`      | Create | `AuthService.login()` — validates credentials, signs JWT |
-| `src/auth/router.py`       | Create | FastAPI router: `POST /auth/login`                     |
-| `src/main.py`              | Modify | Register `auth_router` on the app instance             |
+| File                  | Action | Description                                              |
+| --------------------- | ------ | -------------------------------------------------------- |
+| `src/auth/schemas.py` | Create | Pydantic models: `LoginRequest`, `TokenResponse`         |
+| `src/auth/service.py` | Create | `AuthService.login()` — validates credentials, signs JWT |
+| `src/auth/router.py`  | Create | FastAPI router: `POST /auth/login`                       |
+| `src/main.py`         | Modify | Register `auth_router` on the app instance               |
 
 ### Key Functions
 
