@@ -4,8 +4,11 @@
 
 - [Documentation](https://code.claude.com/docs/en/quickstart)
 - [MCP Server](https://code.claude.com/docs/en/mcp)
+<<<<<<< HEAD
 - [Complete Guide](https://blakecrosley.com/guides/claude-code)
 - [Claude Commands](https://blakecrosley.com/guides/claude-code-cheatsheet)
+=======
+>>>>>>> ad036534d14fabf08e537b2250b85c26912b0148
 
 Claude Code is an agentic CLI that reads your codebase, executes commands, and modifies files through a layered system of permissions, hooks, MCP integrations, and subagents. Master five core systems (configuration, permissions, hooks, MCP, and subagents) and you unlock force-multiplier productivity.
 
@@ -79,6 +82,7 @@ claude --resume auth-refacto
 ### Custom Commands
 
 - Store them in `.claude/commands/command-name.md`
+<<<<<<< HEAD
 
 ```markdown
 ---
@@ -109,6 +113,8 @@ disable-model-invocation: false
 ---
 ```
 
+=======
+>>>>>>> ad036534d14fabf08e537b2250b85c26912b0148
 - They are Markdown files in which you can specify, for example, how to build UI components (e.g., naming convention, syntax, tests, etc.)
 - You can use the `@` to specify paths inside this Markdown file
 - Add command components by adding the following on top of the Markdown file:
@@ -131,6 +137,7 @@ Parse $ARGUMENTS to get the following values:
 
 - Afterwards you can use them in the Markdown file through `[name]` for example
 
+<<<<<<< HEAD
 - Custom commands can be organised like:
 
 ```text
@@ -144,6 +151,8 @@ Parse $ARGUMENTS to get the following values:
 └── review.md
 ```
 
+=======
+>>>>>>> ad036534d14fabf08e537b2250b85c26912b0148
 ## Files
 
 ### CLAUDE.md
@@ -209,6 +218,7 @@ This way:
 - Keeps MEMORY.md clean and scannable (index role only)
 ```
 
+<<<<<<< HEAD
 ### Output Style
 
 It is possible to configure with:
@@ -237,6 +247,8 @@ Use markdown headers for organization.
 Keep explanations under 200 words per section.
 ```
 
+=======
+>>>>>>> ad036534d14fabf08e537b2250b85c26912b0148
 ## Components
 
 ### Introduction
@@ -255,7 +267,10 @@ Core components to care for the correct usage of Claude Code:
 - **Model Tiering**: route to subagents specialised in writing unit tests, analyse security, etc.
 - They are created inside `.claude/agents` folder
 - Each Agent is just a Markdown file with its instructions
+<<<<<<< HEAD
 - Use the Agent Model Tiering in order to route sub-agents exploration to cheaper model and save cost
+=======
+>>>>>>> ad036534d14fabf08e537b2250b85c26912b0148
 - You can pass parameters as in "Custom Commands"
 
 ### MCP
@@ -264,7 +279,10 @@ Core components to care for the correct usage of Claude Code:
 - Use the command `claude mcp add` to install a specific MCP server
 - It creates a `.mcp.json` file
 - Once they are connected, they can be used in normal prompts
+<<<<<<< HEAD
 
 ### SKills
 
 Skills represent a fundamentally different approach to extending Claude Code. Unlike slash commands that you invoke explicitly, skills are model-invoked—Claude automatically discovers and uses them based on context. You embed domain expertise into a skill, and Claude draws on that expertise whenever the situation calls for it, without you needing to remember to ask.
+=======
+>>>>>>> ad036534d14fabf08e537b2250b85c26912b0148
