@@ -188,13 +188,13 @@ def function_name(param: Type, param2: Type) -> ReturnType:
 
 Pydantic models, dataclasses, or DB schema changes with field descriptions.
 
-## Testing Strategy
+### Testing Strategy
 
 - Unit tests: what to mock, what to test directly
 - Integration tests: which boundaries to test end-to-end
 - Edge cases: explicit list of non-obvious scenarios to cover
 
-## Open Questions / Risks
+### Open Questions / Risks
 
 - [ ] Question or risk description — owner, target resolution date
 
