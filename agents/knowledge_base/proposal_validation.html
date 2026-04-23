@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>proposal_validation.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="rfc-ai-powered-knowledge-base-retrieval-system">RFC: AI-Powered Knowledge Base Retrieval System</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Status</td>
+<td>Draft</td>
+</tr>
+<tr>
+<td>Author</td>
+<td>Simone Porreca</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>2026-04-23</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>0.1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="1-scope">1. Scope</h2>
+<p>Organise and make accessible a personal knowledge base — currently stored as Google Docs across <strong>12 topic categories</strong> — through an AI-powered retrieval interface. The system must allow a user to query the knowledge base in natural language and receive accurate, well-formed answers grounded in the source documents, without requiring manual search or browsing.</p>
+<hr>
+<h2 id="2-goal">2. Goal</h2>
+<p>Design and implement a <strong>multi-agent, retrieval-augmented generation (RAG) system</strong> that:</p>
+<ul>
+<li>Indexes the knowledge base semantically, enabling precise retrieval at both document and passage level</li>
+<li>Routes user queries to the correct topic domain(s)</li>
+<li>Generates answers using domain-specific context retrieved from the knowledge base</li>
+<li>Adapts the output language and format to match the scope and audience</li>
+<li>Validates answer quality through a self-correcting review loop before returning a response</li>
+</ul>
+<hr>
+<h2 id="3-proposed-solution">3. Proposed Solution</h2>
+<h3 id="31-overview">3.1 Overview</h3>
+<p>The proposed architecture follows a two-pipeline design:</p>
+<table>
+<thead>
+<tr>
+<th>Pipeline</th>
+<th>Mode</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Indexing</strong></td>
+<td>Offline</td>
+<td>Processes Google Docs into an embedded, searchable vector store</td>
+</tr>
+<tr>
+<td><strong>Query</strong></td>
+<td>Online</td>
+<td>Routes, retrieves, generates, adapts, and validates answers at request time</td>
+</tr>
+</tbody>
+</table>
+<p>The query pipeline is composed of five sequential agents:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Agent</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Router Agent</td>
+<td>Classifies query → top-k topic categories</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Index Search</td>
+<td>Retrieves relevant chunks from vector store</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Domain Agent</td>
+<td>Constructs the answer from retrieved context</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Language Agent</td>
+<td>Adapts tone, terminology, and format to the target scope</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Reviewer Agent</td>
+<td>Validates factual grounding, completeness, and language fit; triggers retries</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-system-diagram">3.2 System Diagram</h3>
+<blockquote>
+<p>See <a href="./system_diagram.mmd"><code>system_diagram.mmd</code></a> for the full Mermaid source.</p>
+</blockquote>
+<p>Two swimlanes:</p>
+<ul>
+<li><strong>Indexing Pipeline (offline):</strong> Google Docs → Summarize → Chunk → Embed → Vector Store</li>
+<li><strong>Query Pipeline (online):</strong> User Query → Router → Index Search (+ MCP full-doc access) → Domain Agent → Language Agent → Reviewer → Response (or retry)</li>
+</ul>
+<h3 id="33-high-level-description">3.3 High-Level Description</h3>
+<h4 id="331-indexing-pipeline-offline">3.3.1 Indexing Pipeline (Offline)</h4>
+<p><strong>Step 1 — Summarization</strong>
+Each Google Doc is passed to Claude Sonnet in batch mode. The output is a concise summary preserving the document's key concepts, entities, and intent — not its verbatim content. Summaries serve as the <strong>routing signal</strong>: they are embedded and indexed separately from the document's content.</p>
+<p><strong>Step 2 — Chunking</strong>
+Each document is also split into passage-level chunks (e.g., 512 tokens, 10% overlap). These chunks are the <strong>retrieval units</strong> — finer-grained than the whole document and preserving specific facts, formulas, or code that summaries would drop.</p>
+<p><strong>Step 3 — Embedding</strong>
+Both summaries and chunks are embedded. Two types of vectors are stored:</p>
+<ul>
+<li>Document-level summary vectors — used by the Router Agent to select categories</li>
+<li>Chunk-level vectors — used by the Domain Agent to retrieve specific passages</li>
+</ul>
+<p><strong>Step 4 — Vector Index</strong>
+All vectors are stored in a vector database alongside metadata (category, doc ID, chunk ID, Google Docs URL) to support filtered retrieval.</p>
+<h4 id="332-query-pipeline-online">3.3.2 Query Pipeline (Online)</h4>
+<p><strong>Step 1 — Router Agent</strong>
+A lightweight LLM agent receives the user query and returns a ranked list of relevant categories (1-to-N, not 1-to-1). It searches the summary index to identify which categories likely contain relevant documents. A confidence threshold determines whether 1 or multiple categories are activated.</p>
+<p><strong>Step 2 — Index Search + MCP Access</strong>
+For each selected category, the system retrieves the top-k most relevant chunks. The Domain Agent may additionally call the MCP server to fetch the full source document when chunk-level context is insufficient.</p>
+<p><strong>Step 3 — Domain Agent</strong>
+A single configurable agent receives:</p>
+<ul>
+<li>A category-specific system prompt (injected at runtime)</li>
+<li>The retrieved chunks as context</li>
+<li>MCP access for full-document retrieval on demand</li>
+</ul>
+<p>The agent generates a structured answer grounded in the retrieved content.</p>
+<p><strong>Step 4 — Language Agent</strong>
+A dedicated agent wraps the domain agent's output, adapting it to the intended scope. Its responsibilities include:</p>
+<ul>
+<li>Adjusting tone and formality to match the target audience</li>
+<li>Normalising terminology across multi-category answers (avoiding jargon conflicts)</li>
+<li>Formatting the output consistently (e.g., bullet points, code blocks, structured sections)</li>
+<li>Applying scope-specific writing conventions (e.g., conciseness, citation style)</li>
+</ul>
+<p>The language agent does not alter factual content — it only transforms how the answer is expressed.</p>
+<p><strong>Step 5 — Reviewer Agent</strong>
+A higher-capability agent evaluates the language agent's output against:</p>
+<ul>
+<li>Factual grounding (answer supported by retrieved content)</li>
+<li>Completeness (all aspects of the query addressed)</li>
+<li>Consistency (no contradictions across multi-category answers)</li>
+<li>Language fit (tone and format match the scope defined by the language agent's brief)</li>
+</ul>
+<p>On failure, the reviewer returns structured feedback to the Router Agent to trigger a refined retry. A <strong>maximum of 2 retries</strong> is enforced, after which the system returns a best-effort answer with an explicit uncertainty note.</p>
+<h3 id="34-tech-stack">3.4 Tech Stack</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Recommended Tool</th>
+<th>Alternatives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Access</td>
+<td>Google Docs API via MCP server</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Summarization</td>
+<td>Claude Sonnet 4.6 (batch)</td>
+<td>GPT-4o-mini</td>
+</tr>
+<tr>
+<td>Chunking</td>
+<td>LangChain <code>RecursiveCharacterTextSplitter</code></td>
+<td><code>unstructured.io</code>, <code>chonkie</code></td>
+</tr>
+<tr>
+<td>Embedding</td>
+<td>OpenAI <code>text-embedding-3-large</code></td>
+<td>Vertex AI <code>text-embedding-004</code></td>
+</tr>
+<tr>
+<td>Vector Store</td>
+<td>Pinecone (production)</td>
+<td>pgvector, Weaviate, ChromaDB (dev)</td>
+</tr>
+<tr>
+<td>Orchestration</td>
+<td>LangGraph</td>
+<td>CrewAI, custom async loop</td>
+</tr>
+<tr>
+<td>Router Agent</td>
+<td>Claude Sonnet 4.6</td>
+<td>GPT-4o</td>
+</tr>
+<tr>
+<td>Domain Agent</td>
+<td>Claude Sonnet 4.6</td>
+<td>GPT-4o</td>
+</tr>
+<tr>
+<td>Language Agent</td>
+<td>Claude Sonnet 4.6</td>
+<td>GPT-4o</td>
+</tr>
+<tr>
+<td>Reviewer Agent</td>
+<td>Claude Opus 4.6</td>
+<td>GPT-4o (with eval prompt)</td>
+</tr>
+<tr>
+<td>Index Refresh</td>
+<td>Google Docs webhook → Cloud Function</td>
+<td>Scheduled batch job</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why LangGraph:</strong> The reviewer-triggered retry loop requires a stateful directed graph with cycles. LangGraph models this natively with conditional edges and state persistence across hops.</p>
+<hr>
+<h2 id="4-risks-and-mitigations">4. Risks and Mitigations</h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Severity</th>
+<th>Likelihood</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Summary information loss</strong> — summaries drop specific facts, formulas, or code snippets needed for answers</td>
+<td>High</td>
+<td>High</td>
+<td>Chunk-level indexing alongside summaries; summaries used only for routing, chunks for answer generation</td>
+</tr>
+<tr>
+<td><strong>1-to-1 routing failure</strong> — cross-domain queries spanning 2+ categories are misrouted</td>
+<td>High</td>
+<td>Medium</td>
+<td>Router returns a ranked top-k category list; threshold-based multi-category activation</td>
+</tr>
+<tr>
+<td><strong>12 specialized agents — maintenance overhead</strong> — separate prompt tuning per category; costly to extend</td>
+<td>Medium</td>
+<td>High</td>
+<td>Single configurable domain agent receiving category-specific system prompt at runtime</td>
+</tr>
+<tr>
+<td><strong>Unbounded reviewer loop</strong> — repeated failures cause infinite retries and cost spiral</td>
+<td>High</td>
+<td>Medium</td>
+<td>Hard cap at 2 retries; best-effort answer with uncertainty flag on third failure</td>
+</tr>
+<tr>
+<td><strong>Index staleness</strong> — Google Docs updated after indexing diverge from the vector store</td>
+<td>Medium</td>
+<td>High</td>
+<td>Refresh pipeline triggered by Google Docs change events (webhook) or nightly scheduled batch re-embedding</td>
+</tr>
+<tr>
+<td><strong>MCP latency</strong> — fetching full docs on every agent call adds I/O overhead</td>
+<td>Low</td>
+<td>Medium</td>
+<td>In-session doc cache; fetch only when chunk context is insufficient</td>
+</tr>
+<tr>
+<td><strong>Retrieval precision on long documents</strong> — broad summary vector poorly represents a 50-page doc</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Hierarchical RAG: route on summary, retrieve on chunks; max doc length thresholds</td>
+</tr>
+<tr>
+<td><strong>Multi-category answer coherence</strong> — parallel domain outputs may contradict each other</td>
+<td>Medium</td>
+<td>Low</td>
+<td>Reviewer checks cross-category consistency; synthesizer step before language agent if needed</td>
+</tr>
+<tr>
+<td><strong>Language agent overreach</strong> — agent rewrites factual content while adapting tone</td>
+<td>Medium</td>
+<td>Low</td>
+<td>Language agent receives explicit brief: adapt form, not substance; reviewer checks factual consistency against chunks</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="5-milestones-roadmap">5. Milestones Roadmap</h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Milestone</th>
+<th>Deliverables</th>
+<th>Estimated Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0 — Discovery</strong></td>
+<td>Knowledge base audit</td>
+<td>Category taxonomy validated; doc inventory; tech stack provisioned</td>
+<td>1 week</td>
+</tr>
+<tr>
+<td><strong>1 — Indexing Pipeline</strong></td>
+<td>Offline pipeline operational</td>
+<td>Summarization, chunking, embedding, vector store populated for all 12 categories</td>
+<td>3 weeks</td>
+</tr>
+<tr>
+<td><strong>2 — Query MVP</strong></td>
+<td>Basic retrieval working</td>
+<td>Router Agent + Index Search + Domain Agent; end-to-end query flow without language/review layer</td>
+<td>3 weeks</td>
+</tr>
+<tr>
+<td><strong>3 — Language &amp; Review</strong></td>
+<td>Full agent pipeline</td>
+<td>Language Agent + Reviewer Agent integrated; retry loop with max-cap enforced</td>
+<td>2 weeks</td>
+</tr>
+<tr>
+<td><strong>4 — MCP Integration</strong></td>
+<td>Live document access</td>
+<td>Google Docs API via MCP server; Domain Agent fetches full docs on demand</td>
+<td>2 weeks</td>
+</tr>
+<tr>
+<td><strong>5 — Hardening</strong></td>
+<td>Production-ready</td>
+<td>Index refresh pipeline; observability (tracing, latency, cost tracking); error handling</td>
+<td>2 weeks</td>
+</tr>
+<tr>
+<td><strong>6 — Evaluation</strong></td>
+<td>Quality benchmarking</td>
+<td>Retrieval precision/recall benchmarks; end-to-end answer quality scoring; tuning</td>
+<td>1 week</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total estimated duration: ~14 weeks</strong> from kickoff to production-ready system.</p>
+<hr>
+<h2 id="6-cost-estimations">6. Cost Estimations</h2>
+<p>Costs are broken into two categories: <strong>one-time indexing costs</strong> (paid once, then on each index refresh) and <strong>per-query inference costs</strong> (paid at runtime).</p>
+<h3 id="61-assumptions">6.1 Assumptions</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Number of documents</td>
+<td>~300 (across 12 categories)</td>
+</tr>
+<tr>
+<td>Average document length</td>
+<td>~3,000 tokens</td>
+</tr>
+<tr>
+<td>Chunks per document</td>
+<td>~6 (512-token chunks)</td>
+</tr>
+<tr>
+<td>Summary length</td>
+<td>~400 tokens</td>
+</tr>
+<tr>
+<td>Total chunk tokens</td>
+<td>~5.4M</td>
+</tr>
+<tr>
+<td>Total summary tokens</td>
+<td>~120K</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-one-time-indexing-costs">6.2 One-Time Indexing Costs</h3>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Model / Service</th>
+<th>Estimated Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Summarization (input)</td>
+<td>Claude Sonnet 4.6 — $3/1M tokens</td>
+<td>~$0.90</td>
+</tr>
+<tr>
+<td>Summarization (output)</td>
+<td>Claude Sonnet 4.6 — $15/1M tokens</td>
+<td>~$1.80</td>
+</tr>
+<tr>
+<td>Embedding (chunks + summaries)</td>
+<td>text-embedding-3-large — $0.13/1M tokens</td>
+<td>~$0.72</td>
+</tr>
+<tr>
+<td><strong>One-time total</strong></td>
+<td></td>
+<td><strong>~$3.50</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Index refresh cost (partial, triggered by doc updates): estimated <strong>$0.10–0.50 per refresh cycle</strong>.</p>
+<h3 id="63-per-query-inference-costs">6.3 Per-Query Inference Costs</h3>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Model</th>
+<th>Avg Tokens (in/out)</th>
+<th>Cost per Query</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Router Agent</td>
+<td>Sonnet 4.6</td>
+<td>500 / 100</td>
+<td>~$0.003</td>
+</tr>
+<tr>
+<td>Domain Agent</td>
+<td>Sonnet 4.6</td>
+<td>5,000 / 1,000</td>
+<td>~$0.030</td>
+</tr>
+<tr>
+<td>Language Agent</td>
+<td>Sonnet 4.6</td>
+<td>1,500 / 500</td>
+<td>~$0.012</td>
+</tr>
+<tr>
+<td>Reviewer Agent</td>
+<td>Opus 4.6</td>
+<td>2,000 / 300</td>
+<td>~$0.037</td>
+</tr>
+<tr>
+<td><strong>Total per query (no retry)</strong></td>
+<td></td>
+<td></td>
+<td><strong>~$0.082</strong></td>
+</tr>
+<tr>
+<td><strong>Total per query (1 retry)</strong></td>
+<td></td>
+<td></td>
+<td><strong>~$0.164</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="64-monthly-cost-scenarios">6.4 Monthly Cost Scenarios</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Query Volume</th>
+<th>Vector Store</th>
+<th>Monthly Infra</th>
+<th>Monthly Inference</th>
+<th><strong>Total / Month</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prototype</strong> (local dev, low volume)</td>
+<td>100 queries/mo</td>
+<td>ChromaDB (free, local)</td>
+<td>~$0</td>
+<td>~$10</td>
+<td><strong>~$10</strong></td>
+</tr>
+<tr>
+<td><strong>Production MVP</strong> (cloud, personal use)</td>
+<td>500 queries/mo</td>
+<td>Pinecone Starter ($70/mo)</td>
+<td>~$70</td>
+<td>~$50</td>
+<td><strong>~$120</strong></td>
+</tr>
+<tr>
+<td><strong>Team use</strong> (shared, medium volume)</td>
+<td>3,000 queries/mo</td>
+<td>Pinecone Standard ($120/mo)</td>
+<td>~$150</td>
+<td>~$300</td>
+<td><strong>~$450</strong></td>
+</tr>
+<tr>
+<td><strong>Enterprise</strong> (high volume, SLAs)</td>
+<td>15,000 queries/mo</td>
+<td>Pinecone Enterprise (~$500/mo)</td>
+<td>~$700</td>
+<td>~$1,500</td>
+<td><strong>~$2,200</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Costs are estimates based on April 2026 public pricing. Retry frequency, document corpus growth, and model pricing changes will affect actuals.</p>
+</blockquote>
+<hr>
+
+</body>
+</html>

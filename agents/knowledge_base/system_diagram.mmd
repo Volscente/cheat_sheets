@@ -1,0 +1,43 @@
+flowchart TD
+    subgraph INDEXING["🗄️ Indexing Pipeline (Offline)"]
+        direction LR
+        GD["Google Docs\n(12 Categories)"]
+        SUM["Summarizer\n(Claude Sonnet)"]
+        CHK["Chunker\n(Passage-level)"]
+        EMB["Embedder\n(text-embedding-3-large)"]
+        VDB[("Vector Store\n(Pinecone / pgvector)")]
+
+        GD --> SUM
+        SUM --> CHK
+        CHK --> EMB
+        EMB --> VDB
+    end
+
+    subgraph QUERY["🔍 Query Pipeline (Online)"]
+        direction TB
+        USR(["User Query"])
+        RTR["Router Agent\nSelects top-k categories"]
+        IDX["Index Search\nRetrieves top-k chunks\nper category"]
+        DOM["Domain Agent\n(Configurable — 1 instance\nwith category-specific\nsystem prompt + chunks)"]
+        LANG["Language Agent\nAdapts tone, terminology\n& format to target scope"]
+        REV{"Reviewer Agent\nValidates factual grounding,\ncompleteness & language fit"}
+        OUT(["Final Response"])
+        FB["Feedback + Retry\nContext"]
+
+        USR --> RTR
+        RTR -->|"1-to-N routing\n(multi-category)"| IDX
+        IDX -->|"Chunks + full doc\nvia MCP"| DOM
+        DOM --> LANG
+        LANG --> REV
+        REV -->|"✅ Pass"| OUT
+        REV -->|"❌ Fail\n(max 2 retries)"| FB
+        FB --> RTR
+    end
+
+    VDB -->|"Semantic search"| IDX
+
+    subgraph MCP["🔌 MCP Server"]
+        GDAPI["Google Docs API\n(real-time full doc access)"]
+    end
+
+    DOM <-->|"Fetch full document"| GDAPI

@@ -72,7 +72,9 @@ claude --resume auth-refacto
 
 - Command `/agents`
 - It is possible to create an agent for example that supervise the security aspects.
-- The agent can be requested through the console.
+- The agent can be requested through the console
+- They are just Markdown files, for example a "security" agent
+- Some agents that make sense are the "Research" and "Reviewer" agent
 
 ### Tasks
 
@@ -156,6 +158,10 @@ Parse $ARGUMENTS to get the following values:
 
 ## Files
 
+### Introduction
+
+- The `CLAUDE.md` can be stored at global-level (home dir) or at project-level
+
 ### CLAUDE.md
 
 - It is created through `/init`.
@@ -163,61 +169,18 @@ Parse $ARGUMENTS to get the following values:
 - It is very usefull in order to have subsequent interaction between Claude and the repository. It acts like a snapshot of the current codebase status, especially usefull when you change between Claude sessions.
 - It should be continuoysly updated &rarr; it is possible just to use again `/init` command &rarr; alternatively you can specify what to add by using `# <tell_what_to_add>`.
 
+#### Rules
+
+- Stored in `.claude/rules` as Markdown files. It is a way to split `CLAUDE.md` &rarr; Ask Claude to split it into the rules
+- `code-style.md`: rules on how to style the code
+- `testing.md`: rules on how to build unit tests
+- `security.md`: rules on how to secure the system
+- `frontedn/styles.md`
+
 ### Memory
 
-- It is used for storing general planning goals, deliverables and phases' descriptions
-
-memory/
-├── MEMORY.md
-├── project_phase_overview.md
-├── sprint_1.md
-├── sprint_2.md
-├── sprint_3.md
-└── backlog.md
-
-In `MEMORY.md`:
-
-```markdown
-## Active Work
-
-- [Phase Overview](project_phase_overview.md) — Goals, deliverables, 3-sprint breakdown
-- [Sprint 1](sprint_1.md) — Current sprint
-- [Sprint 2](sprint_2.md)
-- [Sprint 3](sprint_3.md)
-
-## Future
-
-- [Backlog](backlog.md) — Long-term features, exploratory ideas, nice-to-haves
-
-For `backlog.md`, use project-type memory with this structure:
-
----
-
-name: Long-term backlog and exploratory features
-description: Ideas and features not yet assigned to a sprint
-type: project
-
----
-
-## Exploratory / Research Phase
-
-- [Idea name] — brief description, why it matters
-
-## Nice-to-have Features
-
-- [Feature] — brief description
-
-## Architectural Improvements
-
-- [Improvement] — brief description
-
-This way:
-
-- Backlog is automatically loaded (visible to Claude in every conversation)
-- But clearly separated from active sprint work
-- Easy to promote items from backlog → sprint when ready
-- Keeps MEMORY.md clean and scannable (index role only)
-```
+- Stored in the global-leve and it is a `MEMORY.md` file
+- Includes information about the specific project
 
 ### Output Style
 
@@ -278,3 +241,67 @@ Core components to care for the correct usage of Claude Code:
 ### SKills
 
 Skills represent a fundamentally different approach to extending Claude Code. Unlike slash commands that you invoke explicitly, skills are model-invoked—Claude automatically discovers and uses them based on context. You embed domain expertise into a skill, and Claude draws on that expertise whenever the situation calls for it, without you needing to remember to ask
+
+## Data Scientist Setup Example
+
+A practical layout for a Data Scientist project using rules and agents to enforce conventions automatically.
+
+### Directory Structure
+
+```text
+.claude/
+├── rules/
+│   ├── code-style.md       # Docstrings (NumPy), type hints, logging
+│   ├── data-science.md     # Seeds, leakage prevention, pipeline structure
+│   └── testing.md          # pytest conventions, fixtures, parametrize
+└── agents/
+    ├── reviewer.md         # Code review: critical / warning / suggestion report
+    └── notebook-cleaner.md # Prepares notebooks for sharing (header, logs, seeds)
+```
+
+See the sample files in `agents/claude/rules/` and `agents/claude/agents/` for full content.
+
+### How Rules Work
+
+Rules in `.claude/rules/` are loaded automatically at the start of every session — no invocation needed. Claude applies them to every file it touches.
+
+```bash
+# After adding rules, Claude will automatically:
+# - Write NumPy docstrings on any new/modified function
+# - Use logging instead of print()
+# - Add type hints to function signatures
+```
+
+The more specific the rule, the more consistent the output. Prefer concrete examples in rule files over abstract descriptions.
+
+### How Agents Work
+
+Agents in `.claude/agents/` are spawned by Claude when the task fits their description, or you can invoke them explicitly.
+
+```bash
+# Invoke the reviewer agent on a specific file
+"Use the reviewer agent to review src/preprocessing.py"
+
+# Invoke the notebook cleaner
+"Use the notebook-cleaner agent on notebooks/eda.ipynb"
+```
+
+Agents run in an isolated context window, which means they do not pollute your main session with intermediate reasoning. Only the final report comes back.
+
+### Agent vs Rule — When to Use Which
+
+| Situation | Use |
+| --- | --- |
+| Always enforce docstring style | Rule (`code-style.md`) |
+| Always enforce logging over print | Rule (`code-style.md`) |
+| On-demand review before committing | Agent (`reviewer.md`) |
+| Prepare a notebook before sharing | Agent (`notebook-cleaner.md`) |
+| Catch data leakage patterns always | Rule (`data-science.md`) |
+
+### Updating Rules
+
+Ask Claude to update a rule file directly when a convention changes:
+
+```bash
+"Update .claude/rules/code-style.md: we now use Google docstring format, not NumPy"
+```
