@@ -61,6 +61,10 @@ Work through the task list in order. For each task:
 - If the spec defines a testing strategy, write the tests described. Do not add tests beyond what the spec calls for.
 - If the spec flags open questions, do not resolve them silently — surface them in your final report.
 
+**`justfile` commands:**
+
+After implementing the core code, add or update a recipe in `justfile` that exposes the new feature as a `just` command. Read the existing `justfile` first to match its style and grouping. If a recipe for this feature already exists, update it only if its arguments or invocation need to change. Place the new recipe near other recipes in the same domain (e.g., near other markup or translation commands). Keep the recipe concise — one command, clear comment, sensible defaults for optional parameters.
+
 ### Step 5 — Verify
 
 After implementing all tasks, run the project's test suite and linters:
@@ -72,7 +76,19 @@ pre-commit run --all-files
 
 If tests fail, diagnose the root cause and fix before reporting done. Do not skip or comment out failing tests.
 
-### Step 6 — Report
+### Step 6 — Document
+
+For each Python package directory created or modified during implementation:
+
+1. Locate the package root (the directory containing `__init__.py` or, if no package was created, the top-level project root).
+2. Check whether a `README.md` exists in that directory.
+   - **If it exists:** append a changelog entry at the bottom of the file using today's date (from `currentDate`) and a brief bullet-point list of what was added or changed.
+   - **If it does not exist:** create a `README.md` that describes the package — its purpose, the modules it contains, key functions, and a changelog entry for today.
+3. The README must include a **Usage** section showing how to run the feature — both the raw `uv run python -m ...` invocation and the `just` command added in Step 4. Include the key parameters with example values.
+4. Do not create duplicate README files. One README per package directory is sufficient.
+5. Keep the content concise: a short description, a usage section, and a changelog block — not a full tutorial.
+
+### Step 7 — Report
 
 Output a concise summary:
 
