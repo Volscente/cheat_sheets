@@ -50,6 +50,8 @@ The query pipeline is composed of five sequential agents:
 
 ### 3.2 System Diagram
 
+The architecture is composed of two pipelines. The Mermaid source is also available as a standalone file in [`system_diagram.mmd`](./system_diagram.mmd).
+
 ```mermaid
 flowchart TD
     subgraph INDEXING["🗄️ Indexing Pipeline (Offline)"]
@@ -95,11 +97,6 @@ flowchart TD
 
     DOM <-->|"Fetch full document"| GDAPI
 ```
-
-Two swimlanes:
-
-- **Indexing Pipeline (offline):** Google Docs → Summarize → Chunk → Embed → Vector Store
-- **Query Pipeline (online):** User Query → Router → Index Search (+ MCP full-doc access) → Domain Agent → Language Agent → Reviewer → Response (or retry)
 
 ### 3.3 High-Level Description
 
