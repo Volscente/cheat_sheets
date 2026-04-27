@@ -33,7 +33,15 @@ If neither `--type` nor `--ticket` is given, set type to `initiative`.
 Always read:
 
 1. The RFC file at the provided path
-2. `docs/planning/general_plan_template.md` — defines the spec format
+
+If type is `spec`, also read:
+
+2. `docs/planning/tech_spec_template.md` — the fillable template to populate
+3. `docs/planning/general_plan_template.md` — defines field semantics and formatting rules
+
+If type is `initiative`, also read:
+
+2. `docs/planning/general_plan_template.md` — defines the structure and formatting rules
 
 If `--planning` was provided, read that file too. When present, it is the **primary source of truth** for scope, deliverables, effort, and task structure. The RFC provides background context only.
 
@@ -66,7 +74,7 @@ If `--task` was provided, restrict all content derived from the planning doc to 
 
 Use only information from the RFC (and the planning doc if provided). Do not invent scope, deliverables, or effort estimates. Keep descriptions technical and concise.
 
-**If type = spec**, produce a technical spec that follows the structure defined in `docs/planning/general_plan_template.md` and uses `docs/planning/vdata-8417_mds_translation_evaluation/vdata-8860_implement-comet-da.md` as a style reference:
+**If type = spec**, populate `docs/planning/tech_spec_template.md` section by section. Use `docs/planning/general_plan_template.md` for field semantics and formatting rules, and `docs/planning/vdata-8417_mds_translation_evaluation/vdata-8860_implement-comet-da.md` as a style reference:
 
 - Title: `# <JIRA-TICKET>: <Title>`
 - JIRA Ticket and JIRA Epic links (placeholder URLs if not provided: `https://deliveryhero.atlassian.net/browse/<ticket>`)
