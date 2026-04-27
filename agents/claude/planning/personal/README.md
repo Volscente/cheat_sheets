@@ -1,137 +1,250 @@
 # Personal Work Planning — Skills & Templates
 
-A four-step workflow for turning a personal project idea into implemented code, using Claude Skills and document templates.
+A workflow for turning a personal project idea into implemented code, using Notion for personal context and GitHub Issues for task tracking.
 
-Tracking setup: **Notion** (ideas & docs) → **GitHub Issues** (tasks) → **GitHub Milestones** (grouped work).
+---
+
+## The Notion/RFC Split
+
+Two documents exist for every initiative — they serve different readers:
+
+| | Notion initiative page | RFC (`docs/rfc/`) |
+|---|---|---|
+| **Reader** | You | Claude |
+| **Answers** | What am I building and why? | How will it be built? |
+| **Motivation** | Full personal context — written for yourself | 1-paragraph technical framing + link to Notion |
+| **Language** | Plain, personal, outcome-focused | Technical, precise, design-focused |
+| **Lives in** | Notion | Your repo |
+
+The RFC Motivation section is intentionally brief. It states the technical gap and links to Notion for the full context. No duplication.
+
+---
+
+## Notion Structure
+
+```
+Goals table (one row per project)
+└── Recipe App                          ← project page
+    ├── Add Search Bar                  ← initiative sub-page → GitHub Milestone
+    └── Improve Load Time               ← initiative sub-page → GitHub Milestone
+```
+
+**Initiative sub-page content (Notion):**
+
+| Field | What to write |
+|---|---|
+| **What** | 1–2 sentences in plain language |
+| **Why** | Personal motivation — why this matters to you right now |
+| **Success looks like** | Outcome bullets (what changes when this is done) |
+| **RFC** | Link to `docs/rfc/.../rfc_document.md` in the repo |
+| **GitHub Milestone** | Link to the milestone |
+| **GitHub Issues** | Links to individual issues |
+
+No sprints. Issues are prioritized directly on the milestone and worked in any order.
 
 ---
 
 ## Workflow Overview
 
 ```
-Idea / Notion page
+Notion initiative page
   │
-  ▼ Step 1
+  ▼ Step 1 (for complex initiatives only)
 /create-rfc          →  RFC document            (templates/rfc_template.md)
   │
   ▼ Step 2
 /general-plan        →  Initiative plan         (templates/general_plan_template.md)
   │
   ▼ Step 3  (once per GitHub Issue)
-/plan --type spec    →  Tech Spec per task      (templates/tech_spec_template.md)
+/plan --type spec    →  Tech Spec               (templates/tech_spec_template.md)
   │
-  ▼ Step 4  (once per task)
+  ▼ Step 4
 /execute-plan        →  Implemented code
 ```
+
+> **When to skip the RFC:** If the design is obvious and there are no real architectural unknowns, go straight from the Notion page to `/general-plan`. The RFC earns its cost when you need to think through tradeoffs before writing a single line of code.
 
 ---
 
 ## Step 1 — Create RFC
 
-**Skill:** `commands/create-rfc.md`  
-**Template:** `templates/rfc_template.md`
+**Skill:** `commands/create-rfc.md` | **Template:** `templates/rfc_template.md`
 
-Generates an RFC from a problem statement. Captures motivation, objectives, scope, milestones, tech stack, effort estimates, FAQs, and risks. Designed for personal technical projects — no business case required.
+Generates a technical RFC. The Motivation section is a single paragraph — personal context stays in Notion.
 
 ```text
 /create-rfc \
-  --title "CLI Tool for Automating Dotfile Sync" \
+  --title "Add Search Bar" \
+  --project "recipe-app" \
   --author "Simone Porreca" \
-  --project "dotfile-manager" \
-  --github-repo "simone/dotfile-manager" \
-  --notion-page "https://notion.so/..." \
-  --problem "Keeping dotfiles in sync across machines is manual and error-prone." \
-  --scope-in "Config parser, apply command, dry-run mode" \
-  --scope-out "GUI: out of scope, Cloud sync: future phase" \
-  --milestones "Config parser, Apply command, CI integration"
+  --github-repo "simone/recipe-app" \
+  --notion-page "https://notion.so/Add-Search-Bar-abc123" \
+  --milestone "Add Search Bar" \
+  --problem "The app has no search capability. With 200+ saved recipes, users cannot find entries without scrolling the full list." \
+  --scope-in "Full-text search index, search UI component, keyboard shortcut" \
+  --scope-out "Fuzzy matching: future phase, Tag filters: separate initiative" \
+  --tech-stack "whoosh, Flask, pytest" \
+  --milestones "Implement search index, Build search UI, Add keyboard shortcut"
 ```
 
-**Required parameters:** `--title`, `--author`, `--problem`  
-**Output:** `docs/rfc/<project-slug>_<title-slug>/rfc_document.md`
+**Output:** `docs/rfc/recipe-app_add-search-bar/rfc_document.md`
 
 ---
 
 ## Step 2 — Generate Initiative Plan
 
-**Skill:** `commands/general-plan.md`  
-**Reference:** `templates/general_plan_template.md`
+**Skill:** `commands/general-plan.md` | **Reference:** `templates/general_plan_template.md`
 
-Reads the RFC and produces a high-level planning document: an overview, a dependency order diagram, one section per task (scope, goal, deliverables, technical overview), and a **GitHub Issues / Milestones** grouping.
+Reads the RFC and produces a task breakdown with a dependency diagram and a GitHub Issues/Milestones grouping.
 
 ```text
-/general-plan docs/rfc/dotfile-manager_cli-tool/rfc_document.md \
-              docs/planning/dotfile-manager/planning.md
+/general-plan docs/rfc/recipe-app_add-search-bar/rfc_document.md \
+              docs/planning/recipe-app/planning.md
 ```
 
-**Arguments:** `<rfc-path> <output-path>` (both required)  
-**Output:** the planning document at the path you specify
+**Output:** `docs/planning/recipe-app/planning.md`
 
 ---
 
-## Step 3 — Generate Tech Spec (per task)
+## Step 3 — Generate Tech Spec (once per GitHub Issue)
 
-**Skill:** `commands/plan-task.md`  
-**Templates:** `templates/tech_spec_template.md`, `templates/general_plan_template.md`
+**Skill:** `commands/plan-task.md` | **Templates:** `templates/tech_spec_template.md`, `templates/general_plan_template.md`
 
-Reads the RFC and the planning doc, then generates a detailed technical spec for a single task. Links to the corresponding GitHub Issue. The spec covers technical scope, architecture diagram, tech stack, modules/files table, key function signatures with docstrings, CLI parameters, data models, testing strategy, and open questions.
+Generates a detailed technical spec for one task, linked to its GitHub Issue.
 
 ```text
-/plan docs/rfc/dotfile-manager_cli-tool/rfc_document.md \
-      --planning docs/planning/dotfile-manager/planning.md \
-      --task 2 \
+/plan docs/rfc/recipe-app_add-search-bar/rfc_document.md \
+      --planning docs/planning/recipe-app/planning.md \
+      --task 1 \
       --type spec \
       --issue 12
 ```
 
-**Output:** `docs/planning/<project-slug>/<issue-number>-<kebab-title>.md`
+**Output:** `docs/planning/recipe-app/12-implement-search-index.md`
 
-Repeat for each task in the planning document.
+Repeat for each task.
 
 ---
 
-## Step 4 — Implement Tech Spec
+## Step 4 — Implement
 
 **Skill:** `commands/execute-plan.md`
 
-Reads the RFC (for context) and a tech spec (as the authoritative source of truth), then implements all code changes described in it. Builds a task list, implements in dependency order, runs tests and linters if configured, and updates or creates a `README.md` per modified package.
+Reads the RFC (context) and spec (source of truth), builds a task list, implements in dependency order, runs tests, and updates package READMEs.
 
 ```text
-/execute-plan docs/rfc/dotfile-manager_cli-tool/rfc_document.md \
-              docs/planning/dotfile-manager/12-add-config-parser.md
+/execute-plan docs/rfc/recipe-app_add-search-bar/rfc_document.md \
+              docs/planning/recipe-app/12-implement-search-index.md
 ```
-
-**Arguments:** `<rfc-path> <spec-path>` (both required)
 
 ---
 
 ## Templates Reference
 
 | File | Used by | Purpose |
-| ---- | ------- | ------- |
-| `templates/rfc_template.md` | `create-rfc` | RFC structure: header with Notion/GitHub links, motivation, objectives, scope, tech stack, milestones, FAQs, risks |
-| `templates/general_plan_template.md` | `general-plan`, `plan-task` | Defines field semantics, folder/file naming conventions (`<project-slug>/<issue-number>-<title>.md`), and spec formatting rules |
-| `templates/tech_spec_template.md` | `plan-task --type spec` | Fillable tech spec: scope, architecture, modules, functions, data models, testing strategy, open questions. Links to GitHub Issues. |
-| `templates/open_issues_template.md` | manual | Tracks open issues discovered during planning or implementation, with observation, hypotheses, impact, and recommended actions |
+|---|---|---|
+| `templates/rfc_template.md` | `create-rfc` | Technical RFC: 1-paragraph motivation + link to Notion, objectives, scope, approach, tech stack, milestones, risks |
+| `templates/general_plan_template.md` | `general-plan`, `plan-task` | Folder conventions, spec structure, field semantics |
+| `templates/tech_spec_template.md` | `plan-task --type spec` | Per-issue spec: scope, architecture, modules, functions, schemas, tests, open questions |
+| `templates/open_issues_template.md` | manual | Track open issues found during planning or implementation |
+
+---
+
+## Practical Example
+
+**Scenario:** You have a Recipe App project. You want to add a search bar. You've already written the Notion initiative page.
+
+### What Notion looks like
+
+```
+Goals table
+└── Recipe App  (project page)
+    └── Add Search Bar  (initiative sub-page)
+        ├── What:    Full-text search across all saved recipes from the nav bar.
+        ├── Why:     With 200+ recipes, finding a specific dish means scrolling
+        │            for 30+ seconds. The app is frustrating to use daily.
+        ├── Success: Can find any recipe by name or ingredient in <3 seconds.
+        │            Works on mobile without a keyboard covering the results.
+        ├── RFC:     docs/rfc/recipe-app_add-search-bar/rfc_document.md
+        ├── Milestone: github.com/simone/recipe-app/milestone/3
+        └── Issues:  #12 Search index · #13 Search UI · #14 Keyboard shortcut
+```
+
+### What the RFC looks like (excerpt)
+
+```markdown
+# [RFC] Add Search Bar — Recipe App
+
+| Author        | Simone Porreca                                    |
+| Project       | recipe-app                                        |
+| RFC status    | Draft                                             |
+| Notion page   | [Add Search Bar](https://notion.so/abc123)        |
+| GitHub repo   | [simone/recipe-app](https://github.com/...)       |
+| Milestone     | [Add Search Bar](https://github.com/.../milestone/3) |
+
+## Motivation
+
+The app has no search capability. With 200+ saved recipes, users cannot find
+entries without scrolling through the full list — O(n) discovery for a growing
+collection. For full context, see the [Notion initiative page](https://notion.so/abc123).
+
+## Objectives
+- **Build search index**: index all recipe titles and ingredients on save
+- **Enable instant lookup**: return results for any query in under 200ms locally
+- **Surface via UI**: expose search from the nav bar with keyboard shortcut support
+...
+```
+
+### What the resulting file tree looks like
+
+```
+docs/
+├── rfc/
+│   └── recipe-app_add-search-bar/
+│       └── rfc_document.md          ← Step 1 output
+└── planning/
+    └── recipe-app/
+        ├── planning.md              ← Step 2 output
+        ├── 12-implement-search-index.md   ← Step 3 output (Issue #12)
+        ├── 13-build-search-ui.md          ← Step 3 output (Issue #13)
+        └── 14-add-keyboard-shortcut.md    ← Step 3 output (Issue #14)
+```
+
+### Command sequence
+
+```bash
+# Step 1 — RFC (skip if design is obvious)
+/create-rfc --title "Add Search Bar" --project "recipe-app" \
+  --author "Simone Porreca" --github-repo "simone/recipe-app" \
+  --notion-page "https://notion.so/abc123" \
+  --problem "The app has no search. With 200+ recipes, discovery is O(n) scrolling." \
+  --milestones "Implement search index, Build search UI, Add keyboard shortcut"
+
+# Step 2 — Initiative plan
+/general-plan docs/rfc/recipe-app_add-search-bar/rfc_document.md \
+              docs/planning/recipe-app/planning.md
+
+# Step 3 — Tech spec per issue (repeat for #13, #14)
+/plan docs/rfc/recipe-app_add-search-bar/rfc_document.md \
+      --planning docs/planning/recipe-app/planning.md \
+      --task 1 --type spec --issue 12
+
+# Step 4 — Implement (repeat per spec)
+/execute-plan docs/rfc/recipe-app_add-search-bar/rfc_document.md \
+              docs/planning/recipe-app/12-implement-search-index.md
+```
 
 ---
 
 ## Differences from the Work Setup
 
 | Aspect | Work (`planning/work/`) | Personal (`planning/personal/`) |
-| ------ | ----------------------- | ------------------------------- |
-| Idea tracking | JIRA Epic | Notion page |
-| Task tracking | JIRA Ticket | GitHub Issue |
+|---|---|---|
+| Project tracking | JIRA Epic → JIRA Ticket | Notion Project → GitHub Issue |
 | Task grouping | JIRA Stories | GitHub Milestones |
-| RFC tone | Business-oriented | Personal/technical |
-| RFC header | Author, Team, Org, Reviewers | Author, Project, optional Reviewers |
-| Output path | `docs/planning/<jira-epic>/<ticket>.md` | `docs/planning/<project-slug>/<issue>-<title>.md` |
-| Build tooling | `justfile` recipes required | No `justfile` assumption |
-
----
-
-## Notes
-
-- The `general-plan` and `plan-task` commands overlap in coverage. Prefer `general-plan` for a clean initiative-level plan from scratch, and `plan-task` when you need more control (e.g. updating an existing plan or targeting a specific task with `--task`).
-- When `--planning` is passed to `plan-task`, the planning doc becomes the **primary source of truth** for scope and deliverables; the RFC provides background only.
-- `execute-plan` will not start writing code until it has read all files the spec names — this is by design to avoid stylistic drift.
-- Test suite and linter steps in `execute-plan` are best-effort: if the project has no `pytest` or `pre-commit` configuration, the step is skipped and noted in the report.
+| Goals table | Per initiative | **Per project** (initiatives are sub-pages) |
+| Sprints | Optional | **Removed** — issues are worked in priority order |
+| RFC Motivation | Business-oriented, 2–3 paragraphs | Technical gap only, 1 paragraph + Notion link |
+| RFC required? | Usually yes | **Optional** — only for complex designs |
+| Build tooling | `justfile` recipes | No assumption — test/lint steps are best-effort |
+| Output paths | `docs/planning/<jira-epic>/<ticket>.md` | `docs/planning/<project-slug>/<issue>-<title>.md` |

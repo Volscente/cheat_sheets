@@ -1,11 +1,11 @@
 # Create RFC
 
-Generate a new RFC document from the project template, pre-filled with the provided inputs.
+Generate a new RFC document from the project template. The RFC is a **technical document for Claude** — it captures how something will be built. Personal motivation and context live in the Notion initiative page; the RFC links back to it and keeps its Motivation section brief.
 
 ## Usage
 
 ```text
-/create-rfc --title <title> --author <name> --problem <statement> [options]
+/create-rfc --title <title> --project <project> --author <name> --problem <statement> [options]
 ```
 
 **Arguments:** $ARGUMENTS
@@ -14,24 +14,24 @@ Generate a new RFC document from the project template, pre-filled with the provi
 
 | Parameter | Description | Example |
 | :-------- | :---------- | :------ |
-| `--title` | Short descriptive title of the RFC | `"CLI Tool for Automating Dotfile Sync"` |
+| `--title` | Short descriptive title of the RFC | `"Add Search Bar"` |
+| `--project` | Project or repo name | `"recipe-app"` |
 | `--author` | Author name | `"Simone Porreca"` |
-| `--problem` | 1–3 sentence description of the problem or opportunity being addressed | `"Keeping dotfiles in sync across machines is manual and error-prone. There is no automated way to apply changes after a pull."` |
+| `--problem` | Technical gap being addressed — 1–2 sentences, no personal motivation | `"The app has no search capability. With 200+ recipes, users cannot find entries without scrolling the full list."` |
 
 ### Optional parameters
 
 | Parameter | Default | Description | Example |
 | :-------- | :------ | :---------- | :------ |
-| `--project` | _(blank)_ | Project or repo name | `"dotfile-manager"` |
-| `--github-repo` | _(none)_ | GitHub repository URL or `owner/repo` | `"simone/dotfile-manager"` |
-| `--notion-page` | _(none)_ | URL of the related Notion page | `"https://notion.so/..."` |
+| `--notion-page` | _(none)_ | URL of the Notion initiative page (personal context lives here) | `"https://notion.so/..."` |
+| `--github-repo` | _(none)_ | GitHub repo as `owner/repo` | `"simone/recipe-app"` |
+| `--milestone` | _(none)_ | GitHub Milestone name | `"Add Search Bar"` |
 | `--deadline` | 2 weeks from today | Review deadline (YYYY-MM-DD) | `"2026-05-15"` |
-| `--reviewers` | _(none)_ | Comma-separated list of reviewer names and optional/required status | `"Alice required, Bob optional"` |
-| `--scope-in` | _(none)_ | Comma-separated list of in-scope capabilities | `"Config parser, apply command, dry-run mode"` |
-| `--scope-out` | _(none)_ | Comma-separated list of out-of-scope items with reasons (`"item: reason"`) | `"GUI: out of scope, Cloud sync: future phase"` |
-| `--tech-stack` | _(none)_ | Comma-separated list of libraries/tools to include | `"Python, click, watchdog"` |
-| `--milestones` | _(none)_ | Comma-separated list of milestone names | `"Config parser, Apply command, CI workflow"` |
-| `--out` | `docs/rfc/<project-slug>_<title-slug>/rfc_document.md` | Override the output file path | `"docs/rfc/my_rfc/rfc_document.md"` |
+| `--scope-in` | _(none)_ | Comma-separated in-scope capabilities | `"Search index, search UI, keyboard shortcut"` |
+| `--scope-out` | _(none)_ | Comma-separated out-of-scope items (`"item: reason"`) | `"Fuzzy search: future phase, Filters: separate initiative"` |
+| `--tech-stack` | _(none)_ | Comma-separated libraries/tools | `"Python, Flask, whoosh"` |
+| `--milestones` | _(none)_ | Comma-separated milestone names (each maps to a GitHub Issue) | `"Search index, Search UI, Keyboard shortcut"` |
+| `--out` | `docs/rfc/<project-slug>_<title-slug>/rfc_document.md` | Override output path | `"docs/rfc/my-rfc/rfc_document.md"` |
 
 ---
 
@@ -39,16 +39,17 @@ Generate a new RFC document from the project template, pre-filled with the provi
 
 ```text
 /create-rfc \
-  --title "CLI Tool for Automating Dotfile Sync" \
+  --title "Add Search Bar" \
+  --project "recipe-app" \
   --author "Simone Porreca" \
-  --project "dotfile-manager" \
-  --github-repo "simone/dotfile-manager" \
-  --problem "Keeping dotfiles in sync across machines is manual and error-prone. There is no automated way to detect changes in the repo and apply them without running commands by hand." \
-  --deadline "2026-05-15" \
-  --scope-in "Config parser, apply command, dry-run mode, file conflict detection" \
-  --scope-out "GUI: out of scope for this RFC, Cloud sync: deferred to future phase" \
-  --tech-stack "Python, click, watchdog, pytest" \
-  --milestones "Config parser, Apply command, Conflict detection, CI integration"
+  --github-repo "simone/recipe-app" \
+  --notion-page "https://notion.so/Add-Search-Bar-abc123" \
+  --milestone "Add Search Bar" \
+  --problem "The app has no search capability. With 200+ saved recipes, users cannot find entries without scrolling the full list." \
+  --scope-in "Full-text search index, search UI component, keyboard shortcut" \
+  --scope-out "Fuzzy matching: future phase, Filters by tag: separate initiative" \
+  --tech-stack "whoosh, Flask, pytest" \
+  --milestones "Implement search index, Build search UI, Add keyboard shortcut"
 ```
 
 ---
@@ -62,107 +63,88 @@ You are generating a new RFC document. Follow these steps exactly.
 Parse `$ARGUMENTS`:
 
 - `--title` (required): short RFC title
+- `--project` (required): project or repo name
 - `--author` (required): author name
-- `--problem` (required): problem or motivation statement
-- `--project` (optional): project or repo name; leave blank if not provided
-- `--github-repo` (optional): GitHub repo URL or `owner/repo` string; leave blank if not provided
-- `--notion-page` (optional): Notion page URL; leave blank if not provided
-- `--deadline` (optional): review deadline as YYYY-MM-DD; if absent, default to 14 days from today's date
-- `--reviewers` (optional): parse into a list of `{name, required|optional}` entries; if absent, remove the Reviews table
+- `--problem` (required): technical gap statement (1–2 sentences)
+- `--notion-page` (optional): Notion initiative page URL
+- `--github-repo` (optional): GitHub repo as `owner/repo`
+- `--milestone` (optional): GitHub Milestone name
+- `--deadline` (optional): YYYY-MM-DD; if absent, default to 14 days from today
 - `--scope-in` (optional): split on commas → list of in-scope items
-- `--scope-out` (optional): split on commas → list of out-of-scope items; each item may have a `"item: reason"` format — split on the first colon
+- `--scope-out` (optional): split on commas → list of out-of-scope items; each may have `"item: reason"` format — split on the first colon
 - `--tech-stack` (optional): split on commas → list of library/tool names
 - `--milestones` (optional): split on commas → ordered list of milestone names
-- `--out` (optional): override the output file path
+- `--out` (optional): override output file path
 
 ### Step 2 — Read the template
 
-Read `templates/rfc_template.md` — this is the canonical structure the RFC must follow.
+Read `templates/rfc_template.md` — this is the canonical structure.
 
 ### Step 3 — Determine the output path
 
 If `--out` was provided, use it directly.
 
-Otherwise, derive the path as:
+Otherwise:
 ```
 docs/rfc/<project-slug>_<title-slug>/rfc_document.md
 ```
-where `<project-slug>` is `--project` lowercased with spaces replaced by underscores, and `<title-slug>` is `--title` lowercased with spaces replaced by underscores.
-
-If `--project` was not provided, use only `<title-slug>`.
-
-If the directory does not exist, it will be created when writing.
+where `<project-slug>` is `--project` lowercased with spaces/hyphens replaced by underscores, and `<title-slug>` is `--title` lowercased with spaces replaced by underscores.
 
 ### Step 4 — Generate the RFC
 
-Produce a complete RFC document following the template structure. Apply these rules:
-
 **Header block:**
-- Set `Author(s)` from `--author`
-- Set `Project` from `--project` (blank if not provided)
-- Set `RFC status` to `Draft`
-- Set `Review deadline` from `--deadline`
-- Set `GitHub repo` link if `--github-repo` was provided, otherwise omit the row
-- Set `Notion page` link if `--notion-page` was provided, otherwise omit the row
-- Set today's date in the Timeline table
-
-**Reviews table:**
-- If `--reviewers` was provided, populate one row per reviewer with name and Required/Optional status
-- If not provided, remove the Reviews table and its comment entirely
-
-**Title:**
-- Format as `[RFC] {Title}` — derive from `--title`
-
-**Context section:**
-- Write 1–2 sentences placing the RFC in the context of `--project` (or the title slug if no project was given)
-- Link to `--notion-page` and `--github-repo` if provided
+- `Author`: from `--author`
+- `Project`: from `--project`
+- `RFC status`: `Draft`
+- `Review deadline`: from `--deadline`
+- `Notion page`: link if `--notion-page` provided, otherwise omit the row
+- `GitHub repo`: link if `--github-repo` provided, otherwise omit the row
+- `Milestone`: link if `--milestone` provided, otherwise omit the row
+- Today's date in the Timeline table
 
 **Motivation section:**
-- Expand `--problem` into 2–3 paragraphs describing:
-  1. The current situation or gap
-  2. The specific pain point, limitation, or opportunity
-  3. What would be different once this is built
-- Do not invent facts. Work only from what `--problem` states.
-- Write in a direct, personal tone — not a business case.
+- Write exactly **1 paragraph** stating the technical gap from `--problem`
+- End with: `For full context, see the [Notion initiative page](<notion-page-url>).` (omit this sentence if `--notion-page` was not provided)
+- Do not expand into personal motivation — that is Notion's job
 
-**Objectives section:**
-- Derive 3–5 concrete objectives from the problem statement and scope items
-- Each must start with a bold action label and be outcome-oriented, not task-oriented
+**Objectives:**
+- Derive 3–5 concrete, verifiable objectives from the problem and scope
+- Each starts with a bold action label and is outcome-oriented
 
 **Scope:**
-- In-Scope: populate from `--scope-in` if provided; otherwise leave placeholders
-- Out-of-Scope: populate from `--scope-out` if provided; otherwise leave placeholders
+- In-Scope: from `--scope-in` if provided
+- Out-of-Scope: from `--scope-out` if provided
 
 **Main technical section:**
-- Name it after `--title`
-- Write an Approach Overview paragraph describing the high-level design derived from the problem and scope
-- If `--milestones` was provided, generate one subsection per milestone with a placeholder description
-- If not provided, keep the two generic subsection placeholders
+- Named after `--title`
+- Approach Overview: 1–2 paragraphs describing the high-level design derived from problem and scope
+- If `--milestones` provided: one subsection per milestone with placeholder description
+- If not: two generic placeholder subsections
 
 **Tech Stack:**
-- If `--tech-stack` was provided, list each item with a placeholder "why it is used" description derived from its name
-- If not provided, keep the placeholder rows
+- If `--tech-stack` provided: one bullet per item with placeholder justification derived from the tool name
+- If not: placeholder rows
 
 **Effort Estimations:**
-- If `--milestones` was provided, generate one table row per milestone with a placeholder effort estimate
-- If not provided, keep the two placeholder rows
+- If `--milestones` provided: one table row per milestone with placeholder effort and a `#{issue}` placeholder for the GitHub Issue number
+- If not: placeholder rows
 
 **FAQs:**
-- Generate 3–5 Q&A pairs anticipating likely questions based on the problem and scope
-- Always include a Terminology entry if acronyms appear in the RFC
+- Generate 3–5 Q&A pairs from the problem and scope
+- Always include a Terminology entry if acronyms appear
 
 **Risks & Open Questions:**
 - Generate 2–4 risks or open questions inferred from the problem and scope
 
-**Remove all template comment blocks** (`<!-- ... -->`) from the output.
+**Remove all template comment blocks** (`<!-- ... -->`).
 
-**Do not hallucinate details** — for sections where no input was provided, use clear placeholder text (e.g. `{Description}`) rather than invented content.
+**Do not hallucinate details** — use `{Description}` placeholders for anything not provided.
 
 ### Step 5 — Write the file
 
-Write the generated RFC to the output path from Step 3.
+Write to the output path from Step 3. Create the directory if needed.
 
 Then report:
-- The output file path
+- Output file path
 - Which sections were fully populated vs. left as placeholders
-- Any assumptions made during generation
+- Any assumptions made

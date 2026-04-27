@@ -1,8 +1,8 @@
 # #{issue-number}: {Title}
 
 **GitHub Issue:** [{issue-number} — {Title}]({GITHUB_ISSUE_URL})
-**GitHub Milestone:** [{Milestone Name}]({GITHUB_MILESTONE_URL}) _(optional)_
-**Notion Page:** [{Title}]({NOTION_URL}) _(optional)_
+**GitHub Milestone:** [{Milestone Name}]({GITHUB_MILESTONE_URL})
+**Notion page:** [{Initiative Name}]({NOTION_URL})
 
 ---
 
@@ -36,11 +36,9 @@ CLI: python -m {module.path}
           ▼
     {core_function}({inputs})
           │
-          │  ── {STEP 1: description} ──────────────
-          ├── {function_a}({args}) → {output}
+          ├── {function_a}({args}) → {output}     ── STEP 1
           │
-          │  ── {STEP 2: description} ──────────────
-          └── {function_b}({args}) → {output}
+          └── {function_b}({args}) → {output}     ── STEP 2
                     │
                     ▼
           {result_function}({inputs}) → {output type}
@@ -48,18 +46,17 @@ CLI: python -m {module.path}
 
 ### {Why a notable design decision was made}
 
-{Explain the design decision and the trade-offs considered.}
+{Explain the decision and the tradeoffs considered.}
 
 ---
 
 ## Tech Stack
 
-{No new packages required. / New packages or dependencies introduced:}
+{No new packages required. / New packages introduced:}
 
-| Package       | Version   | Justification                           |
-| ------------- | --------- | --------------------------------------- |
-| `{package-1}` | `>=x.y`   | {Why this package, not an alternative}  |
-| `{package-2}` | `>=x.y`   | {Why this package, not an alternative}  |
+| Package       | Version | Justification                           |
+| ------------- | ------- | --------------------------------------- |
+| `{package-1}` | `>=x.y` | {Why this package, not an alternative}  |
 
 ---
 
@@ -82,10 +79,9 @@ def {load_function}(
     {param}: {Type},
     {param2}: {Type},
 ) -> {ReturnType}:
-    """{One-line summary of what this function does.}
+    """{One-line summary.}
 
-    {One paragraph describing the logic: what it loads or queries, how it
-    filters or transforms data, and what shape the result takes.}
+    {Describe what it loads, how it filters/transforms, and what shape it returns.}
 
     Args:
         {param}: {Description.}
@@ -106,8 +102,7 @@ def {core_function}(
 ) -> {ResultType}:
     """{One-line summary.}
 
-    {Describe what input is received, what processing happens, and what
-    output is returned. Note any intentional exclusions.}
+    {Describe what input is received, what processing happens, and what is returned.}
 
     Args:
         {input}: {Description.}
@@ -121,27 +116,6 @@ def {core_function}(
     """
 ```
 
-```python
-def {write_function}(
-    {records}: list[{RecordType}],
-    {destination}: str,
-) -> int:
-    """{One-line summary.}
-
-    {Describe write mode, destination type, and any creation behaviour.}
-
-    Args:
-        {records}: {Records to persist.}
-        {destination}: {Destination path, file, or identifier.}
-
-    Returns:
-        {Number of records written.}
-
-    Raises:
-        {ErrorType}: {On write failure.}
-    """
-```
-
 ---
 
 ### CLI Parameters
@@ -151,7 +125,6 @@ def {write_function}(
 | `--{param-1}` | `str`  | required          | {What this parameter controls}    |
 | `--{param-2}` | `int`  | `{default_value}` | {What this parameter controls}    |
 | `--{flag-1}`  | `flag` | `False`           | {What enabling this flag does}    |
-| `--{param-3}` | `str`  | `None`            | {What this parameter controls}    |
 
 ---
 
@@ -173,10 +146,9 @@ class {OutputModel}(BaseModel):
 
 ### Testing Strategy
 
-**Unit tests** (`tests/{module}/test_{runner}.py`):
+**Unit tests** (`tests/{module}/test_{file}.py`):
 
 - Mock `{ExternalService}` — verify {what each call receives}
-- Test `{derived_value}` formula: `{formula}`
 - Test Pydantic validation: {missing fields, edge values, null optionals}
 - Test edge case: `{field} = {edge_value}` → {expected behaviour}
 
@@ -185,7 +157,6 @@ class {OutputModel}(BaseModel):
 ```bash
 python -m {module.path} \
     --{param-1} <test-value> \
-    --{param-2} 1 \
     --dry-run
 ```
 
@@ -195,11 +166,10 @@ Verify: {what a passing integration test looks like}.
 
 - {Edge case 1} → {expected handling}
 - {Edge case 2} → {expected handling}
-- {Edge case 3} → {expected handling}
 
 ---
 
 ### Open Questions / Risks
 
-- [ ] **{Risk or question title}:** {Description.} **Target:** {date or milestone}
-- [ ] **{Risk or question title}:** {Description.} **Target:** {date or milestone}
+- [ ] **{Risk or question}:** {Description.} **Target:** {date or milestone}
+- [ ] **{Risk or question}:** {Description.} **Target:** {date or milestone}

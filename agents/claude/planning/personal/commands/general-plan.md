@@ -19,7 +19,7 @@ You are generating an initiative-level planning document from an RFC. Follow the
 Parse `$ARGUMENTS`:
 
 - First positional argument: path to the RFC Markdown file (required)
-- Second positional argument: path to the output planning file (required, e.g. `docs/planning/dotfile-manager/planning.md`)
+- Second positional argument: path to the output planning file (required, e.g. `docs/planning/recipe-app/planning.md`)
 
 ### Step 2 — Read inputs
 
@@ -29,8 +29,8 @@ Also read `templates/general_plan_template.md` for the expected structure and fi
 
 **Skip the following RFC sections entirely — do not use their content:**
 
-- Any section whose heading contains "Appendix", "FAQ", or "References"
-- Any section explicitly marked as non-normative or informational-only
+- Any section whose heading contains "FAQ" or "References"
+- Any section explicitly marked as non-normative
 
 ### Step 3 — Generate the document
 
@@ -43,9 +43,10 @@ Produce a planning document with this exact structure:
 **Header block** (immediately after the title):
 
 ```
-**Project:** <project name or repo>
-**Notion page:** <URL> _(if present in the RFC)_
-**GitHub repo:** <URL> _(if present in the RFC)_
+**Project:** <project name>
+**GitHub repo:** <URL> (if present in the RFC)
+**GitHub Milestone:** <URL> (if present in the RFC)
+**Notion page:** <URL> (if present in the RFC)
 **Total estimated effort:** <N> sessions / hours / days
 ```
 
@@ -53,8 +54,8 @@ Produce a planning document with this exact structure:
 
 **Overview section** (`## Overview`):
 
-- 2–3 sentences describing what the initiative builds and why
-- A `### Dependency Order` sub-section with an ASCII diagram showing task dependencies and parallel execution tracks:
+- 2–3 sentences describing what the initiative builds and what it changes technically (not personal motivation — that is in Notion)
+- A `### Dependency Order` sub-section with an ASCII diagram:
 
 ```
 TASK-1 ──► TASK-2 ──► TASK-4
@@ -66,26 +67,26 @@ TASK-1 ──► TASK-2 ──► TASK-4
 
 **One section per TASK** (`## TASK-N — <Task Name>`):
 
-Each task section must contain these sub-sections, in order:
+Each task maps to one GitHub Issue. Each section must contain, in order:
 
-1. `**Effort estimate:** N sessions / hours / days` — on its own line immediately under the heading
-2. `### Scope` — one short paragraph describing what work is included
-3. `### Goal` — one short paragraph stating the concrete output and why it matters
-4. `### Existing Work (already done)` — **only if the RFC describes work that is already complete**; list what exists and why it satisfies requirements
-5. `### Gaps to Close` — **only if existing work is called out above**; a numbered list of what still needs to be built
-6. `### Deliverables` — bullet list of concrete, named outputs (files, scripts, configs, APIs). Use code-formatted names (`src/parser.py`, `--dry-run`).
-7. `### Technical Overview` — technical details: data models, CLI parameters, architectural constraints, integration points.
+1. `**GitHub Issue:** #{number}` — placeholder if no issue number is known yet
+2. `**Effort estimate:** N sessions / hours / days` — omit if RFC has no estimate
+3. `### Scope` — one short paragraph: what work is included
+4. `### Goal` — one short paragraph: concrete output and why it matters technically
+5. `### Existing Work (already done)` — only if the RFC describes work already complete
+6. `### Gaps to Close` — only if "Existing Work" is present; numbered list of what still needs building
+7. `### Deliverables` — bullet list of named outputs (`src/search.py`, `--query` flag). Use code formatting.
+8. `### Technical Overview` — data models, CLI parameters, architectural constraints, integration points
 
-Rules for task sections:
+Rules:
 - Use only information from the RFC. Do not invent scope, deliverables, or effort.
-- If the RFC does not give an effort estimate for a task, omit the estimate line.
 - Keep descriptions concise and technical.
 
 ---
 
 **GitHub Issues section** (`## GitHub Issues`):
 
-Group the tasks into 2–4 milestones. Open with a one-sentence framing line, then a horizontal rule, followed by one sub-section per milestone:
+Group tasks into 2–4 milestones. One sub-section per milestone:
 
 ```
 ### Milestone N — <Milestone Name>
@@ -100,21 +101,21 @@ Group the tasks into 2–4 milestones. Open with a one-sentence framing line, th
 <one paragraph>
 
 #### Deliverables
-- <consolidated flat list of all deliverables across the grouped tasks>
+- <consolidated flat list of named outputs>
 ```
 
-Milestone grouping rules:
-- Group tasks that share a natural phase or dependency cluster.
-- Each milestone must be independently deliverable.
-- Deliverables in the milestone section are a consolidated flat list — do not repeat sub-bullets, just list the named outputs.
+Grouping rules:
+- Group tasks that share a natural phase or dependency cluster
+- Each milestone must be independently deliverable
+- Deliverables are a consolidated flat list — no nested bullets
 
 ---
 
 ### Step 4 — Write the file
 
-Write the generated document to the output path provided in the arguments. If the parent directory does not exist, create it.
+Write the generated document to the output path. Create the parent directory if needed.
 
 Then report:
 
 - The output file path
-- A 2–3 bullet summary of what was generated (number of tasks, number of milestones, any notable decisions made)
+- Number of tasks, number of milestones, any notable decisions made

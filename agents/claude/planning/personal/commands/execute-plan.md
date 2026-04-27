@@ -18,19 +18,19 @@ You are implementing the code changes described in a spec file. Follow these ste
 
 Parse `$ARGUMENTS`:
 
-- First positional argument: path to the RFC Markdown file (required) — provides initiative-level context and motivation
+- First positional argument: path to the RFC Markdown file (required) — provides initiative-level context and constraints
 - Second positional argument: path to the spec Markdown file (required) — defines exactly what to implement
 
 ### Step 2 — Read inputs
 
 Read both files in full:
 
-1. The RFC at the first path — for project context, motivation, and constraints
-2. The spec at the second path — the authoritative source of truth for what to build
+1. The RFC — for project context, motivation, and architectural constraints
+2. The spec — the authoritative source of truth for what to build
 
-Also read `CLAUDE.md` (if present) for project conventions, then explore the existing codebase to understand patterns before touching any code:
+Also read `CLAUDE.md` (if present) for project conventions, then explore the codebase before touching any code:
 
-- Identify every file the spec names under "Modules / Files" or equivalent
+- Identify every file the spec names under "Modules / Files"
 - Read each existing file that will be modified
 - For new files, read 1–2 analogous existing files to match style and structure
 
@@ -38,7 +38,7 @@ Do not begin writing code until you have read all relevant existing files.
 
 ### Step 3 — Build a task list
 
-Decompose the spec into discrete implementation tasks using `TaskCreate`. Create one task per logical unit of work (e.g. one task per new file or modified module, one task for tests).
+Decompose the spec into discrete implementation tasks using `TaskCreate`. One task per logical unit of work (one per new file or modified module, one for tests).
 
 Order tasks so that dependencies come first. Mark blocking relationships with `addBlocks` / `addBlockedBy`.
 
@@ -48,25 +48,25 @@ Work through the task list in order. For each task:
 
 1. Mark the task `in_progress` before starting.
 2. Implement only what the spec describes — no extra features, no speculative abstractions.
-3. Match the style of the existing file being modified or the analogous file you read in Step 2.
+3. Match the style of the existing file being modified or the analogous file read in Step 2.
 4. Remove only imports/variables/functions that your own changes make unused. Do not clean up pre-existing dead code.
 5. Mark the task `completed` immediately after finishing it.
 
 **Implementation rules:**
 
-- Follow the "Modules / Files" table in the spec exactly — create or modify only those files unless a transitive dependency is unavoidable.
-- Implement every function listed under "Key Functions", with the exact signature and docstring shown in the spec.
+- Follow the "Modules / Files" table exactly — create or modify only those files unless a transitive dependency is unavoidable.
+- Implement every function listed under "Key Functions" with the exact signature and docstring shown in the spec.
 - If the spec defines CLI parameters, wire them up exactly as specified.
 - If the spec defines a Pydantic model or data schema, implement it verbatim.
-- If the spec defines a testing strategy, write the tests described. Do not add tests beyond what the spec calls for.
-- If the spec flags open questions, do not resolve them silently — surface them in your final report.
+- If the spec defines a testing strategy, write exactly those tests. Do not add tests beyond what the spec calls for.
+- If the spec flags open questions, do not resolve them silently — surface them in the final report.
 
 ### Step 5 — Verify
 
-After implementing all tasks, run the project's test suite and linters if they are configured:
+Run the project's test suite and linters if configured:
 
 ```bash
-pytest                        # or: uv run pytest
+pytest                        # or: uv run pytest / python -m pytest
 pre-commit run --all-files    # if pre-commit is configured
 ```
 
@@ -76,15 +76,14 @@ If no test suite is configured, note this in the final report.
 
 ### Step 6 — Document
 
-For each package directory created or modified during implementation:
+For each package directory created or modified:
 
-1. Locate the package root (the directory containing `__init__.py`, or the top-level project root if no package was created).
-2. Check whether a `README.md` exists in that directory.
-   - **If it exists:** append a changelog entry at the bottom using today's date and a brief bullet-point list of what was added or changed.
-   - **If it does not exist:** create a `README.md` describing the package — its purpose, the modules it contains, key functions, and a changelog entry for today.
-3. The README must include a **Usage** section showing how to run the feature, with key parameters and example values.
-4. Do not create duplicate README files. One README per package directory is sufficient.
-5. Keep the content concise: a short description, a usage section, and a changelog block.
+1. Locate the package root (directory containing `__init__.py`, or the project root if no package was created).
+2. Check whether a `README.md` exists.
+   - **If it exists:** append a changelog entry at the bottom with today's date and a brief bullet list of what was added or changed.
+   - **If it does not exist:** create a `README.md` with: purpose, modules, key functions, and a changelog entry for today.
+3. Include a **Usage** section showing how to run the feature with example parameter values.
+4. One README per package directory. Do not create duplicates.
 
 ### Step 7 — Report
 

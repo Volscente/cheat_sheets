@@ -5,7 +5,7 @@ Generate a planning document from an RFC file.
 ## Usage
 
 ```text
-/plan <rfc-path> [--planning <planning-path>] [--task <task-number>] [--type initiative|spec] [--milestone <name>] [--issue <number>]
+/plan <rfc-path> [--planning <planning-path>] [--task <task-number>] [--type initiative|spec] [--issue <number>]
 ```
 
 **Arguments:** $ARGUMENTS
@@ -19,11 +19,10 @@ You are generating a planning document from an RFC. Follow these steps exactly.
 Parse `$ARGUMENTS`:
 
 - First positional argument: RFC file path (required)
-- `--planning`: path to an existing initiative planning doc (e.g. `docs/planning/dotfile-manager/planning.md`)
-- `--task`: task number to focus on in the planning doc (e.g. `--task 2` targets the "TASK-2" section)
+- `--planning`: path to an existing initiative planning doc (e.g. `docs/planning/recipe-app/planning.md`)
+- `--task`: task number to focus on (e.g. `--task 2` targets the `TASK-2` section in the planning doc)
 - `--type`: `initiative` (default) or `spec`
-- `--milestone`: GitHub Milestone name (e.g. `"Config Parser"`) — used to derive the output folder
-- `--issue`: GitHub Issue number (e.g. `--issue 42`) — if provided, implies `--type spec`
+- `--issue`: GitHub Issue number (e.g. `--issue 12`) — if provided, implies `--type spec`
 
 If `--issue` is given but `--type` is not, set type to `spec`.
 If neither `--type` nor `--issue` is given, set type to `initiative`.
@@ -37,15 +36,15 @@ Always read:
 If type is `spec`, also read:
 
 2. `templates/tech_spec_template.md` — the fillable template to populate
-3. `templates/general_plan_template.md` — defines field semantics and formatting rules
+3. `templates/general_plan_template.md` — field semantics and formatting rules
 
 If type is `initiative`, also read:
 
-2. `templates/general_plan_template.md` — defines the structure and formatting rules
+2. `templates/general_plan_template.md` — structure and formatting rules
 
-If `--planning` was provided, read that file too. When present, it is the **primary source of truth** for scope, deliverables, effort, and task structure. The RFC provides background context only.
+If `--planning` was provided, read that file too. It is the **primary source of truth** for scope, deliverables, effort, and task structure. The RFC provides background context only.
 
-If `--planning` was not provided and type is `spec`, look for a `planning.md` in `docs/planning/<project-slug>/` and read it if found.
+If `--planning` was not provided and type is `spec`, look for a `planning.md` in `docs/planning/<project-slug>/` (derive the slug from the RFC's project name) and read it if found.
 
 If `--task` was provided, restrict all content derived from the planning doc to the section headed `TASK-<n>`. Ignore all other task sections.
 
@@ -53,48 +52,49 @@ If `--task` was provided, restrict all content derived from the planning doc to 
 
 **If type = initiative:**
 
-- Derive `<project-slug>` from the RFC's project name or title
+- Derive `<project-slug>` from the RFC's project name (lowercase, spaces → hyphens)
 - Output: `docs/planning/<project-slug>/planning.md`
 - If `planning.md` already exists in that directory, update it rather than overwriting from scratch
 
 **If type = spec:**
 
 - Output: `docs/planning/<project-slug>/<issue-number>-<kebab-title>.md`
-- File name is `<issue-number>-<kebab-title>` where the title comes from `--task` heading in the planning doc, or from the RFC section if no planning doc is available
+- `<kebab-title>` comes from the TASK heading in the planning doc, or from the RFC section if no planning doc is available
+- Use `issue-000` as a placeholder if no issue number was provided
 
 ### Step 4 — Generate the document
 
-**If type = initiative**, produce a planning document following the structure defined in `templates/general_plan_template.md`:
+**If type = initiative**, produce a planning document following `templates/general_plan_template.md`:
 
 - Title: `# <Initiative Name> — High-Level Planning`
-- Header block: project name, Notion page link (if in RFC), GitHub repo link (if in RFC), total estimated effort
-- **Overview** section: 2–3 sentence summary + ASCII dependency diagram
-- One section per **TASK**: numbered, with Effort estimate, Scope, Goal, Deliverables, and Technical Overview sub-sections. Where the RFC describes existing work that is already done, call it out in an "Existing Work" sub-section. Where gaps remain, list them in a "Gaps to Close" sub-section.
-- **GitHub Issues** section at the end: group tasks into 2–4 milestones. Each milestone has Scope, Goal, and Deliverables.
+- Header block: project, GitHub repo, Milestone, Notion page (all from RFC if present), total effort
+- **Overview**: 2–3 sentence technical summary + ASCII dependency diagram
+- One **TASK** section per milestone: GitHub Issue placeholder, Effort, Scope, Goal, Deliverables, Technical Overview. Add "Existing Work" and "Gaps to Close" sub-sections only where the RFC calls out already-completed work.
+- **GitHub Issues** section: group tasks into 2–4 milestones with Scope, Goal, Deliverables
 
-Use only information from the RFC (and the planning doc if provided). Do not invent scope, deliverables, or effort estimates. Keep descriptions technical and concise.
+Use only RFC information (and planning doc if provided). Do not invent scope, deliverables, or effort.
 
-**If type = spec**, populate `templates/tech_spec_template.md` section by section:
+**If type = spec**, populate `templates/tech_spec_template.md`:
 
-- Title: `# #{issue-number}: <Title>`
-- GitHub Issue link (placeholder URL if not provided: `https://github.com/<owner>/<repo>/issues/<number>`)
-- GitHub Milestone and Notion Page links if present in the RFC or planning doc
-- **Technical Scope** — what files/modules change; what is explicitly out of scope
-- **Architecture** — ASCII diagram of the data flow or component structure
-- **Tech Stack** — new packages only, with version and justification; skip section if none
-- **Implementation Details** containing:
-  - Modules / Files table (File | Action | Description)
+- Title: `# #{issue-number}: <Title>` (use `#issue-000` placeholder if no issue number)
+- GitHub Issue link: `https://github.com/<owner>/<repo>/issues/<number>` (placeholder if not provided)
+- GitHub Milestone and Notion page links (from RFC or planning doc if present)
+- **Technical Scope**: files/modules that change; explicit out-of-scope items
+- **Architecture**: ASCII diagram of data flow or component structure
+- **Tech Stack**: new packages only with version and justification; omit section if none
+- **Implementation Details**:
+  - Modules / Files table
   - Key Functions with full docstrings (Args, Returns, Raises)
-  - CLI Parameters table if the component has a CLI
-  - Data Models / Schemas (Pydantic models or other data structures)
+  - CLI Parameters table (if the component has a CLI)
+  - Data Models / Schemas
   - Testing Strategy (unit, integration, edge cases)
   - Open Questions / Risks (checkbox list with target dates)
 
-When `--planning` is provided, the task description in that file defines the deliverables and scope for this spec — use it as the authoritative source, not the RFC. Infer implementation details from the existing codebase patterns. Do not hallucinate file names — only name files that follow logically from the scope and the project structure.
+When `--planning` is provided, the task section in that file defines deliverables and scope — use it as authoritative, not the RFC. Infer implementation details from existing codebase patterns. Do not hallucinate file names — only name files that follow logically from the scope.
 
 ### Step 5 — Write the file
 
-Write the generated document to the output path from Step 3. If the directory does not exist, create it.
+Write to the output path from Step 3. Create the directory if needed.
 
 Then report:
 
