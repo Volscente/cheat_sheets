@@ -308,3 +308,8 @@ Ask Claude to update a rule file directly when a convention changes:
 ```bash
 "Update .claude/rules/code-style.md: we now use Google docstring format, not NumPy"
 ```
+
+## MCP
+
+### Useful MCP Servers
+- [Chrome DevTools](https://github.com/ChromeDevTools/chrome-devtools-mcp)
