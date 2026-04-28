@@ -62,10 +62,13 @@ claude --resume auth-refacto
 /clear
 
 # Compatch the session into a summary (usefull for long sessions)
-/compact
+/compact <prompt_what_to_keep>
 
 # Change to fast mode
 /fast
+
+# Allow to check the token usage on the fly
+/statusline
 ```
 
 ### Agents
