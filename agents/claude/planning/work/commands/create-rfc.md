@@ -1,56 +1,38 @@
 # Create RFC
 
-Generate a new RFC document from the project template, pre-filled with the provided inputs.
+Generate a new RFC document from a filled proposal file. All RFC content lives in the proposal;
+the command only needs to know where the proposal is and where to write the output.
 
 ## Usage
 
 ```text
-/create-rfc --title <title> --team <team> --author <name> --jira-epic <id> --problem <statement> [options]
+/create-rfc --file <path-to-proposal> [--out <output-path>]
 ```
 
 **Arguments:** $ARGUMENTS
 
-### Required parameters
+### Parameters
 
-| Parameter | Description | Example |
-| :-------- | :---------- | :------ |
-| `--title` | Short descriptive title of the RFC (no team prefix) | `"Online Catalog Dataset Pipeline"` |
-| `--team` | Owning team name | `"Menu Intelligence"` |
-| `--author` | Author full name and email | `"Simone Porreca <simone.porreca@deliveryhero.com>"` |
-| `--jira-epic` | JIRA epic ID — used to derive the output path | `"VDATA-9356"` |
-| `--problem` | 1–3 sentence description of the problem being solved — the motivation | `"There is no standardised way to evaluate translation quality. Model changes are deployed without evidence of improvement."` |
+| Parameter | Required | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `--file` | Yes | Path to the filled `proposal.md` | `docs/rfc/vdata-9356_online_catalog_dataset_pipeline/proposal.md` |
+| `--out` | No | Override output path (default: `rfc_document.md` next to `--file`) | `docs/rfc/my-rfc/rfc_document.md` |
 
-### Optional parameters
+---
 
-| Parameter | Default | Description | Example |
-| :-------- | :------ | :---------- | :------ |
-| `--org` | _(blank)_ | Organisation name | `"Vendor Sales and Operations"` |
-| `--deadline` | 2 weeks from today | Review deadline date (YYYY-MM-DD) | `"2026-05-15"` |
-| `--reviewers` | _(none)_ | Comma-separated list of reviewers in the format `"Name <email> [required\|optional]"` | `"Aishwarya Kadlag <a.kadlag@dh.com> required, Damir Valput <d.valput@dh.com> optional"` |
-| `--scope-in` | _(none)_ | Comma-separated list of in-scope capabilities | `"Reference corpus construction, COMET-DA scoring pipeline"` |
-| `--scope-out` | _(none)_ | Comma-separated list of out-of-scope items with reasons (format: `"item: reason"`) | `"Online monitoring: deferred to future phase, Human annotation: not scalable"` |
-| `--tech-stack` | _(none)_ | Comma-separated list of libraries/services to include | `"BigQuery, GitHub Actions, unbabel-comet, LiteLLM"` |
-| `--milestones` | _(none)_ | Comma-separated list of milestone names | `"Reference corpus pipeline, Offline scoring, Statistical comparison"` |
-| `--out` | `docs/rfc/<jira-epic-slug>/rfc_document.md` | Override the output file path | `"docs/rfc/my_rfc/rfc_document.md"` |
+## Workflow
+
+1. Copy `agents/claude/planning/work/templates/rfc_proposal_template.md` to
+   `docs/rfc/<jira-epic-lowercase>_<title-slug>/proposal.md`.
+2. Fill out the YAML frontmatter and `## Problem` section.
+3. Run `/create-rfc --file docs/rfc/<jira-epic-lowercase>_<title-slug>/proposal.md`.
 
 ---
 
 ## Example
 
 ```text
-/create-rfc \
-  --title "Online Catalog Dataset Pipeline" \
-  --team "Menu Intelligence" \
-  --author "Simone Porreca <simone.porreca@deliveryhero.com>" \
-  --jira-epic "VDATA-9356" \
-  --org "Vendor Sales and Operations" \
-  --problem "The online catalog has no automated dataset pipeline. Catalog changes are tracked manually, making model evaluation against real-world catalog state impossible." \
-  --deadline "2026-05-15" \
-  --reviewers "Aishwarya Kadlag <aishwarya.kadlag@deliveryhero.com> required, Vítor Plentz <vitor.plentz@deliveryhero.com> required, Damir Valput <damir.valput@deliveryhero.com> optional" \
-  --scope-in "BigQuery extraction pipeline, category stratification, GitHub Actions workflow" \
-  --scope-out "Real-time monitoring: deferred to future phase, Model training: out of scope for this RFC" \
-  --tech-stack "BigQuery, GitHub Actions, pandas, uv" \
-  --milestones "Dataset extraction pipeline, Validation and reporting, CI integration"
+/create-rfc --file docs/rfc/vdata-9356_online_catalog_dataset_pipeline/proposal.md
 ```
 
 ---
@@ -63,105 +45,112 @@ You are generating a new RFC document. Follow these steps exactly.
 
 Parse `$ARGUMENTS`:
 
-- `--title` (required): short RFC title
-- `--team` (required): owning team name
-- `--author` (required): author name and email string
-- `--jira-epic` (required): JIRA epic ID (e.g. `VDATA-9356`)
-- `--problem` (required): problem statement string
-- `--org` (optional): organisation name; leave blank if not provided
-- `--deadline` (optional): review deadline as YYYY-MM-DD; if absent, default to 14 days from today's date
-- `--reviewers` (optional): parse into a list of `{name, email, required|optional}` entries; if absent, leave placeholder rows
-- `--scope-in` (optional): split on commas → list of in-scope items
-- `--scope-out` (optional): split on commas → list of out-of-scope items; each item may have a `"item: reason"` format — split on the first colon
-- `--tech-stack` (optional): split on commas → list of library/service names
-- `--milestones` (optional): split on commas → ordered list of milestone names
-- `--out` (optional): override the output file path
+- `--file` (required): path to the filled proposal file
+- `--out` (optional): override output file path
 
-### Step 2 — Read the template
+### Step 2 — Read the proposal file
 
-Read `docs/rfc/rfc_tempalte.md` — this is the canonical structure the RFC must follow.
+Read the file at the path from `--file`. Extract:
 
-Also read the existing RFC `docs/rfc/translations_evaluation_framework/rfc_document.md` as a style reference for tone, table formatting, and section depth.
+- **YAML frontmatter** (between `---` delimiters): parse all fields:
+  - `title`, `team`, `author`, `jira-epic` (required fields)
+  - `org` (optional — blank if not provided)
+  - `deadline` (optional — default to 14 days from today if blank)
+  - `reviewers` (list, format `"Name <email> required|optional"` — parse each into name, email, and status)
+  - `tech-stack` (list), `scope-in` (list), `scope-out` (list, format `"Item: reason"`)
+  - `milestones` (ordered list)
+- **`## Problem` section body**: extract the prose paragraph(s) below the heading — this is the problem statement
 
-### Step 3 — Determine the output path
+### Step 3 — Read the template and style reference
+
+Read `docs/rfc/rfc_tempalte.md` — this is the canonical output structure.
+
+Also read `docs/rfc/translations_evaluation_framework/rfc_document.md` as a style reference for
+tone, table formatting, and section depth.
+
+### Step 4 — Determine the output path
 
 If `--out` was provided, use it directly.
 
-Otherwise, derive the path as:
-```
-docs/rfc/<jira-epic-lowercase>_<title-slug>/rfc_document.md
-```
-where `<title-slug>` is the title lowercased with spaces replaced by underscores (e.g. `vdata-9356_online_catalog_dataset_pipeline/rfc_document.md`).
+Otherwise: same directory as `--file`, filename `rfc_document.md`.
 
-If the directory does not exist, it will be created when writing.
-
-### Step 4 — Generate the RFC
-
-Produce a complete RFC document following the template structure. Apply these rules:
-
-**Header block:**
-- Set `Author(s)` from `--author`
-- Set `Owner(s)` from `--team`
-- Set `Org(s)` from `--org` (blank if not provided)
-- Set `RFC status` to `Draft`
-- Set `Review deadline` from `--deadline`
-- Set today's date in the Timeline table
-
-**Reviews table:**
-- If `--reviewers` was provided, populate one row per reviewer with name, team inferred from email domain context, and Required/Optional status
-- If not provided, keep the two placeholder rows from the template
+### Step 5 — Generate the RFC
 
 **Title:**
-- Format as `[RFC] {Team}: {Title}` — derive both from `--team` and `--title`
+
+- Format as `[RFC] {team}: {title}` — from `team` and `title` frontmatter fields
+
+**Header block:**
+
+- `Author(s)`: from `author`
+- `Owner(s)`: from `team`
+- `Org(s)`: from `org` (blank if not provided)
+- `RFC status`: `Draft`
+- `Review deadline`: from `deadline`
+- Today's date in the Timeline table
+
+**Reviews table:**
+
+- If `reviewers` is non-empty: one row per reviewer — name, team inferred from email domain context, Required/Optional status
+- If empty: keep the two placeholder rows from the template
 
 **Motivation section:**
-- Expand `--problem` into 2–3 paragraphs following the template's four-point structure:
+
+- Expand the `## Problem` prose into 2–3 paragraphs following this four-point structure:
   1. What system or process is being changed
   2. The specific gap or pain point
   3. What happens without this RFC
   4. The primary requirement the proposal must satisfy
-- Do not invent facts. Work only from what `--problem` states.
+- Do not invent facts — work only from what the Problem section states
 
-**Objectives section:**
-- Derive 3–5 concrete objectives from the problem statement and scope items
-- Each must start with a bold action label and be outcome-oriented, not task-oriented
+**Objectives:**
+
+- Derive 3–5 concrete objectives from the problem and scope
+- Each starts with a bold action label and is outcome-oriented, not task-oriented
 
 **Scope:**
-- In-Scope: populate from `--scope-in` if provided; otherwise leave placeholders with a comment
-- Out-of-Scope: populate from `--scope-out` if provided; otherwise leave placeholders
+
+- In-Scope: from `scope-in` if non-empty
+- Out-of-Scope: from `scope-out` if non-empty; each item uses the `"Item: reason"` split on the first colon
 
 **Main technical section:**
-- Name it after `--title` (e.g. `# Online Catalog Dataset Pipeline`)
-- Write a Methodology Overview paragraph describing the high-level approach derived from the problem and scope
-- If `--milestones` was provided, generate one subsection per milestone with a placeholder description and comment block
-- If not provided, keep the two generic subsection placeholders
+
+- Named after `title` (e.g. `# Online Catalog Dataset Pipeline`)
+- Write a Methodology Overview paragraph describing the high-level approach derived from problem and scope
+- If `milestones` is non-empty: one subsection per milestone with a placeholder description
+- If empty: two generic placeholder subsections
 
 **Tech Stack:**
-- If `--tech-stack` was provided, list each item with a placeholder "why it is used" description derived from its name
-- If not provided, keep the placeholder rows
+
+- If `tech-stack` is non-empty: one bullet per item with a placeholder justification derived from its name
+- If empty: placeholder rows
 
 **Effort Estimations:**
-- If `--milestones` was provided, generate one table row per milestone with a placeholder effort estimate
-- If not provided, keep the two placeholder rows
-- Recommended delivery order should follow the milestone list order
+
+- If `milestones` is non-empty: one table row per milestone with placeholder effort estimate
+- If empty: two placeholder rows
+- Recommended delivery order follows the milestone list order
 
 **FAQs:**
-- Generate 3–5 Q&A pairs anticipating the most likely reviewer questions based on the problem statement and scope
+
+- Generate 3–5 Q&A pairs anticipating likely reviewer questions from the problem and scope
 - Always include a Terminology entry if acronyms appear in the RFC
 
 **Risks & Mitigations:**
+
 - Generate 3–4 risks inferred from the problem and scope, with likelihood and mitigation
 - Include the "Recommended First Step" callout identifying the highest-risk unknown
 
-**Remove all template comment blocks** (`<!-- ... -->`) from the output — they are authoring instructions, not document content.
+**Remove all template comment blocks** (`<!-- ... -->`).
 
-**Do not hallucinate details** — for sections where no input was provided, use clear placeholder text (e.g. `{Description}`) rather than invented content.
+**Do not hallucinate details** — use `{Description}` placeholders for anything not provided.
 
-### Step 5 — Write the file
+### Step 6 — Write the file
 
-Write the generated RFC to the output path from Step 3.
+Write to the output path from Step 4. Create the directory if needed.
 
 Then report:
-- The output file path
-- Which sections were fully populated vs. left as placeholders (based on which optional parameters were provided)
+
+- Output file path
+- Which sections were fully populated vs. left as placeholders
 - Any assumptions made during generation
