@@ -68,23 +68,17 @@ Notion initiative page
 
 ## Step 1 — Create RFC
 
-**Skill:** `commands/create-rfc.md` | **Template:** `templates/rfc_template.md`
+**Skill:** `commands/create-rfc.md` | **Templates:** `templates/rfc_proposal_template.md`, `templates/rfc_template.md`
 
-Generates a technical RFC. The Motivation section is a single paragraph — personal context stays in Notion.
+Generates a technical RFC from a filled proposal file. The Motivation section is a single paragraph — personal context stays in Notion.
+
+**Workflow:**
+1. Copy `templates/rfc_proposal_template.md` to `docs/rfc/<project>_<title>/proposal.md`
+2. Fill out the YAML frontmatter (`title`, `project`, `author`, `tech-stack`, `scope-in`, `scope-out`, `milestones`, etc.) and the `## Problem` section
+3. Run:
 
 ```text
-/create-rfc \
-  --title "Add Search Bar" \
-  --project "recipe-app" \
-  --author "Simone Porreca" \
-  --github-repo "simone/recipe-app" \
-  --notion-page "https://notion.so/Add-Search-Bar-abc123" \
-  --milestone "Add Search Bar" \
-  --problem "The app has no search capability. With 200+ saved recipes, users cannot find entries without scrolling the full list." \
-  --scope-in "Full-text search index, search UI component, keyboard shortcut" \
-  --scope-out "Fuzzy matching: future phase, Tag filters: separate initiative" \
-  --tech-stack "whoosh, Flask, pytest" \
-  --milestones "Implement search index, Build search UI, Add keyboard shortcut"
+/create-rfc --file docs/rfc/recipe-app_add-search-bar/proposal.md
 ```
 
 **Output:** `docs/rfc/recipe-app_add-search-bar/rfc_document.md`
@@ -143,7 +137,8 @@ Reads the RFC (context) and spec (source of truth), builds a task list, implemen
 
 | File | Used by | Purpose |
 |---|---|---|
-| `templates/rfc_template.md` | `create-rfc` | Technical RFC: 1-paragraph motivation + link to Notion, objectives, scope, approach, tech stack, milestones, risks |
+| `templates/rfc_proposal_template.md` | `create-rfc` (input) | Proposal filled by hand: YAML frontmatter + `## Problem` prose — source of truth for RFC generation |
+| `templates/rfc_template.md` | `create-rfc` (output structure) | Technical RFC: 1-paragraph motivation + link to Notion, objectives, scope, approach, tech stack, milestones, risks |
 | `templates/general_plan_template.md` | `general-plan`, `plan-task` | Folder conventions, spec structure, field semantics |
 | `templates/tech_spec_template.md` | `plan-task --type spec` | Per-issue spec: scope, architecture, modules, functions, schemas, tests, open questions |
 | `templates/open_issues_template.md` | manual | Track open issues found during planning or implementation |
@@ -214,11 +209,11 @@ docs/
 
 ```bash
 # Step 1 — RFC (skip if design is obvious)
-/create-rfc --title "Add Search Bar" --project "recipe-app" \
-  --author "Simone Porreca" --github-repo "simone/recipe-app" \
-  --notion-page "https://notion.so/abc123" \
-  --problem "The app has no search. With 200+ recipes, discovery is O(n) scrolling." \
-  --milestones "Implement search index, Build search UI, Add keyboard shortcut"
+# 1a. Copy the proposal template and fill it in:
+#     cp agents/claude/planning/personal/templates/rfc_proposal_template.md \
+#        docs/rfc/recipe-app_add-search-bar/proposal.md
+# 1b. Generate the RFC:
+/create-rfc --file docs/rfc/recipe-app_add-search-bar/proposal.md
 
 # Step 2 — Initiative plan
 /general-plan docs/rfc/recipe-app_add-search-bar/rfc_document.md \
