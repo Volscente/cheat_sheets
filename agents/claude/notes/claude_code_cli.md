@@ -78,7 +78,7 @@ claude --resume auth-refacto
 - The agent can be requested through the console
 - They are just Markdown files, for example a "security" agent
 - Some agents that make sense are the "Research" and "Reviewer" agent
-- Agents work in parallel
+- Agents work in parallel and they can be organised into "Agent Teams"
 
 ### Tasks
 
