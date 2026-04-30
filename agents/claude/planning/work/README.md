@@ -27,26 +27,28 @@ Idea
 ## Step 1 — Create RFC
 
 **Skill:** `commands/create-rfc.md`  
-**Template:** `templates/rfc_template.md`
+**Templates:** `templates/rfc_proposal_template.md`, `templates/rfc_template.md`
 
-Generates a structured RFC document from a problem statement and a set of parameters. The RFC captures motivation, objectives, scope, milestones, tech stack, effort estimates, FAQs, and risks.
+Generates a structured RFC document from a filled proposal file. The proposal captures motivation, objectives, scope, milestones, tech stack, effort estimates, FAQs, and risks.
+
+**Workflow:**
+
+1. Copy `agents/claude/planning/personal/templates/rfc_proposal_template.md` to `docs/rfc/<project>_<title>/proposal.md`.
+2. Fill out the YAML frontmatter and `## Problem` section.
+3. Run the command:
 
 ```text
-/create-rfc \
-  --title "Online Catalog Dataset Pipeline" \
-  --team "Menu Intelligence" \
-  --author "Simone Porreca <simone.porreca@deliveryhero.com>" \
-  --jira-epic "VDATA-9356" \
-  --problem "The online catalog has no automated dataset pipeline." \
-  --deadline "2026-05-15" \
-  --reviewers "Alice <alice@company.com> required, Bob <bob@company.com> optional" \
-  --scope-in "BigQuery extraction, GitHub Actions workflow" \
-  --scope-out "Real-time monitoring: deferred to future phase" \
-  --milestones "Dataset extraction, Validation, CI integration"
+/create-rfc --file docs/rfc/vdata-9356_online-catalog/proposal.md
 ```
 
-**Required parameters:** `--title`, `--team`, `--author`, `--jira-epic`, `--problem`  
-**Output:** `docs/rfc/<jira-epic>_<title-slug>/rfc_document.md`
+**Parameters:**
+
+| Parameter | Required | Description |
+| :--- | :--- | :--- |
+| `--file` | Yes | Path to the filled `proposal.md` |
+| `--out` | No | Override output path (default: `rfc_document.md` next to `--file`) |
+
+**Output:** `docs/rfc/<project>_<title>/rfc_document.md`
 
 ---
 
@@ -108,7 +110,8 @@ Reads the RFC (for context) and a tech spec (as the authoritative source of trut
 
 | File | Used by | Purpose |
 | ---- | ------- | ------- |
-| `templates/rfc_template.md` | `create-rfc` | Canonical RFC structure: header, motivation, objectives, scope, tech stack, milestones, FAQs, risks |
+| `templates/rfc_proposal_template.md` | `create-rfc` (input) | Fillable proposal: YAML frontmatter + `## Problem` prose — the source of truth you author |
+| `templates/rfc_template.md` | `create-rfc` (output) | Canonical RFC structure: header, motivation, objectives, scope, tech stack, milestones, FAQs, risks |
 | `templates/general_plan_template.md` | `general-plan`, `plan-task` | Defines field semantics, folder/file naming conventions, and spec formatting rules |
 | `templates/tech_spec_template.md` | `plan-task --type spec` | Fillable tech spec structure: scope, architecture, modules, functions, schemas, tests, open questions |
 | `templates/open_issues_template.md` | manual | Tracks open issues discovered during planning or implementation, with observation, hypotheses, impact, and recommended actions |
