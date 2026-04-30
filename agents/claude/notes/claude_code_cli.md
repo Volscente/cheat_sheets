@@ -62,10 +62,13 @@ claude --resume auth-refacto
 /clear
 
 # Compatch the session into a summary (usefull for long sessions)
-/compact
+/compact <prompt_what_to_keep>
 
 # Change to fast mode
 /fast
+
+# Allow to check the token usage on the fly
+/statusline
 ```
 
 ### Agents
@@ -75,6 +78,7 @@ claude --resume auth-refacto
 - The agent can be requested through the console
 - They are just Markdown files, for example a "security" agent
 - Some agents that make sense are the "Research" and "Reviewer" agent
+- Agents work in parallel and they can be organised into "Agent Teams"
 
 ### Tasks
 
@@ -305,3 +309,8 @@ Ask Claude to update a rule file directly when a convention changes:
 ```bash
 "Update .claude/rules/code-style.md: we now use Google docstring format, not NumPy"
 ```
+
+## MCP
+
+### Useful MCP Servers
+- [Chrome DevTools](https://github.com/ChromeDevTools/chrome-devtools-mcp)
