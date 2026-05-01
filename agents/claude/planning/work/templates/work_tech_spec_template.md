@@ -21,7 +21,7 @@
 
 ## Architecture
 
-```
+```txt
 CLI: uv run python -m {module.path}
           │  --{arg-1} <value>  --{arg-2} <value>  [--{flag}]
           │
@@ -58,8 +58,8 @@ CLI: uv run python -m {module.path}
 
 {No new packages required. All dependencies are already in the project: / New packages or dependencies introduced:}
 
-| Package       | {Already Used In / Version} | {Location / Justification}         |
-| ------------- | --------------------------- | ---------------------------------- |
+| Package       | {Already Used In / Version} | {Location / Justification}             |
+| ------------- | --------------------------- | -------------------------------------- |
 | `{package-1}` | `{>=x.y / path/to/usage}`   | {Why this package, not an alternative} |
 | `{package-2}` | `{>=x.y / path/to/usage}`   | {Why this package, not an alternative} |
 
@@ -91,13 +91,13 @@ CLI: uv run python -m {module.path}
 
 ### Modules / Files
 
-| File                    | Action           | Description                               |
-| ----------------------- | ---------------- | ----------------------------------------- |
-| `{path/to/runner.py}`   | Create           | {CLI runner: what it orchestrates}        |
-| `{path/to/schemas.py}`  | Create           | {Pydantic models for structured output}   |
-| `{path/to/prompts.py}`  | Create           | {Prompt templates for each call or step}  |
-| `{path/to/schema.json}` | Create           | {BigQuery JSON schema definition}         |
-| `{path/to/utils.py}`    | Reuse            | {Functions reused — do not re-implement}  |
+| File                    | Action | Description                              |
+| ----------------------- | ------ | ---------------------------------------- |
+| `{path/to/runner.py}`   | Create | {CLI runner: what it orchestrates}       |
+| `{path/to/schemas.py}`  | Create | {Pydantic models for structured output}  |
+| `{path/to/prompts.py}`  | Create | {Prompt templates for each call or step} |
+| `{path/to/schema.json}` | Create | {BigQuery JSON schema definition}        |
+| `{path/to/utils.py}`    | Reuse  | {Functions reused — do not re-implement} |
 
 ---
 
@@ -230,14 +230,14 @@ def {write_function}(
 
 ### CLI Parameters
 
-| Parameter       | Type     | Default              | Description                           |
-| --------------- | -------- | -------------------- | ------------------------------------- |
-| `--{param-1}`   | `str`    | required             | {What this parameter controls}        |
-| `--{param-2}`   | `int`    | `{default_value}`    | {What this parameter controls}        |
-| `--{flag-1}`    | `flag`   | `False`              | {What enabling this flag does}        |
-| `--{param-3}`   | `str`    | `None`               | {What this parameter controls}        |
-| `--{flag-2}`    | `flag`   | `False`              | {What enabling this flag does}        |
-| `--{param-4}`   | `str`    | `${ENV_VAR}`         | {What this parameter controls}        |
+| Parameter     | Type   | Default           | Description                    |
+| ------------- | ------ | ----------------- | ------------------------------ |
+| `--{param-1}` | `str`  | required          | {What this parameter controls} |
+| `--{param-2}` | `int`  | `{default_value}` | {What this parameter controls} |
+| `--{flag-1}`  | `flag` | `False`           | {What enabling this flag does} |
+| `--{param-3}` | `str`  | `None`            | {What this parameter controls} |
+| `--{flag-2}`  | `flag` | `False`           | {What enabling this flag does} |
+| `--{param-4}` | `str`  | `${ENV_VAR}`      | {What this parameter controls} |
 
 ---
 
@@ -304,14 +304,14 @@ class {Record}(BaseModel):
 
 **BigQuery schema** (`{path/to/schema.json}`):
 
-| Field            | Type      | Mode     | Description                              |
-| ---------------- | --------- | -------- | ---------------------------------------- |
-| `{field_1}`      | STRING    | REQUIRED | {Description}                            |
-| `{field_2}`      | STRING    | REQUIRED | {Description}                            |
-| `{field_3}`      | FLOAT     | REQUIRED | {Description}                            |
-| `{field_4}`      | STRING    | NULLABLE | {Description}                            |
-| `{field_5}`      | FLOAT     | REQUIRED | {Description, e.g. formula}              |
-| `created_at`     | TIMESTAMP | REQUIRED | Record creation timestamp                |
+| Field        | Type      | Mode     | Description                 |
+| ------------ | --------- | -------- | --------------------------- |
+| `{field_1}`  | STRING    | REQUIRED | {Description}               |
+| `{field_2}`  | STRING    | REQUIRED | {Description}               |
+| `{field_3}`  | FLOAT     | REQUIRED | {Description}               |
+| `{field_4}`  | STRING    | NULLABLE | {Description}               |
+| `{field_5}`  | FLOAT     | REQUIRED | {Description, e.g. formula} |
+| `created_at` | TIMESTAMP | REQUIRED | Record creation timestamp   |
 
 **Table:** `{gcp-project}.{dataset}.{table}`
 **Partitioned by:** `DATE(created_at)`

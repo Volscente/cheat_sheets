@@ -13,10 +13,10 @@ the command only needs to know where the proposal is and where to write the outp
 
 ### Parameters
 
-| Parameter | Required | Description | Example |
-| :--- | :--- | :--- | :--- |
-| `--file` | Yes | Path to the filled `proposal.md` | `docs/rfc/vdata-9356_online_catalog_dataset_pipeline/proposal.md` |
-| `--out` | No | Override output path (default: `rfc_document.md` next to `--file`) | `docs/rfc/my-rfc/rfc_document.md` |
+| Parameter | Required | Description                                                        | Example                                                               |
+| :-------- | :------- | :----------------------------------------------------------------- | :-------------------------------------------------------------------- |
+| `--file`  | Yes      | Path to the filled `proposal.md`                                   | `docs/rfc/vdata-9356_online_catalog_dataset_pipeline/proposal.md`     |
+| `--out`   | No       | Override output path (default: `rfc_document.md` next to `--file`) | `docs/rfc/vdata-9356_online_catalog_dataset_pipeline/rfc_document.md` |
 
 ---
 
@@ -64,9 +64,6 @@ Read the file at the path from `--file`. Extract:
 ### Step 3 — Read the template and style reference
 
 Read `~/.claude/templates/work_rfc_template.md` — this is the canonical output structure.
-
-Also read `docs/rfc/translations_evaluation_framework/rfc_document.md` as a style reference for
-tone, table formatting, and section depth.
 
 ### Step 4 — Determine the output path
 

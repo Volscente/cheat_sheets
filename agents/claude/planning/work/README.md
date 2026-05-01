@@ -33,7 +33,7 @@ Generates a structured RFC document from a filled proposal file. The proposal ca
 
 **Workflow:**
 
-1. Copy `~/.claude/templates/work_rfc_proposal_template.md` to `docs/rfc/<project>_<title>/proposal.md`.
+1. Copy `~/.claude/templates/work_rfc_proposal_template.md` to `docs/rfc/<initiative-name>/proposal.md`.
 2. Fill out the YAML frontmatter and `## Problem` section.
 3. Run the command:
 
@@ -48,7 +48,7 @@ Generates a structured RFC document from a filled proposal file. The proposal ca
 | `--file`  | Yes      | Path to the filled `proposal.md`                                   |
 | `--out`   | No       | Override output path (default: `rfc_document.md` next to `--file`) |
 
-**Output:** `docs/rfc/<project>_<title>/rfc_document.md`
+**Output:** `docs/rfc/<initiative-name>/rfc_document.md`
 
 ---
 
@@ -81,8 +81,8 @@ Reads the RFC and the planning doc, then generates a detailed technical spec for
       --planning docs/planning/vdata-9356_online_catalog/planning.md \
       --task 2 \
       --type spec \
-      --epic vdata-9356 \
-      --ticket vdata-9400
+      --epic vdata-9356_online-catalog \
+      --ticket vdata-9400_add_search
 ```
 
 **Output:** `docs/planning/<epic>/<ticket>.md`
@@ -99,7 +99,7 @@ Reads the RFC (for context) and a tech spec (as the authoritative source of trut
 
 ```text
 /4-work-execute-plan docs/rfc/vdata-9356_online_catalog/rfc_document.md \
-              docs/planning/vdata-9356/vdata-9400.md
+              docs/planning/vdata-9356/vdata-9400_add_search.md
 ```
 
 **Arguments:** `<rfc-path> <spec-path>` (both required)
@@ -108,13 +108,13 @@ Reads the RFC (for context) and a tech spec (as the authoritative source of trut
 
 ## Templates Reference
 
-| File                                 | Used by                     | Purpose                                                                                                                        |
-| ------------------------------------ | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `~/.claude/templates/work_rfc_proposal_template.md` | `1-work-create-rfc` (input)              | Fillable proposal: YAML frontmatter + `## Problem` prose — the source of truth you author                                      |
-| `~/.claude/templates/work_rfc_template.md`          | `1-work-create-rfc` (output)             | Canonical RFC structure: header, motivation, objectives, scope, tech stack, milestones, FAQs, risks                            |
+| File                                                | Used by                                   | Purpose                                                                                                                        |
+| --------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `~/.claude/templates/work_rfc_proposal_template.md` | `1-work-create-rfc` (input)               | Fillable proposal: YAML frontmatter + `## Problem` prose — the source of truth you author                                      |
+| `~/.claude/templates/work_rfc_template.md`          | `1-work-create-rfc` (output)              | Canonical RFC structure: header, motivation, objectives, scope, tech stack, milestones, FAQs, risks                            |
 | `~/.claude/templates/work_general_plan_template.md` | `2-work-general-plan`, `3-work-plan-task` | Defines field semantics, folder/file naming conventions, and spec formatting rules                                             |
-| `~/.claude/templates/work_tech_spec_template.md`    | `3-work-plan-task --type spec`           | Fillable tech spec structure: scope, architecture, modules, functions, schemas, tests, open questions                          |
-| `~/.claude/templates/work_open_issues_template.md`  | manual                                   | Tracks open issues discovered during planning or implementation, with observation, hypotheses, impact, and recommended actions |
+| `~/.claude/templates/work_tech_spec_template.md`    | `3-work-plan-task --type spec`            | Fillable tech spec structure: scope, architecture, modules, functions, schemas, tests, open questions                          |
+| `~/.claude/templates/work_open_issues_template.md`  | manual                                    | Tracks open issues discovered during planning or implementation, with observation, hypotheses, impact, and recommended actions |
 
 ---
 

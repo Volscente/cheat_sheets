@@ -27,8 +27,6 @@ docs/
 docs/planning/{JIRA_epic}/{jira_ticket}/{kebab-case-title}.md
 ```
 
-Examples: `docs/planning/VDATA/VDATA-8860/implement-comet-da.md`
-
 The JIRA ticket folder makes the link to the ticket explicit and searchable.
 
 ### Spec File Structure

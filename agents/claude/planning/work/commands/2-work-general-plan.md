@@ -42,7 +42,7 @@ Produce a planning document with this exact structure, using `docs/planning/vdat
 
 **Header block** (immediately after the title):
 
-```
+```md
 **Initiative:** <full initiative name>
 **Total estimated effort:** <N> FTE-days (1 FTE = 1 day)
 ```
@@ -69,6 +69,7 @@ Each task section must contain these sub-sections, in order:
 7. `### Technical Overview` — technical details: schema definitions (inline JSON blocks), CLI flag descriptions, architectural constraints, integration points, parallelism. Include a BigQuery schema block if any table is created.
 
 Rules for task sections:
+
 - Use only information from the RFC. Do not invent scope, deliverables, or effort.
 - If the RFC does not give an effort estimate for a task, omit the estimate line.
 - Keep descriptions concise and technical. Avoid prose padding.
@@ -79,23 +80,27 @@ Rules for task sections:
 
 Group the tasks into 2–4 stories. Open with a one-sentence framing line, then a horizontal rule, followed by one sub-section per story:
 
-```
+```md
 ### STORY-N — <Story Name>
 
 **Tasks:** TASK-X, TASK-Y, ...
 **Effort:** N FTE-days
 
 #### Scope
+
 <one paragraph>
 
 #### Goal
+
 <one paragraph>
 
 #### Deliverables
+
 - <bullet list of all deliverables across the grouped tasks, consolidated>
 ```
 
 Story grouping rules:
+
 - Group tasks that share a natural phase or dependency cluster (e.g. ground truth construction, evaluation pipeline, automation/sustainability).
 - Each story must be independently deliverable.
 - Deliverables in the story section are a consolidated flat list across all its tasks — do not repeat sub-bullets, just list the named outputs.
