@@ -5,7 +5,7 @@ Generate a high-level initiative planning document from an RFC file.
 ## Usage
 
 ```text
-/general-plan <rfc-path> <output-path>
+/2-work-general-plan <rfc-path> <output-path>
 ```
 
 **Arguments:** $ARGUMENTS

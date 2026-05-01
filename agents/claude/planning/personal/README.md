@@ -163,7 +163,7 @@ Goals table
         │            for 30+ seconds. The app is frustrating to use daily.
         ├── Success: Can find any recipe by name or ingredient in <3 seconds.
         │            Works on mobile without a keyboard covering the results.
-        ├── RFC:     docs/rfc/recipe-app_add-search-bar/rfc_document.md
+        ├── RFC:     .claude/rfc/recipe-app_add-search-bar/rfc_document.md
         ├── Milestone: github.com/simone/recipe-app/milestone/3
         └── Issues:  #12 Search index · #13 Search UI · #14 Keyboard shortcut
 ```

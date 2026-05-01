@@ -6,7 +6,7 @@ the command only needs to know where the proposal is and where to write the outp
 ## Usage
 
 ```text
-/create-rfc --file <path-to-proposal> [--out <output-path>]
+/1-personal-create-rfc --file <path-to-proposal> [--out <output-path>]
 ```
 
 **Arguments:** $ARGUMENTS

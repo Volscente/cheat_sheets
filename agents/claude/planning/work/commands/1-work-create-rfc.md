@@ -6,7 +6,7 @@ the command only needs to know where the proposal is and where to write the outp
 ## Usage
 
 ```text
-/create-rfc --file <path-to-proposal> [--out <output-path>]
+/1-work-create-rfc --file <path-to-proposal> [--out <output-path>]
 ```
 
 **Arguments:** $ARGUMENTS
@@ -22,17 +22,17 @@ the command only needs to know where the proposal is and where to write the outp
 
 ## Workflow
 
-1. Copy `agents/claude/planning/work/templates/rfc_proposal_template.md` to
+1. Copy `~/.claude/templates/work_rfc_proposal_template.md` to
    `docs/rfc/<jira-epic-lowercase>_<title-slug>/proposal.md`.
 2. Fill out the YAML frontmatter and `## Problem` section.
-3. Run `/create-rfc --file docs/rfc/<jira-epic-lowercase>_<title-slug>/proposal.md`.
+3. Run `/1-work-create-rfc --file docs/rfc/<jira-epic-lowercase>_<title-slug>/proposal.md`.
 
 ---
 
 ## Example
 
 ```text
-/create-rfc --file docs/rfc/vdata-9356_online_catalog_dataset_pipeline/proposal.md
+/1-work-create-rfc --file docs/rfc/vdata-9356_online_catalog_dataset_pipeline/proposal.md
 ```
 
 ---
@@ -63,7 +63,7 @@ Read the file at the path from `--file`. Extract:
 
 ### Step 3 — Read the template and style reference
 
-Read `docs/rfc/rfc_tempalte.md` — this is the canonical output structure.
+Read `~/.claude/templates/work_rfc_template.md` — this is the canonical output structure.
 
 Also read `docs/rfc/translations_evaluation_framework/rfc_document.md` as a style reference for
 tone, table formatting, and section depth.
