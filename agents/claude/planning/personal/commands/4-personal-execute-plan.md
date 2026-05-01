@@ -5,7 +5,7 @@ Implement all scripts, functions, and code changes described in a spec file.
 ## Usage
 
 ```text
-/execute-plan <rfc-path> <spec-path>
+/4-personal-execute-plan <rfc-path> <spec-path>
 ```
 
 **Arguments:** $ARGUMENTS

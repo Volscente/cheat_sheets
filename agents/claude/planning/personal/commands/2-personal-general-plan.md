@@ -5,7 +5,7 @@ Generate a high-level initiative planning document from an RFC file.
 ## Usage
 
 ```text
-/general-plan <rfc-path> <output-path>
+/2-personal-general-plan <rfc-path> <output-path>
 ```
 
 **Arguments:** $ARGUMENTS
@@ -19,13 +19,13 @@ You are generating an initiative-level planning document from an RFC. Follow the
 Parse `$ARGUMENTS`:
 
 - First positional argument: path to the RFC Markdown file (required)
-- Second positional argument: path to the output planning file (required, e.g. `docs/planning/recipe-app/planning.md`)
+- Second positional argument: path to the output planning file (required, e.g. `.claude/planning/recipe-app/planning.md`)
 
 ### Step 2 — Read inputs
 
 Read the RFC file at the provided path.
 
-Also read `templates/general_plan_template.md` for the expected structure and field conventions.
+Also read `~/.claude/templates/general_plan_template.md` for the expected structure and field conventions.
 
 **Skip the following RFC sections entirely — do not use their content:**
 

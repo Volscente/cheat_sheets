@@ -5,7 +5,7 @@ Generate a planning document from an RFC file.
 ## Usage
 
 ```text
-/plan <rfc-path> [--planning <planning-path>] [--task <task-number>] [--type initiative|spec] [--issue <number>]
+/3-personal-plan-task <rfc-path> [--planning <planning-path>] [--task <task-number>] [--type initiative|spec] [--issue <number>]
 ```
 
 **Arguments:** $ARGUMENTS
@@ -19,7 +19,7 @@ You are generating a planning document from an RFC. Follow these steps exactly.
 Parse `$ARGUMENTS`:
 
 - First positional argument: RFC file path (required)
-- `--planning`: path to an existing initiative planning doc (e.g. `docs/planning/recipe-app/planning.md`)
+- `--planning`: path to an existing initiative planning doc (e.g. `.claude/planning/recipe-app/planning.md`)
 - `--task`: task number to focus on (e.g. `--task 2` targets the `TASK-2` section in the planning doc)
 - `--type`: `initiative` (default) or `spec`
 - `--issue`: GitHub Issue number (e.g. `--issue 12`) — if provided, implies `--type spec`
@@ -35,16 +35,16 @@ Always read:
 
 If type is `spec`, also read:
 
-2. `templates/tech_spec_template.md` — the fillable template to populate
-3. `templates/general_plan_template.md` — field semantics and formatting rules
+2. `~/.claude/templates/tech_spec_template.md` — the fillable template to populate
+3. `~/.claude/templates/general_plan_template.md` — field semantics and formatting rules
 
 If type is `initiative`, also read:
 
-2. `templates/general_plan_template.md` — structure and formatting rules
+2. `~/.claude/templates/general_plan_template.md` — structure and formatting rules
 
 If `--planning` was provided, read that file too. It is the **primary source of truth** for scope, deliverables, effort, and task structure. The RFC provides background context only.
 
-If `--planning` was not provided and type is `spec`, look for a `planning.md` in `docs/planning/<project-slug>/` (derive the slug from the RFC's project name) and read it if found.
+If `--planning` was not provided and type is `spec`, look for a `planning.md` in `.claude/planning/<project-slug>/` (derive the slug from the RFC's project name) and read it if found.
 
 If `--task` was provided, restrict all content derived from the planning doc to the section headed `TASK-<n>`. Ignore all other task sections.
 
@@ -53,18 +53,18 @@ If `--task` was provided, restrict all content derived from the planning doc to 
 **If type = initiative:**
 
 - Derive `<project-slug>` from the RFC's project name (lowercase, spaces → hyphens)
-- Output: `docs/planning/<project-slug>/planning.md`
+- Output: `.claude/planning/<project-slug>/planning.md`
 - If `planning.md` already exists in that directory, update it rather than overwriting from scratch
 
 **If type = spec:**
 
-- Output: `docs/planning/<project-slug>/<issue-number>-<kebab-title>.md`
+- Output: `.claude/planning/<project-slug>/<issue-number>-<kebab-title>.md`
 - `<kebab-title>` comes from the TASK heading in the planning doc, or from the RFC section if no planning doc is available
 - Use `issue-000` as a placeholder if no issue number was provided
 
 ### Step 4 — Generate the document
 
-**If type = initiative**, produce a planning document following `templates/general_plan_template.md`:
+**If type = initiative**, produce a planning document following `~/.claude/templates/general_plan_template.md`:
 
 - Title: `# <Initiative Name> — High-Level Planning`
 - Header block: project, GitHub repo, Milestone, Notion page (all from RFC if present), total effort
@@ -74,7 +74,7 @@ If `--task` was provided, restrict all content derived from the planning doc to 
 
 Use only RFC information (and planning doc if provided). Do not invent scope, deliverables, or effort.
 
-**If type = spec**, populate `templates/tech_spec_template.md`:
+**If type = spec**, populate `~/.claude/templates/tech_spec_template.md`:
 
 - Title: `# #{issue-number}: <Title>` (use `#issue-000` placeholder if no issue number)
 - GitHub Issue link: `https://github.com/<owner>/<repo>/issues/<number>` (placeholder if not provided)

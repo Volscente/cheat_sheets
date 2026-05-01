@@ -5,9 +5,9 @@
 | Document | Reader | Purpose |
 | -------- | ------ | ------- |
 | **Notion initiative page** | You | What you're building and why — personal context, outcomes, status at a glance |
-| **RFC** (`docs/rfc/`) | Claude | How it will be built — technical design, scope, risks, milestones |
-| **Initiative plan** (`docs/planning/`) | Claude | Task breakdown, dependency order, deliverables — drives `plan-task` and `execute-plan` |
-| **Tech spec** (`docs/planning/`) | Claude | Per-issue implementation contract — functions, schemas, tests |
+| **RFC** (`.claude/rfc/`) | Claude | How it will be built — technical design, scope, risks, milestones |
+| **Initiative plan** (`.claude/planning/`) | Claude | Task breakdown, dependency order, deliverables — drives `plan-task` and `execute-plan` |
+| **Tech spec** (`.claude/planning/`) | Claude | Per-issue implementation contract — functions, schemas, tests |
 
 ## Notion structure
 
@@ -37,7 +37,7 @@ Specs are pure technical documents for Claude. No personal motivation — that l
 ### Folder Structure
 
 ```text
-docs/
+.claude/
 └── planning/
     └── <project-slug>/
         ├── planning.md                        ← initiative-level plan
@@ -48,7 +48,7 @@ docs/
 Example:
 
 ```text
-docs/
+.claude/
 └── planning/
     └── recipe-app/
         ├── planning.md
@@ -59,8 +59,8 @@ docs/
 
 ### File Naming Convention
 
-- **Initiative plan:** `docs/planning/<project-slug>/planning.md`
-- **Tech spec:** `docs/planning/<project-slug>/<issue-number>-<kebab-title>.md`
+- **Initiative plan:** `.claude/planning/<project-slug>/planning.md`
+- **Tech spec:** `.claude/planning/<project-slug>/<issue-number>-<kebab-title>.md`
 
 `<project-slug>` is the GitHub repo name or a short descriptive slug.
 

@@ -15,24 +15,24 @@ the command only needs to know where the proposal is and where to write the outp
 
 | Parameter | Required | Description | Example |
 | :--- | :--- | :--- | :--- |
-| `--file` | Yes | Path to the filled `proposal.md` | `docs/rfc/recipe-app_add-search-bar/proposal.md` |
-| `--out` | No | Override output path (default: `rfc_document.md` next to `--file`) | `docs/rfc/my-rfc/rfc_document.md` |
+| `--file` | Yes | Path to the filled `proposal.md` | `.claude/rfc/recipe-app_add-search-bar/proposal.md` |
+| `--out` | No | Override output path (default: `rfc_document.md` next to `--file`) | `.claude/rfc/my-rfc/rfc_document.md` |
 
 ---
 
 ## Workflow
 
-1. Copy `agents/claude/planning/personal/templates/rfc_proposal_template.md` to
-   `docs/rfc/<project>_<title>/proposal.md`.
+1. Copy `~/.claude/templates/rfc_proposal_template.md` to
+   `.claude/rfc/<project>_<title>/proposal.md`.
 2. Fill out the YAML frontmatter and `## Problem` section.
-3. Run `/create-rfc --file docs/rfc/<project>_<title>/proposal.md`.
+3. Run `/1-personal-create-rfc --file .claude/rfc/<project>_<title>/proposal.md`.
 
 ---
 
 ## Example
 
 ```text
-/create-rfc --file docs/rfc/recipe-app_add-search-bar/proposal.md
+/1-personal-create-rfc --file .claude/rfc/recipe-app_add-search-bar/proposal.md
 ```
 
 ---
@@ -61,7 +61,7 @@ Read the file at the path from `--file`. Extract:
 
 ### Step 3 — Read the RFC template
 
-Read `agents/claude/planning/personal/templates/rfc_template.md` — this is the canonical output structure.
+Read `~/.claude/templates/rfc_template.md` — this is the canonical output structure.
 
 ### Step 4 — Determine the output path
 

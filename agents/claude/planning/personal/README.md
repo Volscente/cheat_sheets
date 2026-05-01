@@ -50,16 +50,16 @@ No sprints. Issues are prioritized directly on the milestone and worked in any o
 Notion initiative page
   │
   ▼ Step 1 (for complex initiatives only)
-/create-rfc          →  RFC document            (templates/rfc_template.md)
+/1-personal-create-rfc   →  RFC document            (~/.claude/templates/rfc_template.md)
   │
   ▼ Step 2
-/general-plan        →  Initiative plan         (templates/general_plan_template.md)
+/2-personal-general-plan →  Initiative plan         (~/.claude/templates/general_plan_template.md)
   │
   ▼ Step 3  (once per GitHub Issue)
-/plan --type spec    →  Tech Spec               (templates/tech_spec_template.md)
+/3-personal-plan-task --type spec  →  Tech Spec  (~/.claude/templates/tech_spec_template.md)
   │
   ▼ Step 4
-/execute-plan        →  Implemented code
+/4-personal-execute-plan →  Implemented code
 ```
 
 > **When to skip the RFC:** If the design is obvious and there are no real architectural unknowns, go straight from the Notion page to `/general-plan`. The RFC earns its cost when you need to think through tradeoffs before writing a single line of code.
@@ -68,7 +68,7 @@ Notion initiative page
 
 ## Step 1 — Create RFC
 
-**Skill:** `commands/create-rfc.md` | **Templates:** `templates/rfc_proposal_template.md`, `templates/rfc_template.md`
+**Command:** `commands/1-personal-create-rfc.md` | **Templates:** `~/.claude/templates/rfc_proposal_template.md`, `~/.claude/templates/rfc_template.md`
 
 Generates a technical RFC from a filled proposal file. The Motivation section is a single paragraph — personal context stays in Notion.
 
@@ -78,43 +78,43 @@ Generates a technical RFC from a filled proposal file. The Motivation section is
 3. Run:
 
 ```text
-/create-rfc --file docs/rfc/recipe-app_add-search-bar/proposal.md
+/1-personal-create-rfc --file .claude/rfc/recipe-app_add-search-bar/proposal.md
 ```
 
-**Output:** `docs/rfc/recipe-app_add-search-bar/rfc_document.md`
+**Output:** `.claude/rfc/recipe-app_add-search-bar/rfc_document.md`
 
 ---
 
 ## Step 2 — Generate Initiative Plan
 
-**Skill:** `commands/general-plan.md` | **Reference:** `templates/general_plan_template.md`
+**Command:** `commands/2-personal-general-plan.md` | **Reference:** `~/.claude/templates/general_plan_template.md`
 
 Reads the RFC and produces a task breakdown with a dependency diagram and a GitHub Issues/Milestones grouping.
 
 ```text
-/general-plan docs/rfc/recipe-app_add-search-bar/rfc_document.md \
-              docs/planning/recipe-app/planning.md
+/2-personal-general-plan .claude/rfc/recipe-app_add-search-bar/rfc_document.md \
+                          .claude/planning/recipe-app/planning.md
 ```
 
-**Output:** `docs/planning/recipe-app/planning.md`
+**Output:** `.claude/planning/recipe-app/planning.md`
 
 ---
 
 ## Step 3 — Generate Tech Spec (once per GitHub Issue)
 
-**Skill:** `commands/plan-task.md` | **Templates:** `templates/tech_spec_template.md`, `templates/general_plan_template.md`
+**Command:** `commands/3-personal-plan-task.md` | **Templates:** `~/.claude/templates/tech_spec_template.md`, `~/.claude/templates/general_plan_template.md`
 
 Generates a detailed technical spec for one task, linked to its GitHub Issue.
 
 ```text
-/plan docs/rfc/recipe-app_add-search-bar/rfc_document.md \
-      --planning docs/planning/recipe-app/planning.md \
-      --task 1 \
-      --type spec \
-      --issue 12
+/3-personal-plan-task .claude/rfc/recipe-app_add-search-bar/rfc_document.md \
+                      --planning .claude/planning/recipe-app/planning.md \
+                      --task 1 \
+                      --type spec \
+                      --issue 12
 ```
 
-**Output:** `docs/planning/recipe-app/12-implement-search-index.md`
+**Output:** `.claude/planning/recipe-app/12-implement-search-index.md`
 
 Repeat for each task.
 
@@ -122,13 +122,13 @@ Repeat for each task.
 
 ## Step 4 — Implement
 
-**Skill:** `commands/execute-plan.md`
+**Command:** `commands/4-personal-execute-plan.md`
 
 Reads the RFC (context) and spec (source of truth), builds a task list, implements in dependency order, runs tests, and updates package READMEs.
 
 ```text
-/execute-plan docs/rfc/recipe-app_add-search-bar/rfc_document.md \
-              docs/planning/recipe-app/12-implement-search-index.md
+/4-personal-execute-plan .claude/rfc/recipe-app_add-search-bar/rfc_document.md \
+                         .claude/planning/recipe-app/12-implement-search-index.md
 ```
 
 ---
@@ -137,11 +137,11 @@ Reads the RFC (context) and spec (source of truth), builds a task list, implemen
 
 | File | Used by | Purpose |
 |---|---|---|
-| `templates/rfc_proposal_template.md` | `create-rfc` (input) | Proposal filled by hand: YAML frontmatter + `## Problem` prose — source of truth for RFC generation |
-| `templates/rfc_template.md` | `create-rfc` (output structure) | Technical RFC: 1-paragraph motivation + link to Notion, objectives, scope, approach, tech stack, milestones, risks |
-| `templates/general_plan_template.md` | `general-plan`, `plan-task` | Folder conventions, spec structure, field semantics |
-| `templates/tech_spec_template.md` | `plan-task --type spec` | Per-issue spec: scope, architecture, modules, functions, schemas, tests, open questions |
-| `templates/open_issues_template.md` | manual | Track open issues found during planning or implementation |
+| `~/.claude/templates/rfc_proposal_template.md` | `1-personal-create-rfc` (input) | Proposal filled by hand: YAML frontmatter + `## Problem` prose — source of truth for RFC generation |
+| `~/.claude/templates/rfc_template.md` | `1-personal-create-rfc` (output structure) | Technical RFC: 1-paragraph motivation + link to Notion, objectives, scope, approach, tech stack, milestones, risks |
+| `~/.claude/templates/general_plan_template.md` | `2-personal-general-plan`, `3-personal-plan-task` | Folder conventions, spec structure, field semantics |
+| `~/.claude/templates/tech_spec_template.md` | `3-personal-plan-task --type spec` | Per-issue spec: scope, architecture, modules, functions, schemas, tests, open questions |
+| `~/.claude/templates/open_issues_template.md` | manual | Track open issues found during planning or implementation |
 
 ---
 
@@ -193,9 +193,10 @@ collection. For full context, see the [Notion initiative page](https://notion.so
 ### What the resulting file tree looks like
 
 ```
-docs/
+.claude/
 ├── rfc/
 │   └── recipe-app_add-search-bar/
+│       ├── proposal.md              ← filled by hand
 │       └── rfc_document.md          ← Step 1 output
 └── planning/
     └── recipe-app/
@@ -210,23 +211,23 @@ docs/
 ```bash
 # Step 1 — RFC (skip if design is obvious)
 # 1a. Copy the proposal template and fill it in:
-#     cp agents/claude/planning/personal/templates/rfc_proposal_template.md \
-#        docs/rfc/recipe-app_add-search-bar/proposal.md
+#     cp ~/.claude/templates/rfc_proposal_template.md \
+#        .claude/rfc/recipe-app_add-search-bar/proposal.md
 # 1b. Generate the RFC:
-/create-rfc --file docs/rfc/recipe-app_add-search-bar/proposal.md
+/1-personal-create-rfc --file .claude/rfc/recipe-app_add-search-bar/proposal.md
 
 # Step 2 — Initiative plan
-/general-plan docs/rfc/recipe-app_add-search-bar/rfc_document.md \
-              docs/planning/recipe-app/planning.md
+/2-personal-general-plan .claude/rfc/recipe-app_add-search-bar/rfc_document.md \
+                          .claude/planning/recipe-app/planning.md
 
 # Step 3 — Tech spec per issue (repeat for #13, #14)
-/plan docs/rfc/recipe-app_add-search-bar/rfc_document.md \
-      --planning docs/planning/recipe-app/planning.md \
-      --task 1 --type spec --issue 12
+/3-personal-plan-task .claude/rfc/recipe-app_add-search-bar/rfc_document.md \
+                      --planning .claude/planning/recipe-app/planning.md \
+                      --task 1 --type spec --issue 12
 
 # Step 4 — Implement (repeat per spec)
-/execute-plan docs/rfc/recipe-app_add-search-bar/rfc_document.md \
-              docs/planning/recipe-app/12-implement-search-index.md
+/4-personal-execute-plan .claude/rfc/recipe-app_add-search-bar/rfc_document.md \
+                         .claude/planning/recipe-app/12-implement-search-index.md
 ```
 
 ---
@@ -242,4 +243,4 @@ docs/
 | RFC Motivation | Business-oriented, 2–3 paragraphs | Technical gap only, 1 paragraph + Notion link |
 | RFC required? | Usually yes | **Optional** — only for complex designs |
 | Build tooling | `justfile` recipes | No assumption — test/lint steps are best-effort |
-| Output paths | `docs/planning/<jira-epic>/<ticket>.md` | `docs/planning/<project-slug>/<issue>-<title>.md` |
+| Output paths | `docs/planning/<jira-epic>/<ticket>.md` | `.claude/planning/<project-slug>/<issue>-<title>.md` |
