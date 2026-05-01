@@ -2,12 +2,12 @@
 
 ## Two documents, two readers
 
-| Document | Reader | Purpose |
-| -------- | ------ | ------- |
-| **Notion initiative page** | You | What you're building and why — personal context, outcomes, status at a glance |
-| **RFC** (`.claude/rfc/`) | Claude | How it will be built — technical design, scope, risks, milestones |
+| Document                                  | Reader | Purpose                                                                                |
+| ----------------------------------------- | ------ | -------------------------------------------------------------------------------------- |
+| **Notion initiative page**                | You    | What you're building and why — personal context, outcomes, status at a glance          |
+| **RFC** (`.claude/rfc/`)                  | Claude | How it will be built — technical design, scope, risks, milestones                      |
 | **Initiative plan** (`.claude/planning/`) | Claude | Task breakdown, dependency order, deliverables — drives `plan-task` and `execute-plan` |
-| **Tech spec** (`.claude/planning/`) | Claude | Per-issue implementation contract — functions, schemas, tests |
+| **Tech spec** (`.claude/planning/`)       | Claude | Per-issue implementation contract — functions, schemas, tests                          |
 
 ## Notion structure
 
@@ -23,6 +23,7 @@ Goals table (one row per project)
 ```
 
 **Initiative page** (what to put in Notion):
+
 - **What**: 1–2 sentences describing the feature/system in plain terms
 - **Why**: Personal motivation — why this matters to you right now
 - **Success looks like**: Outcome-oriented bullets (what changes when this is done)
@@ -39,7 +40,7 @@ Specs are pure technical documents for Claude. No personal motivation — that l
 ```text
 .claude/
 └── planning/
-    └── <project-slug>/
+    └── <initiative-name>/
         ├── planning.md                        ← initiative-level plan
         ├── <issue-number>-<kebab-title>.md    ← spec per GitHub Issue
         └── ...
@@ -59,10 +60,10 @@ Example:
 
 ### File Naming Convention
 
-- **Initiative plan:** `.claude/planning/<project-slug>/planning.md`
-- **Tech spec:** `.claude/planning/<project-slug>/<issue-number>-<kebab-title>.md`
+- **Initiative plan:** `.claude/planning/<initiative-name>/planning.md`
+- **Tech spec:** `.claude/planning/<initiative-name>/<issue-number>-<kebab-title>.md`
 
-`<project-slug>` is the GitHub repo name or a short descriptive slug.
+`<initiative-name>` is the GitHub repo name or a short descriptive slug.
 
 ### Spec File Structure
 
@@ -87,8 +88,8 @@ ASCII diagram. Describe how the new code integrates with existing components.
 
 New packages or dependencies introduced:
 
-| Package        | Version | Justification |
-| -------------- | ------- | ------------- |
+| Package        | Version | Justification                |
+| -------------- | ------- | ---------------------------- |
 | `package-name` | `>=x.y` | Why this, not an alternative |
 
 ## Implementation Details

@@ -1,12 +1,12 @@
 # \[RFC\] {Short Title} — {Project Name}
 
-| Author          | {Full Name}                               |
-| :-------------- | :---------------------------------------- |
-| **Project**     | {Project name}                            |
-| **RFC status**  | Draft                                     |
-| **Notion page** | [{Initiative Name}]({NOTION_URL})         |
+| Author          | {Full Name}                                     |
+| :-------------- | :---------------------------------------------- |
+| **Project**     | {Project name}                                  |
+| **RFC status**  | Draft                                           |
+| **Notion page** | [{Initiative Name}]({NOTION_URL})               |
 | **GitHub repo** | [{owner/repo}](https://github.com/{owner/repo}) |
-| **Milestone**   | [Milestone: {Name}]({GITHUB_MILESTONE_URL}) |
+| **Milestone**   | [Milestone: {Name}]({GITHUB_MILESTONE_URL})     |
 
 ### Timeline
 
@@ -141,9 +141,9 @@ A: {Define any abbreviations or domain terms used in this RFC.}
 
 ## Risks & Open Questions {#risks--open-questions}
 
-| Risk / Question    | Likelihood          | Mitigation / Answer  |
-| :----------------- | :------------------ | :------------------- |
-| {Risk description} | Low / Medium / High | {Mitigation action}  |
+| Risk / Question    | Likelihood          | Mitigation / Answer |
+| :----------------- | :------------------ | :------------------ |
+| {Risk description} | Low / Medium / High | {Mitigation action} |
 
 ## References {#references}
 

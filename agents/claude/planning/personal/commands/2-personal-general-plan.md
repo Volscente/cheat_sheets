@@ -19,13 +19,13 @@ You are generating an initiative-level planning document from an RFC. Follow the
 Parse `$ARGUMENTS`:
 
 - First positional argument: path to the RFC Markdown file (required)
-- Second positional argument: path to the output planning file (required, e.g. `.claude/planning/recipe-app/planning.md`)
+- Second positional argument: path to the output planning file (required, e.g. `.claude/planning/recipe-app_add-search-bar/planning.md`)
 
 ### Step 2 — Read inputs
 
 Read the RFC file at the provided path.
 
-Also read `~/.claude/templates/general_plan_template.md` for the expected structure and field conventions.
+Also read `~/.claude/templates/personal_general_plan_template.md` for the expected structure and field conventions.
 
 **Skip the following RFC sections entirely — do not use their content:**
 
@@ -42,7 +42,7 @@ Produce a planning document with this exact structure:
 
 **Header block** (immediately after the title):
 
-```
+```md
 **Project:** <project name>
 **GitHub repo:** <URL> (if present in the RFC)
 **GitHub Milestone:** <URL> (if present in the RFC)
@@ -57,7 +57,7 @@ Produce a planning document with this exact structure:
 - 2–3 sentences describing what the initiative builds and what it changes technically (not personal motivation — that is in Notion)
 - A `### Dependency Order` sub-section with an ASCII diagram:
 
-```
+```txt
 TASK-1 ──► TASK-2 ──► TASK-4
                │
                └──► TASK-3 (parallel)
@@ -79,6 +79,7 @@ Each task maps to one GitHub Issue. Each section must contain, in order:
 8. `### Technical Overview` — data models, CLI parameters, architectural constraints, integration points
 
 Rules:
+
 - Use only information from the RFC. Do not invent scope, deliverables, or effort.
 - Keep descriptions concise and technical.
 
@@ -88,23 +89,27 @@ Rules:
 
 Group tasks into 2–4 milestones. One sub-section per milestone:
 
-```
+```md
 ### Milestone N — <Milestone Name>
 
 **Tasks:** TASK-X, TASK-Y, ...
 **Effort:** N sessions / hours / days
 
 #### Scope
+
 <one paragraph>
 
 #### Goal
+
 <one paragraph>
 
 #### Deliverables
+
 - <consolidated flat list of named outputs>
 ```
 
 Grouping rules:
+
 - Group tasks that share a natural phase or dependency cluster
 - Each milestone must be independently deliverable
 - Deliverables are a consolidated flat list — no nested bullets

@@ -22,7 +22,7 @@
 
 ## Architecture
 
-```
+```txt
 CLI: python -m {module.path}
           │  --{arg-1} <value>  --{arg-2} <value>  [--{flag}]
           │
@@ -54,9 +54,9 @@ CLI: python -m {module.path}
 
 {No new packages required. / New packages introduced:}
 
-| Package       | Version | Justification                           |
-| ------------- | ------- | --------------------------------------- |
-| `{package-1}` | `>=x.y` | {Why this package, not an alternative}  |
+| Package       | Version | Justification                          |
+| ------------- | ------- | -------------------------------------- |
+| `{package-1}` | `>=x.y` | {Why this package, not an alternative} |
 
 ---
 
@@ -64,11 +64,11 @@ CLI: python -m {module.path}
 
 ### Modules / Files
 
-| File                    | Action | Description                                |
-| ----------------------- | ------ | ------------------------------------------ |
-| `{path/to/runner.py}`   | Create | {CLI runner: what it orchestrates}         |
-| `{path/to/schemas.py}`  | Create | {Data models for structured output}        |
-| `{path/to/utils.py}`    | Reuse  | {Functions reused — do not re-implement}   |
+| File                   | Action | Description                              |
+| ---------------------- | ------ | ---------------------------------------- |
+| `{path/to/runner.py}`  | Create | {CLI runner: what it orchestrates}       |
+| `{path/to/schemas.py}` | Create | {Data models for structured output}      |
+| `{path/to/utils.py}`   | Reuse  | {Functions reused — do not re-implement} |
 
 ---
 
@@ -120,11 +120,11 @@ def {core_function}(
 
 ### CLI Parameters
 
-| Parameter     | Type   | Default           | Description                       |
-| ------------- | ------ | ----------------- | --------------------------------- |
-| `--{param-1}` | `str`  | required          | {What this parameter controls}    |
-| `--{param-2}` | `int`  | `{default_value}` | {What this parameter controls}    |
-| `--{flag-1}`  | `flag` | `False`           | {What enabling this flag does}    |
+| Parameter     | Type   | Default           | Description                    |
+| ------------- | ------ | ----------------- | ------------------------------ |
+| `--{param-1}` | `str`  | required          | {What this parameter controls} |
+| `--{param-2}` | `int`  | `{default_value}` | {What this parameter controls} |
+| `--{flag-1}`  | `flag` | `False`           | {What enabling this flag does} |
 
 ---
 
