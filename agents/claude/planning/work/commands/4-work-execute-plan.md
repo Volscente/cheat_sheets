@@ -5,7 +5,7 @@ Implement all scripts, functions, and code changes described in a spec file.
 ## Usage
 
 ```text
-/4-work-execute-plan <rfc-path> <spec-path>
+/4-work-execute-plan <rfc-path> <spec-path>  [--version <code-version>]
 ```
 
 **Arguments:** $ARGUMENTS
@@ -20,6 +20,7 @@ Parse `$ARGUMENTS`:
 
 - First positional argument: path to the RFC Markdown file (required) — provides initiative-level context
 - Second positional argument: path to the spec Markdown file (required) — defines exactly what to implement
+- `--version`: new version of the codebase to be reported in the `CHANGELOG.md` and `pyproject.toml`
 
 ### Step 2 — Read inputs
 
@@ -88,7 +89,35 @@ For each Python package directory created or modified during implementation:
 4. Do not create duplicate README files. One README per package directory is sufficient.
 5. Keep the content concise: a short description, a usage section, and a changelog block — not a full tutorial.
 
-### Step 7 — Report
+### Step 7 - Update Changelog
+
+Update the file `CHANGELOG.md` in the project root with change done.
+
+Use the `--version` provided for the codebase version in the `CHANGELOG.md` and the current date.
+
+Follow the style of the as below:
+
+```md
+## [0.2.6] - 2026-05-03
+
+### Added
+
+- **Backend**: New `POST /words/enrich` endpoint to enrich a German word with LLM-generated metadata (gender, translation, category, etc.).
+- **Backend**: New `enrichment.py` module with `WordEnrichment` model and PydanticAI agent using native Google Gemini provider.
+- **Backend**: `WordEnrichRequest` Pydantic schema for enrichment request validation.
+- **Frontend**: New `AddWordModal` React Component to create a UI for adding words into the table.
+- **Frontend**: New `wordSchema` Zod object to perform input validation on `AddWordModal` React Component.
+- **Infrastructure**: Dockerization of the backend using `Dockerfile` and `docker-compose` for local development.
+- **Tests**: Enrichment test suite covering success, missing field, empty string, and agent error scenarios.
+
+### Changed
+
+- **Frontend**: Enhanced `page.tsx` with the search bar
+- **Frontend**: Add clickable words for editing/deleting in `WordTable`.
+- **Frontend**: Add dark mode and green color palette.
+```
+
+### Step 8 — Report
 
 Output a concise summary:
 
