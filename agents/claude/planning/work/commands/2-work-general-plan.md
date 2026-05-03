@@ -32,6 +32,28 @@ Also read `docs/planning/vdata-8411_markup_accuracy/planning.md` as the canonica
 - Any section whose heading contains "Appendix", "Append", or "FAQ"
 - Any section explicitly marked as non-normative or informational-only
 
+### Effort Estimation
+
+Estimate effort for each task and for the initiative total. Do **not** leave placeholders — always produce a numeric estimate in **FTE-days** (1 FTE-day = 1 full working day).
+
+**How to estimate:**
+
+1. Assess each task's complexity based on its scope, deliverables, and technical requirements from the RFC.
+2. Assume the developer uses **agentic coding tools** (Claude Code, GitHub Copilot, or similar) for implementation, testing, and boilerplate — this typically reduces effort by 30–50 % compared to fully manual coding.
+3. Assign each task a numeric FTE-days estimate (decimals are fine, e.g. 0.5).
+4. Sum per-task estimates to compute the total initiative effort shown in the header block.
+
+**Rough sizing guide (with agentic coding assistance):**
+
+| Task type | Typical estimate |
+|---|---|
+| Config / setup / boilerplate | 0.5 FTE-days |
+| Single-module feature (CRUD, CLI flag, utility) | 0.5–1 FTE-days |
+| Multi-module feature with integration | 1–2 FTE-days |
+| Complex feature (new data model + pipeline + tests) | 2–3 FTE-days |
+
+Use the RFC's own estimates when provided; otherwise derive your own using the guide above.
+
 ### Step 3 — Generate the document
 
 Produce a planning document with this exact structure, using `docs/planning/vdata-8411_markup_accuracy/planning.md` as the style reference:
@@ -44,7 +66,7 @@ Produce a planning document with this exact structure, using `docs/planning/vdat
 
 ```md
 **Initiative:** <full initiative name>
-**Total estimated effort:** <N> FTE-days (1 FTE = 1 day)
+**Total estimated effort:** <computed total — see Effort Estimation below> FTE-days (1 FTE = 1 day)
 ```
 
 ---
@@ -60,7 +82,7 @@ Produce a planning document with this exact structure, using `docs/planning/vdat
 
 Each task section must contain these sub-sections, in order:
 
-1. `**Effort estimate:** N FTE-days` — on its own line immediately under the heading
+1. `**Effort estimate:** N FTE-days` — estimated per task (see Effort Estimation below)
 2. `### Scope` — one short paragraph describing what work is included
 3. `### Goal` — one short paragraph stating the concrete output and why it matters
 4. `### Existing Infrastructure (already done)` — **only if the RFC describes work that is already complete**; list what already exists and why it satisfies requirements
@@ -70,8 +92,8 @@ Each task section must contain these sub-sections, in order:
 
 Rules for task sections:
 
-- Use only information from the RFC. Do not invent scope, deliverables, or effort.
-- If the RFC does not give an effort estimate for a task, omit the estimate line.
+- Use only information from the RFC. Do not invent scope or deliverables.
+- Always include an effort estimate — use the RFC's estimate if provided, otherwise derive your own using the Effort Estimation guide.
 - Keep descriptions concise and technical. Avoid prose padding.
 
 ---
@@ -84,7 +106,7 @@ Group the tasks into 2–4 stories. Open with a one-sentence framing line, then 
 ### STORY-N — <Story Name>
 
 **Tasks:** TASK-X, TASK-Y, ...
-**Effort:** N FTE-days
+**Effort:** <sum of grouped task estimates> FTE-days
 
 #### Scope
 

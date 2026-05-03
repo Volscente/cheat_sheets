@@ -32,6 +32,28 @@ Also read `~/.claude/templates/personal_general_plan_template.md` for the expect
 - Any section whose heading contains "FAQ" or "References"
 - Any section explicitly marked as non-normative
 
+### Effort Estimation
+
+Estimate effort for each task and for the initiative total. Do **not** leave placeholders — always produce a numeric estimate in **FTE-days** (1 FTE-day = 1 full working day).
+
+**How to estimate:**
+
+1. Assess each task's complexity based on its scope, deliverables, and technical requirements from the RFC.
+2. Assume the developer uses **agentic coding tools** (Claude Code, GitHub Copilot, or similar) for implementation, testing, and boilerplate — this typically reduces effort by 30–50 % compared to fully manual coding.
+3. Assign each task a numeric FTE-days estimate (decimals are fine, e.g. 0.5).
+4. Sum per-task estimates to compute the total initiative effort shown in the header block.
+
+**Rough sizing guide (with agentic coding assistance):**
+
+| Task type | Typical estimate |
+|---|---|
+| Config / setup / boilerplate | 0.5 FTE-days |
+| Single-module feature (CRUD, CLI flag, utility) | 0.5–1 FTE-days |
+| Multi-module feature with integration | 1–2 FTE-days |
+| Complex feature (new data model + pipeline + tests) | 2–3 FTE-days |
+
+Use the RFC's own estimates when provided; otherwise derive your own using the guide above.
+
 ### Step 3 — Generate the document
 
 Produce a planning document with this exact structure:
@@ -44,10 +66,10 @@ Produce a planning document with this exact structure:
 
 ```md
 **Project:** <project name>
-**GitHub repo:** <URL> (if present in the RFC)
-**GitHub Milestone:** <URL> (if present in the RFC)
-**Notion page:** <URL> (if present in the RFC)
-**Total estimated effort:** <N> sessions / hours / days
+**GitHub repo:** [<project name>](<URL>) (if present in the RFC; otherwise omit line)
+**GitHub Milestone:** [<milestone name or "Milestone">](<URL>) (if present in the RFC; use the milestone name as link text if readable from the URL or RFC, otherwise use "Milestone"; omit line if not present)
+**Notion page:** [<initiative name>](<URL>) (if present in the RFC; use the initiative or page name as link text; omit line if not present)
+**Total estimated effort:** <computed total — see Effort Estimation below> FTE-days (1 FTE = 1 day)
 ```
 
 ---
@@ -70,7 +92,7 @@ TASK-1 ──► TASK-2 ──► TASK-4
 Each task maps to one GitHub Issue. Each section must contain, in order:
 
 1. `**GitHub Issue:** #{number}` — placeholder if no issue number is known yet
-2. `**Effort estimate:** N sessions / hours / days` — omit if RFC has no estimate
+2. `**Effort estimate:** N FTE-days` — estimated per task (see Effort Estimation below)
 3. `### Scope` — one short paragraph: what work is included
 4. `### Goal` — one short paragraph: concrete output and why it matters technically
 5. `### Existing Work (already done)` — only if the RFC describes work already complete
@@ -93,7 +115,7 @@ Group tasks into 2–4 milestones. One sub-section per milestone:
 ### Milestone N — <Milestone Name>
 
 **Tasks:** TASK-X, TASK-Y, ...
-**Effort:** N sessions / hours / days
+**Effort:** <sum of grouped task estimates> FTE-days
 
 #### Scope
 
