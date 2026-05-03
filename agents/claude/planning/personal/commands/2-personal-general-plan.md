@@ -45,12 +45,12 @@ Estimate effort for each task and for the initiative total. Do **not** leave pla
 
 **Rough sizing guide (with agentic coding assistance):**
 
-| Task type | Typical estimate |
-|---|---|
-| Config / setup / boilerplate | 0.5 FTE-days |
-| Single-module feature (CRUD, CLI flag, utility) | 0.5–1 FTE-days |
-| Multi-module feature with integration | 1–2 FTE-days |
-| Complex feature (new data model + pipeline + tests) | 2–3 FTE-days |
+| Task type                                           | Typical estimate |
+| --------------------------------------------------- | ---------------- |
+| Config / setup / boilerplate                        | 0.5 FTE-days     |
+| Single-module feature (CRUD, CLI flag, utility)     | 0.5–1 FTE-days   |
+| Multi-module feature with integration               | 1–2 FTE-days     |
+| Complex feature (new data model + pipeline + tests) | 2–3 FTE-days     |
 
 Use the RFC's own estimates when provided; otherwise derive your own using the guide above.
 
@@ -66,9 +66,9 @@ Produce a planning document with this exact structure:
 
 ```md
 **Project:** <project name>
-**GitHub repo:** [<project name>](<URL>) (if present in the RFC; otherwise omit line)
-**GitHub Milestone:** [<milestone name or "Milestone">](<URL>) (if present in the RFC; use the milestone name as link text if readable from the URL or RFC, otherwise use "Milestone"; omit line if not present)
-**Notion page:** [<initiative name>](<URL>) (if present in the RFC; use the initiative or page name as link text; omit line if not present)
+**GitHub repo:** [<project name>](URL) (if present in the RFC; otherwise omit line)
+**GitHub Milestone:** [<milestone name or "Milestone">](URL) (if present in the RFC; use the milestone name as link text if readable from the URL or RFC, otherwise use "Milestone"; omit line if not present)
+**Notion page:** [<initiative name>](URL) (if present in the RFC; use the initiative or page name as link text; omit line if not present)
 **Total estimated effort:** <computed total — see Effort Estimation below> FTE-days (1 FTE = 1 day)
 ```
 
