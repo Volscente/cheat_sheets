@@ -36,11 +36,10 @@ Always read:
 If type is `spec`, also read:
 
 1. `~/.claude/templates/personal_tech_spec_template.md` — the fillable template to populate
-2. `~/.claude/templates/personal_general_plan_template.md` — field semantics and formatting rules
 
 If type is `initiative`, also read:
 
-1. `~/.claude/templates/personal_general_plan_template.md` — structure and formatting rules
+1. `~/.claude/templates/personal_general_plan_template.md` — the fillable template to populate
 
 If `--planning` was provided, read that file too. It is the **primary source of truth** for scope, deliverables, effort, and task structure. The RFC provides background context only.
 

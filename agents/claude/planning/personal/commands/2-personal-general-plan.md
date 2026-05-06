@@ -56,85 +56,17 @@ Use the RFC's own estimates when provided; otherwise derive your own using the g
 
 ### Step 3 — Generate the document
 
-Produce a planning document with this exact structure:
-
----
-
-**Title:** `# <Initiative Name> — High-Level Planning`
-
-**Header block** (immediately after the title):
-
-```md
-**Project:** <project name>
-**GitHub repo:** [<project name>](URL) (if present in the RFC; otherwise omit line)
-**GitHub Milestone:** [<milestone name or "Milestone">](URL) (if present in the RFC; use the milestone name as link text if readable from the URL or RFC, otherwise use "Milestone"; omit line if not present)
-**Notion page:** [<initiative name>](URL) (if present in the RFC; use the initiative or page name as link text; omit line if not present)
-**Total estimated effort:** <computed total — see Effort Estimation below> FTE-days (1 FTE = 1 day)
-```
-
----
-
-**Overview section** (`## Overview`):
-
-- 2–3 sentences describing what the initiative builds and what it changes technically (not personal motivation — that is in Notion)
-- A `### Dependency Order` sub-section with an ASCII diagram:
-
-```txt
-TASK-1 ──► TASK-2 ──► TASK-4
-               │
-               └──► TASK-3 (parallel)
-```
-
----
-
-**One section per TASK** (`## TASK-N — <Task Name>`):
-
-Each task maps to one GitHub Issue. Each section must contain, in order:
-
-1. `**GitHub Issue:** #{number}` — placeholder if no issue number is known yet
-2. `**Effort estimate:** N FTE-days` — estimated per task (see Effort Estimation below)
-3. `### Scope` — one short paragraph: what work is included
-4. `### Goal` — one short paragraph: concrete output and why it matters technically
-5. `### Existing Work (already done)` — only if the RFC describes work already complete
-6. `### Gaps to Close` — only if "Existing Work" is present; numbered list of what still needs building
-7. `### Deliverables` — bullet list of named outputs (`src/search.py`, `--query` flag). Use code formatting.
-8. `### Technical Overview` — data models, CLI parameters, architectural constraints, integration points
+Populate `~/.claude/templates/personal_general_plan_template.md`. Replace every `{placeholder}` with content derived from the RFC.
 
 Rules:
 
+- Omit the **GitHub repo**, **GitHub Milestone**, and **Notion page** header lines if the RFC does not provide those URLs.
+- Add one `## TASK-N` section per task in the RFC — there may be anywhere from 1 to 10+. Replicate the TASK block structure from the template for each task.
+- Add one `### Milestone N` sub-section per milestone group in `## GitHub Issues` — there may be anywhere from 1 to 10+. Replicate the milestone block structure from the template for each group.
+- Include `### Existing Work (already done)` and `### Gaps to Close` sub-sections only when the RFC describes already-completed work.
 - Use only information from the RFC. Do not invent scope, deliverables, or effort.
 - Keep descriptions concise and technical.
-
----
-
-**GitHub Issues section** (`## GitHub Issues`):
-
-Group tasks into 2–4 milestones. One sub-section per milestone:
-
-```md
-### Milestone N — <Milestone Name>
-
-**Tasks:** TASK-X, TASK-Y, ...
-**Effort:** <sum of grouped task estimates> FTE-days
-
-#### Scope
-
-<one paragraph>
-
-#### Goal
-
-<one paragraph>
-
-#### Deliverables
-
-- <consolidated flat list of named outputs>
-```
-
-Grouping rules:
-
-- Group tasks that share a natural phase or dependency cluster
-- Each milestone must be independently deliverable
-- Deliverables are a consolidated flat list — no nested bullets
+- Deliverables use code formatting for file paths and CLI flags. The GitHub Issues milestone deliverables are a consolidated flat list — no nested bullets.
 
 ---
 
