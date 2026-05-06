@@ -54,76 +54,17 @@ Use the RFC's own estimates when provided; otherwise derive your own using the g
 
 ### Step 3 — Generate the document
 
-Produce a planning document with this exact structure, using `docs/planning/vdata-8411_markup_accuracy/planning.md` as the style reference:
+Read the template file at `~/.claude/templates/work_general_plan_template.md`. Use it as the exact structure for the output document, filling in each placeholder with content derived from the RFC.
 
----
+Rules:
 
-**Title:** `# <Initiative Name> — High-Level Planning`
-
-**Header block** (immediately after the title):
-
-```md
-**Initiative:** <full initiative name>
-**Total estimated effort:** <computed total — see Effort Estimation below> FTE-days (1 FTE = 1 day)
-```
-
----
-
-**Overview section** (`## Overview`):
-
-- 2–3 sentences describing what the initiative builds and why
-- A `### Dependency Order` sub-section with an ASCII diagram showing task dependencies and parallel execution tracks. Use the same arrow/box style as the reference document.
-
----
-
-**One section per TASK** (`## TASK-N — <Task Name>`):
-
-Each task section must contain these sub-sections, in order:
-
-1. `**Effort estimate:** N FTE-days` — estimated per task (see Effort Estimation below)
-2. `### Scope` — one short paragraph describing what work is included
-3. `### Goal` — one short paragraph stating the concrete output and why it matters
-4. `### Existing Infrastructure (already done)` — **only if the RFC describes work that is already complete**; list what already exists and why it satisfies requirements
-5. `### Gaps to Close` — **only if existing infrastructure is called out above**; a numbered list of what still needs to be built to close the gap between existing work and RFC requirements
-6. `### Deliverables` — bullet list of concrete, named outputs (files, scripts, BigQuery tables, CLI flags). Use code-formatted names (`scripts/foo.py`, `--batch-id`).
-7. `### Technical Overview` — technical details: schema definitions (inline JSON blocks), CLI flag descriptions, architectural constraints, integration points, parallelism. Include a BigQuery schema block if any table is created.
-
-Rules for task sections:
-
+- Repeat the TASK section for each task; repeat the STORY section for each story.
 - Use only information from the RFC. Do not invent scope or deliverables.
 - Always include an effort estimate — use the RFC's estimate if provided, otherwise derive your own using the Effort Estimation guide.
 - Keep descriptions concise and technical. Avoid prose padding.
-
----
-
-**JIRA Stories section** (`## JIRA Stories`):
-
-Group the tasks into 2–4 stories. Open with a one-sentence framing line, then a horizontal rule, followed by one sub-section per story:
-
-```md
-### STORY-N — <Story Name>
-
-**Tasks:** TASK-X, TASK-Y, ...
-**Effort:** <sum of grouped task estimates> FTE-days
-
-#### Scope
-
-<one paragraph>
-
-#### Goal
-
-<one paragraph>
-
-#### Deliverables
-
-- <bullet list of all deliverables across the grouped tasks, consolidated>
-```
-
-Story grouping rules:
-
-- Group tasks that share a natural phase or dependency cluster (e.g. ground truth construction, evaluation pipeline, automation/sustainability).
-- Each story must be independently deliverable.
-- Deliverables in the story section are a consolidated flat list across all its tasks — do not repeat sub-bullets, just list the named outputs.
+- Omit `### Existing Infrastructure (already done)` and `### Gaps to Close` from a task section unless the RFC explicitly describes work that is already complete.
+- Group tasks into 2–4 stories by natural phase or dependency cluster. Each story must be independently deliverable. The deliverables list in each story is a consolidated flat list across all its tasks.
+- Dependency Order: use an ASCII arrow/box diagram showing task dependencies and parallel execution tracks.
 
 ---
 
