@@ -24,7 +24,9 @@ the command only needs to know where the proposal is and where to write the outp
 
 1. Copy `~/.claude/templates/work_rfc_proposal_template.md` to
    `docs/rfc/<jira-epic-lowercase>_<title-slug>/proposal.md`.
-2. Fill out the YAML frontmatter and `## Problem` section.
+2. Fill out the YAML frontmatter and `## Problem` section (required).
+   Optionally fill any of: `## Approach direction`, `## Success criteria`, `## Constraints`,
+   `## Desired tech`, `## Integration context`, `## Known risks / concerns`.
 3. Run `/1-work-create-rfc --file docs/rfc/<jira-epic-lowercase>_<title-slug>/proposal.md`.
 
 ---
@@ -59,7 +61,14 @@ Read the file at the path from `--file`. Extract:
   - `reviewers` (list, format `"Name <email> required|optional"` — parse each into name, email, and status)
   - `tech-stack` (list), `scope-in` (list), `scope-out` (list, format `"Item: reason"`)
   - `milestones` (ordered list)
-- **`## Problem` section body**: extract the prose paragraph(s) below the heading — this is the problem statement
+- **Markdown sections** (each is optional — treat as absent if blank or missing):
+  - `## Problem`: the problem statement (required)
+  - `## Approach direction`: author's preferred high-level technical approach
+  - `## Success criteria`: measurable outcomes the author has in mind
+  - `## Constraints`: hard non-negotiable requirements
+  - `## Desired tech`: new technologies the author wants to introduce, with reasoning
+  - `## Integration context`: how the solution should integrate with the existing system
+  - `## Known risks / concerns`: doubts, technical unknowns, or stakeholder concerns already identified
 
 ### Step 3 — Read the template and style reference
 
@@ -102,25 +111,31 @@ Otherwise: same directory as `--file`, filename `rfc_document.md`.
 
 **Objectives:**
 
-- Derive 3–5 concrete objectives from the problem and scope
-- Each starts with a bold action label and is outcome-oriented, not task-oriented
+- If `## Success criteria` is non-blank: derive objectives directly from those criteria; each starts with a bold action label and is outcome-oriented, not task-oriented
+- If blank: derive 3–5 concrete objectives from the problem and scope
 
 **Scope:**
 
 - In-Scope: from `scope-in` if non-empty
 - Out-of-Scope: from `scope-out` if non-empty; each item uses the `"Item: reason"` split on the first colon
+- If `## Constraints` is non-blank: add a **Constraints** paragraph after Out-of-Scope listing all non-negotiable requirements
 
 **Main technical section:**
 
 - Named after `title` (e.g. `# Online Catalog Dataset Pipeline`)
-- Write a Methodology Overview paragraph describing the high-level approach derived from problem and scope
+- Methodology Overview:
+  - If `## Approach direction` is non-blank: open with the author's stated approach, then expand into the standard 2–3 paragraph methodology description
+  - If blank: derive the methodology description from problem and scope as before
+  - If `## Integration context` is non-blank: add an **Integration** subsection describing how the solution connects to the existing system, using the author's notes
+  - If blank: omit the Integration subsection
 - If `milestones` is non-empty: one subsection per milestone with a placeholder description
 - If empty: two generic placeholder subsections
 
 **Tech Stack:**
 
-- If `tech-stack` is non-empty: one bullet per item with a placeholder justification derived from its name
-- If empty: placeholder rows
+- If `tech-stack` (YAML) is non-empty: one bullet per item with a placeholder justification derived from its name (existing/required stack)
+- If `## Desired tech` is non-blank: add a **Desired / experimental** subsection listing those technologies with the author's reasoning
+- If both are empty: placeholder rows
 
 **Effort Estimations:**
 
@@ -135,7 +150,8 @@ Otherwise: same directory as `--file`, filename `rfc_document.md`.
 
 **Risks & Mitigations:**
 
-- Generate 3–4 risks inferred from the problem and scope, with likelihood and mitigation
+- If `## Known risks / concerns` is non-blank: use those as the first rows of the table; add likelihood and mitigation for each
+- Supplement with additional risks inferred from the problem and scope (omit if the author's list is already comprehensive)
 - Include the "Recommended First Step" callout identifying the highest-risk unknown
 
 **Remove all template comment blocks** (`<!-- ... -->`).

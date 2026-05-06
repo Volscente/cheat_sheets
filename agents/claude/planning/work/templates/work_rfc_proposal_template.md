@@ -20,6 +20,41 @@ milestones:
 
 ## Problem
 
-<!-- 1–3 sentences describing the problem being solved.
+<!-- Required. Describe the problem being solved.
      Cover: what system/process is affected, the specific gap or pain point, and what happens without this RFC.
-     No solutions here — just the problem. -->
+     Write as much as needed — no solutions here, just the problem. -->
+
+## Approach direction
+
+<!-- Optional. Your initial idea or preferred high-level technical approach.
+     Leave blank if you want Claude to propose the methodology freely. -->
+
+## Success criteria
+
+<!-- Optional. How will you know this initiative is done?
+     List measurable outcomes (e.g. "pipeline runs in < 10 min at p99").
+     Used to generate the Objectives section in the RFC. -->
+
+## Constraints
+
+<!-- Optional. Hard requirements the solution must satisfy.
+     Examples: SLA targets, banned technologies, compliance rules, budget caps, infra limitations.
+     Claude will not relax these when designing the approach. -->
+
+## Desired tech
+
+<!-- Optional. Technologies you want to use or experiment with.
+     Separate from the tech-stack YAML field (which lists the existing/required stack);
+     this is for new tools you want to introduce — include your reasoning if useful. -->
+
+## Integration context
+
+<!-- Optional. How should the solution integrate with the current system?
+     E.g. "must expose a BigQuery view consumed by the downstream ML pipeline",
+     "must reuse the existing Dataflow template infrastructure".
+     Used to shape integration subsections in the RFC. -->
+
+## Known risks / concerns
+
+<!-- Optional. Doubts about your approach, technical unknowns, or stakeholder concerns.
+     Used to seed the Risks & Mitigations table in the RFC. -->
