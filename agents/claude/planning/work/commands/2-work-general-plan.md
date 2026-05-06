@@ -25,8 +25,6 @@ Parse `$ARGUMENTS`:
 
 Read the RFC file at the provided path.
 
-Also read `docs/planning/vdata-8411_markup_accuracy/planning.md` as the canonical reference for structure and style.
-
 **Skip the following RFC sections entirely — do not use their content:**
 
 - Any section whose heading contains "Appendix", "Append", or "FAQ"
