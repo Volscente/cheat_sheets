@@ -54,17 +54,17 @@ Use the RFC's own estimates when provided; otherwise derive your own using the g
 
 ### Step 3 — Generate the document
 
-Read the template file at `~/.claude/templates/work_general_plan_template.md`. Use it as the exact structure for the output document, filling in each placeholder with content derived from the RFC.
+Populate `~/.claude/templates/work_general_plan_template.md`. Replace every `{placeholder}` with content derived from the RFC.
 
 Rules:
 
-- Repeat the TASK section for each task; repeat the STORY section for each story.
+- Add one `## TASK-N` section per task in the RFC — there may be anywhere from 1 to 10+. Replicate the TASK block structure from the template for each task.
+- Add one `### Story N` sub-section per story group in `## JIRA Stories` — there may be anywhere from 1 to 10+. Replicate the story block structure from the template for each group.
+- Omit `### Existing Infrastructure (already done)` and `### Gaps to Close` from a task section unless the RFC explicitly describes work that is already complete.
+- Group tasks into stories by natural phase or dependency cluster. Each story must be independently deliverable. The deliverables list in each story is a consolidated flat list — no nested bullets.
 - Use only information from the RFC. Do not invent scope or deliverables.
 - Always include an effort estimate — use the RFC's estimate if provided, otherwise derive your own using the Effort Estimation guide.
 - Keep descriptions concise and technical. Avoid prose padding.
-- Omit `### Existing Infrastructure (already done)` and `### Gaps to Close` from a task section unless the RFC explicitly describes work that is already complete.
-- Group tasks into 2–4 stories by natural phase or dependency cluster. Each story must be independently deliverable. The deliverables list in each story is a consolidated flat list across all its tasks.
-- Dependency Order: use an ASCII arrow/box diagram showing task dependencies and parallel execution tracks.
 
 ---
 

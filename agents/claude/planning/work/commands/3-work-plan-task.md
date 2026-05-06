@@ -37,11 +37,10 @@ Always read:
 If type is `spec`, also read:
 
 1. `~/.claude/templates/work_tech_spec_template.md` — the fillable template to populate
-2. `~/.claude/templates/work_general_plan_template.md` — defines field semantics and formatting rules
 
 If type is `initiative`, also read:
 
-1. `~/.claude/templates/work_general_plan_template.md` — defines the structure and formatting rules
+1. `~/.claude/templates/work_general_plan_template.md` — the fillable template to populate
 
 If `--planning` was provided, read that file too. When present, it is the **primary source of truth** for scope, deliverables, effort, and task structure. The RFC provides background context only.
 
@@ -63,16 +62,14 @@ If `--task` was provided, restrict all content derived from the planning doc to 
 
 ### Step 4 — Generate the document
 
-**If type = initiative**, produce a planning document that follows the structure of `docs/planning/vdata-8411_markup_accuracy/planning.md` (read it as a reference):
+**If type = initiative**, populate `~/.claude/templates/work_general_plan_template.md`. Replace every `{placeholder}` with content derived from the RFC (and planning doc if provided).
 
-- Title: `# <Initiative Name> — High-Level Planning`
-- Header block: initiative name, RFC reference, total estimated effort
-- **Overview** section: 2–3 sentence summary of what the initiative builds and why
-- **Dependency Order** section: ASCII diagram showing task dependencies and parallel tracks
-- One section per **TASK**: numbered, with Effort estimate, Scope, Goal, Deliverables, and Technical Overview sub-sections. Where the RFC describes existing infrastructure that is already done, call it out explicitly in an "Existing Infrastructure" sub-section. Where gaps remain, list them in a "Gaps to Close" sub-section.
-- **JIRA Stories** section at the end: group tasks into 2–4 stories. Each story has Scope, Goal, and Deliverables.
+Rules:
 
-Use only information from the RFC (and the planning doc if provided). Do not invent scope, deliverables, or effort estimates. Keep descriptions technical and concise.
+- Add one `## TASK-N` section per task — there may be anywhere from 1 to 10+. Replicate the TASK block structure from the template for each task.
+- Add one `### Story N` sub-section per story group in `## JIRA Stories` — there may be anywhere from 1 to 10+. Replicate the story block structure from the template for each group.
+- Include `### Existing Infrastructure (already done)` and `### Gaps to Close` only when the RFC describes already-completed work.
+- Use only information from the RFC and planning doc. Do not invent scope, deliverables, or effort estimates. Keep descriptions technical and concise.
 
 **If type = spec**, populate `~/.claude/templates/work_tech_spec_template.md` section by section. Use `~/.claude/templates/work_general_plan_template.md` for field semantics and formatting rules:
 

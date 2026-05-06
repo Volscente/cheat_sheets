@@ -1,103 +1,121 @@
-# Planning Guidelines
+# {Initiative Name} — High-Level Planning
 
-## Technical Specs
-
-Specs are pure technical documents for engineers. No business rationale. The spec answers
-_how_ something gets built; JIRA answers _why_.
-
-### Folder Structure
-
-Below an example of the folder structure where:
-
-- `vdata-8417_mds_translation_evaluation`: the JIRA Epic
-- `vdata-8860_implement-comet-da`: the JIRA task
-
-```text
-docs/
-└── planning/
-    ├── vdata-8417_mds_translation_evaluation/
-    │   ├── vdata-8860_implement-comet-da.md
-    │   └── ...
-    └── ...
-```
-
-### File Naming Convention
-
-```text
-docs/planning/{JIRA_epic}/{jira_ticket}/{kebab-case-title}.md
-```
-
-The JIRA ticket folder makes the link to the ticket explicit and searchable.
-
-### Spec File Structure
-
-````markdown
-# {JIRA-ticket}: {Title}
-
-**JIRA Ticket:** <URL>
-**JIRA Epic:** <URL>
+**RFC:** [{RFC Title}]({RFC_PATH})
+**JIRA Epic:** [{JIRA-EPIC} — {Epic Name}]({JIRA_EPIC_URL})
+**Total estimated effort:** {N} FTE-days (1 FTE = 1 day)
 
 ---
 
-## Technical Scope
+## Overview
 
-Which files, modules, and interfaces change. What is explicitly out of scope.
+{2–3 sentences describing what the initiative builds and what it changes technically. No business rationale — that lives in JIRA.}
 
-## Architecture
+### Dependency Order
 
-Component diagram, data flow, or sequence diagram (ASCII or linked image).
-Describe how the new code integrates with existing components.
-
-## Tech Stack
-
-New packages or dependencies introduced:
-
-| Package        | Version | Justification                        |
-| -------------- | ------- | ------------------------------------ |
-| `package-name` | `>=x.y` | Why this package, not an alternative |
-
-## Implementation Details
-
-### Modules / Files
-
-| File                   | Action | Description         |
-| ---------------------- | ------ | ------------------- |
-| `src/module/file.py`   | Create | What this file does |
-| `src/existing/file.py` | Modify | What changes        |
-
-### Key Functions
-
-```python
-def function_name(param: Type, param2: Type) -> ReturnType:
-    """
-    Brief description.
-
-    Args:
-        param: Description.
-        param2: Description.
-
-    Returns:
-        Description.
-
-    Raises:
-        ErrorType: When.
-    """
-    ...
+```txt
+TASK-1 ──► TASK-2 ──► TASK-4
+               │
+               └──► TASK-3 (parallel)
 ```
-````
-
-### Data Models / Schemas
-
-Pydantic models, dataclasses, or DB schema changes with field descriptions.
-
-### Testing Strategy
-
-- Unit tests: what to mock, what to test directly
-- Integration tests: which boundaries to test end-to-end
-- Edge cases: explicit list of non-obvious scenarios to cover
-
-### Open Questions / Risks
-
-- [ ] Question or risk description — owner, target resolution date
 
 ---
+
+<!-- Repeat this block for every task (TASK-1, TASK-2, … TASK-N). -->
+
+## TASK-1 — {Task Name}
+
+**Effort estimate:** {N} FTE-days
+
+### Scope
+
+{One short paragraph: what work is included in this task.}
+
+### Goal
+
+{One short paragraph: concrete output and why it matters technically.}
+
+### Deliverables
+
+- `{src/module/file.py}` — {description}
+- `{--cli-flag}` — {description}
+
+### Technical Overview
+
+{Data models, CLI parameters, architectural constraints, integration points.}
+
+---
+
+## TASK-2 — {Task Name}
+
+**Effort estimate:** {N} FTE-days
+
+### Scope
+
+{One short paragraph.}
+
+### Goal
+
+{One short paragraph.}
+
+### Existing Infrastructure (already done)
+
+{Only include this section if the RFC describes infrastructure already in place.}
+
+### Gaps to Close
+
+{Only include when "Existing Infrastructure" is present. Numbered list of what still needs building.}
+
+1. {Gap 1}
+2. {Gap 2}
+
+### Deliverables
+
+- `{src/module/file.py}` — {description}
+
+### Technical Overview
+
+{Data models, CLI parameters, architectural constraints, integration points.}
+
+---
+
+## JIRA Stories
+
+<!-- Repeat the Story block for every story group (Story 1, 2, … N). -->
+
+### Story 1 — {Story Name}
+
+**Tasks:** TASK-1, TASK-2
+**Effort:** {N} FTE-days
+
+#### Scope
+
+{One paragraph covering what this story delivers end-to-end.}
+
+#### Goal
+
+{One paragraph: concrete outcome when this story is complete.}
+
+#### Deliverables
+
+- {Named output 1}
+- {Named output 2}
+
+---
+
+### Story 2 — {Story Name}
+
+**Tasks:** TASK-3, TASK-4
+**Effort:** {N} FTE-days
+
+#### Scope
+
+{One paragraph.}
+
+#### Goal
+
+{One paragraph.}
+
+#### Deliverables
+
+- {Named output 1}
+- {Named output 2}
