@@ -5,7 +5,7 @@ set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-for context in personal work; do
+for context in personal work general; do
   for f in "$REPO_DIR/$context/commands/"*.md; do
     ln -sfv "$f" "$HOME/.claude/commands/$(basename "$f")"
   done
