@@ -14,6 +14,10 @@ scope-out:
   - ""                  # Format: "Item: reason" (e.g. "Fuzzy matching: future phase")
 milestones:
   - ""                  # Ordered milestone names; each maps to a GitHub Issue
+context-paths:
+  - ""                  # Optional: paths to module README.md files Claude should read for design context.
+                        # Paths are relative to the root of the target project repo.
+                        # E.g. "src/auth/README.md", "src/api/README.md"
 ---
 
 ## Problem
