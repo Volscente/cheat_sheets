@@ -83,11 +83,22 @@ For each Python package directory created or modified during implementation:
 
 1. Locate the package root (the directory containing `__init__.py` or, if no package was created, the top-level project root).
 2. Check whether a `README.md` exists in that directory.
-   - **If it exists:** append a changelog entry at the bottom of the file using today's date (from `currentDate`) and a brief bullet-point list of what was added or changed.
-   - **If it does not exist:** create a `README.md` that describes the package — its purpose, the modules it contains, key functions, and a changelog entry for today.
-3. The README must include a **Usage** section showing how to run the feature — both the raw `uv run python -m ...` invocation and the `just` command added in Step 4. Include the key parameters with example values.
-4. Do not create duplicate README files. One README per package directory is sufficient.
-5. Keep the content concise: a short description, a usage section, and a changelog block — not a full tutorial.
+   - **If it exists:** read `~/.claude/templates/readme-template.md` for the canonical section
+     structure, then refresh any stale sections (files that no longer exist, new public
+     interfaces not yet listed). Preserve accurate content and any manually-authored entries
+     in **Constraints / invariants** and **Out of scope**. Append a changelog entry at the
+     bottom using today's date (from `currentDate`) and a brief bullet-point list of what
+     was added or changed.
+   - **If it does not exist:** create a `README.md` following the structure in
+     `~/.claude/templates/readme-template.md` — sections: **Purpose**, **Key components**,
+     **Public interfaces**, **External dependencies**, **Constraints / invariants**,
+     **Out of scope**. Derive each section from the code you just wrote and the existing
+     files you read in Step 2. Add a **Usage** section after Out of scope showing how to
+     run the feature — both the raw `uv run python -m ...` invocation and the `just` command
+     added in Step 4 — with the key parameters and example values. Then add a changelog
+     entry for today.
+3. Do not create duplicate README files. One README per package directory is sufficient.
+4. Keep the content concise — not a full tutorial.
 
 ### Step 7 - Update Changelog
 

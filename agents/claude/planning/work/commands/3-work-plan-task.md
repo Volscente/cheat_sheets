@@ -48,6 +48,14 @@ If `--planning` was not provided and type is `spec`, check whether a `planning.m
 
 If `--task` was provided, restrict all content derived from the planning doc to the section headed `TASK-<n>` (e.g. `## TASK-2 — ...`). Ignore all other task sections.
 
+**Repository context (spec mode only):** If type is `spec`, check whether a `proposal.md`
+exists in the same directory as the RFC file. If it does, read it and extract `context-paths`
+from the YAML frontmatter. Read each listed file (paths relative to the project root).
+Build an internal context summary covering: existing module boundaries, public interfaces,
+key file paths, and constraints. Use this context in Step 4 to write accurate file names,
+function signatures, and import paths — grounding the spec in the actual codebase rather
+than inferred names. Skip silently if no `proposal.md` exists or `context-paths` is empty.
+
 ### Step 3 — Determine output path
 
 **If type = initiative:**
@@ -86,7 +94,7 @@ Rules:
   - Testing Strategy (unit, integration, edge cases)
   - Open Questions / Risks (checkbox list with owner placeholders)
 
-When `--planning` is provided, the task description in that file defines the deliverables and scope for this spec — use it as the authoritative source, not the RFC. Infer implementation details from the existing codebase patterns (e.g. the `pipelines/mds/llm_judge/` pattern for new pipelines). Do not hallucinate file names — only name files that follow logically from the scope and the project structure in CLAUDE.md.
+When `--planning` is provided, the task description in that file defines the deliverables and scope for this spec — use it as the authoritative source, not the RFC. Use the repository context loaded in Step 2 to name real files and interfaces; fall back to names that follow logically from the scope, existing codebase patterns (e.g. the `pipelines/mds/llm_judge/` pattern for new pipelines), and the project structure in CLAUDE.md only when context is unavailable. Do not hallucinate file names.
 
 ### Step 5 — Write the file
 
