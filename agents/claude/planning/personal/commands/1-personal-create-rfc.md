@@ -156,7 +156,8 @@ This designed solution — not the proposal — drives the RFC content in Step 7
 - Approach Overview:
   - Present the approach designed in Step 6 (1–2 paragraphs of concrete high-level design)
   - If `## Approach direction` was non-blank: briefly note the author's stated direction and
-    explain how the designed approach relates to it (adopted, challenged, rejected, extended, or refined). It is important that, if the approach direction does not makes sense, propose an alternative.
+    explain how the designed approach relates to it (adopted, challenged, rejected, extended,
+    or refined). If the stated direction does not make sense, propose an alternative.
   - If blank: present the approach without reference to a stated preference
   - Integration subsection: describe how the solution connects to existing modules using the
     Step 6 integration analysis and any `## Integration context` notes from the proposal;
