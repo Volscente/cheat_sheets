@@ -80,11 +80,19 @@ If no test suite is configured, note this in the final report.
 For each package directory created or modified:
 
 1. Locate the package root (directory containing `__init__.py`, or the project root if no package was created).
-2. Check whether a `README.md` exists.
-   - **If it exists:** append a changelog entry at the bottom with today's date and a brief bullet list of what was added or changed.
-   - **If it does not exist:** create a `README.md` with: purpose, modules, key functions, and a changelog entry for today.
-3. Include a **Usage** section showing how to run the feature with example parameter values.
-4. One README per package directory. Do not create duplicates.
+2. Check whether a `README.md` exists at that location.
+   - **If it exists:** read `~/.claude/templates/readme-template.md` for the canonical section
+     structure, then refresh any stale sections (files that no longer exist, new public
+     interfaces not yet listed). Preserve accurate content and any manually-authored entries
+     in **Constraints / invariants** and **Out of scope**. Append a changelog entry at the
+     bottom with today's date and a brief bullet list of what was added or changed.
+   - **If it does not exist:** create a `README.md` following the structure in
+     `~/.claude/templates/readme-template.md` — sections: **Purpose**, **Key components**,
+     **Public interfaces**, **External dependencies**, **Constraints / invariants**,
+     **Out of scope**. Derive each section from the code you just wrote and the existing
+     files you read in Step 2. Add a **Usage** section after Out of scope showing how to
+     run the feature with example parameter values. Then add a changelog entry for today.
+3. One README per package directory. Do not create duplicates.
 
 ### Step 7 - Update Changelog
 

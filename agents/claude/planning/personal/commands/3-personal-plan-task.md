@@ -47,6 +47,14 @@ If `--planning` was not provided and type is `spec`, look for a `planning.md` in
 
 If `--task` was provided, restrict all content derived from the planning doc to the section headed `TASK-<n>`. Ignore all other task sections.
 
+**Repository context (spec mode only):** If type is `spec`, check whether a `proposal.md`
+exists in the same directory as the RFC file. If it does, read it and extract `context-paths`
+from the YAML frontmatter. Read each listed file (paths relative to the project root).
+Build an internal context summary covering: existing module boundaries, public interfaces,
+key file paths, and constraints. Use this context in Step 4 to write accurate file names,
+function signatures, and import paths — grounding the spec in the actual codebase rather
+than inferred names. Skip silently if no `proposal.md` exists or `context-paths` is empty.
+
 ### Step 3 — Determine output path
 
 **If type = initiative:**
@@ -89,7 +97,7 @@ Use only RFC information (and planning doc if provided). Do not invent scope, de
   - Testing Strategy (unit, integration, edge cases)
   - Open Questions / Risks (checkbox list with target dates)
 
-When `--planning` is provided, the task section in that file defines deliverables and scope — use it as authoritative, not the RFC. Infer implementation details from existing codebase patterns. Do not hallucinate file names — only name files that follow logically from the scope.
+When `--planning` is provided, the task section in that file defines deliverables and scope — use it as authoritative, not the RFC. Use the repository context loaded in Step 2 to name real files and interfaces; fall back to names that follow logically from the scope only when context is unavailable. Do not hallucinate file names.
 
 ### Step 5 — Write the file
 
