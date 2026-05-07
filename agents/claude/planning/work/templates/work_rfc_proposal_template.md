@@ -16,6 +16,10 @@ scope-out:
   - ""                  # Format: "Item: reason" (e.g. "Online monitoring: deferred to future phase")
 milestones:
   - ""                  # Ordered milestone names; each maps to an Effort Estimation row
+context-paths:
+  - ""                  # Optional: paths to module README.md files Claude should read for design context.
+                        # Paths are relative to the root of the target project repo.
+                        # E.g. "src/pipeline/README.md", "src/ingestion/README.md"
 ---
 
 ## Problem
