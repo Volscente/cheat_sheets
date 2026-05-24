@@ -5,7 +5,7 @@ Generate a tech spec for a hotfix from a hotfix description file.
 ## Usage
 
 ```text
-/1-hotfix-plan-task <hotfix-path>
+/1-hotfix-plan-task <hotfix-path> --output <output-path>
 ```
 
 **Arguments:** $ARGUMENTS
@@ -19,6 +19,7 @@ You are generating a hotfix tech spec from a hotfix description file. Follow the
 Parse `$ARGUMENTS`:
 
 - First positional argument: hotfix description file path (required)
+- `--output`: path where the spec file will be written (required)
 
 ### Step 2 — Read inputs
 
@@ -30,17 +31,11 @@ Read the hotfix description file at the provided path. Extract all YAML frontmat
 
 **Fix approach investigation:** If the `## Fix approach` section is blank or absent, propose a minimal fix approach based on the confirmed or inferred root cause. Prefer surgical changes over refactors. If a fix approach is provided, use it as the direction and elaborate.
 
-### Step 3 — Determine output path
+### Step 3 — Produce the tech spec
 
-- Derive `<hotfix-slug>` from the hotfix `title` field (lowercase, spaces → hyphens)
-- Output: `.claude/planning/hotfixes/<hotfix-slug>/spec.md`
-- If the file already exists, update it rather than overwriting from scratch
+Produce a Markdown document with the sections below. Use `---` as a horizontal divider between each section.
 
-### Step 4 — Generate the tech spec
-
-Produce a Markdown document with the following structure:
-
-**Header block:**
+#### Header
 
 ```markdown
 # [HOTFIX] {title}
@@ -53,63 +48,43 @@ Produce a Markdown document with the following structure:
 **Tech stack:** {tech-stack joined by ", "}
 ```
 
----
-
-**## Symptom**
+#### Symptom
 
 Exact content from `## Symptom` in the hotfix description.
 
----
-
-**## Root Cause Analysis**
+#### Root Cause Analysis
 
 Either the confirmed or refined root cause from the hotfix description, or the inferred hypothesis (marked `(inferred)`) with the reasoning chain. Include an ASCII diagram only when it helps clarify a non-obvious data flow or call chain.
 
----
+#### Technical Scope
 
-**## Technical Scope**
+List in-scope files and components that must change to resolve the symptom — use real file paths from repository context where available. List out-of-scope items drawn from `## Scope` in the hotfix description.
 
-**In scope:** files and components that must change to resolve the symptom. Use real file paths from repository context where available.
+#### Implementation Details
 
-**Out of scope:** items drawn from `## Scope` in the hotfix description.
+A **Modules / Files** table with columns: File, Action (Create / Modify / Delete), Description of the change.
 
----
-
-**## Implementation Details**
-
-**Modules / Files** — a table with columns: File, Action (Create / Modify / Delete), Description of the change.
-
-**Key Changes** — for each file in the table, describe the specific lines, functions, or configuration that must change. Write full function signatures with docstrings only for new or significantly altered functions; for small targeted changes, a concise prose description suffices.
+A **Key Changes** sub-section: for each file in the table, describe the specific lines, functions, or configuration that must change. Write full function signatures with docstrings only for new or significantly altered functions; for small targeted changes, a concise prose description suffices.
 
 Omit CLI Parameters and Data Models sub-sections unless the fix directly involves a CLI or a schema change.
 
----
+#### Verification
 
-**## Verification**
+Drawn from `## Verification steps` in the hotfix description, elaborated with concrete commands where context allows. Structured as manual checks (per environment), automated test commands, and edge cases to validate.
 
-Drawn from `## Verification steps` in the hotfix description, elaborated with concrete commands where context allows. Structure as:
+#### Open Questions / Risks
 
-- Manual checks (per environment)
-- Automated test commands
-- Edge cases to validate
-
----
-
-**## Open Questions / Risks**
-
-Seeded from `## Known risks` in the hotfix description, plus any risks identified during root cause analysis. Each item on its own line as:
+Seeded from `## Known risks` in the hotfix description, plus any risks identified during root cause analysis. Each item formatted as:
 
 ```markdown
 - [ ] **{Risk or question}:** {Description.} **Target:** {date or "TBD"}
 ```
 
----
-
 Do not invent scope, file paths, or function names that cannot be derived from the hotfix description or the repository context.
 
-### Step 5 — Write the file
+### Step 4 — Write the file
 
-Write to the output path from Step 3. Create the directory if needed.
+Write the document to the path given by `--output`. Create intermediate directories if needed. If the file already exists, update it rather than overwriting from scratch.
 
 Then report:
 
