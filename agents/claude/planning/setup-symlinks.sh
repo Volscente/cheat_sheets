@@ -5,6 +5,8 @@ set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
 
+# Each context dir may contain commands/*.md and templates/*.md.
+# general/templates: hotfix-template.md
 for context in personal work general; do
   for f in "$REPO_DIR/$context/commands/"*.md; do
     ln -sfv "$f" "$HOME/.claude/commands/$(basename "$f")"
