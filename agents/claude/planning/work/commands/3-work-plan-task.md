@@ -19,7 +19,7 @@ You are generating a planning document from an RFC. Follow these steps exactly.
 Parse `$ARGUMENTS`:
 
 - First positional argument: RFC file path (required)
-- `--planning`: path to an existing initiative planning doc (e.g. `docs/planning/vdata-8411_markup_accuracy/planning.md`)
+- `--planning`: path to an existing initiative planning doc (e.g. `docs/vdata-8411_markup_accuracy/planning.md`)
 - `--task`: task number to focus on in the planning doc (e.g. `--task 2` targets the "TASK-2" section)
 - `--type`: `initiative` (default) or `spec`
 - `--epic`: JIRA epic ID (e.g. `vdata-8411_markup_accuracy`)
@@ -44,7 +44,7 @@ If type is `initiative`, also read:
 
 If `--planning` was provided, read that file too. When present, it is the **primary source of truth** for scope, deliverables, effort, and task structure. The RFC provides background context only.
 
-If `--planning` was not provided and type is `spec`, check whether a `planning.md` exists in `docs/planning/<jira-epic>/` and read it if found.
+If `--planning` was not provided and type is `spec`, check whether a `planning.md` exists in `docs/<jira-epic>/` and read it if found.
 
 If `--task` was provided, restrict all content derived from the planning doc to the section headed `TASK-<n>` (e.g. `## TASK-2 — ...`). Ignore all other task sections.
 
@@ -60,12 +60,12 @@ than inferred names. Skip silently if no `proposal.md` exists or `context-paths`
 
 **If type = initiative:**
 
-- Output: `docs/planning/<jira-epic>/planning.md` (derive a slug from the RFC title if no epic ID given)
+- Output: `docs/<jira-epic>/planning.md` (derive a slug from the RFC title if no epic ID given)
 - If `planning.md` already exists in that directory, update it rather than overwriting from scratch
 
 **If type = spec:**
 
-- Output: `docs/planning/<jira-epic>/<jira-ticket>.md`
+- Output: `docs/<jira-epic>/<jira-ticket>.md`
 - File name is the JIRA ticket ID in lowercase (e.g. `vdata-9356_online_catalog.md`)
 
 ### Step 4 — Generate the document

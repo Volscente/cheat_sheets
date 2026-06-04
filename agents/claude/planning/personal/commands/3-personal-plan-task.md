@@ -19,7 +19,7 @@ You are generating a planning document from an RFC. Follow these steps exactly.
 Parse `$ARGUMENTS`:
 
 - First positional argument: RFC file path (required)
-- `--planning`: path to an existing initiative planning doc (e.g. `.claude/planning/recipe-app_add-search-bar/planning.md`)
+- `--planning`: path to an existing initiative planning doc (e.g. `.claude/recipe-app_add-search-bar/planning.md`)
 - `--task`: task number to focus on (e.g. `--task 2` targets the `TASK-2` section in the planning doc)
 - `--type`: `initiative` (default) or `spec`
 - `--issue`: GitHub Issue number (e.g. `--issue 12`) — if provided, implies `--type spec`
@@ -43,7 +43,7 @@ If type is `initiative`, also read:
 
 If `--planning` was provided, read that file too. It is the **primary source of truth** for scope, deliverables, effort, and task structure. The RFC provides background context only.
 
-If `--planning` was not provided and type is `spec`, look for a `planning.md` in `.claude/planning/<initiative-name>/` (derive the slug from the RFC's project name) and read it if found.
+If `--planning` was not provided and type is `spec`, look for a `planning.md` in `.claude/<initiative-name>/` (derive the slug from the RFC's project name) and read it if found.
 
 If `--task` was provided, restrict all content derived from the planning doc to the section headed `TASK-<n>`. Ignore all other task sections.
 
@@ -60,12 +60,12 @@ than inferred names. Skip silently if no `proposal.md` exists or `context-paths`
 **If type = initiative:**
 
 - Derive `<initiative-name>` from the RFC's name (lowercase, spaces → hyphens)
-- Output: `.claude/planning/<initiative-name>/planning.md`
+- Output: `.claude/<initiative-name>/planning.md`
 - If `planning.md` already exists in that directory, update it rather than overwriting from scratch
 
 **If type = spec:**
 
-- Output: `.claude/planning/<initiative-name>/<issue-number>-<kebab-title>.md`
+- Output: `.claude/<initiative-name>/<issue-number>-<kebab-title>.md`
 - `<kebab-title>` comes from the TASK heading in the planning doc, or from the RFC section if no planning doc is available
 - Use `issue-000` as a placeholder if no issue number was provided
 

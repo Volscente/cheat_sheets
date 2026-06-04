@@ -19,7 +19,7 @@ You are generating an initiative-level planning document from an RFC. Follow the
 Parse `$ARGUMENTS`:
 
 - First positional argument: path to the RFC Markdown file (required)
-- Second positional argument: path to the output planning file (required, e.g. `docs/planning/vdata-8411_markup_accuracy/planning.md`)
+- Second positional argument: path to the output planning file (required, e.g. `docs/vdata-8411_markup_accuracy/planning.md`)
 
 ### Step 2 — Read inputs
 

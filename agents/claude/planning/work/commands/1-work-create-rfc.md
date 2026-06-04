@@ -15,27 +15,27 @@ problem, constraints, and preferences; Claude designs the solution and writes th
 
 | Parameter | Required | Description                                                        | Example                                                               |
 | :-------- | :------- | :----------------------------------------------------------------- | :-------------------------------------------------------------------- |
-| `--file`  | Yes      | Path to the filled `proposal.md`                                   | `docs/rfc/vdata-9356_online_catalog_dataset_pipeline/proposal.md`     |
-| `--out`   | No       | Override output path (default: `rfc_document.md` next to `--file`) | `docs/rfc/vdata-9356_online_catalog_dataset_pipeline/rfc_document.md` |
+| `--file`  | Yes      | Path to the filled `proposal.md`                                   | `docs/vdata-9356_online_catalog_dataset_pipeline/proposal.md`     |
+| `--out`   | No       | Override output path (default: `rfc_document.md` next to `--file`) | `docs/vdata-9356_online_catalog_dataset_pipeline/rfc_document.md` |
 
 ---
 
 ## Workflow
 
 1. Copy `~/.claude/templates/work_rfc_proposal_template.md` to
-   `docs/rfc/<jira-epic-lowercase>_<title-slug>/proposal.md`.
+   `docs/<jira-epic-lowercase>_<title-slug>/proposal.md`.
 2. Fill out the YAML frontmatter and `## Problem` section (required).
    Optionally fill any of: `## Approach direction`, `## Success criteria`, `## Constraints`,
    `## Desired tech`, `## Integration context`, `## Known risks / concerns`.
    Optionally list module README.md paths in `context-paths` to give Claude design context.
-3. Run `/1-work-create-rfc --file docs/rfc/<jira-epic-lowercase>_<title-slug>/proposal.md`.
+3. Run `/1-work-create-rfc --file docs/<jira-epic-lowercase>_<title-slug>/proposal.md`.
 
 ---
 
 ## Example
 
 ```text
-/1-work-create-rfc --file docs/rfc/vdata-9356_online_catalog_dataset_pipeline/proposal.md
+/1-work-create-rfc --file docs/vdata-9356_online_catalog_dataset_pipeline/proposal.md
 ```
 
 ---

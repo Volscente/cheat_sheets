@@ -33,12 +33,12 @@ Generates a structured RFC document from a filled proposal file. The proposal ca
 
 **Workflow:**
 
-1. Copy `~/.claude/templates/work_rfc_proposal_template.md` to `docs/rfc/<initiative-name>/proposal.md`.
+1. Copy `~/.claude/templates/work_rfc_proposal_template.md` to `docs/<initiative-name>/proposal.md`.
 2. Fill out the YAML frontmatter and `## Problem` section.
 3. Run the command:
 
 ```text
-/1-work-create-rfc --file docs/rfc/vdata-9356_online-catalog/proposal.md
+/1-work-create-rfc --file docs/vdata-9356_online-catalog/proposal.md
 ```
 
 **Parameters:**
@@ -48,7 +48,7 @@ Generates a structured RFC document from a filled proposal file. The proposal ca
 | `--file`  | Yes      | Path to the filled `proposal.md`                                   |
 | `--out`   | No       | Override output path (default: `rfc_document.md` next to `--file`) |
 
-**Output:** `docs/rfc/<initiative-name>/rfc_document.md`
+**Output:** `docs/<initiative-name>/rfc_document.md`
 
 ---
 
@@ -60,8 +60,8 @@ Generates a structured RFC document from a filled proposal file. The proposal ca
 Reads the RFC and produces a high-level planning document: an overview, a dependency order diagram, one section per task (scope, goal, deliverables, technical overview), and a JIRA Stories grouping.
 
 ```text
-/2-work-general-plan docs/rfc/vdata-9356_online_catalog/rfc_document.md \
-              docs/planning/vdata-9356_online_catalog/planning.md
+/2-work-general-plan docs/vdata-9356_online_catalog/rfc_document.md \
+              docs/vdata-9356_online_catalog/planning.md
 ```
 
 **Arguments:** `<rfc-path> <output-path>` (both required)  
@@ -77,15 +77,15 @@ Reads the RFC and produces a high-level planning document: an overview, a depend
 Reads the RFC and the planning doc, then generates a detailed technical spec for a single task. The spec covers technical scope, architecture diagram, tech stack, modules/files table, key function signatures with docstrings, CLI parameters, data models, testing strategy, and open questions.
 
 ```text
-/3-work-plan-task docs/rfc/vdata-9356_online_catalog/rfc_document.md \
-      --planning docs/planning/vdata-9356_online_catalog/planning.md \
+/3-work-plan-task docs/vdata-9356_online_catalog/rfc_document.md \
+      --planning docs/vdata-9356_online_catalog/planning.md \
       --task 2 \
       --type spec \
       --epic vdata-9356_online-catalog \
       --ticket vdata-9400_add_search
 ```
 
-**Output:** `docs/planning/<epic>/<ticket>.md`
+**Output:** `docs/<epic>/<ticket>.md`
 
 Repeat for each task in the planning document.
 
@@ -98,8 +98,8 @@ Repeat for each task in the planning document.
 Reads the RFC (for context) and a tech spec (as the authoritative source of truth), then implements all code changes described in it. Builds a task list, implements in dependency order, runs tests and linters, and updates or creates a `README.md` per modified package.
 
 ```text
-/4-work-execute-plan docs/rfc/vdata-9356_online_catalog/rfc_document.md \
-              docs/planning/vdata-9356/vdata-9400_add_search.md
+/4-work-execute-plan docs/vdata-9356_online_catalog/rfc_document.md \
+              docs/vdata-9356/vdata-9400_add_search.md
 ```
 
 **Arguments:** `<rfc-path> <spec-path>` (both required)

@@ -15,27 +15,27 @@ problem, constraints, and preferences; Claude designs the solution and writes th
 
 | Parameter | Required | Description                                                        | Example                                                 |
 | :-------- | :------- | :----------------------------------------------------------------- | :------------------------------------------------------ |
-| `--file`  | Yes      | Path to the filled `proposal.md`                                   | `.claude/rfc/recipe-app_add-search-bar/proposal.md`     |
-| `--out`   | No       | Override output path (default: `rfc_document.md` next to `--file`) | `.claude/rfc/recipe-app_add-search-bar/rfc_document.md` |
+| `--file`  | Yes      | Path to the filled `proposal.md`                                   | `.claude/recipe-app_add-search-bar/proposal.md`     |
+| `--out`   | No       | Override output path (default: `rfc_document.md` next to `--file`) | `.claude/recipe-app_add-search-bar/rfc_document.md` |
 
 ---
 
 ## Workflow
 
 1. Copy `~/.claude/templates/personal_rfc_proposal_template.md` to
-   `.claude/rfc/<initiative-name>/proposal.md`.
+   `.claude/<initiative-name>/proposal.md`.
 2. Fill out the YAML frontmatter and `## Problem` section (required).
    Optionally fill any of: `## Approach direction`, `## Success criteria`, `## Constraints`,
    `## Desired tech`, `## Integration context`, `## Known risks / concerns`.
    Optionally list module README.md paths in `context-paths` to give Claude design context.
-3. Run `/1-personal-create-rfc --file .claude/rfc/<initiative-name>/proposal.md`.
+3. Run `/1-personal-create-rfc --file .claude/<initiative-name>/proposal.md`.
 
 ---
 
 ## Example
 
 ```text
-/1-personal-create-rfc --file .claude/rfc/recipe-app_add-search-bar/proposal.md
+/1-personal-create-rfc --file .claude/recipe-app_add-search-bar/proposal.md
 ```
 
 ---

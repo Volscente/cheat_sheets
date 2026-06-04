@@ -19,7 +19,7 @@ You are generating an initiative-level planning document from an RFC. Follow the
 Parse `$ARGUMENTS`:
 
 - First positional argument: path to the RFC Markdown file (required)
-- Second positional argument: path to the output planning file (required, e.g. `.claude/planning/recipe-app_add-search-bar/planning.md`)
+- Second positional argument: path to the output planning file (required, e.g. `.claude/recipe-app_add-search-bar/planning.md`)
 
 ### Step 2 — Read inputs
 

@@ -8,7 +8,7 @@ A workflow for turning a personal project idea into implemented code, using Noti
 
 Two documents exist for every initiative — they serve different readers:
 
-|                | Notion initiative page                       | RFC (`.claude/rfc/<initiative-name>`)          |
+|                | Notion initiative page                       | RFC (`.claude/<initiative-name>`)              |
 | -------------- | -------------------------------------------- | ---------------------------------------------- |
 | **Reader**     | You                                          | Claude                                         |
 | **Answers**    | What am I building and why?                  | How will it be built?                          |
@@ -36,7 +36,7 @@ Goals table (one row per project)
 | **What**               | 1–2 sentences in plain language                                     |
 | **Why**                | Personal motivation — why this matters to you right now             |
 | **Success looks like** | Outcome bullets (what changes when this is done)                    |
-| **RFC**                | Link to `.claude/rfc/<initiative-name>/rfc_document.md` in the repo |
+| **RFC**                | Link to `.claude/<initiative-name>/rfc_document.md` in the repo |
 | **GitHub Milestone**   | Link to the milestone                                               |
 | **GitHub Issues**      | Links to individual issues                                          |
 
@@ -75,16 +75,16 @@ Generates a technical RFC from a filled proposal file. The Motivation section is
 
 **Workflow:**
 
-1. Copy `~/.claude/templates/personal_rfc_proposal_template.md` to `.claude/rfc/<initiative-name>/proposal.md`
+1. Copy `~/.claude/templates/personal_rfc_proposal_template.md` to `.claude/<initiative-name>/proposal.md`
 2. Fill out the YAML frontmatter (`title`, `project`, `author`, `tech-stack`, `scope-in`, `scope-out`, `milestones`, etc.) and the `## Problem` section
 3. Create the Notion Sub-Page
 4. Run:
 
 ```text
-/1-personal-create-rfc --file .claude/rfc/<initiative-name>/proposal.md
+/1-personal-create-rfc --file .claude/<initiative-name>/proposal.md
 ```
 
-**Output:** `.claude/rfc/<initiative-name>/rfc_document.md`
+**Output:** `.claude/<initiative-name>/rfc_document.md`
 
 ---
 
@@ -95,11 +95,11 @@ Generates a technical RFC from a filled proposal file. The Motivation section is
 Reads the RFC and produces a task breakdown with a dependency diagram and a GitHub Issues/Milestones grouping.
 
 ```text
-/2-personal-general-plan .claude/rfc/<initiative-name>/rfc_document.md \
-                          .claude/planning/<initiative-name>/planning.md
+/2-personal-general-plan .claude/<initiative-name>/rfc_document.md \
+                          .claude/<initiative-name>/planning.md
 ```
 
-**Output:** `.claude/planning/<initiative-name>/planning.md`
+**Output:** `.claude/<initiative-name>/planning.md`
 
 ---
 
@@ -110,14 +110,14 @@ Reads the RFC and produces a task breakdown with a dependency diagram and a GitH
 Generates a detailed technical spec for one task, linked to its GitHub Issue.
 
 ```text
-/3-personal-plan-task .claude/rfc/<initiative-name>/rfc_document.md \
-                      --planning .claude/planning/<initiative-name>/planning.md \
+/3-personal-plan-task .claude/<initiative-name>/rfc_document.md \
+                      --planning .claude/<initiative-name>/planning.md \
                       --task 1 \
                       --type spec \
                       --issue 12
 ```
 
-**Output:** `.claude/planning/<initiative-name>/<issue_number>-<issue_name>.md`
+**Output:** `.claude/<initiative-name>/<issue_number>-<issue_name>.md`
 
 Repeat for each task.
 
@@ -130,8 +130,8 @@ Repeat for each task.
 Reads the RFC (context) and spec (source of truth), builds a task list, implements in dependency order, runs tests, and updates package READMEs.
 
 ```text
-/4-personal-execute-plan .claude/rfc/<initiative-name>/rfc_document.md \
-                         .claude/planning/<initiative-name>/<issue_number>-<issue_name>.md
+/4-personal-execute-plan .claude/<initiative-name>/rfc_document.md \
+                         .claude/<initiative-name>/<issue_number>-<issue_name>.md
 ```
 
 ---
@@ -163,7 +163,7 @@ Goals table
         │            for 30+ seconds. The app is frustrating to use daily.
         ├── Success: Can find any recipe by name or ingredient in <3 seconds.
         │            Works on mobile without a keyboard covering the results.
-        ├── RFC:     .claude/rfc/recipe-app_add-search-bar/rfc_document.md
+        ├── RFC:     .claude/recipe-app_add-search-bar/rfc_document.md
         ├── Milestone: github.com/simone/recipe-app/milestone/3
         └── Issues:  #12 Search index · #13 Search UI · #14 Keyboard shortcut
 ```
@@ -198,16 +198,13 @@ collection. For full context, see the [Notion initiative page](https://notion.so
 
 ```txt
 .claude/
-├── rfc/
-│   └── recipe-app_add-search-bar/
-│       ├── proposal.md              ← filled by hand
-│       └── rfc_document.md          ← Step 1 output
-└── planning/
-    └── recipe-app_add-search-bar/
-        ├── planning.md              ← Step 2 output
-        ├── 12-implement-search-index.md   ← Step 3 output (Issue #12)
-        ├── 13-build-search-ui.md          ← Step 3 output (Issue #13)
-        └── 14-add-keyboard-shortcut.md    ← Step 3 output (Issue #14)
+└── recipe-app_add-search-bar/
+    ├── proposal.md                    ← filled by hand
+    ├── rfc_document.md                ← Step 1 output
+    ├── planning.md                    ← Step 2 output
+    ├── 12-implement-search-index.md   ← Step 3 output (Issue #12)
+    ├── 13-build-search-ui.md          ← Step 3 output (Issue #13)
+    └── 14-add-keyboard-shortcut.md    ← Step 3 output (Issue #14)
 ```
 
 ### Command sequence
@@ -216,22 +213,22 @@ collection. For full context, see the [Notion initiative page](https://notion.so
 # Step 1 — RFC
 # 1a. Copy the proposal template and fill it in:
 #     cp ~/.claude/templates/personal_rfc_proposal_template.md \
-#        .claude/rfc/recipe-app_add-search-bar/proposal.md
+#        .claude/recipe-app_add-search-bar/proposal.md
 # 1b. Generate the RFC:
-/1-personal-create-rfc --file .claude/rfc/recipe-app_add-search-bar/proposal.md
+/1-personal-create-rfc --file .claude/recipe-app_add-search-bar/proposal.md
 
 # Step 2 — Initiative plan
-/2-personal-general-plan .claude/rfc/recipe-app_add-search-bar/rfc_document.md \
-                          .claude/planning/recipe-app_add-search-bar/planning.md
+/2-personal-general-plan .claude/recipe-app_add-search-bar/rfc_document.md \
+                          .claude/recipe-app_add-search-bar/planning.md
 
 # Step 3 — Tech spec per issue (repeat for #13, #14)
-/3-personal-plan-task .claude/rfc/recipe-app_add-search-bar/rfc_document.md \
-                      --planning .claude/planning/recipe-app_add-search-bar/planning.md \
+/3-personal-plan-task .claude/recipe-app_add-search-bar/rfc_document.md \
+                      --planning .claude/recipe-app_add-search-bar/planning.md \
                       --task 1 --type spec --issue 12
 
 # Step 4 — Implement (repeat per spec)
-/4-personal-execute-plan .claude/rfc/recipe-app_add-search-bar/rfc_document.md \
-                         .claude/planning/recipe-app_add-search-bar/12-implement-search-index.md
+/4-personal-execute-plan .claude/recipe-app_add-search-bar/rfc_document.md \
+                         .claude/recipe-app_add-search-bar/12-implement-search-index.md
 ```
 
 ---
@@ -347,4 +344,4 @@ cp ~/.claude/templates/hotfix-template.md \
 | RFC Motivation   | Business-oriented, 2–3 paragraphs       | Technical gap only, 1 paragraph + Notion link           |
 | RFC required?    | Usually yes                             | **Optional** — only for complex designs                 |
 | Build tooling    | `justfile` recipes                      | No assumption — test/lint steps are best-effort         |
-| Output paths     | `docs/planning/<jira-epic>/<ticket>.md` | `.claude/planning/<initiative-name>/<issue>-<title>.md` |
+| Output paths     | `docs/planning/<jira-epic>/<ticket>.md` | `.claude/<initiative-name>/<issue>-<title>.md` |
