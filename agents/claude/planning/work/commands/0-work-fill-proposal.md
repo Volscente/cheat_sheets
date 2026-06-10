@@ -7,16 +7,17 @@ Existing values are never overwritten.
 ## Usage
 
 ```text
-/0-work-fill-proposal --file <path-to-proposal>
+/0-work-fill-proposal --input <path-to-initiative> --file <path-to-proposal>
 ```
 
 **Arguments:** $ARGUMENTS
 
 ### Parameters
 
-| Parameter | Required | Description                       | Example                                                           |
-| :-------- | :------- | :-------------------------------- | :---------------------------------------------------------------- |
-| `--file`  | Yes      | Path to the proposal file to fill | `docs/vdata-9356_online_catalog_dataset_pipeline/proposal.md` |
+| Parameter   | Required | Description                             | Example                                                           |
+| :---------- | :------- | :-------------------------------------- | :---------------------------------------------------------------- |
+| `--input`   | Yes      | Path to the initiative markdown file    | `docs/vdata-9356_online_catalog_dataset_pipeline/initiative.md`  |
+| `--file`    | Yes      | Path to the proposal file to fill       | `docs/vdata-9356_online_catalog_dataset_pipeline/proposal.md`    |
 
 ---
 
@@ -30,6 +31,7 @@ repository.
 
 Parse `$ARGUMENTS`:
 
+- `--input` (required): path to the initiative markdown file
 - `--file` (required): path to the proposal file to fill
 
 ### Step 2 — Read the proposal file
@@ -59,32 +61,25 @@ If `context-paths` in the frontmatter contains at least one non-blank entry:
 
 If `context-paths` is empty or absent, skip this step.
 
-**B. JIRA epic from `jira-epic`**
+**B. Initiative file from `--input`**
 
-If `jira-epic` in the frontmatter is a non-blank value (e.g. `VDATA-9356`):
-
-- Attempt to fetch the JIRA epic page using the organization's JIRA instance URL.
-  If the URL is not known, ask the user for the full JIRA epic URL before proceeding.
-- Extract: epic goal, motivation, background, acceptance criteria, and any decisions
-  already recorded.
-- If fetching fails (e.g. authentication required), note the limitation and proceed
-  using only the README context from Step 3A.
-
-If `jira-epic` is blank, skip this step.
+Read the file at the `--input` path.
+Extract: initiative goal, motivation, background, acceptance criteria, and any decisions
+already recorded.
 
 ### Step 4 — Fill missing YAML keys
 
 For each YAML key whose value is blank or a placeholder (e.g. `""`):
 
-- `title`: derive a short descriptive title from the JIRA epic or README context.
-- `team`: derive the owning team name from the JIRA epic or README context;
+- `title`: derive a short descriptive title from the initiative file or README context.
+- `team`: derive the owning team name from the initiative file or README context;
   otherwise leave blank.
 - `author`: do not fill — leave blank for the author to complete.
-- `jira-epic`: leave as-is (it was the source; if blank it stays blank).
-- `org`: infer from the JIRA epic if clearly stated; otherwise leave blank.
+- `jira-epic`: leave as-is — do not modify.
+- `org`: infer from the initiative file if clearly stated; otherwise leave blank.
 - `deadline`: leave blank if no date can be inferred — do not default.
 - `reviewers`: leave blank — this is for the author to decide.
-- `tech-stack`: list technologies clearly referenced in the README files or JIRA epic;
+- `tech-stack`: list technologies clearly referenced in the README files or initiative file;
   omit anything not mentioned.
 - `scope-in`: list capabilities explicitly described as in-scope in the sources.
 - `scope-out`: list items explicitly described as out-of-scope; format each as
@@ -142,5 +137,5 @@ Then report:
 
 - Which YAML keys were filled vs. left unchanged.
 - Which markdown sections were filled vs. left as placeholders.
-- Which sources were used (context-paths files loaded, whether JIRA epic was fetched).
+- Which sources were used (context-paths files loaded, whether initiative file was read).
 - Any assumptions made.
