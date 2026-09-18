@@ -6,17 +6,18 @@ problem, constraints, and preferences; Claude designs the solution and writes th
 ## Usage
 
 ```text
-/1-work-create-rfc --file <path-to-proposal> [--out <output-path>]
+/1-work-create-rfc --file <path-to-proposal> [--out <output-path>] [--lite]
 ```
 
 **Arguments:** $ARGUMENTS
 
 ### Parameters
 
-| Parameter | Required | Description                                                        | Example                                                               |
-| :-------- | :------- | :----------------------------------------------------------------- | :-------------------------------------------------------------------- |
-| `--file`  | Yes      | Path to the filled `proposal.md`                                   | `docs/vdata-9356_online_catalog_dataset_pipeline/proposal.md`     |
-| `--out`   | No       | Override output path (default: `rfc_document.md` next to `--file`) | `docs/vdata-9356_online_catalog_dataset_pipeline/rfc_document.md` |
+| Parameter | Required | Description                                                                                             | Example                                                           |
+| :-------- | :------- | :-------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------- |
+| `--file`  | Yes      | Path to the filled `proposal.md`                                                                           | `docs/vdata-9356_online_catalog_dataset_pipeline/proposal.md`     |
+| `--out`   | No       | Override output path (default: `rfc_document.md` next to `--file`)                                         | `docs/vdata-9356_online_catalog_dataset_pipeline/rfc_document.md` |
+| `--lite`  | No       | Skip FAQs, the Future-capability appendix, and References — for initiatives with no external reviewers    | —                                                                  |
 
 ---
 
@@ -52,6 +53,7 @@ Parse `$ARGUMENTS`:
 
 - `--file` (required): path to the filled proposal file
 - `--out` (optional): override output file path
+- `--lite` (optional flag): if present, skip FAQs, the Future-capability appendix, and References in Step 7 — use this when the RFC has no external reviewers and the extra ceremony won't earn its cost
 
 ### Step 2 — Read the proposal file
 
@@ -124,6 +126,8 @@ This designed solution — not the proposal — drives the RFC content in Step 7
 
 ### Step 7 — Generate the RFC
 
+**If `--lite` was passed:** omit the FAQs section, omit any `Future: {capability}` appendix subsections, and omit the References section unless concrete links were already supplied in the proposal. Everything else below still applies — the design work in Step 6 doesn't get any lighter, only the reviewer-facing ceremony does.
+
 **Title:**
 
 - Format as `[RFC] {team}: {title}` — from `team` and `title` frontmatter fields
@@ -187,13 +191,7 @@ This designed solution — not the proposal — drives the RFC content in Step 7
   those technologies with the author's reasoning
 - If both are empty: placeholder rows
 
-**Effort Estimations:**
-
-- If `milestones` is non-empty: one table row per milestone with placeholder effort estimate
-- If empty: two placeholder rows
-- Recommended delivery order follows the milestone list order
-
-**FAQs:**
+**FAQs (skip entirely if `--lite`):**
 
 - Generate 3–5 Q&A pairs derived from the Step 6 design — anticipate questions a reviewer
   would ask about the concrete methodology, not just the general problem
@@ -214,10 +212,10 @@ This designed solution — not the proposal — drives the RFC content in Step 7
 
 Write to the output path from Step 5. Create the directory if needed.
 
-Then report:
+Then report to the console as a short bullet list (max ~8 bullets), ranked by what needs your judgment — not a checklist of what got written:
 
-- Output file path
-- Which `context-paths` files were loaded (or note if none were provided)
-- Which sections were fully populated vs. left as placeholders
-- Where (if at all) the designed approach diverged from the proposal's `## Approach direction`, and why
-- Any assumptions made during generation
+- **Key design decisions** from Step 6 — the approach chosen and why, especially anywhere it adopted, challenged, or rejected the proposal's `## Approach direction`.
+- **Genuine risks** identified during design (from Step 6 and `## Known risks / concerns`) — the ones a reviewer would actually push back on.
+- **Assumptions made** during generation that could be wrong.
+- Sections left as placeholders because the proposal and repository context gave nothing to work with (omit if none).
+- One trailing line: output file path and which `context-paths` files were loaded (or note if none were provided).

@@ -42,8 +42,6 @@
 
 [Tech Stack](#tech-stack)
 
-[Effort Estimations](#effort-estimations)
-
 [FAQs](#faqs)
 
 [Appendix](#appendix)
@@ -155,27 +153,6 @@ Keep this list minimal — only what is actually used, not aspirational dependen
 
 - **{Library / Service}**: {Why it is used}
 - **{Library / Service}**: {Why it is used}
-
-## Effort Estimations {#effort-estimations}
-
-<!--
-Use 1 FTE = 1 Day. Break the work into milestones with task descriptions and estimates.
-State the recommended delivery order and any milestone dependencies.
--->
-
-Estimates are 1 FTE = 1 Day. Total estimated effort: **{X–Y FTE}**.
-
-### Milestone Breakdown
-
-| Milestone   | Tasks               | Est. FTE  |
-| :---------- | :------------------ | :-------- |
-| M1 — {Name} | {Task descriptions} | {N} FTE   |
-| M2 — {Name} | {Task descriptions} | {N–M} FTE |
-
-### Recommended Delivery Order
-
-1. M1 — {Name} ({reason, e.g., prerequisite for everything else})
-2. M2 — {Name} ({dependency note})
 
 ---
 

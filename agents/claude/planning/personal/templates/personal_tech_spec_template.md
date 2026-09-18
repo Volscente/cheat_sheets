@@ -74,47 +74,33 @@ CLI: python -m {module.path}
 
 ### Key Functions
 
+<!--
+Signature + a one-line intent comment only — not a full docstring. The full docstring
+is written once, during implementation, where it can be checked against the actual
+function body instead of guessed at before the code exists. Add a "Notes" bullet only
+for behavior that isn't obvious from the signature alone (fallback on error, what's
+intentionally excluded, etc.).
+-->
+
 ```python
 def {load_function}(
     {param}: {Type},
     {param2}: {Type},
 ) -> {ReturnType}:
-    """{One-line summary.}
-
-    {Describe what it loads, how it filters/transforms, and what shape it returns.}
-
-    Args:
-        {param}: {Description.}
-        {param2}: {Description.}
-
-    Returns:
-        {Description of the return value.}
-
-    Raises:
-        {ErrorType}: {When this error is raised.}
-    """
+    # {One-line intent — what it loads, how it filters/transforms, what shape it returns}
 ```
+
+- Notes: {only if non-obvious}
 
 ```python
 def {core_function}(
     {input}: {Type},
     {param}: {Type},
 ) -> {ResultType}:
-    """{One-line summary.}
-
-    {Describe what input is received, what processing happens, and what is returned.}
-
-    Args:
-        {input}: {Description.}
-        {param}: {Description.}
-
-    Returns:
-        {Description of the return value.}
-
-    Raises:
-        {ErrorType}: {When this error is raised.}
-    """
+    # {One-line intent — what processing happens and what is returned}
 ```
+
+- Notes: {only if non-obvious, e.g. fallback on error}
 
 ---
 

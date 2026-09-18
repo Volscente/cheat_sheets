@@ -74,7 +74,8 @@ Rules:
 
 Write the generated document to the output path. Create the parent directory if needed.
 
-Then report:
+Then report to the console as a short bullet list (max ~8 bullets), ranked by what needs your judgment — not a checklist of what got generated:
 
-- The output file path
-- Number of tasks, number of milestones, any notable decisions made
+- **Grouping and estimation decisions** — how tasks were clustered into milestones, and any effort estimate you derived yourself rather than took from the RFC.
+- **Assumptions made** where the RFC was ambiguous about scope or dependency order.
+- One trailing line: output file path, number of tasks, number of milestones.

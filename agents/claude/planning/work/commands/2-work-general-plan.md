@@ -72,7 +72,8 @@ Rules:
 
 Write the generated document to the output path provided in the arguments. If the parent directory does not exist, create it.
 
-Then report:
+Then report to the console as a short bullet list (max ~8 bullets), ranked by what needs your judgment — not a checklist of what got generated:
 
-- The output file path
-- A 2–3 bullet summary of what was generated (number of tasks, number of stories, any notable decisions made)
+- **Grouping and estimation decisions** — how tasks were clustered into stories, and any effort estimate you derived yourself rather than took from the RFC.
+- **Assumptions made** where the RFC was ambiguous about scope or dependency order.
+- One trailing line: output file path, number of tasks, number of stories.

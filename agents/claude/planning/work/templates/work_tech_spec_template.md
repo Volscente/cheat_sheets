@@ -103,30 +103,24 @@ CLI: uv run python -m {module.path}
 
 ### Key Functions
 
+<!--
+Signature + a one-line intent comment only — not a full docstring. The full docstring
+(Args/Returns/Raises) is written once, during implementation, where it can be checked
+against the actual function body instead of guessed at before the code exists.
+Add a "Notes" bullet only for behavior that isn't obvious from the signature alone
+(fallback on error, what's intentionally excluded from a call, concurrency model).
+-->
+
 ```python
 def {load_function}(
     {client}: {ClientType},
     {param}: {Type},
     {param2}: {Type},
 ) -> {ReturnType}:
-    """{One-line summary of what this function does.}
-
-    {One paragraph describing the logic: what it queries or loads, how it
-    groups or filters data, and what shape the result takes.}
-
-    Args:
-        {client}: {Description.}
-        {param}: {Description.}
-        {param2}: {Description.}
-
-    Returns:
-        {Description of the return value.}
-
-    Raises:
-        {ErrorType}: {When this error is raised.}
-        {ErrorType}: {When this error is raised.}
-    """
+    # {One-line intent — what it queries/loads, how it groups or filters, what shape it returns}
 ```
+
+- Notes: {only if non-obvious, e.g. a specific grouping/filter rule}
 
 ```python
 def {step_one_function}(
@@ -134,24 +128,10 @@ def {step_one_function}(
     {input}: {Type},
     {param}: {Type},
 ) -> {ResultType}:
-    """{One-line summary — e.g. "Call 1 — Extract X from Y."}
-
-    {Describe what input is sent, what the model/service receives, and what
-    structured output is returned. Note what is intentionally excluded.}
-
-    Args:
-        {client}: {Description.}
-        {input}: {Description.}
-        {param}: {Description.}
-
-    Returns:
-        {Description of the return value and its shape.}
-        {Describe fallback behaviour on error, e.g. returns empty result and logs.}
-
-    Raises:
-        {ErrorType}: {Propagated only if retry logic is exhausted.}
-    """
+    # {One-line intent — e.g. "Call 1 — extract X from Y"}
 ```
+
+- Notes: {what's intentionally excluded from the call}, {fallback on error, e.g. returns empty result and logs}
 
 ```python
 def {step_two_function}(
@@ -159,48 +139,20 @@ def {step_two_function}(
     {input_from_step_one}: list[{StepOneResult}],
     {context_items}: list[{ContextType}],
 ) -> {ResultType}:
-    """{One-line summary — e.g. "Call 2 — Match X to Y."}
-
-    {Describe what inputs are sent (and what is intentionally withheld vs.
-    step 1), what the model/service receives, and what structured output is
-    returned.}
-
-    Args:
-        {client}: {Description.}
-        {input_from_step_one}: {Output of step_one_function.}
-        {context_items}: {Description of the context provided.}
-
-    Returns:
-        {Description of the return value.}
-        {Describe fallback behaviour on error.}
-
-    Raises:
-        {ErrorType}: {Propagated only if retry logic is exhausted.}
-    """
+    # {One-line intent — e.g. "Call 2 — match X to Y"}
 ```
+
+- Notes: {what's intentionally withheld vs. step 1}, {fallback on error}
 
 ```python
 def {orchestrate_function}(
     {client}: {ClientType},
     {unit}: {UnitType},
 ) -> list[{RecordType}]:
-    """{One-line summary — orchestrates the full pipeline for a single unit.}
-
-    {Describe the sequence of steps: data loading, step 1, step 2, derived
-    computations, and error handling. Note concurrency model (this function
-    runs per-unit; the caller handles parallelism).}
-
-    Args:
-        {client}: {Description.}
-        {unit}: {Description of the processing unit, e.g. a vendor batch.}
-
-    Returns:
-        {Description. Note empty-list fallback on failure.}
-
-    Raises:
-        {ErrorType}: {When this error is raised.}
-    """
+    # {One-line intent — orchestrates the full pipeline for a single unit}
 ```
+
+- Notes: concurrency model (e.g. runs per-unit; caller handles parallelism), empty-list fallback on failure
 
 ```python
 def {write_function}(
@@ -208,23 +160,10 @@ def {write_function}(
     {records}: list[{RecordType}],
     {destination}: str,
 ) -> int:
-    """{One-line summary — e.g. "Write results to BigQuery, creating the table if needed."}
-
-    {Describe write mode (append/overwrite), table creation behaviour, and
-    schema source.}
-
-    Args:
-        {client}: {Description.}
-        {records}: {Validated record objects to persist.}
-        {destination}: {Fully qualified destination ID, e.g. BQ table ID.}
-
-    Returns:
-        {Number of rows written.}
-
-    Raises:
-        {ErrorType}: {On write failure.}
-    """
+    # {One-line intent — e.g. "write results to BigQuery, creating the table if needed"}
 ```
+
+- Notes: write mode (append/overwrite), table creation behaviour, schema source
 
 ---
 

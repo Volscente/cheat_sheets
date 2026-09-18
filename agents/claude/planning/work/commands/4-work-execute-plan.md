@@ -56,7 +56,7 @@ Work through the task list in order. For each task:
 **Implementation rules:**
 
 - Follow the "Modules / Files" table in the spec exactly — create or modify only those files unless a transitive dependency is unavoidable.
-- Implement every function listed under "Key Functions", with the exact signature and docstring shown in the spec.
+- Implement every function listed under "Key Functions" with the exact signature shown in the spec. The spec deliberately omits a full docstring — write it now, against the actual function body, following the project's docstring convention. Fold in any "Notes" bullets from the spec (fallback behavior, exclusions, concurrency model) as part of that docstring or inline comments, as appropriate.
 - If the spec defines CLI parameters, wire them up exactly as specified.
 - If the spec defines a BigQuery schema or Pydantic model, implement it verbatim.
 - If the spec defines a testing strategy, write the tests described. Do not add tests beyond what the spec calls for.
@@ -130,9 +130,9 @@ Follow the style of the as below:
 
 ### Step 8 — Report
 
-Output a concise summary:
+Output to the console a short bullet list (max ~8 bullets), ranked by what needs your judgment — not a file-by-file changelog:
 
-- Files created or modified (one line each, with path)
-- Any spec open questions that remain unresolved
-- Any deliberate deviations from the spec, with the reason
-- Test and lint status
+- **Deliberate deviations from the spec**, with the reason — these are the decisions most likely to need your pushback.
+- **Spec open questions that remain unresolved** — surfaced, not silently resolved.
+- **Test and lint status** — if anything failed and was fixed, say what broke and why, not just "passing now."
+- One trailing line: files created or modified (path list — the diff already shows this in detail).

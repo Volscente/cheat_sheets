@@ -127,9 +127,11 @@ Overwrite the file at `--file` with the updated content. Preserve:
 - All headings and their order.
 - Any prose that was already present before you ran this command.
 
-Then report:
+Then report to the console as a short bullet list (max ~8 bullets), ranked by what needs your judgment — not a checklist of what got done:
 
-- Which YAML keys were filled vs. left unchanged.
-- Which markdown sections were filled vs. left as placeholders.
-- Which sources were used (context-paths files loaded, whether initiative file was read).
-- Any assumptions made.
+- **Assumptions made** while inferring blank fields or drafting sections — anything you should double-check (e.g. an inferred project name, a guessed milestone list, a scope-out reason you didn't state yourself).
+- **Sections drafted from thin sources** — flag any section you wrote with low confidence so you know to tighten it by hand, even though it's no longer a placeholder.
+- Any clarifying question you asked before writing (omit this bullet if none).
+- One trailing line: output file path and which sources were loaded or skipped (context-paths files, initiative file).
+
+Do not enumerate every filled key or section — only the ones that involved a judgment call.

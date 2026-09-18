@@ -91,7 +91,9 @@ Use only RFC information (and planning doc if provided). Do not invent scope, de
 - **Tech Stack**: new packages only with version and justification; omit section if none
 - **Implementation Details**:
   - Modules / Files table
-  - Key Functions with full docstrings (Args, Returns, Raises)
+  - Key Functions as signatures with a one-line intent comment and a "Notes" bullet only for
+    non-obvious behavior (no full docstrings — those are written once, during implementation,
+    against the real function body)
   - CLI Parameters table (if the component has a CLI)
   - Data Models / Schemas
   - Testing Strategy (unit, integration, edge cases)
@@ -103,7 +105,9 @@ When `--planning` is provided, the task section in that file defines deliverable
 
 Write to the output path from Step 3. Create the directory if needed.
 
-Then report:
+Then report to the console as a short bullet list (max ~8 bullets), ranked by what needs your judgment — not a checklist of what got generated:
 
-- The output file path
-- A 2–3 bullet summary of what was generated
+- **Key decisions** — for `spec` type, any file/function names or interfaces inferred beyond what the repository context explicitly showed; for `initiative` type, how tasks were grouped or estimated.
+- **Open questions / risks** flagged in the generated document.
+- **Assumptions made**, and any deviation from the planning doc's stated scope if `--planning` was provided.
+- One trailing line: output file path.

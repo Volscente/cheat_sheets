@@ -64,7 +64,7 @@ List in-scope files and components that must change to resolve the symptom — u
 
 A **Modules / Files** table with columns: File, Action (Create / Modify / Delete), Description of the change.
 
-A **Key Changes** sub-section: for each file in the table, describe the specific lines, functions, or configuration that must change. Write full function signatures with docstrings only for new or significantly altered functions; for small targeted changes, a concise prose description suffices.
+A **Key Changes** sub-section: for each file in the table, describe the specific lines, functions, or configuration that must change. For new or significantly altered functions, write the signature with a one-line intent comment (not a full docstring — that's written once, during implementation, against the real function body). For small targeted changes, a concise prose description suffices.
 
 Omit CLI Parameters and Data Models sub-sections unless the fix directly involves a CLI or a schema change.
 
@@ -86,7 +86,9 @@ Do not invent scope, file paths, or function names that cannot be derived from t
 
 Write the document to the path given by `--output`. Create intermediate directories if needed. If the file already exists, update it rather than overwriting from scratch.
 
-Then report:
+Then report to the console as a short bullet list (max ~8 bullets), ranked by what needs your judgment — not a checklist of what got written:
 
-- The output file path
-- 2–3 bullet summary of the root cause conclusion and the fix approach chosen
+- **Root cause conclusion** — and clearly flag if it's `(inferred)` rather than confirmed, since that's the biggest thing to sanity-check before implementation starts.
+- **Fix approach chosen**, and why it's the minimal surgical option rather than an alternative.
+- Any risk or open question worth a second look before Step 2 (`execute-plan`) runs.
+- One trailing line: output file path.

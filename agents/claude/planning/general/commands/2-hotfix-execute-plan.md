@@ -52,7 +52,7 @@ Work through the task list in order. For each task:
 **Implementation rules:**
 
 - Follow the "Modules / Files" table exactly — create or modify only those files unless a transitive dependency is unavoidable.
-- Implement every function listed under "Key Changes" with the exact signature and docstring shown in the spec.
+- Implement every function listed under "Key Changes" with the exact signature shown in the spec. Write the full docstring now, against the actual function body, following the project's docstring convention.
 - If the spec defines a testing strategy, write exactly those tests. Do not add tests beyond what the spec calls for.
 - If the spec flags open questions, do not resolve them silently — surface them in the final report.
 - Keep changes surgical: do not refactor surrounding code that is unrelated to the bug.
@@ -88,10 +88,10 @@ If `--version` was not provided, skip this step.
 
 ### Step 7 — Report
 
-Output a concise summary:
+Output to the console a short bullet list (max ~8 bullets), ranked by what needs your judgment — not a file-by-file changelog:
 
-- Files created or modified (one line each, with path)
-- Result of each manual verification step from the spec
-- Any spec open questions that remain unresolved
-- Any deliberate deviations from the spec, with the reason
-- Test and lint status (or a note if no suite is configured)
+- **Deliberate deviations from the spec**, with the reason — these are the decisions most likely to need your pushback.
+- **Result of each manual verification step** from the spec — this is the actual proof the hotfix works.
+- **Spec open questions that remain unresolved** — surfaced, not silently resolved.
+- **Test and lint status** (or a note if no suite is configured).
+- One trailing line: files created or modified (path list).

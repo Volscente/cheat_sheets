@@ -15,7 +15,8 @@ scope-in:
 scope-out:
   - ""                  # Format: "Item: reason" (e.g. "Online monitoring: deferred to future phase")
 milestones:
-  - ""                  # Ordered milestone names; each maps to an Effort Estimation row
+  - ""                  # Ordered milestone names; each becomes a subsection of the RFC's main
+                        # technical section. Effort is estimated later, in the planning doc.
 context-paths:
   - ""                  # Optional: paths to module README.md files Claude should read for design context.
                         # Paths are relative to the root of the target project repo.

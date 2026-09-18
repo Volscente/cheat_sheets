@@ -3,16 +3,10 @@
 | Author          | {Full Name}                                     |
 | :-------------- | :---------------------------------------------- |
 | **Project**     | {Project name}                                  |
-| **RFC status**  | Draft                                           |
+| **RFC status**  | Draft ({YYYY-MM-DD})                            |
 | **Notion page** | [{Initiative Name}]({NOTION_URL})               |
 | **GitHub repo** | [{owner/repo}](https://github.com/{owner/repo}) |
 | **Milestone**   | [Milestone: {Name}]({GITHUB_MILESTONE_URL})     |
-
-### Timeline
-
-| Date         | Status | Note |
-| :----------- | :----- | :--- |
-| {YYYY-MM-DD} | Draft  |      |
 
 ### Table of contents
 
@@ -25,8 +19,6 @@
 [{Main Technical Section Title}](#{main-technical-section-anchor})
 
 [Tech Stack](#tech-stack)
-
-[Effort Estimations](#effort-estimations)
 
 [FAQs](#faqs)
 
@@ -99,25 +91,6 @@ Cover: what it is, why it was designed this way, any schemas or algorithms preci
 
 - **{Library / Tool}**: {Why it is used}
 - **{Library / Tool}**: {Why it is used}
-
-## Effort Estimations {#effort-estimations}
-
-<!--
-Break the work into milestones with rough estimates. Each milestone maps to a GitHub Issue.
-Use whatever unit makes sense (hours, sessions, days).
--->
-
-Total estimated effort: **{N} sessions / hours / days**.
-
-| Milestone   | Description         | Est. effort | GitHub Issue |
-| :---------- | :------------------ | :---------- | :----------- |
-| M1 — {Name} | {Task descriptions} | {N}         | #{issue}     |
-| M2 — {Name} | {Task descriptions} | {N}         | #{issue}     |
-
-### Recommended Order
-
-1. M1 — {Name} ({reason})
-2. M2 — {Name} ({dependency note})
 
 ---
 
