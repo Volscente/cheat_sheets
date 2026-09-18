@@ -187,20 +187,43 @@ Since we are building a FastAPI app, you don't want to just run a script; you wa
 
 ```json
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Python: FastAPI",
-            "type": "debugpy",
-            "request": "launch",
-            "module": "uvicorn",
-            "args": [
-                "backend.main:app", // Points to your FastAPI app
-                "--reload"
-            ],
-            "jinja": true
-        }
-    ]
+ "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python Debugger: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "fetch-gms-validations: single entity",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/menu_digitalisation_service/mds/utils/gms_integration/fetch_gms_validations.py",
+      "args": ["--global-entity-id", "FP_HK"],
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/menu_digitalisation_service/mds/.env"
+    },
+    {
+      "name": "fetch-gms-validations: dry-run single entity",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/menu_digitalisation_service/mds/utils/gms_integration/fetch_gms_validations.py",
+      "args": ["--global-entity-id", "FP_HK", "--dry-run"],
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/menu_digitalisation_service/mds/.env"
+    },
+    {
+      "name": "fetch-gms-validations: all entities",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/menu_digitalisation_service/mds/utils/gms_integration/fetch_gms_validations.py",
+      "args": ["--all"],
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/menu_digitalisation_service/mds/.env"
+    }
+  ]
 }
 
 ```
