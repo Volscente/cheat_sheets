@@ -1,0 +1,66 @@
+agents/claude/planning/general/commands/1-hotfix-plan-task.md
+  s_82596edaf781b9::t_d1b2faa62ce50f 89,91-94
+  s_82596edaf781b9::t_eb5dc54ed0588b 67
+agents/claude/planning/general/commands/2-hotfix-execute-plan.md
+  s_82596edaf781b9::t_2a5421ad6ad30b 55
+  s_82596edaf781b9::t_6d006f9b45db14 91,93-97
+agents/claude/planning/personal/templates/personal_rfc_template.md
+  s_82596edaf781b9::t_acbf1e77062a3b 6
+agents/claude/planning/work/commands/2-work-general-plan.md
+  s_82596edaf781b9::t_5275c4a8b015e5 75,77-79
+agents/claude/planning/work/templates/work_tech_spec_template.md
+  s_82596edaf781b9::t_76cd050ac003fd 106-113,120,123-124,131,134-135,142,145-146,152,155-156,163,166
+  s_82596edaf781b9::t_61eb35e00450e5 167
+agents/claude/planning/personal/commands/3-personal-plan-task.md
+  s_82596edaf781b9::t_fdd95e75418ec8 94-96
+  s_82596edaf781b9::t_aa68f285a32fdf 108,110-113
+agents/claude/planning/work/commands/4-work-execute-plan.md
+  s_82596edaf781b9::t_4a84f793392624 133,135-138
+  s_82596edaf781b9::t_44cb173f0aa8b1 59
+agents/claude/planning/personal/commands/1-personal-create-rfc.md
+  s_82596edaf781b9::t_8ec73ddafcb883 179
+  s_82596edaf781b9::t_4d04a76a86a411 203
+  s_82596edaf781b9::t_78001e8d004705 56
+  s_82596edaf781b9::t_706e6f85dd92ac 199,201-202,204-205
+  s_82596edaf781b9::t_f41119a3409715 126-127,132
+  s_82596edaf781b9::t_175dadb06ec70d 9,16-20
+agents/claude/planning/work/commands/1-work-create-rfc.md
+  s_82596edaf781b9::t_c9fdb681f23889 129-130
+  s_82596edaf781b9::t_f563e38c703ff6 56
+  s_82596edaf781b9::t_dbebb7f3261d48 194
+  s_82596edaf781b9::t_733bd7fd977dfd 215,217-221
+  s_82596edaf781b9::t_af6c32287c4afa 9,16-20
+agents/claude/planning/work/commands/0-work-fill-proposal.md
+  s_82596edaf781b9::t_b5ddb89df208b5 136,138-143
+agents/claude/planning/work/commands/3-work-plan-task.md
+  s_82596edaf781b9::t_18500e9608102a 105,107-110
+  s_82596edaf781b9::t_ae6d3181e0943c 91-93
+agents/claude/planning/personal/templates/personal_tech_spec_template.md
+  s_82596edaf781b9::t_c036453f33874e 77-84,90,93-94,100,103
+  s_82596edaf781b9::t_b58d5a159b0ff4 104
+agents/claude/planning/work/templates/work_rfc_proposal_template.md
+  s_82596edaf781b9::t_05dfe9f122d77c 18-19
+agents/claude/planning/personal/commands/4-personal-execute-plan.md
+  s_82596edaf781b9::t_4924118568ccb8 59
+  s_82596edaf781b9::t_25b5c645ed8641 127,129-132
+agents/claude/planning/personal/commands/2-personal-general-plan.md
+  s_82596edaf781b9::t_b881fcfebd3b1b 77,79-81
+agents/claude/planning/personal/commands/0-personal-fill-proposal.md
+  s_82596edaf781b9::t_0ffccb9a22324c 130,132-137
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "ef05fb67c4af443ce9fd249c57643ea4a9764e8f",
+  "prompts": {},
+  "sessions": {
+    "s_82596edaf781b9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "129c8288-3156-4826-ae7d-1a1866e59d4d",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Simone Porreca <porrecasimone@gmail.com>"
+    }
+  }
+}
