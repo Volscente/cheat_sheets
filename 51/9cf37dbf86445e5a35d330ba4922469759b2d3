@@ -1,0 +1,14 @@
+data_engineering/streaming/introduction.md
+  h_68a16e6033d539 69-84
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "519cf37dbf86445e5a35d330ba4922469759b2d3",
+  "prompts": {},
+  "humans": {
+    "h_68a16e6033d539": {
+      "author": "Simone Porreca <porrecasimone@gmail.com>"
+    }
+  }
+}
