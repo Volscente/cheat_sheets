@@ -38,4 +38,32 @@ There are typically two domains we care about
 - Even Time - It is the time at which an event occurs.
 - Processing Time - It is the time at which the event is observed by the system.
 
-In an ideal world, these two times should always be equal.
+In an ideal world, these two times should always be equal and events are processed as soon as they occur.
+
+### Skeweness
+
+In reality there is a skeweness between Event time and Processing time, due to:
+
+- Resource limitation (e.g., CPU, network, etc.)
+- Software causes such as distributed logic
+- Features of the data themselves
+
+The main limitation derived from such skeweness is that it is not safe to assume that an event occur when our system is able to process it. We therefore would never be able to know the prices time when the event occurs. This skeweness is not fixed over time, which results in even more problems.
+
+### Windowing
+
+One technique to cope with time skeweness is "Windowing": chopping up a dataset into finite pieces along temporal boundaries. Essentially creating windows of data points bounded by a specific time interval.
+
+However this introduces some problem regarding the correctness and compelteness of the data inside each window. Maybe the series is not complete, or even not correct.
+
+## Data Processing Patterns
+
+### Data Processing
+
+In this section we want to explore how to process data depending on what kind of data are we dealing with. The main division would be of course between Bounded Data and Unbounded Data.
+
+We'll review some common patterns in order to processing such data.
+
+### Bounded Data
+
+The most typical data processing pattern for bounded data is the _Batch Processing_.
