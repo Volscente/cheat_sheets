@@ -66,4 +66,19 @@ We'll review some common patterns in order to processing such data.
 
 ### Bounded Data
 
-The most typical data processing pattern for bounded data is the _Batch Processing_.
+#### MapReduce
+
+The most typical data processing pattern for bounded data is the _Batch Processing_. One classic example of this approach is _MapReduce_.
+
+Users specify a map function that processes a key/value pair to generate a set of intermediate key/value pairs, and a reduce function that merges all intermediate values associated with the same intermediate key.
+
+### Unbounded Data
+
+#### Batch
+
+The overall concept is to slicing up Unbounded Data into a collection of bounded datasets appropriated for the batch processing.
+
+This can be achieved in two different ways:
+
+- **Fixed Windows** - Divide the dataset into fixed-size windows and process them. In most systems though, such approach suffers from the _Completeness_ problem. The problem is: Do I have 100% of the data that actually belongs to this specific time window, or is some of it still on the way? What if some of your events are delayed en route to the logs due to a network partition?
+- **Sessions** - Sessions are typically defined as periods of activity (e.g., for a specific user) terminated by a gap of inactivity. It another way of creating windows essentially. Maybe a little bit more sophisticated. However you might end up with a same session splitted across two batches.
