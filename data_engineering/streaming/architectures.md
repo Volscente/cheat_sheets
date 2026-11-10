@@ -22,13 +22,15 @@ Essentially, the old conception that batch systems have a better quality is just
 
 ## Event-drive Architecture (EDA)
 
-### EDA Definition
+### EDA - General
+
+#### EDA Definition
 
 It is a system architecture design patterns that reacts to events. An event is a record of something that has already happened, like a credit card transaction.
 
 Following the event, a message is generated. A message is the physical packet of bytes (headers, key, payload) transferred across a broker like Redpanda or Kafka.
 
-### Compare to REST Architecture
+#### Compare to REST Architecture
 
 In traditional request-response architectures (like REST), Service A calls Service B directly: "Charge card, then call notification service, then update analytics." If one fails or slows down, the chain breaks.
 
@@ -40,3 +42,15 @@ In an EDA, services are decoupled:
     - Fraud Detection Service: Consumes the message and evaluates anomaly scores in real time.
     - SMS/Push Notification Service: Consumes the same message and sends a receipt to the customer's phone.
     - Data Warehouse Ingestion Pipeline: Consumes the message and batches it into Iceberg/Parquet tables for data scientists.
+
+#### Compare to Message-driven Architecture
+
+In a Message-driven Architecture, Producers send messages directly to each consumer. The producer must wait for acknowledgement that the consumer received the message before it can continue with its processes.
+
+Instead, in an event-driven architecture, Producers send events to an event processing system (Redpanda) that acknowledges receipt of the write. This guarantees that the write is durable within the system and can be read by multiple consumers.
+
+### Redpanda
+
+Redpanda is an event streaming platform which provides the infrastructure for streaming real-time data.
+
+It receives messages (triggered by events) from the publishers, store those messages and the consumers can pull those messages.
