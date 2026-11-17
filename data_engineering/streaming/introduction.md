@@ -82,3 +82,7 @@ This can be achieved in two different ways:
 
 - **Fixed Windows** - Divide the dataset into fixed-size windows and process them. In most systems though, such approach suffers from the _Completeness_ problem. The problem is: Do I have 100% of the data that actually belongs to this specific time window, or is some of it still on the way? What if some of your events are delayed en route to the logs due to a network partition?
 - **Sessions** - Sessions are typically defined as periods of activity (e.g., for a specific user) terminated by a gap of inactivity. It another way of creating windows essentially. Maybe a little bit more sophisticated. However you might end up with a same session splitted across two batches.
+
+## Software and Libraries
+
+- [Redpand](https://docs.redpanda.com/home/) - Redpanda is an event streaming platform: it provides the infrastructure for streaming real-time data.

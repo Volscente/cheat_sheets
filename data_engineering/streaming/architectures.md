@@ -54,3 +54,19 @@ Instead, in an event-driven architecture, Producers send events to an event proc
 Redpanda is an event streaming platform which provides the infrastructure for streaming real-time data.
 
 It receives messages (triggered by events) from the publishers, store those messages and the consumers can pull those messages.
+
+#### Redpanda Console
+
+It allows you to check the messages through a UI.
+
+![Redpanda Console UI](./images/redpanda-ui.png)
+
+- In the left panel you can for example select "Topics" and see all the topics available. Clicking on a topic allows you then to filter for a specific value even through JavaScript code `return value.email.includes(".edu");`
+- The "Schema Registry" looks like a way where you can configure how the accepted messages look like.
+- The "Security" allows to create new users, roles and associated ACLs.
+
+#### Data Transforms
+
+Data transforms let you run common data streaming tasks on the Redpanda broker, like filtering, scrubbing, and transcoding.
+
+![Data Transforms](./images/data-transforms.png)
