@@ -49,6 +49,12 @@ In a Message-driven Architecture, Producers send messages directly to each consu
 
 Instead, in an event-driven architecture, Producers send events to an event processing system (Redpanda) that acknowledges receipt of the write. This guarantees that the write is durable within the system and can be read by multiple consumers.
 
+### Brokers
+
+The brokers are essentially storage engines that sit in the middle between the producers and the consumers. They writes in an append-only commit log fashion. The consumers then read using their own offset bookmarks.
+
+In a production environment, brokers run in a distributed environment, where the logs written are replicated across multiple brokers.
+
 ### Redpanda
 
 Redpanda is an event streaming platform which provides the infrastructure for streaming real-time data.
