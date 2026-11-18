@@ -1,0 +1,26 @@
+agents/claude/planning/work/commands/1-work-create-rfc.md
+  s_12bcd6c07ff43b::t_f75789864d4923 124-128,191-197
+agents/claude/planning/work/commands/3-work-plan-task.md
+  s_12bcd6c07ff43b::t_87a44ebd7ad5d1 81,89
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "18aa3c67951fda967e3be6d85ac85b5a5c470980",
+  "prompts": {},
+  "humans": {
+    "h_68a16e6033d539": {
+      "author": "Simone Porreca <porrecasimone@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_12bcd6c07ff43b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b97392ad-c374-4e16-b83d-52c9e246f891",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Simone Porreca <porrecasimone@gmail.com>"
+    }
+  }
+}
