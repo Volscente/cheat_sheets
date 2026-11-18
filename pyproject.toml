@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "confluent-kafka[avro,schemaregistry]>=2.16.2",
     "matplotlib>=3.10.5",
     "metaflow>=2.17.3",
     "notebook>=7.4.5",
