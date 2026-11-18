@@ -1,0 +1,15 @@
+services:
+  redpanda:
+    container_name: redpanda-dev
+    image: docker.redpanda.com/redpandadata/redpanda:latest
+    ports:
+      - 9092:9092 # Kafka broker API
+      - 8081:8081 # Schema Registry
+    command:
+      - redpanda # Invoke Redpanda CLI
+      - start # Start redpanda broker
+      - --mode dev-container # Use the container configurations for a dev environment
+      - --smp 1 # ?
+      - --kafka-addr PLAINTEXT://0.0.0.0:9092 # ?
+      - --advertise-kafka-addr PLAINTEXT://localhost:9092 # ?
+      - --schema-registry-addr 0.0.0.0:8081 # ?
