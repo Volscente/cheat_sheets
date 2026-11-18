@@ -121,6 +121,11 @@ Using the problem statement, scope, constraints, and repository context from Ste
    use `## Success criteria` from the proposal to refine or constrain them if present
 5. **Identify genuine risks**: 2–4 design-specific risks (not just abstract concerns);
    use `## Known risks / concerns` from the proposal as additional input
+6. **Check release constraints**: read the project's `CLAUDE.md`. If it defines release
+   constraints (release cadence, self-contained changes, enabling steps), design the
+   initiative to respect them: order the work so each part can be released alone, decide
+   what stays inert or default-off until an enabling step, and name that step. Step 7
+   turns this into a *Release safety* section. If the project defines none, skip it.
 
 This designed solution — not the proposal — drives the RFC content in Step 7.
 
@@ -182,6 +187,13 @@ This designed solution — not the proposal — drives the RFC content in Step 7
     `## Integration context` is also blank
 - If `milestones` is non-empty: one subsection per milestone with a placeholder description
 - If empty: two generic placeholder subsections
+
+**Release safety (only if Step 6 found project release constraints):**
+
+- A short section after the main technical section covering: the staged order of the work
+  (prerequisites first, enabling change last), what is inert or gated until the enabling
+  step, the enabling step and when it may merge, and how to roll it back
+- Do not repeat the project's rules in full; reference `CLAUDE.md` and apply them
 
 **Tech Stack:**
 

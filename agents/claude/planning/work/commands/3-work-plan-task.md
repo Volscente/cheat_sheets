@@ -78,6 +78,7 @@ Rules:
 - Add one `### Story N` sub-section per story group in `## JIRA Stories` — there may be anywhere from 1 to 10+. Replicate the story block structure from the template for each group.
 - Include `### Existing Infrastructure (already done)` and `### Gaps to Close` only when the RFC describes already-completed work.
 - Use only information from the RFC and planning doc. Do not invent scope, deliverables, or effort estimates. Keep descriptions technical and concise.
+- If the project's `CLAUDE.md` defines release constraints (release cadence, self-contained changes, enabling steps), add a **Safe to release alone?** line to every `## TASK-N` section: yes or no, and how (inert, default-off, additive, behaviour-preserving). Mark the enabling task, which must come last, and say so in the Dependency Order. Do not mark a task safe unless the RFC or planning doc supports it; flag it as an open question instead.
 
 **If type = spec**, populate `~/.claude/templates/work_tech_spec_template.md` section by section. Use `~/.claude/templates/work_general_plan_template.md` for field semantics and formatting rules:
 
@@ -85,6 +86,7 @@ Rules:
 - JIRA Ticket and JIRA Epic links (placeholder URLs if not provided: `https://deliveryhero.atlassian.net/browse/<ticket>`)
 - **Technical Scope** — what files/modules change; what is explicitly out of scope
 - **Architecture** — ASCII diagram of the data flow or component structure
+- **Release safety** — only if the project's `CLAUDE.md` defines release constraints: one line saying whether this ticket is safe to release alone, how, and whether it is the enabling change
 - **Tech Stack** — new packages only, with version and justification; skip section if none
 - **Implementation Details** containing:
   - Modules / Files table (File | Action | Description)
