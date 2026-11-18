@@ -1,0 +1,18 @@
+data_engineering/streaming/experiments/real-time-streaming-ingestion-lab/docker-compose.yml
+  h_68a16e6033d539 12-15
+pyproject.toml
+  h_68a16e6033d539 8
+uv.lock
+  h_68a16e6033d539 142-163,231-239,242,244,246,251,254-319,358,366,390-446,502-564,614-646,720-732,748-772,775,777,779,884-895,1969-1977
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f3ac96f4044b93f837e14be1070805c1abcf1d65",
+  "prompts": {},
+  "humans": {
+    "h_68a16e6033d539": {
+      "author": "Simone Porreca <porrecasimone@gmail.com>"
+    }
+  }
+}
